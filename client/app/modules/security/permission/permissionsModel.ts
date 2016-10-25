@@ -1,3 +1,4 @@
+import {IoCNames} from "../../../common/enum";
 export class PermissionsModel {
     public options: any = {};
     public eventKey: string = "permissions_ondatasource_changed";
@@ -18,7 +19,7 @@ export class PermissionsModel {
         this.actions.push(action);
     }
     public importPermissions(items: Array<any>) {
-        let eventManager = window.ioc.resolve("IEventManager");
+        let eventManager = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.publish(this.eventKey, items);
     }
 }

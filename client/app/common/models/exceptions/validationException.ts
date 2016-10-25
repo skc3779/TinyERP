@@ -1,5 +1,6 @@
 import {ValidationError} from "./validationError";
 import {CommonEvent} from "../../event";
+import {IoCNames} from "../../../common/enum";
 export class ValidationException {
     constructor(key: string = "", params: any = {}) {
         if (key !== "") {
@@ -14,6 +15,6 @@ export class ValidationException {
         return this.errors.length > 0;
     }
     public throwIfHasError(): void {
-        window.ioc.resolve("IEventManager").publish(CommonEvent.ValidationFail, this);
+        window.ioc.resolve(IoCNames.IEventManager).publish(CommonEvent.ValidationFail, this);
     }
 }

@@ -3,6 +3,7 @@ import {ValidationError, ValidationException} from "../../../../models/exception
 import {ResourceHelper} from "../../../../helpers/resourceHelper";
 import {CommonEvent} from "../../../../event";
 import regexHelper from "../../../../helpers/regexHelper";
+import {IoCNames} from "../../../../../common/enum";
 
 @Component({
     selector: "error-message",
@@ -12,12 +13,12 @@ export class ErrorMessage {
     public errors: Array<any> = [];
     @Input() pattern: string = "*";
     constructor() {
-        let eventManager: any = window.ioc.resolve("IEventManager");
+        let eventManager: any = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.subscribe(CommonEvent.ValidationFail, (validation: ValidationException) => { this.onError(validation); });
     }
     private onError(validation: ValidationException) {
         let self: ErrorMessage = this;
-        let resourceHelper: ResourceHelper = window.ioc.resolve("IResource");
+        let resourceHelper: ResourceHelper = window.ioc.resolve(IoCNames.IResource);
         let errors: Array<ValidationError> = [];
         validation.errors.forEach(function (error: ValidationError) {
             if (!regexHelper.isMatch(self.pattern, error.key)) { return; }

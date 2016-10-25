@@ -1,7 +1,7 @@
 import {Component, Input} from "angular2/core";
 import {LoadingIndicatorEvent} from "../../../../event";
 import {EventManager} from "../../../../eventManager";
-
+import {IoCNames} from "../../../../../common/enum";
 @Component({
     selector: "loading-indicator",
     template: "<div id='loaderIndicator' class='loading {{model}}'>&nbsp;</div>"
@@ -11,7 +11,7 @@ export class LoadingIndicator {
     private showRequest: boolean = false;
     constructor() {
         let self: LoadingIndicator = this;
-        let eventManager: EventManager = window.ioc.resolve("IEventManager");
+        let eventManager: EventManager = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.subscribe(LoadingIndicatorEvent.Show, () => self.onShow());
         eventManager.subscribe(LoadingIndicatorEvent.Hide, () => self.onHide());
     }

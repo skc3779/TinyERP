@@ -4,6 +4,7 @@ import appConfig from "../../config/appConfig";
 import objectHelper from "./objectHelper";
 import configHelper from "../helpers/configHelper";
 import userProfileHelper from "../helpers/userProfileHelper";
+import {IoCNames} from "../../common/enum";
 export class ResourceHelper {
     private resources: Hashtable<any>;
     private callbacks: Array<Hashtable<any>>;
@@ -30,31 +31,12 @@ export class ResourceHelper {
         let resourceObject = this.resources.get(moduleName);
         let value: string = objectHelper.getByPath(resourceObject, keyItems.join("."));
         return value;
-        // let def = PromiseFactory.create();
-        /*if (!this.resources.exist(moduleName)) {
-            let callbacks = this.callbacks[key];
-            if (!callbacks) {
-                this.callbacks[moduleName] = new Hashtable<any>();
-                callbacks = this.callbacks[moduleName];
-            }
-            callbacks.set(keyItems.join("."), function (value: string) {
-                def.resolve(value);
-            });
-            let self = this;
-            this.loadResource(moduleName).then((args: any) => { self.onNewResourceLoaded(args); });
-        } else {
-            let resourceObject = this.resources.get(moduleName);
-            let value = objectHelper.getByPath(resourceObject, keyItems.join("."));
-            def.resolve(value);
-
-        }*/
-        // return def;
     }
     private loadResource(moduleName: string): Promise {
         let def = PromiseFactory.create();
         let lang: string = userProfileHelper.getLang();
         let resourcePath = String.format("{0}{1}.{2}.json", configHelper.getAppConfig().localeUrl, moduleName, lang);
-        let connector = window.ioc.resolve("IConnector");
+        let connector = window.ioc.resolve(IoCNames.IConnector);
         let self: ResourceHelper = this;
         connector.getJSON(resourcePath).then(function (data: any) {
             self.resources.set(moduleName, data);

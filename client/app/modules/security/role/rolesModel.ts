@@ -1,3 +1,4 @@
+import {IoCNames} from "../../../common/enum";
 export class RolesModel {
     public options: any = {};
     public eventKey: string = "roles_ondatasource_changed";
@@ -20,7 +21,7 @@ export class RolesModel {
     }
 
     public importRoles(items: Array<any>) {
-        let eventManager = window.ioc.resolve("IEventManager");
+        let eventManager = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.publish(this.eventKey, items);
     }
 }

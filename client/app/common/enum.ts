@@ -44,3 +44,11 @@ export enum ParameterValueType {
     Number,
     Password
 }
+
+export const IoCNames = {
+    ILogger: "ILogger",
+    IConnector: "IConnector",
+    IEventManager: "IEventManager",
+    IResource: "IResource",
+    IApplicationState: "IApplicationState",
+};

@@ -10,6 +10,7 @@ import {IoCFactory, IoCContainer} from "./common/models/ioc/all";
 import {ApplicationStateFactory} from "./applicationState";
 import { ReflectiveInjector } from "angular2/core";
 import {ResourceHelper} from "./common/helpers/resourceHelper";
+import {IoCNames} from "./common/enum";
 
 let injector = ReflectiveInjector.resolveAndCreate([HTTP_PROVIDERS, ROUTER_PROVIDERS]);
 configInjector(injector);
@@ -37,6 +38,6 @@ function configIoC() {
   let ioc: IoCContainer = IoCFactory.create();
   ioc.import(config.ioc);
   window.ioc = ioc;
-  let resourceHelper: ResourceHelper = window.ioc.resolve("IResource");
-  resourceHelper.load(["common", "registration", "security", "productManagement", "store", "setting"]);
+  let resourceHelper: ResourceHelper = window.ioc.resolve(IoCNames.IResource);
+  resourceHelper.load(config.localization.files);
 }

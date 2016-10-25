@@ -5,12 +5,13 @@ import {ResourceHelper} from "./common/helpers/resourceHelper";
 import configHelper from "./common/helpers/configHelper";
 import {Injector} from "angular2/core";
 import {Router} from "angular2/router";
+import {IoCNames} from "./common/enum";
 export class ApplicationState implements IApplicationState {
     private eventManager: EventManager;
     private injector: Injector = null;
     public registerEvents(): void {
         let self: ApplicationState = this;
-        self.eventManager = window.ioc.resolve("IEventManager");
+        self.eventManager = window.ioc.resolve(IoCNames.IEventManager);
         self.eventManager.subscribe(ApplicationStateEvent.Init, (args: any) => self.onApplicationInit(args));
         self.eventManager.subscribe(ApplicationStateEvent.BeforeReady, (args: any) => self.onApplicationBeforeReady(args));
         self.eventManager.subscribe(ApplicationStateEvent.Ready, (args: any) => self.onApplicationReady(args));

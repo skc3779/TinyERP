@@ -17,7 +17,8 @@ export default {
     loginUrl: "/Login",
     defaultUrl: "/Roles",
     localization: {
-        lang: Languages.EN
+        lang: Languages.EN,
+        files:["common", "registration", "security", "productManagement", "store", "setting"]
     },
     auth: {
         token: "authtoken"

@@ -1,3 +1,4 @@
+import {IoCNames} from "../../../common/enum";
 export class UserGroupsModel {
     public options: any = {};
     public eventKey: string = "userGroups_ondatasource_changed";
@@ -20,7 +21,7 @@ export class UserGroupsModel {
     }
 
     public import(items: Array<any>) {
-        let eventManager = window.ioc.resolve("IEventManager");
+        let eventManager = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.publish(this.eventKey, items);
     }
 }

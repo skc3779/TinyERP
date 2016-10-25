@@ -14,7 +14,7 @@ import {LoadingIndicator} from "./directives/common/loadingIndicator";
 import {BaseApplication} from "../../models/ui";
 import {IApplicationState} from "../../models/app/iapplicationState";
 import {ILogger} from "../../helpers/logging/ilogger";
-
+import {IoCNames} from "../../../common/enum";
 let routes = configHelper.getRoutes();
 // configIoC();
 @Component({
@@ -37,7 +37,7 @@ export class DefaultLayout extends BaseApplication {
     }
     private onInitialized() {
         let self: any = this;
-        let appState: IApplicationState = window.ioc.resolve("IApplicationState");
+        let appState: IApplicationState = window.ioc.resolve(IoCNames.IApplicationState);
         if (!!appState) {
             appState.registerEvents();
         }

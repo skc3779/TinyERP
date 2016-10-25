@@ -3,6 +3,7 @@ import {BaseControl} from "../../../common/models/ui";
 import {SelectModel} from "./selectModel";
 import {FormSelectMode} from "../../../common/enum";
 import {KeyNamePair} from "../../../common/models/KeyNamePair";
+import {IoCNames} from "../../../common/enum";
 @Component({
     selector: "form-select",
     templateUrl: "app/common/directives/form/select.html"
@@ -21,7 +22,7 @@ export class FormSelect extends BaseControl {
     @Input() getItems: any = () => { };
     protected onReady() {
         let self: FormSelect = this;
-        let iconenctor = window.ioc.resolve("IConnector");
+        let iconenctor = window.ioc.resolve(IoCNames.IConnector);
         self.getItems().then(function (items: Array<any>) {
             self.model.import(items);
             window.setTimeout(function () {

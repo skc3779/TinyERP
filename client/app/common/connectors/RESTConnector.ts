@@ -9,6 +9,7 @@ import {LoadingIndicatorEvent, CommonEvent} from "../event";
 import {EventManager} from "../eventManager";
 import {HttpCode} from "../event";
 import {IConnector} from "./iconnector";
+import {IoCNames} from "../../common/enum";
 @Injectable()
 export class RESTConnector implements IConnector {
     private static http: Http;
@@ -19,7 +20,7 @@ export class RESTConnector implements IConnector {
     }
     public setHttp(http: Http) {
         RESTConnector.http = http;
-        RESTConnector.eventManager = window.ioc.resolve("IEventManager");
+        RESTConnector.eventManager = window.ioc.resolve(IoCNames.IEventManager);
     }
     public getJSON(jsonPath: string) {
         RESTConnector.eventManager.publish(LoadingIndicatorEvent.Show);

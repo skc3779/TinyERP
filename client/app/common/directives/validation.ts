@@ -3,6 +3,7 @@ import {EventManager} from "../eventManager";
 import {ResourceHelper} from "../helpers/resourceHelper";
 import {ValidationMode, ValidationException} from "../models/exception";
 import {ValidationEvent} from "../event";
+import {IoCNames} from "../../common/enum";
 @Directive({
     selector: "[validation]"
 })
@@ -15,7 +16,7 @@ export class ValidationDirective {
     constructor(html: ElementRef) {
         let self: ValidationDirective = this;
         this.el = html.nativeElement;
-        let eventManager: EventManager = window.ioc.resolve("IEventManager");
+        let eventManager: EventManager = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.subscribe(ValidationEvent.ValidationFail, (error: ValidationException) => self.onValidationFailed(error));
     }
     private onValidationFailed(exception: ValidationException) {
@@ -35,7 +36,7 @@ export class ValidationDirective {
         self.hideError();
     }
     private showError(error: any) {
-        let resourceHelper: ResourceHelper = window.ioc.resolve("IResource");
+        let resourceHelper: ResourceHelper = window.ioc.resolve(IoCNames.IResource);
         let errorMessage: string = resourceHelper.resolve(error.key);
         window.jQuery(this.el).addClass(ValidationMode.Invalid);
         this.el.setAttribute("origin-title", this.el.title);

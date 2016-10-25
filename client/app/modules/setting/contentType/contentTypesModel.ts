@@ -1,4 +1,5 @@
 import {ItemStatus} from "../../../common/enum";
+import {IoCNames} from "../../../common/enum";
 export class Model {
     public options: any = {};
     public eventKey: string = "contenttypes_ondatasource_changed";
@@ -19,7 +20,7 @@ export class Model {
         this.actions.push(action);
     }
     public import(items: Array<any>) {
-        let eventManager = window.ioc.resolve("IEventManager");
+        let eventManager = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.publish(this.eventKey, items);
     }
 }
