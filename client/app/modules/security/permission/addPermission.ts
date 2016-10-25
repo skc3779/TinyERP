@@ -2,7 +2,7 @@ import {BasePage} from "../../../common/models/ui";
 import {Router, RouteParams} from "angular2/router";
 import {Component} from "angular2/core";
 import {AddPermissionModel} from "./addPermissionModel";
-import {Page, SelectPermission} from "../../../common/directive";
+import {Page, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect} from "../../../common/directive";
 import {ValidationDirective} from "../../../common/directive";
 import permissionService from "../_share/services/permissionService";
 import {FormMode} from "../../../common/enum";
@@ -10,7 +10,7 @@ import route from "../_share/config/route";
 
 @Component({
     templateUrl: "app/modules/security/permission/addPermission.html",
-    directives: [ValidationDirective, Page]
+    directives: [ValidationDirective, Page, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect]
 })
 export class AddPermission extends BasePage {
     public model: AddPermissionModel = new AddPermissionModel();

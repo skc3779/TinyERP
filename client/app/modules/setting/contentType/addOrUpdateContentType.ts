@@ -3,7 +3,7 @@ import {Router, RouteParams} from "angular2/router";
 import {Component} from "angular2/core";
 import {Model} from "./addOrUpdateContentTypeModel";
 import {SelectPermission, Page} from "../../../common/directive";
-import {ValidationDirective, FormStatusToggle, FormSelect} from "../../../common/directive";
+import {ValidationDirective, FormStatusToggle, FormSelect, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect} from "../../../common/directive";
 import settingService from "../_share/services/settingService";
 import {FormMode, Guid} from "../../../common/enum";
 import route from "../_share/config/route";
@@ -11,7 +11,7 @@ import {Parameters} from "../_share/directives/parameters";
 
 @Component({
     templateUrl: "app/modules/setting/contentType/addOrUpdateContentType.html",
-    directives: [ValidationDirective, FormStatusToggle, FormSelect, Parameters, Page]
+    directives: [ValidationDirective, FormStatusToggle, FormSelect, Parameters, Page, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect]
 })
 export class AddOrUpdateContentType extends BasePage {
     public model: Model = new Model();
