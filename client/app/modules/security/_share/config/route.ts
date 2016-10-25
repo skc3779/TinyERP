@@ -1,18 +1,18 @@
 let route = {
     permission: {
-        permissions: { name: "Permissions", path: "/permissions" },
-        addPermission: { name: "Add Permission", path: "/addPermission" },
-        editPermission: { name: "Edit Permission", path: "/editPermission/:id" }
+        permissions: { name: "Permissions", path: "/security/permissions" },
+        addPermission: { name: "Add Permission", path: "/security/addPermission" },
+        editPermission: { name: "Edit Permission", path: "/security/editPermission/:id" }
     },
     role: {
-        roles: { name: "Roles", path: "/roles" },
-        addRole: { name: "Add Role", path: "/addRole" },
-        editRole: { name: "Edit Role", path: "/editRole/:id" }
+        roles: { name: "Roles", path: "/security/roles" },
+        addRole: { name: "Add Role", path: "/security/addRole" },
+        editRole: { name: "Edit Role", path: "/security/editRole/:id" }
     },
     userGroup: {
-        userGroups: { name: "UserGroups", path: "/userGroups" },
-        addUserGroup: { name: "Add UserGroup", path: "/addUserGroup" },
-        editUserGroup: { name: "Edit UserGroup", path: "/editUserGroup/:id" }
+        userGroups: { name: "UserGroups", path: "/security/userGroups" },
+        addUserGroup: { name: "Add UserGroup", path: "/security/addUserGroup" },
+        editUserGroup: { name: "Edit UserGroup", path: "/security/editUserGroup/:id" }
     }
 };
 export default route;

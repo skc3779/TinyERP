@@ -15,7 +15,7 @@ export default {
     ioc: "./config/ioc",
     modules: modules,
     loginUrl: "/Login",
-    defaultUrl: "/Roles",
+    defaultUrl: "Roles",
     localization: {
         lang: Languages.EN,
         files:["common", "registration", "security", "productManagement", "store", "setting"]
