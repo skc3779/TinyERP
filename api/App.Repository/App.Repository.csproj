@@ -62,6 +62,7 @@
     <Compile Include="Secutiry\IPermissionRepository.cs" />
     <Compile Include="Secutiry\IRoleRepository.cs" />
     <Compile Include="Secutiry\IUserGroupRepository.cs" />
+    <Compile Include="Support\IRequestRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Entity\App.Entity.csproj">

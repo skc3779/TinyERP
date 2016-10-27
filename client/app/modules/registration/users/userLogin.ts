@@ -28,6 +28,9 @@ export class UserLogin extends BasePage {
         // this.router.navigate(["Forgot Password"]);
         // console.log(this.i18n.resolve('signin.yourEmail'));
     }
+    public onSupportRequestClicked(){
+        this.router.navigate(["Create Request"]);
+    }
     public onSignInClicked(event: any) {
         let self: UserLogin = this;
         if (!this.model.isValid()) { return; }

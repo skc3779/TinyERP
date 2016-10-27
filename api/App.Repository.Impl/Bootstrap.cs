@@ -22,6 +22,8 @@ namespace App.Repository.Impl
 
             context.RegisterTransient<App.Repository.Setting.IContentTypeRepository, App.Repository.Impl.Setting.ContentTypeRepository>();
             context.RegisterTransient<App.Repository.Common.IParameterRepository, App.Repository.Impl.Common.ParameterRepository>();
+
+            context.RegisterTransient<App.Repository.Support.IRequestRepository, App.Repository.Impl.Support.RequestRepository>();
         }
     }
 }

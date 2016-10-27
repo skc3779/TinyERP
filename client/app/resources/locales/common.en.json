@@ -10,6 +10,7 @@
     "form":{
       "save":"Save",
       "cancel":"Cancel",
+      "send":"Send",
       "status":{
         "active":"Active",
         "inactive":"InActive"

@@ -9,6 +9,7 @@
         "forgotPassword":"Forgot your password",
         "emailRequired": "Email is required",
         "pwdRequired": "Password is required",
-        "invalidEmailOrPwd":"Invalid email or password"
+        "invalidEmailOrPwd":"Invalid email or password",
+        "createSupportRequest":"Create Support Request"
     }
 }

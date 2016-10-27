@@ -15,5 +15,6 @@ export * from "./directives/form/formTextInput";
 export * from "./directives/form/formFooter";
 export * from "./directives/form/formTextArea";
 export * from "./directives/form/formPermissionSelect"
+export * from "./directives/form/formEmailInput";
 /*export * from "./directives/page/pageHeader";
 export * from "./directives/page/pageContent";*/

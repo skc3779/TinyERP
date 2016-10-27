@@ -17,6 +17,7 @@ namespace App.Service.Impl
 
             context.RegisterSingleton<App.Service.Common.File.IFileService, App.Service.Impl.Common.FileService>();
             context.RegisterSingleton<App.Service.Setting.IContentTypeService, App.Service.Impl.Setting.ContentTypeService>();
+            context.RegisterSingleton<App.Service.Support.IRequestService, App.Service.Impl.Support.RequestService>();
         }
     }
 }

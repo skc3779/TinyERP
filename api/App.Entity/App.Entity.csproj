@@ -75,6 +75,7 @@
     <Compile Include="Store\OrderItem.cs" />
     <Compile Include="Store\Store.cs" />
     <Compile Include="Store\StoreAccount.cs" />
+    <Compile Include="Support\Request.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application.Common\App.Common.csproj">

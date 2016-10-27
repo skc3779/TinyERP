@@ -68,6 +68,7 @@
     <Compile Include="Security\RoleRepository.cs" />
     <Compile Include="Security\UserGroupRepository.cs" />
     <Compile Include="Setting\ContentTypeRepository.cs" />
+    <Compile Include="Support\RequestRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

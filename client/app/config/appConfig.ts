@@ -2,11 +2,13 @@ import {IModule} from "../common/models/layout";
 import registration from "../modules/registration/_share/config/module";
 import securiry from "../modules/security/_share/config/module";
 import setting from "../modules/setting/_share/config/module";
+import support from "../modules/support/_share/config/module";
 import {Languages} from "../common/enum";
 let modules: Array<IModule> = [
     registration,
     securiry,
-    setting
+    setting,
+    support
 ];
 export default {
     app: {
@@ -18,7 +20,7 @@ export default {
     defaultUrl: "Roles",
     localization: {
         lang: Languages.EN,
-        files:["common", "registration", "security", "productManagement", "store", "setting"]
+        files:["common", "registration", "security", "productManagement", "store", "setting", "support"]
     },
     auth: {
         token: "authtoken"

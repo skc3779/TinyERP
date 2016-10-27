@@ -89,6 +89,8 @@
     <Compile Include="Setting\GetContentTypeResponse.cs" />
     <Compile Include="Setting\IContentTypeService.cs" />
     <Compile Include="Setting\UpdateContentTypeRequest.cs" />
+    <Compile Include="Support\CreateRequest.cs" />
+    <Compile Include="Support\IRequestService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Entity\App.Entity.csproj">

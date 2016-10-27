@@ -205,6 +205,7 @@
     <Compile Include="Features\Share\Tasks\JsonSerializerTask.cs" />
     <Compile Include="Features\Registration\UsersController.cs" />
     <Compile Include="Features\Share\Tasks\RegisterWebApiRouteTask.cs" />
+    <Compile Include="Features\Support\RequestsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

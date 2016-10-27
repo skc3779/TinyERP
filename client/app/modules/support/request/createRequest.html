@@ -1,0 +1,30 @@
+<page>
+    <page-header>
+        {{i18n.support.createRequest.title}}
+    </page-header>
+    <page-content>
+        <form-default>
+            <form-text-input 
+                [labelText]=i18n.support.createRequest.subject
+                [placeHolderText]=i18n.support.createRequest.inputSubject
+                [validation]="['support.createRequest.validation.subjectIsRequired']"
+                [(model)]=model.subject>
+            </form-text-input>
+            <form-textarea
+                [labelText]=i18n.support.createRequest.desc 
+                [placeHolderText]=i18n.support.createRequest.inputDesc 
+                [(model)]=model.description>
+            </form-textarea>
+            <form-email-input
+                [labelText]=i18n.support.createRequest.email 
+                [placeHolderText]=i18n.support.createRequest.inputEmail
+                [validation]="['support.createRequest.validation.emailIsRequired']" 
+                [(model)]=model.email>
+            </form-email-input>
+             <form-footer>
+                <button (click)="onSendClicked($event)" type="button" class="btn btn-primary">{{i18n.common.form.send}}</button>
+                <button (click)="onCancelClicked($event)" type="button" class="btn btn-default">{{i18n.common.form.cancel}}</button>
+            </form-footer>
+        </form-default>
+    </page-content>
+</page>

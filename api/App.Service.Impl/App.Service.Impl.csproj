@@ -64,6 +64,7 @@
     <Compile Include="Security\RoleService.cs" />
     <Compile Include="Security\UserGroupService.cs" />
     <Compile Include="Setting\ContentTypeService.cs" />
+    <Compile Include="Support\RequestService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Context\App.Context.csproj">

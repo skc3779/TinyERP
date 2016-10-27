@@ -1,0 +1,15 @@
+{
+    "createRequest":{
+        "title":"Create Support Request",
+        "subject":"Subject",
+        "inputSubject":"Please input subject",
+        "desc":"Description",
+        "inputDesc":"Please input description for Role",
+        "email":"Your Emmail",
+        "inputEmail":"Please input your email",
+        "validation":{
+            "emailIsRequired":"Please input valid email",
+            "subjectIsRequired":"Please input subject"
+        }
+    }
+}
