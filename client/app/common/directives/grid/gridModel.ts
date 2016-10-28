@@ -1,8 +1,11 @@
+import guidHelper from "../../helpers/guidHelper";
+import {Hashtable} from "../../models/list/hashtable";
 export class GridModel {
     private static NumberOfInstance = 0;
     public id: string = String.format("_grid{0}", GridModel.NumberOfInstance);
     public data: Array<any> = [];
     private options: any = null;
+    public actions: Hashtable<any>= new Hashtable<any>();
     constructor(options: any) {
         GridModel.NumberOfInstance++;
         this.data = options.data;
@@ -28,6 +31,14 @@ export class GridModel {
         }
         if (this.options.enableDelete === true) {
             html += "<input type=button class=\"btn btn-danger grid-delete-item\" id=\"deleteGridItem\" value=\"Delete\"/>";
+        }
+        if (this.options.actions && this.options.actions.length > 0) {
+            let self: any = this;
+            this.options.actions.forEach(function (action: any) {
+                let itemId: string = "cus_action_" + guidHelper.create();
+                self.actions.set(itemId, action);
+                html += String.format("<input type=button class=\"btn btn-default custom-actions\" id=\"{0}\" value=\"{1}\"/>", itemId, action.text);
+            });
         }
         return html;
     }

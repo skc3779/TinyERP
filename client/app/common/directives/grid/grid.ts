@@ -1,11 +1,11 @@
-import {ElementRef, Input, Output, Component, EventEmitter } from "angular2/core";
-import {Http } from "angular2/http";
-import {EventManager} from "../../eventManager";
-import {ResourceHelper} from "../../helpers/resourceHelper";
-import {ValidationMode, ValidationException} from "../../models/exception";
-import {ValidationEvent} from "../../event";
-import {BaseControl} from "../../models/ui";
-import {GridModel} from "./gridModel";
+import { ElementRef, Input, Output, Component, EventEmitter } from "angular2/core";
+import { Http } from "angular2/http";
+import { EventManager } from "../../eventManager";
+import { ResourceHelper } from "../../helpers/resourceHelper";
+import { ValidationMode, ValidationException } from "../../models/exception";
+import { ValidationEvent } from "../../event";
+import { BaseControl } from "../../models/ui";
+import { GridModel } from "./gridModel";
 @Component({
     selector: "grid",
     templateUrl: "app/common/directives/grid/grid.html"
@@ -56,6 +56,13 @@ export class Grid extends BaseControl {
         $("#" + self.model.id + " tbody").on("click", ".grid-delete-item", function () {
             let data = self.grid.row($(this).parents("tr")).data();
             self.onItemDeleteClicked.emit({ item: data, gtid: self.grid });
+        });
+        $("#" + self.model.id + " tbody").on("click", ".custom-actions", function () {
+            let domId = this.id;
+            let data = self.grid.row($(this).parents("tr")).data();
+            let action = self.model.actions.get(domId);
+            if (!action || !action.handler) { return; }
+            action.handler({ item: data, grid: self.grid });
         });
     }
 }
