@@ -24,7 +24,7 @@ export class CreateRequest extends BasePage {
     public onSendClicked(event: any): void {
         let self = this;
         supportService.createRequest(this.model).then(function () {
-            self.router.navigate(["Login"]);
+            self.router.navigate([route.support.createRequestConfirmation.name]);
         });
     }
     public onCancelClicked(event: any): void {

@@ -11,5 +11,10 @@
             "emailIsRequired":"Please input valid email",
             "subjectIsRequired":"Please input subject"
         }
+    },
+    "createRequestConfirmation":{
+        "title":"Thank for sending support request",
+        "content":"Your request was recorded. We will contact you soon.",
+        "gotoLogin":"Continue to Login"
     }
 }
