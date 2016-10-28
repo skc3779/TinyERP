@@ -16,8 +16,11 @@ export class Requests extends BasePage {
         super();
         let self = this;
         self.router = router;
-        self.model = new Model(self.i18nHelper);
+        self.model = new Model(this, self.i18nHelper);
         self.load();
+    }
+    public onViewItemClicked(event: any){
+        console.log(event);
     }
     public onEditItemClicked(event: any) {
         //this.router.navigate([route.setting.editContentType.name, { id: event.item.id }]);
