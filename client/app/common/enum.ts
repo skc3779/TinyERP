@@ -18,11 +18,15 @@ export enum FormMode {
     Edit
 }
 export enum ItemStatus {
-    None,
-    InActive,
-    Active,
-    Deleted,
-    WaitForActivating
+    None = 0,
+    InActive = 1,
+    Active = 2,
+    Deleted = 3,
+    WaitForActivating = 4,
+    WaitForApproving = 5,
+    New= 6,
+    Resolved = 7
+
 }
 export enum InputValueType {
     Text,

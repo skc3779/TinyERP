@@ -91,6 +91,7 @@
     <Compile Include="Setting\UpdateContentTypeRequest.cs" />
     <Compile Include="Support\CreateRequest.cs" />
     <Compile Include="Support\IRequestService.cs" />
+    <Compile Include="Support\SupportRequestListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Entity\App.Entity.csproj">

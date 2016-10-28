@@ -7,6 +7,7 @@ using App.Common.DI;
 using App.Common.Validation;
 using App.Repository.Support;
 using App.Entity.Support;
+using System.Collections.Generic;
 
 namespace App.Service.Impl.Support
 {
@@ -21,6 +22,12 @@ namespace App.Service.Impl.Support
                 repo.Add(item);
                 uow.Commit();
             }
+        }
+
+        public IList<SupportRequestListItem> GetRequests()
+        {
+            IRequestRepository repo = IoC.Container.Resolve<IRequestRepository>();
+            return repo.GetItems<SupportRequestListItem>();
         }
 
         private void ValidateCreateRequest(CreateRequest request)

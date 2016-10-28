@@ -16,5 +16,13 @@
         "title":"Thank for sending support request",
         "content":"Your request was recorded. We will contact you soon.",
         "gotoLogin":"Continue to Login"
+    },
+    "requests":{
+        "title":"Support Requests",
+        "grid":{
+            "subject":"Subject",
+            "email":"Email",
+            "status":"Status"
+        }
     }
 }

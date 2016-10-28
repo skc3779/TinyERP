@@ -1,0 +1,8 @@
+<page>
+    <page-header>
+        {{i18n.support.requests.title}}
+    </page-header>
+    <page-content>
+        <grid [eventKey]="model.eventKey" [options]="model.options" (onItemDeleteClicked)="onDeleteItemClicked($event)" (onItemEditClicked)="onEditItemClicked($event)"></grid>
+    </page-content>
+</page>

@@ -2,6 +2,7 @@ import {IModule, Module, MenuItem} from "../../../../common/models/layout";
 import {AuthenticationMode} from "../../../../common/enum";
 
 import {CreateRequest} from "../../request/createRequest";
+import {Requests} from "../../request/requests";
 import {CreateRequestConfirmation} from "../../request/createRequestConfirmation";
 import route from "./route";
 
@@ -11,13 +12,14 @@ function createModule() {
     let module = new Module("app/modules/support", "support");
     module.menus.push(
         new MenuItem(
-            "Request", route.support.createRequest.name, "fa fa-cogs",
-            new MenuItem("ContentTypes", route.support.createRequest.name, "")
+            "Support", route.support.requests.name, "fa fa-cogs",
+            new MenuItem("Request", route.support.requests.name, "")
         )
     );
     module.addRoutes([
         { path: route.support.createRequest.path, name:  route.support.createRequest.name, component: CreateRequest, data: { authentication: AuthenticationMode.None }},
         { path: route.support.createRequestConfirmation.path, name:  route.support.createRequestConfirmation.name, component: CreateRequestConfirmation, data: { authentication: AuthenticationMode.None }},
+        { path: route.support.requests.path, name:  route.support.requests.name, component: Requests, data: { authentication: AuthenticationMode.Require }},
     ]);
     return module;
 }

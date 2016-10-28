@@ -13,7 +13,9 @@
       "send":"Send",
       "status":{
         "active":"Active",
-        "inactive":"InActive"
+        "inactive":"InActive",
+        "resolved":"Resolved",
+        "new":"New"
       }
     },
     "permissions":{

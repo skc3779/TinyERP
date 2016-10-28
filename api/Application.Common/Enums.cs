@@ -8,7 +8,9 @@ namespace App.Common
         Active,
         Deleted,
         WaitForActivating,
-        WaitForApproving
+        WaitForApproving,
+        New,
+        Resolved
     }
     [Flags]
     public enum IOMode { 
