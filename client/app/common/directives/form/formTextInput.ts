@@ -1,6 +1,6 @@
-import {Component, Input, Output, EventEmitter} from "angular2/core";
-import {BaseControl} from "../../models/ui";
-import {ValidationDirective} from "../../directive";
+import { Component, Input, Output, EventEmitter } from "angular2/core";
+import { BaseControl } from "../../models/ui";
+import { ValidationDirective } from "../../directive";
 @Component({
     selector: "form-text-input",
     templateUrl: "app/common/directives/form/formTextInput.html",
@@ -11,6 +11,7 @@ export class FormTextInput extends BaseControl {
     @Input() placeHolderText: string = String.empty;
     @Input() validation: Array<string> = [];
     @Input() model: any;
+    @Input() readOnly: boolean = false;
     @Output() modelChange = new EventEmitter();
     public onValueChanged(evt: any) {
         this.modelChange.emit(evt.target.value);

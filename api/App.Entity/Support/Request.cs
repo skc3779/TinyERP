@@ -5,6 +5,9 @@ namespace App.Entity.Support
 {
     public class Request:BaseEntity
     {
+        public Request()
+        {
+        }
         public Request(string subject, string description, string email)
         {
             this.Subject = subject;

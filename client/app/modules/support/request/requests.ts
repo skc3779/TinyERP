@@ -12,6 +12,7 @@ import route from "../_share/config/route";
 })
 export class Requests extends BasePage {
     private router: Router;
+    private routeConfig = route;
     constructor(router: Router) {
         super();
         let self = this;
@@ -20,7 +21,7 @@ export class Requests extends BasePage {
         self.load();
     }
     public onViewItemClicked(event: any){
-        console.log(event);
+        this.router.navigate([this.routeConfig.support.viewRequest.name, { id: event.item.id }]);
     }
     public onEditItemClicked(event: any) {
         //this.router.navigate([route.setting.editContentType.name, { id: event.item.id }]);

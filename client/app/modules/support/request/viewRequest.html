@@ -1,0 +1,29 @@
+<page>
+    <page-header>
+        {{i18n.support.viewRequest.title}}
+    </page-header>
+    <page-content>
+        <form-default>
+            <form-text-input 
+                [labelText]=i18n.support.viewRequest.subject
+                [(model)]=model.subject
+                [readOnly]=true>
+            </form-text-input>
+            <form-text-input
+                [labelText]=i18n.support.viewRequest.email
+                [(model)]=model.email
+                [readOnly]=true>
+            </form-text-input>
+            <form-textarea
+                [labelText]=i18n.support.viewRequest.description
+                [(model)]=model.description
+                [readOnly]=true>
+            </form-textarea>
+            <form-datetime 
+                [labelText]=i18n.support.viewRequest.requestedDate
+                [(model)]=model.createdDate
+                [readOnly]=true>
+            </form-datetime>
+        </form-default>
+    </page-content>
+</page>

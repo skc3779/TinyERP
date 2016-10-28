@@ -24,6 +24,12 @@ namespace App.Service.Impl.Support
             }
         }
 
+        public GetRequestResponse GetRequest(Guid itemId)
+        {
+            IRequestRepository repo = IoC.Container.Resolve<IRequestRepository>();
+            return repo.GetById<GetRequestResponse>(itemId.ToString());
+        }
+
         public IList<SupportRequestListItem> GetRequests()
         {
             IRequestRepository repo = IoC.Container.Resolve<IRequestRepository>();

@@ -9,6 +9,7 @@ import {ValidationDirective} from "../../directive";
 export class FormTextArea extends BaseControl {
     @Input() labelText: string = String.empty;
     @Input() placeHolderText: string = String.empty;
+    @Input() readOnly: boolean = false;
     @Input() model: any;
     @Output() modelChange = new EventEmitter();
     public onValueChanged(evt: any) {

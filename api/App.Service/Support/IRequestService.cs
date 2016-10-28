@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace App.Service.Support
 {
@@ -6,5 +7,6 @@ namespace App.Service.Support
     {
         void CreateRequest(CreateRequest request);
         IList<SupportRequestListItem> GetRequests();
+        GetRequestResponse GetRequest(Guid itemId);
     }
 }
