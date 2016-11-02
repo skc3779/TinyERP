@@ -5,10 +5,10 @@ export class UserLoginModel {
     public isValid(): boolean {
         let validationErrors: ValidationException = new ValidationException();
         if (!this.email) {
-            validationErrors.add("registration.signin.emailRequired");
+            validationErrors.add("registration.signin.validation.emailRequired");
         }
         if (!this.pwd) {
-            validationErrors.add("registration.signin.pwdRequired");
+            validationErrors.add("registration.signin.validation.pwdRequired");
         }
         validationErrors.throwIfHasError();
         return !validationErrors.hasError();

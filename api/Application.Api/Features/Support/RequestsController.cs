@@ -11,6 +11,41 @@ namespace App.Api.Features.Support
     [RoutePrefix("api/support/requests")]
     public class RequestsController : ApiController
     {
+        [HttpPost]
+        [Route("{itemId}/markAsResolved")]
+        public IResponseData<string> MarkAsResolved(Guid itemId)
+        {
+            IResponseData<string> response = new ResponseData<string>();
+            try
+            {
+                IRequestService service = IoC.Container.Resolve<IRequestService>();
+                service.MarkAsResolved(itemId);
+            }
+            catch (ValidationException ex)
+            {
+                response.SetErrors(ex.Errors);
+                response.SetStatus(HttpStatusCode.PreconditionFailed);
+            }
+            return response;
+        }
+        [HttpPost]
+        [Route("{itemId}/cancel")]
+        public IResponseData<string> CancelRequest(Guid itemId)
+        {
+            IResponseData<string> response = new ResponseData<string>();
+            try
+            {
+                IRequestService service = IoC.Container.Resolve<IRequestService>();
+                service.Cancel(itemId);
+            }
+            catch (ValidationException ex)
+            {
+                response.SetErrors(ex.Errors);
+                response.SetStatus(HttpStatusCode.PreconditionFailed);
+            }
+            return response;
+        }
+
         [HttpGet]
         [Route("{itemId}")]
         public IResponseData<GetRequestResponse> GetRequest(Guid itemId)

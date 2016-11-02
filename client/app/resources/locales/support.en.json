@@ -30,6 +30,10 @@
         "requestedDate":"Requested Date",
         "subject":"Subject",
         "email":"From Email",
-        "description":"Description"
+        "description":"Description",
+        "actions":{
+            "markAsResolved":"Mark as resolved",
+            "cancelRequest":"Cancel request"
+        }
     }
 }

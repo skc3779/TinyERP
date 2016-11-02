@@ -8,5 +8,7 @@ namespace App.Service.Support
         void CreateRequest(CreateRequest request);
         IList<SupportRequestListItem> GetRequests();
         GetRequestResponse GetRequest(Guid itemId);
+        void MarkAsResolved(Guid itemId);
+        void Cancel(Guid itemId);
     }
 }

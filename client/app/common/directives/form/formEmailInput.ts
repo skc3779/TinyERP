@@ -3,12 +3,13 @@ import {BaseControl} from "../../models/ui";
 import {ValidationDirective} from "../../directive";
 @Component({
     selector: "form-email-input",
-    templateUrl: "app/common/directives/form/formTextInput.html",
+    templateUrl: "app/common/directives/form/formEmailInput.html",
     directives: [ValidationDirective]
 })
 export class FormEmailInput extends BaseControl {
     @Input() labelText: string = String.empty;
     @Input() placeHolderText: string = String.empty;
+    @Input() readOnly: boolean = false;
     @Input() validation: Array<string> = [];
     @Input() model: any;
     @Output() modelChange = new EventEmitter();

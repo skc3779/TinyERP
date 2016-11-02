@@ -32,5 +32,8 @@
       "inActive":"InActive",
       "deleted":"Deleted",
       "waitForActivating":"Wait For Activating"
+    },
+    "page":{
+      "action":"Actions"
     }
 }

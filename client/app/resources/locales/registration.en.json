@@ -7,9 +7,11 @@
         "yourPassword": "Please input your password",
         "signin":"Sign in",
         "forgotPassword":"Forgot your password",
-        "emailRequired": "Email is required",
-        "pwdRequired": "Password is required",
-        "invalidEmailOrPwd":"Invalid email or password",
-        "createSupportRequest":"Create Support Request"
+        "createSupportRequest":"Create Support Request",
+        "validation":{
+            "emailRequired": "Email is required",
+            "pwdRequired": "Password is required",
+            "invalidEmailOrPwd":"Invalid email or password"
+        }
     }
 }

@@ -1,9 +1,13 @@
+<div class="x_content open">
+    <button *ngIf="model.items.length === 1" id="{{model.default.id}}" data-toggle="dropdown" class="btn btn-default"
+        type="button" aria-expanded="false" (click)="onActionItemClicked(model.default)">{{i18nHelper.resolve(model.default.key)}}</button>
 
-<button id="{{model.default.id}}" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false" (click)="onActionItemClicked(model.default)">
-    {{i18nHelper.resolve(model.default.key)}} <span *ngIf = "model.items.length > 0" class="caret"></span>
+    <button *ngIf="model.items.length > 1" id="{{model.default.id}}" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" aria-expanded="true">
+        {{i18n.common.page.action}}<span class="caret"></span>
 </button>
-<ul role="menu" class="dropdown-menu" *ngIf="model.items.length > 0">
-    <li *ngFor="let action of model.items" attr.data-key="{{action.key}}" (click)="onActionItemClicked(action)">
-        <a href="#" id="{{action.id}}">{{i18nHelper.resolve(action.key)}}</a>
-    </li>
-</ul>
+    <ul role="menu" class="dropdown-menu" *ngIf="model.items.length > 0">
+        <li *ngFor="let action of model.items" attr.data-key="{{action.key}}" (click)="onActionItemClicked(action)">
+            <a href="#" id="{{action.id}}">{{i18nHelper.resolve(action.key)}}</a>
+        </li>
+    </ul>
+</div>

@@ -13,6 +13,11 @@ namespace App.Service.Impl.Registration
 {
     class UserService : IUserService
     {
+        private IUserRepository userRepository;
+        public UserService(IUserRepository userRepository)
+        {
+            this.userRepository = userRepository;
+        }
         public void CreateIfNotExist(IList<User> users)
         {
             if (users == null) { return; }
@@ -52,26 +57,27 @@ namespace App.Service.Impl.Registration
 
         private void ValidateUserLoginRequest(UserSignInRequest request)
         {
+            ValidationException exception = new ValidationException();
             if (request == null)
             {
-                throw new ValidationException("Common.InvalidRequest");
+                exception.Add(new ValidationError("common.invalidRequest"));
             }
             if (String.IsNullOrWhiteSpace(request.Email))
             {
-                throw new ValidationException("Registration.SignIn.InvalidEmail");
+                exception.Add(new ValidationError("registration.signin.validation.emailRequired"));
             }
             if (String.IsNullOrWhiteSpace(request.Pwd))
             {
-                throw new ValidationException("Registration.SignIn.InvalidPwd");
+                exception.Add(new ValidationError("registration.signin.validation.pwdRequired"));
             }
             IUserRepository userRepository = IoC.Container.Resolve<IUserRepository>();
             User userProfile = userRepository.GetByEmail(request.Email);
 
             if (userProfile == null || EncodeHelper.EncodePassword(request.Pwd) != userProfile.Password)
             {
-                throw new ValidationException("Registration.SignIn.InvalidEmailOrPwd");
+                exception.Add(new ValidationError("registration.signin.validation.invalidEmailOrPwd"));
             }
-
+            exception.ThrowIfError();
         }
 
 

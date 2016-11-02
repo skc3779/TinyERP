@@ -42,6 +42,12 @@ namespace App.Common.Validation
                 this.Add(validationError);
             }
         }
+
+        public void ThrowIfError()
+        {
+            if (this.Errors.Count <= 0) { return; }
+            throw this;
+        }
     }
 
     public class EntityException : Exception

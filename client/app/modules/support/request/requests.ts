@@ -23,15 +23,6 @@ export class Requests extends BasePage {
     public onViewItemClicked(event: any){
         this.router.navigate([this.routeConfig.support.viewRequest.name, { id: event.item.id }]);
     }
-    public onEditItemClicked(event: any) {
-        //this.router.navigate([route.setting.editContentType.name, { id: event.item.id }]);
-    }
-    public onDeleteItemClicked(event: any) {
-        // let self = this;
-        // settingService.deleteContentType(event.item.id).then(function () {
-        //     self.load();
-        // });
-    }
     private load() {
         let self = this;
         supportService.getRequests().then(function (items: Array<any>) {
