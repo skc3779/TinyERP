@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace App.Service.Impl.Setting
 {
-    public class ContentTypeService : IContentTypeService
+    internal class ContentTypeService : IContentTypeService
     {
         public void Create(CreateContentTypeRequest request)
         {

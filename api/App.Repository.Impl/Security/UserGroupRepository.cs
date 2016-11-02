@@ -5,7 +5,7 @@ using App.Repository.Secutiry;
 
 namespace App.Repository.Impl.Security
 {
-    public class UserGroupRepository: BaseContentRepository<UserGroup>, IUserGroupRepository
+    internal class UserGroupRepository: BaseContentRepository<UserGroup>, IUserGroupRepository
     {
         public UserGroupRepository() : base(new App.Context.AppDbContext(App.Common.IOMode.Read))
         {

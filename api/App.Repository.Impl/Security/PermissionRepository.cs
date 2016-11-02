@@ -10,7 +10,7 @@ using System;
 
 namespace App.Repository.Impl.Security
 {
-    public class PermissionRepository : BaseContentRepository<Permission>, IPermissionRepository
+    internal class PermissionRepository : BaseContentRepository<Permission>, IPermissionRepository
     {
         public PermissionRepository(IUnitOfWork uow) : base(uow.Context as IMSSQLDbContext){}
         public PermissionRepository(): base(new AppDbContext(App.Common.IOMode.Read)){}

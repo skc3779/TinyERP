@@ -5,7 +5,7 @@ using App.Repository.Secutiry;
 
 namespace App.Repository.Impl.Security
 {
-    public class RoleRepository: BaseContentRepository<Role>, IRoleRepository
+    internal class RoleRepository: BaseContentRepository<Role>, IRoleRepository
     {
         public RoleRepository() : base(new App.Context.AppDbContext(App.Common.IOMode.Read))
         {

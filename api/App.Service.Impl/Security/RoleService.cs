@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace App.Service.Impl.Security
 {
-    public class RoleService : IRoleService
+    internal class RoleService : IRoleService
     {
         public void CreateIfNotExist(IList<Role> roles)
         {

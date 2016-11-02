@@ -11,7 +11,7 @@ using App.Repository.Common;
 
 namespace App.Repository.Impl.Registration
 {
-    class UserRepository : BaseRepository<User>, IUserRepository
+    internal class UserRepository : BaseRepository<User>, IUserRepository
     {
         public UserRepository() : base(new App.Context.AppDbContext(App.Common.IOMode.Read))
         {

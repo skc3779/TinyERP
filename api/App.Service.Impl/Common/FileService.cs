@@ -13,7 +13,7 @@ using System.Drawing;
 
 namespace App.Service.Impl.Common
 {
-    public class FileService : IFileService
+    internal class FileService : IFileService
     {
         public FileUpload Get(Guid id)
         {

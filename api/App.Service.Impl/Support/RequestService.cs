@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace App.Service.Impl.Support
 {
-    public class RequestService : IRequestService
+    internal class RequestService : IRequestService
     {
         public void CreateRequest(CreateRequest request)
         {

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace App.Service.Impl.Registration
 {
-    class UserService : IUserService
+    internal class UserService : IUserService
     {
         public void CreateIfNotExist(IList<User> users)
         {
