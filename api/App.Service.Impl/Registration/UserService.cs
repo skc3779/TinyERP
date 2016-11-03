@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace App.Service.Impl.Registration
 {
-    class UserService : IUserService
+    internal class UserService : IUserService
     {
         private IUserRepository userRepository;
         public UserService(IUserRepository userRepository)

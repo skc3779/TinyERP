@@ -11,7 +11,7 @@ using AutoMapper.QueryableExtensions;
 
 namespace App.Repository.Impl.Common
 {
-    public class FileRepository: BaseRepository<FileUpload>, IFileRepository
+    internal class FileRepository: BaseRepository<FileUpload>, IFileRepository
     {
         public FileRepository(): base(new AppDbContext(IOMode.Read))
         {

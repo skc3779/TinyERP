@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace App.Repository.Impl.Common
 {
-    public class ParameterRepository : BaseContentRepository<App.Entity.Common.Parameter>, IParameterRepository
+    internal class ParameterRepository : BaseContentRepository<App.Entity.Common.Parameter>, IParameterRepository
     {
         public ParameterRepository() : base(new AppDbContext()) { }
         public ParameterRepository(IUnitOfWork uow) : base(uow.Context as IMSSQLDbContext) { }

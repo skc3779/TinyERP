@@ -12,7 +12,7 @@
     using App.Common.Validation;
     using Service.Security.Permission;
 
-    public class PermissionService : IPermissionService
+    internal class PermissionService : IPermissionService
     {
         public void CreateIfNotExist(IList<Permission> pers)
         {

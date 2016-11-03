@@ -7,7 +7,7 @@ using App.Repository.Common;
 
 namespace App.Service.Impl.Common
 {
-    public class LanguageService : Service.Common.ILanguageService
+    internal class LanguageService : Service.Common.ILanguageService
     {
         public void Add(IList<Language> languages)
         {

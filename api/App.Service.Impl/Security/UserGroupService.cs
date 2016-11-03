@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace App.Service.Impl.Security
 {
-    public class UserGroupService : IUserGroupService
+    internal class UserGroupService : IUserGroupService
     {
 
         public CreateUserGroupResponse Create(CreateUserGroupRequest request)
