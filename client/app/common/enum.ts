@@ -24,8 +24,9 @@ export enum ItemStatus {
     Deleted = 3,
     WaitForActivating = 4,
     WaitForApproving = 5,
-    New= 6,
-    Resolved = 7
+    New = 6,
+    Resolved = 7,
+    Cancelled = 8
 
 }
 export enum InputValueType {

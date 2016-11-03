@@ -16,6 +16,7 @@
         "active":"Active",
         "inactive":"InActive",
         "resolved":"Resolved",
+        "cancelled":"Cancelled",
         "new":"New"
       }
     },

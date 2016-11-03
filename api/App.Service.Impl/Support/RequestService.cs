@@ -8,6 +8,8 @@ using App.Common.Validation;
 using App.Repository.Support;
 using App.Entity.Support;
 using System.Collections.Generic;
+using App.Common.Event;
+using App.EventHandler.Support;
 
 namespace App.Service.Impl.Support
 {
@@ -15,35 +17,45 @@ namespace App.Service.Impl.Support
     {
         public void Cancel(Guid itemId)
         {
-            this.SetRequestStatus(itemId, ItemStatus.Resolved);
-            
+            SupportRequestOnStatusChanged ev = this.SetRequestStatus(itemId, ItemStatus.Cancelled);
+            IEventManager eventManager = IoC.Container.Resolve<IEventManager>();
+            eventManager.pubish(ev);
         }
-        private void SetRequestStatus(Guid itemId, ItemStatus status) {
+        private SupportRequestOnStatusChanged SetRequestStatus(Guid itemId, ItemStatus status)
+        {
+            SupportRequestOnStatusChanged ev;
             ValidateSetRequestStatus(itemId);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
                 IRequestRepository repo = IoC.Container.Resolve<IRequestRepository>(uow);
                 Request request = repo.GetById(itemId.ToString());
+                ev = new SupportRequestOnStatusChanged(request.Id, request.Subject, request.Status, status, request.Email);
                 request.Status = status;
                 repo.Update(request);
                 uow.Commit();
+
             }
+            return ev;
         }
         private void ValidateSetRequestStatus(Guid itemId)
         {
             IRequestRepository repo = IoC.Container.Resolve<IRequestRepository>();
-            if (repo.GetById(itemId.ToString()) == null) {
+            if (repo.GetById(itemId.ToString()) == null)
+            {
                 throw new ValidationException("support.viewRequest.updateStatus.invalidRequest");
             }
         }
         public void MarkAsResolved(Guid itemId)
         {
-            this.SetRequestStatus(itemId, ItemStatus.Resolved);
+            SupportRequestOnStatusChanged ev = this.SetRequestStatus(itemId, ItemStatus.Resolved);
+            IEventManager eventManager = IoC.Container.Resolve<IEventManager>();
+            eventManager.pubish(ev);
         }
         public void CreateRequest(CreateRequest request)
         {
             ValidateCreateRequest(request);
-            using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write))) {
+            using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
+            {
                 IRequestRepository repo = IoC.Container.Resolve<IRequestRepository>(uow);
                 Request item = new Request(request.Subject, request.Description, request.Email);
                 repo.Add(item);
@@ -62,7 +74,8 @@ namespace App.Service.Impl.Support
         }
         private void ValidateCreateRequest(CreateRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Subject)) {
+            if (string.IsNullOrWhiteSpace(request.Subject))
+            {
                 throw new ValidationException("support.createRequest.validation.subjectIsRequired");
             }
             if (string.IsNullOrWhiteSpace(request.Email))

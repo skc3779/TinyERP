@@ -215,6 +215,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="Resources\Templates\Email\support\supportRequestOnStatusChanged.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -247,6 +248,14 @@
     <ProjectReference Include="..\App.Entity\App.Entity.csproj">
       <Project>{75767a70-cd8b-4f27-ae4b-45be7c3209ac}</Project>
       <Name>App.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\App.EventHandler.Impl\App.EventHandler.Impl.csproj">
+      <Project>{88e69dca-9a93-4245-8176-310c771496ec}</Project>
+      <Name>App.EventHandler.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\App.EventHandler\App.EventHandler.csproj">
+      <Project>{ba0a5a0e-655d-4dbd-ab5a-f3209fd4a053}</Project>
+      <Name>App.EventHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\App.Repository.Impl\App.Repository.Impl.csproj">
       <Project>{c17cf1e1-9b4e-4b53-9493-d2f39ee31a45}</Project>

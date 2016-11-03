@@ -19,6 +19,6 @@ export class PageActions extends BaseControl {
     public onActionItemClicked(action: any) {
         console.log(action);
         if (!action || !action.handler) { return; }
-        action.handler();
+        action.handler.call(action.handler);
     }
 }

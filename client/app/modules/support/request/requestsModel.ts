@@ -11,7 +11,9 @@ export class Model {
                 {
                     field: "status", title: resourceHelper.resolve("support.requests.grid.status"),
                     render: function (data: any) {
-                        return data === ItemStatus.Resolved ? resourceHelper.resolve("common.form.status.resolved") : resourceHelper.resolve("common.form.status.new");
+                        let key=String.format("common.form.status.{0}",ItemStatus[data].toLowerCase());
+                        return resourceHelper.resolve(key);
+                        //return data === ItemStatus.Resolved ? resourceHelper.resolve("common.form.status.resolved") : resourceHelper.resolve("common.form.status.new");
                     }
                 }
             ],

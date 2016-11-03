@@ -160,6 +160,10 @@
     <Compile Include="Dimension.cs" />
     <Compile Include="DI\Castle\HttpControllerActivator.cs" />
     <Compile Include="DI\Castle\ConfigServicesContainerTask.cs" />
+    <Compile Include="Event\BaseEventManager.cs" />
+    <Compile Include="Event\IEvent.cs" />
+    <Compile Include="Event\IEventHandler.cs" />
+    <Compile Include="Event\IEventManager.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\GuidHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />

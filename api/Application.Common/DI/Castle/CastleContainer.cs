@@ -2,6 +2,7 @@
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
 using App.Common.Data;
+using System.Collections.Generic;
 
 namespace App.Common.DI.Castle
 {
@@ -62,9 +63,9 @@ namespace App.Common.DI.Castle
             windsorContainer.Register(Component.For(type).LifestylePerWebRequest());
         }
 
-        public void RegisterPerRequest<TInterface, TInstance>() 
-            where TInterface: class 
-            where TInstance: TInterface
+        public void RegisterPerRequest<TInterface, TInstance>()
+            where TInterface : class
+            where TInstance : TInterface
         {
             windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().LifestylePerWebRequest());
         }
@@ -84,12 +85,17 @@ namespace App.Common.DI.Castle
         {
             return windsorContainer.Resolve<TInterface>(new { uow = unitOfWork });
         }
+        public IList<IInterface> ResolveAll<IInterface>() where IInterface : class
+        {
+            return windsorContainer.ResolveAll<IInterface>();
+        }
         #endregion
 
-        public object Instance {
+        public object Instance
+        {
             get
             {
-                return this.windsorContainer;    
+                return this.windsorContainer;
             }
         }
     }

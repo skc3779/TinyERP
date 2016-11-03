@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Common.Data;
+using App.Common.Event;
 
 namespace App.Common.DI
 {
@@ -11,7 +13,7 @@ namespace App.Common.DI
         void RegisterPerRequest<IInterface, TInstance>()
             where IInterface : class
             where TInstance : IInterface;
-
+        IList<IInterface> ResolveAll<IInterface>() where IInterface : class;
         void RegisterSingleton<IInterface, IInstance>() where IInstance : IInterface where IInterface : class;
         void RegisterSingleton<IInterface, IInstance>(string refName) where IInstance : IInterface where IInterface : class;
 
