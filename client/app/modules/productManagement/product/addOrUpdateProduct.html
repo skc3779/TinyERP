@@ -1,0 +1,63 @@
+<page>
+    <page-header>
+        {{i18n.productManagement.addOrUpdateProduct.title}}
+    </page-header>
+    <page-content>
+        <form-wizard (onFinishClicked)="onFinishClicked($event)">
+            <form-wizardItem title="{{i18n.productManagement.addOrUpdateProduct.baseInfomation}}" description="">
+                <form data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.productManagement.addOrUpdateProduct.name}}</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="name" [validation]="['productManagement.addOrUpdateProduct.validation.nameIsRequired','productManagement.addOrUpdateProduct.validation.nameAlreadyExisted']"
+                                placeholder="{{i18n.productManagement.addOrUpdateProduct.inputName}}" type="text" [(ngModel)]=model.name
+                                class="form-control col-md-7 col-xs-12" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.productManagement.addOrUpdateProduct.category}}</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <form-select [getItems]="getCategoriesFunc" (valuesChange)="onCategoryChanged($event)" [values]="[model.category.id]" [placeHolder]="i18n.productManagement.addOrUpdateProduct.selectCategory"></form-select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.productManagement.addOrUpdateProduct.status}}</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <form-status-toggle [(model)]=model.status></form-status-toggle>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.productManagement.addOrUpdateProduct.price}}</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <form-currency [(model)]=model.price></form-currency>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.productManagement.addOrUpdateProduct.fromDate}}</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 control-group">
+                            <form-datepicker [(model)]=model.fromDate></form-datepicker>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.productManagement.addOrUpdateProduct.toDate}}</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <form-datepicker [(model)]=model.toDate></form-datepicker>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pwd">{{i18n.productManagement.addOrUpdateProduct.desc}}</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea id="desc" rows="3" placeholder="{{i18n.productManagement.addOrUpdateProduct.inputDesc}}" type="text" [(ngModel)]=model.description
+                                class="form-control col-md-7 col-xs-12"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </form-wizardItem>
+            <form-wizardItem title="{{i18n.productManagement.addOrUpdateProduct.photos}}" description="">
+                <form-filesUpload [(files)]=model.photos></form-filesUpload>
+            </form-wizardItem>
+        </form-wizard>
+    </page-content>
+</page>

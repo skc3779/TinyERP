@@ -192,6 +192,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Features\Common\FilesController.cs" />
+    <Compile Include="Features\ProductManagement\CategoriesController.cs" />
+    <Compile Include="Features\ProductManagement\ProductsController.cs" />
     <Compile Include="Features\Security\PermissionsController.cs" />
     <Compile Include="Features\Security\UserGroupsController.cs" />
     <Compile Include="Features\Security\RolesController.cs" />

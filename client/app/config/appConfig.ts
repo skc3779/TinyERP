@@ -3,12 +3,14 @@ import registration from "../modules/registration/_share/config/module";
 import securiry from "../modules/security/_share/config/module";
 import setting from "../modules/setting/_share/config/module";
 import support from "../modules/support/_share/config/module";
+import productManagement from "../modules/productManagement/_share/config/module";
 import {Languages} from "../common/enum";
 let modules: Array<IModule> = [
     registration,
     securiry,
     setting,
-    support
+    support,
+    productManagement
 ];
 export default {
     app: {
