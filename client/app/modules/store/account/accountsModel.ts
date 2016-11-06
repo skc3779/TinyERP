@@ -1,4 +1,5 @@
 import {ItemStatus} from "../../../common/enum";
+import {AccountStatus}  from "../_share/models/enum";
 export class Model {
     public options: any = {};
     public eventKey: string = "accounts_ondatasource_changed";
@@ -11,9 +12,9 @@ export class Model {
                 { field: "userName", title: resourceHelper.resolve("store.accounts.grid.userName") },
                 {
                     field: "status", title: resourceHelper.resolve("store.accounts.grid.status"), render: function (data: any) {
-                        let key = ItemStatus[data];
+                        let key = AccountStatus[data];
                         key = String.firstCharToLower(key);
-                        return resourceHelper.resolve(String.format("common.itemStatus.{0}", key));
+                        return resourceHelper.resolve(String.format("store.accounts.status.{0}", key));
                     }
                 },
                 { field: "description", title: resourceHelper.resolve("store.accounts.grid.description") }

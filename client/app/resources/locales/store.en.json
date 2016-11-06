@@ -15,6 +15,10 @@
     "accounts":{
         "title":"Accounts",
         "addAccountAction":"Add Account",
+        "status":{
+            "active":"Active",
+            "inActive":"InActive"
+        },
         "grid":{
             "name":"Name",
             "email":"Email",

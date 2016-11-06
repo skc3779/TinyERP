@@ -13,6 +13,9 @@ export enum FormSelectMode {
     Group,
     Item
 };
+export enum FormSelectType{
+    SingleButton
+}
 export enum FormMode {
     AddNew,
     Edit

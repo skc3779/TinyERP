@@ -14,19 +14,17 @@ export class FormToggle extends BaseControl {
     public getOptions() {
         let self: FormToggle = this;
         this.options.forEach(function (option: any) {
-            option.active = (self.model === null && option.active === true) || self.model === option.value ? true : false;
+            option.active = (!self.model && option.active === true) || self.model == option.value ? true : false;
         });
         return this.options;
     }
     public onItemClicked(item: any) {
-        this.clear();
-
-        item.active = true;
-        this.modelChange.next(item);
+        this.modelChange.emit(item.value);
+        this.reset(item.value);
     }
-    private clear() {
+    private reset(value: any) {
         this.options.forEach(function (option: any) {
-            option.active = false;
+            option.active = option.value === value;
         });
     }
 }
