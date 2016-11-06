@@ -66,6 +66,9 @@
     <Compile Include="Security\RoleService.cs" />
     <Compile Include="Security\UserGroupService.cs" />
     <Compile Include="Setting\ContentTypeService.cs" />
+    <Compile Include="Store\AccountService.cs" />
+    <Compile Include="Store\OrderService.cs" />
+    <Compile Include="Store\StoreService.cs" />
     <Compile Include="Support\RequestService.cs" />
   </ItemGroup>
   <ItemGroup>

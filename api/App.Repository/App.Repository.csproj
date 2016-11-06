@@ -64,6 +64,9 @@
     <Compile Include="Secutiry\IPermissionRepository.cs" />
     <Compile Include="Secutiry\IRoleRepository.cs" />
     <Compile Include="Secutiry\IUserGroupRepository.cs" />
+    <Compile Include="Store\IAccountRepository.cs" />
+    <Compile Include="Store\IOrderRepository.cs" />
+    <Compile Include="Store\IStoreRepository.cs" />
     <Compile Include="Support\IRequestRepository.cs" />
   </ItemGroup>
   <ItemGroup>

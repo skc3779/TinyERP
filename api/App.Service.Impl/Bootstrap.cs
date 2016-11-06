@@ -18,6 +18,15 @@ namespace App.Service.Impl
             context.RegisterSingleton<App.Service.Common.File.IFileService, App.Service.Impl.Common.FileService>();
             context.RegisterSingleton<App.Service.Setting.IContentTypeService, App.Service.Impl.Setting.ContentTypeService>();
             context.RegisterSingleton<App.Service.Support.IRequestService, App.Service.Impl.Support.RequestService>();
+
+            //Store
+            context.RegisterSingleton<App.Service.Store.Store.IStoreService, App.Service.Impl.Store.StoreService>();
+            context.RegisterSingleton<App.Service.Store.Order.IOrderService, App.Service.Impl.Store.OrderService>();
+            context.RegisterSingleton<App.Service.Store.IAccountService, App.Service.Impl.Store.AccountService>();
+
+            //Product
+            context.RegisterSingleton<App.Service.ProductManagement.Category.ICategoryService, App.Service.Impl.ProductManagement.CategoryService>();
+            context.RegisterSingleton<App.Service.ProductManagement.Product.IProductService, App.Service.Impl.ProductManagement.ProductService>();
         }
     }
 }

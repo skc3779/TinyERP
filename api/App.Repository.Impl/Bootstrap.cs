@@ -24,6 +24,14 @@ namespace App.Repository.Impl
             context.RegisterTransient<App.Repository.Common.IParameterRepository, App.Repository.Impl.Common.ParameterRepository>();
 
             context.RegisterTransient<App.Repository.Support.IRequestRepository, App.Repository.Impl.Support.RequestRepository>();
+            //Store
+            context.RegisterTransient<Repository.Store.IAccountRepository, App.Repository.Impl.Store.AccountRepository>();
+            context.RegisterTransient<Repository.Store.IStoreRepository, App.Repository.Impl.Store.StoreRepository>();
+            context.RegisterTransient<App.Repository.Store.IOrderRepository, App.Repository.Impl.Store.OrderRepository>();
+
+            //Product
+            context.RegisterTransient<Repository.ProductManagement.ICategoryRepository, App.Repository.Impl.ProductManagement.CategoryRepository>();
+            context.RegisterTransient<Repository.ProductManagement.IProductRepository, App.Repository.Impl.ProductManagement.ProductRepository>();
         }
     }
 }

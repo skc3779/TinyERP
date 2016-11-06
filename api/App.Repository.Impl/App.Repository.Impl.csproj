@@ -70,6 +70,9 @@
     <Compile Include="Security\RoleRepository.cs" />
     <Compile Include="Security\UserGroupRepository.cs" />
     <Compile Include="Setting\ContentTypeRepository.cs" />
+    <Compile Include="Store\AccountRepository.cs" />
+    <Compile Include="Store\OrderRepository.cs" />
+    <Compile Include="Store\StoreRepository.cs" />
     <Compile Include="Support\RequestRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,13 +4,15 @@ import securiry from "../modules/security/_share/config/module";
 import setting from "../modules/setting/_share/config/module";
 import support from "../modules/support/_share/config/module";
 import productManagement from "../modules/productManagement/_share/config/module";
+import store from "../modules/store/_share/config/module";
 import {Languages} from "../common/enum";
 let modules: Array<IModule> = [
     registration,
     securiry,
     setting,
     support,
-    productManagement
+    productManagement,
+    store
 ];
 export default {
     app: {
