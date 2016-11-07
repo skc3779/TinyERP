@@ -10,7 +10,7 @@ namespace App.EventHandler.Impl
         public Bootstrap() : base(App.Common.ApplicationType.All) { }
         public override void Execute(IBaseContainer context)
         {
-            context.RegisterTransient<IEventHandler<SupportRequestOnStatusChanged>, App.EventHandler.Impl.Support.SupportRequestEventHandler>();
+            //context.RegisterTransient<IEventHandler<SupportRequestOnStatusChanged>, App.EventHandler.Impl.Support.SupportRequestEventHandler>();
         }
     }
 }

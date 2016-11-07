@@ -9,22 +9,7 @@ namespace App.Common.Event
     {
         public void pubish<TEventType>(TEventType eventType) where TEventType : IEvent
         {
-            IList<IEventHandler<TEventType>> handlers = IoC.Container.ResolveAll<IEventHandler<TEventType>>();
-            if (handlers == null || handlers.Count == 0) { return; }
-            foreach (IEventHandler<TEventType> handler in handlers)
-            {
-                try
-                {
-                    handler.Execute(eventType);
-                }
-                catch (Exception ex)
-                {
-                    ILogger logger = IoC.Container.Resolve<ILogger>();
-                    logger.Error("Error while handle event:"+ typeof(TEventType).FullName);
-                    logger.Error(ex);
-                }
-
-            }
+            App.Common.Helpers.AssemblyHelper.ExecuteTasks<IEventHandler<TEventType>, TEventType>(eventType);
         }
     }
 }

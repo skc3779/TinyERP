@@ -1,7 +1,9 @@
-﻿namespace App.Common.Event
+﻿using App.Common.Tasks;
+
+namespace App.Common.Event
 {
-    public interface IEventHandler<TEventType> where TEventType : IEvent
+    public interface IEventHandler<TEventType>: IBaseTask<TEventType> where TEventType : IEvent
     {
-        void Execute(TEventType ev);
+        //void Execute(TEventType ev);
     }
 }

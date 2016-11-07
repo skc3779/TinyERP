@@ -2,12 +2,13 @@
 using App.EventHandler.Support;
 using App.Common.Mail;
 using App.Common.DI;
+using App.Common.Event;
 
 namespace App.EventHandler.Impl.Support
 {
-    internal class SupportRequestEventHandler : ISupportRequestEventHandler
+    internal class SupportRequestEventHandler : BaseEventHandler<SupportRequestOnStatusChanged>, ISupportRequestEventHandler
     {
-        public void Execute(SupportRequestOnStatusChanged ev)
+        public override void Execute(SupportRequestOnStatusChanged ev)
         {
             SupportRequestOnStatusChangedMailContent mailContent = new SupportRequestOnStatusChangedMailContent(ev);
             IMailService mailService = IoC.Container.Resolve<IMailService>();
