@@ -204,6 +204,9 @@
     <Compile Include="Features\Share\Tasks\Data\CreatePermissionTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateTestUsersTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateRoleAndPermissionTask.cs" />
+    <Compile Include="Features\Share\Tasks\Data\Store\CreateStoreTask.cs" />
+    <Compile Include="Features\Share\Tasks\Data\Store\StoreCreateAccountTasks.cs" />
+    <Compile Include="Features\Share\Tasks\Data\Store\StoreCreateOrderTasks.cs" />
     <Compile Include="Features\Share\Tasks\JsonSerializerTask.cs" />
     <Compile Include="Features\Registration\UsersController.cs" />
     <Compile Include="Features\Share\Tasks\RegisterWebApiRouteTask.cs" />

@@ -21,7 +21,7 @@ export class FormWizard extends BaseControl {
     }
     public onReady() {
         let self: FormWizard = this;
-        console.log(self.steps);
+        //console.log(self.steps);
         self.model.import(self.steps.toArray());
         window.setTimeout(function () {
             self.dom = window.jQuery("#" + self.id).smartWizard({ onFinish: () => self.onFinishClicked.emit() });

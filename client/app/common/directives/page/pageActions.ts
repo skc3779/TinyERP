@@ -17,7 +17,7 @@ export class PageActions extends BaseControl {
         this.model = new PageActionsModel(this.actions);
     }
     public onActionItemClicked(action: any) {
-        console.log(action);
+        //console.log(action);
         if (!action || !action.handler) { return; }
         action.handler.call(action.handler);
     }

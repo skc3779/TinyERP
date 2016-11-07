@@ -36,7 +36,7 @@ export class ApplicationState implements IApplicationState {
     private onApplicationBeforeReady(args: any) {
     }
     private onApplicationReady(args: any) {
-        console.log("onApplicationReady");
+        // console.log("onApplicationReady");
         this.eventManager.publish(LoadingIndicatorEvent.Hide);
     }
     private onApplicationUnload(args: any) {

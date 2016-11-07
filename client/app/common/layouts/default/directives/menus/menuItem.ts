@@ -11,6 +11,6 @@ export class MenuItem {
     @Input() items: Array<MenuItemModel>;
     @Input() isChild: boolean;
     ngOnInit() {
-        console.log("item ne", this.items);
+        // console.log("item ne", this.items);
     }
 }

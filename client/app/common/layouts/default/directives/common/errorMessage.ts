@@ -22,7 +22,7 @@ export class ErrorMessage {
         let errors: Array<ValidationError> = [];
         validation.errors.forEach(function (error: ValidationError) {
             if (!regexHelper.isMatch(self.pattern, error.key)) { return; }
-            console.log(String.format("pattern {0}, value: {1}", self.pattern, error.key));
+            // console.log(String.format("pattern {0}, value: {1}", self.pattern, error.key));
             error.msg = resourceHelper.resolve(error.key);
             errors.push(error);
         });
