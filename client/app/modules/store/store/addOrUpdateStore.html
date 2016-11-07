@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.addOrUpdateStore.owner}}</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <form-select [getItems]="getOwnersFunc" (valuesChange)="onOwnerChanged($event)" [values]="[model.owner.id]" [placeHolder]="i18n.store.addOrUpdateStore.selectOwner"></form-select>
+                    <form-select [maxSelectedItems]=1 [getItems]="getOwnersFunc" (valuesChange)="onOwnerChanged($event)" [values]="[model.owner.id]" [placeHolder]="i18n.store.addOrUpdateStore.selectOwner"></form-select>
                 </div>
             </div>
             <select-options

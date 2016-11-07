@@ -6,7 +6,7 @@ namespace App.Common.Data
     public interface IBaseRepository<TEntity>
     {
         TEntity GetById(string id, string includes = "");
-        TResult GetById<TResult>(string id) where TResult : IMappedFrom<TEntity>;
+        TResult GetById<TResult>(string id, string includes = "") where TResult : IMappedFrom<TEntity>;
         void Add(TEntity item);
         void Delete(string id);
         void Update(TEntity item);

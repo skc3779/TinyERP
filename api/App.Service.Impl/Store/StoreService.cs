@@ -76,13 +76,13 @@ namespace App.Service.Impl.Store
                 throw new ValidationException("store.addOrUpdateStore.validation.nameAlreadyExisted");
             }
 
-            if (requestItem.OwnerId == null)
+            if (requestItem.Owner == null)
             {
                 throw new ValidationException("store.addOrUpdateStore.validation.ownerIsRequired");
             }
 
             IAccountRepository accountRepo = IoC.Container.Resolve<IAccountRepository>();
-            if (accountRepo.GetById(requestItem.OwnerId.ToString()) == null)
+            if (accountRepo.GetById(requestItem.Owner.Id.ToString()) == null)
             {
                 throw new ValidationException("store.addOrUpdateStore.validation.ownerNotExisted");
             }
@@ -90,9 +90,10 @@ namespace App.Service.Impl.Store
 
         public GetStoreResponse Get(Guid id)
         {
+
             ValidateGetRequest(id);
             IStoreRepository repo = IoC.Container.Resolve<IStoreRepository>();
-            return repo.GetById<GetStoreResponse>(id.ToString());
+            return repo.GetById<GetStoreResponse>(id.ToString(), "Owner");
         }
 
         private void ValidateGetRequest(Guid id)
@@ -112,7 +113,7 @@ namespace App.Service.Impl.Store
                 IAccountRepository accountRepo = IoC.Container.Resolve<IAccountRepository>(uow);
 
                 App.Entity.Store.Store item = new App.Entity.Store.Store(request.Name, request.Status, request.Description);
-                item.Owner = accountRepo.GetById(request.OwnerId.ToString());
+                item.Owner = accountRepo.GetById(request.Owner.Id.ToString());
                 repo.Add(item);
 
                 uow.Commit();

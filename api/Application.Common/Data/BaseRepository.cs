@@ -24,9 +24,9 @@ namespace App.Common.Data
         {
             return this.GetById(id, "");
         }
-        public virtual TResult GetById<TResult>(string id) where TResult : IMappedFrom<TEntity>
+        public virtual TResult GetById<TResult>(string id, string includes = "") where TResult : IMappedFrom<TEntity>
         {
-            TEntity entity = this.GetById(id);
+            TEntity entity = this.GetById(id, includes);
             return AutoMapper.Mapper.Map<TResult>(entity);
         }
 

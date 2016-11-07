@@ -3,17 +3,18 @@ import {Router, RouteParams} from "angular2/router";
 import {Component} from "angular2/core";
 import {Model} from "./addOrUpdateStoreModel";
 import {SelectPermission} from "../../../common/directive";
-import {ValidationDirective, FormStatusToggle, FormSelect, Page} from "../../../common/directive";
+import {ValidationDirective, FormStatusToggle, FormSelect, Page, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect, SelectOptions} from "../../../common/directive";
 import storeService from "../_share/services/storeService";
-import {FormMode, Guid} from "../../../common/enum";
+import {FormMode, Guid, FormSelectType} from "../../../common/enum";
 import route from "../_share/config/route";
 import {StoreStatus} from "../_share/models/enum";
 
 @Component({
     templateUrl: "app/modules/store/store/addOrUpdateStore.html",
-    directives: [ValidationDirective, FormStatusToggle, FormSelect, Page]
+    directives: [ValidationDirective, FormStatusToggle, FormSelect, Page, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect, SelectOptions]
 })
 export class AddOrUpdateStore extends BasePage {
+    public FormSelectType: any =FormSelectType;
     public StoreStatus: any = StoreStatus;
     public model: Model = new Model();
     private router: Router;

@@ -30,7 +30,7 @@ function createModule() {
 
         { path: route.store.stores.path, name: route.store.stores.name, component: Stores, data: { authentication: AuthenticationMode.Require } },
         { path: route.store.addStore.path, name: route.store.addStore.name, component: AddOrUpdateStore, data: { authentication: AuthenticationMode.Require } },
-        { path: route.store.editStore.path, name: route.store.editStore.name, component: AddOrUpdateAccount, data: { authentication: AuthenticationMode.Require } },
+        { path: route.store.editStore.path, name: route.store.editStore.name, component: AddOrUpdateStore, data: { authentication: AuthenticationMode.Require } },
 
         { path: route.store.orders.path, name: route.store.orders.name, component: Orders, data: { authentication: AuthenticationMode.Require } },
         // { path: route.store.viewOrder.path, name: route.store.viewOrder.name, component: ViewOrder, data: { authentication: AuthenticationMode.Require } }

@@ -63,7 +63,8 @@
         "addStoreAction":"Add Store",
         "status":{
             "active":"Active",
-            "inActive":"InActive"
+            "inActive":"InActive",
+            "waittintgForApprove":"Waittintg for approve"
         },
         "grid":{
             "name":"Name",
