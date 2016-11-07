@@ -12,7 +12,7 @@ namespace App.Service.Store.Order
         public OrderContact Contact { get; set; }
         public decimal Price { get; set; }
         public StoreOrderStatus Status { get; set; }
-        public DateTime TransationDate { get; set; }
+        public DateTime TransactionDate { get; set; }
         public double NumberOfItems { get; set; }
     }
 }

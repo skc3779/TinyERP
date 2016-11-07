@@ -34,7 +34,7 @@ namespace App.Service.Impl.Store
 
             order.Contact = request.Contact;
             order.Status = request.Status;
-            order.TransationDate = request.TransactionDate;
+            order.TransactionDate = request.TransactionDate;
             order.Comment = request.Comment;
             IProductRepository productRepo = IoC.Container.Resolve<IProductRepository>(uow);
             foreach (CreateOrderItemRequest item in request.Items)

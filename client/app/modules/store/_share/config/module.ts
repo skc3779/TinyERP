@@ -7,7 +7,7 @@ import {Stores} from "../../store/stores";
 import {AddOrUpdateStore} from "../../store/addOrUpdateStore";
 
 import {Orders} from "../../order/orders";
-// import {ViewOrder} from "../../order/viewOrder";
+import {ViewOrder} from "../../order/viewOrder";
 
 import route from "./route";
 
@@ -33,7 +33,7 @@ function createModule() {
         { path: route.store.editStore.path, name: route.store.editStore.name, component: AddOrUpdateStore, data: { authentication: AuthenticationMode.Require } },
 
         { path: route.store.orders.path, name: route.store.orders.name, component: Orders, data: { authentication: AuthenticationMode.Require } },
-        // { path: route.store.viewOrder.path, name: route.store.viewOrder.name, component: ViewOrder, data: { authentication: AuthenticationMode.Require } }
+        { path: route.store.viewOrder.path, name: route.store.viewOrder.name, component: ViewOrder, data: { authentication: AuthenticationMode.Require } }
 
     ]);
     return module;

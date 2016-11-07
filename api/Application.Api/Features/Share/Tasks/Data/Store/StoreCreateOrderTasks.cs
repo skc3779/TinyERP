@@ -48,7 +48,7 @@ namespace App.Api.Features.Share.Tasks.Data.Store
         {
             CreateOrderRequest request = new CreateOrderRequest();
             request.Contact = new OrderContact("Contact Name", "contact@email.com", "123456798");
-            request.Status = StoreOrderStatus.WaittintgForApprove;
+            request.Status = StoreOrderStatus.WaittingForApprove;
             request.TransactionDate = DateTime.UtcNow;
             request.Comment = "Comment on order";
             request.Items.Add(new CreateOrderItemRequest(productId, 2, 10000, DateTime.Now, StoreOrderStatus.InActive, "Comment on product"));

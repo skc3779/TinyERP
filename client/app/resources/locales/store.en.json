@@ -3,7 +3,8 @@
         "title":"Orders",
         "status":{
             "active":"Active",
-            "inActive":"InActive"
+            "inActive":"InActive",
+            "waittingForApprove":"Waitting for approve"
         },
         "grid":{
             "orderNumber":"Order No.",
@@ -14,6 +15,26 @@
             "numberOfItems":"Number Of Item(s)",
             "status":"Status",
             "transactionDate":"Transation Date"
+        }
+    },
+    "viewOrder":{
+        "title":"Order Detail",
+        "price":"Total price",
+        "numberOfItems":"Number Of Item(s)",
+        "status":"Status",
+        "transactionDate":"Transaction Date",
+        "comment":"Comment",
+        "orderItems":{
+            "title":"Order item(s)",
+            "productName":"Product",
+            "quantity":"Quantity",
+            "totalPrice":"Total price",
+            "comment":"Comment"
+        },
+        "orderContact":{
+            "name":"Name",
+            "email":"Email",
+            "phone":"Phone"
         }
     },
     "accounts":{

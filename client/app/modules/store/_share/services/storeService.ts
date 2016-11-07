@@ -1,5 +1,5 @@
 import configHelper from "../../../../common/helpers/configHelper";
-import {Promise} from "../../../../common/models/promise";
+import { Promise } from "../../../../common/models/promise";
 let storeService = {
     getAccounts: getAccounts,
     deleteAccount: deleteAccount,
@@ -13,9 +13,15 @@ let storeService = {
     getStore: getStore,
     updateStore: updateStore,
 
-    getOrders: getOrders
+    getOrders: getOrders,
+    getOrderSummary: getOrderSummary
 };
 export default storeService;
+function getOrderSummary(itemId: string) {
+    let connector = window.ioc.resolve("IConnector");
+    let url = String.format("{0}orders/{1}", configHelper.getAppConfig().api.baseUrl, itemId);
+    return connector.get(url);
+}
 function getOrders(): Promise {
     let connector = window.ioc.resolve("IConnector");
     let url = String.format("{0}orders", configHelper.getAppConfig().api.baseUrl);

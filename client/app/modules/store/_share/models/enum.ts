@@ -1,14 +1,17 @@
-export enum AccountStatus{
-    Active,
-    InActive
+export enum AccountStatus {
+    Active = 0,
+    InActive = 1,
+    Deleted = 2
 }
 
-export enum OrderStatus{
-    Active,
-    InActive
+export enum OrderStatus {
+    Active = 0,
+    InActive = 1,
+    WaittingForApprove = 2
 }
-export enum StoreStatus{
-    Active,
-    InActive,
-    WaittintgForApprove
+export enum StoreStatus {
+    Active = 0,
+    InActive = 1,
+    Deleted = 2,
+    WaittingForApprove = 3
 }

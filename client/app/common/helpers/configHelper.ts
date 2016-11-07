@@ -25,7 +25,6 @@ function getModuleMenuItems(): Array<MenuItem> {
 }
 function appendModuleMenuItems(items: Array<MenuItem>, module: IModule) {
     module.menus.forEach(function (menuItem: any) {
-        console.log(menuItem.text);
         items.push(menuItem);
     });
     return items;

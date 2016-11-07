@@ -2,6 +2,7 @@
 using App.Common.Http;
 using App.Common.Validation;
 using App.Service.Store.Order;
+using System;
 using System.Collections.Generic;
 using System.Web.Http;
 
@@ -10,6 +11,24 @@ namespace App.Api.Features.Store
     [RoutePrefix("api/orders")]
     public class OrdersController : ApiController
     {
+        [HttpGet]
+        [Route("{id}")]
+        public IResponseData<OrderSummary> GetOrderSummary(Guid id) {
+            IResponseData<OrderSummary> response= new ResponseData<OrderSummary>();
+            try
+            {
+                IOrderService service = IoC.Container.Resolve<IOrderService>();
+                OrderSummary summary = service.GetOrderSummary(id);
+                response.SetData(summary);
+            }
+            catch (ValidationException ex)
+            {
+                response.SetErrors(ex.Errors);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
+
+            }
+            return response;
+        }
         [HttpGet]
         [Route("")]
         public IResponseData<IList<OrderSummaryListItem>> GetOrders()

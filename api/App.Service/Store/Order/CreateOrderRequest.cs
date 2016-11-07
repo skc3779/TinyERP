@@ -15,6 +15,7 @@ namespace App.Service.Store.Order
         public CreateOrderRequest()
         {
             this.Items = new List<CreateOrderItemRequest>();
+            this.TransactionDate = DateTime.Now;
         }
     }
 }

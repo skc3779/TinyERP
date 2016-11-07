@@ -11,7 +11,7 @@ namespace App.Entity.Store
         public double Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }
-        public DateTime TransationDate { get; set; }
+        public DateTime TransactionDate { get; set; }
         public StoreOrderStatus Status { get; set; }
         public string Comment { get; set; }
         /// <summary>
@@ -19,8 +19,8 @@ namespace App.Entity.Store
         /// </summary>
         public OrderItem() : base()
         {
-            this.TransationDate = DateTime.UtcNow;
-            this.Status = StoreOrderStatus.WaittintgForApprove;
+            this.TransactionDate = DateTime.UtcNow;
+            this.Status = StoreOrderStatus.WaittingForApprove;
         }
 
         public OrderItem(Product product, double quantity, decimal unitPrice, StoreOrderStatus status, DateTime transactionDate, string comment) : base()
@@ -29,7 +29,7 @@ namespace App.Entity.Store
             this.Quantity = quantity;
             this.UnitPrice = unitPrice;
             this.Status = status;
-            this.TransationDate = transactionDate;
+            this.TransactionDate = transactionDate;
             this.Comment = comment;
             this.TotalPrice = (decimal)this.Quantity * this.UnitPrice;
         }

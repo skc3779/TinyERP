@@ -11,7 +11,7 @@ namespace App.Entity.Store
         public IList<OrderItem> Items { get; set; }
         public decimal Price { get; set; }
         public StoreOrderStatus Status { get; set; }
-        public DateTime TransationDate { get; set; }
+        public DateTime TransactionDate { get; set; }
         public double NumberOfItems { get; set; }
         public string Comment { get; set; }
         public Order() : base()

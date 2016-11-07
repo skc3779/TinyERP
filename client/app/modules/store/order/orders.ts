@@ -16,8 +16,11 @@ export class Orders extends BasePage {
         super();
         let self = this;
         self.router = router;
-        self.model = new Model(self.i18nHelper);
+        self.model = new Model(self.i18nHelper, self);
         self.load();
+    }
+    public onViewItemClicked(ev: any){
+        this.router.navigate([route.store.viewOrder.name,{id:ev.item.id}]);
     }
     private load() {
         let self = this;
