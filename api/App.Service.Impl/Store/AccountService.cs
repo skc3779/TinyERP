@@ -22,7 +22,7 @@ namespace App.Service.Impl.Store
             {
                 IAccountRepository repo = IoC.Container.Resolve<IAccountRepository>(uow);
                 StoreAccount account = repo.GetById(id.ToString());
-                account.Status = ItemStatus.Deleted;
+                account.Status = StoreAccountStatus.Deleted;
                 repo.Update(account);
                 uow.Commit();
             }
@@ -58,7 +58,7 @@ namespace App.Service.Impl.Store
                     try
                     {
                         ValidateCreateRequest(requestItem);
-                        StoreAccount account = new StoreAccount(requestItem.Name, requestItem.Email, requestItem.UserName, ItemStatus.WaitForActivating, requestItem.Photo, requestItem.Description);
+                        StoreAccount account = new StoreAccount(requestItem.Name, requestItem.Email, requestItem.UserName, StoreAccountStatus.InActive, requestItem.Photo, requestItem.Description);
                         repo.Add(account);
                     }
                     catch (ValidationException ex)

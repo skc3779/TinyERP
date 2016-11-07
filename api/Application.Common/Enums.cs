@@ -141,5 +141,23 @@ namespace App.Common
         Number,
         Password
     }
+    public enum StoreAccountStatus
+    {
+        Active = 0,
+        InActive = 1,
+        Deleted = 3
+    }
+    public enum StoreOrderStatus
+    {
+        Active = 0,
+        InActive = 1,
+        WaittintgForApprove = 3
+    }
+    public enum StoreItemStatus
+    {
+        Active = 0,
+        InActive = 1,
+        Deleted = 3
+    }
 }
 

@@ -10,7 +10,7 @@ namespace App.Entity.Store
         public OrderContact Contact { get; set; }
         public IList<OrderItem> Items { get; set; }
         public decimal Price { get; set; }
-        public ItemStatus Status { get; set; }
+        public StoreOrderStatus Status { get; set; }
         public DateTime TransationDate { get; set; }
         public double NumberOfItems { get; set; }
         public string Comment { get; set; }

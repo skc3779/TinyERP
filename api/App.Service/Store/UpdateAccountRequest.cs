@@ -9,7 +9,7 @@ namespace App.Service.Store
         public string Name { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
-        public ItemStatus Status { get; set; }
+        public StoreAccountStatus Status { get; set; }
         public string Description { get; set; }
         public Guid Photo { get; set; }
     }

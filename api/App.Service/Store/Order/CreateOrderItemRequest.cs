@@ -9,9 +9,9 @@ namespace App.Service.Store.Order
         public double Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public DateTime TransactionDate { get; set; }
-        public ItemStatus Status { get; set; }
+        public StoreOrderStatus Status { get; set; }
         public string Comment { get; set; }
-        public CreateOrderItemRequest(Guid productid, double quantity, decimal unitPrice, DateTime transactionDate, ItemStatus status, string comment)
+        public CreateOrderItemRequest(Guid productid, double quantity, decimal unitPrice, DateTime transactionDate, StoreOrderStatus status, string comment)
         {
             this.ProductId = productid;
             this.Quantity = quantity;

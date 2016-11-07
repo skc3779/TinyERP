@@ -11,7 +11,7 @@ namespace App.Service.Store.Order
         public string Number { get; set; }
         public OrderContact Contact { get; set; }
         public decimal Price { get; set; }
-        public ItemStatus Status { get; set; }
+        public StoreOrderStatus Status { get; set; }
         public DateTime TransationDate { get; set; }
         public double NumberOfItems { get; set; }
     }

@@ -3,39 +3,35 @@
         {{i18n.store.addOrUpdateStore.title}}
     </page-header>
     <page-content>
-        <form data-parsley-validate class="form-horizontal form-label-left">
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.addOrUpdateStore.name}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input id="name" [validation]="['store.addOrUpdateStore.validation.nameIsRequired','store.addOrUpdateStore.validation.nameAlreadyExisted']"
-                        placeholder="{{i18n.store.addOrUpdateStore.inputName}}" type="text" [(ngModel)]=model.name class="form-control col-md-7 col-xs-12"
-                    />
-                </div>
-            </div>
+        <form-default>
+            <form-text-input 
+                [labelText]=i18n.store.addOrUpdateStore.name
+                [placeHolderText]=i18n.store.addOrUpdateStore.inputName
+                [validation]="['store.addOrUpdateStore.validation.nameIsRequired','store.addOrUpdateStore.validation.nameAlreadyExisted']"
+                [(model)]=model.name>
+            </form-text-input>
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.addOrUpdateStore.owner}}</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <form-select [getItems]="getOwnersFunc" (valuesChange)="onOwnerChanged($event)" [values]="[model.owner.id]" [placeHolder]="i18n.store.addOrUpdateStore.selectOwner"></form-select>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.addOrUpdateStore.status}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <form-status-toggle [(model)]=model.status></form-status-toggle>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{i18n.store.addOrUpdateStore.desc}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <textarea rows="3" placeholder="{{i18n.store.addOrUpdateStore.inputDesc}}" type="text" [(ngModel)]=model.description class="form-control col-md-7 col-xs-12"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <button id="save" (click)="onSaveClicked($event)" type="button" class="btn btn-primary">{{i18n.common.form.save}}</button>
-                    <button id="cancel" (click)="onCancelClicked($event)" type="button" class="btn btn-default">{{i18n.common.form.cancel}}</button>
-                </div>
-            </div>
-        </form>
+            <select-options
+                [type]=FormSelectType.SingleButton
+                [dataSource]=StoreStatus
+                [textPattern]="'store.stores.status.{0}'"
+                [labelText]=i18n.store.addOrUpdateStore.status
+                [(model)]=model.status>
+            </select-options>
+            <form-textarea
+                [labelText]=i18n.store.addOrUpdateStore.desc 
+                [placeHolderText]=i18n.store.addOrUpdateStore.inputDesc 
+                [(model)]=model.description>
+            </form-textarea>
+             <form-footer>
+                <button (click)="onSaveClicked($event)" type="button" class="btn btn-primary">{{i18n.common.form.save}}</button>
+                <button (click)="onCancelClicked($event)" type="button" class="btn btn-default">{{i18n.common.form.cancel}}</button>
+            </form-footer>
+        </form-default>
     </page-content>
 </page>

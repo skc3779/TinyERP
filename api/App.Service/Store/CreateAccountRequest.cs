@@ -16,13 +16,13 @@ namespace App.Service.Store
             this.UserName = userName;
             this.Description = description;
             this.Photo = Guid.Empty;
-            this.Status = ItemStatus.None;
+            this.Status = StoreAccountStatus.InActive;
         }
 
         public string Name { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
-        public ItemStatus Status { get; set; }
+        public StoreAccountStatus Status { get; set; }
         public string Description { get; set; }
         public Guid Photo { get; set; }
     }

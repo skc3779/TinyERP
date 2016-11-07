@@ -8,7 +8,7 @@ namespace App.Service.Store.Store
     {
         public string Name { get; set; }
         public StoreOwner Owner { get; set; }
-        public ItemStatus Status { get; set; }
+        public StoreItemStatus Status { get; set; }
         public string Description { get; set; }
     }
 }

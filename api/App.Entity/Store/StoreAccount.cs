@@ -10,7 +10,7 @@ namespace App.Entity.Store
         public StoreAccount(): base()
         {
         }
-        public StoreAccount(string name, string email, string userName, ItemStatus status, Guid photo, string description) : base()
+        public StoreAccount(string name, string email, string userName, StoreAccountStatus status, Guid photo, string description) : base()
         {
             this.Name = name;
             this.Email = email;
@@ -18,13 +18,13 @@ namespace App.Entity.Store
             this.Status = status;
             this.Photo = photo == null ? Guid.Empty : photo;
             this.Description = description;
-            this.Status = ItemStatus.WaitForActivating;
+            this.Status = status;
         }
 
         public string Name { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
-        public ItemStatus Status { get; set; }
+        public StoreAccountStatus Status { get; set; }
         public string Description { get; set; }
         public Guid Photo { get; set; }
     }

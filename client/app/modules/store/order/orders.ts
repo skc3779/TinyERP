@@ -1,10 +1,10 @@
-import {Component }  from "angular2/core";
-import {Router} from "angular2/router";
-import {BasePage} from "../../../common/models/ui";
-import {Model} from "./ordersModel";
+import { Component } from "angular2/core";
+import { Router } from "angular2/router";
+import { BasePage } from "../../../common/models/ui";
+import { Model } from "./ordersModel";
 import storeService from "../_share/services/storeService";
-import {Grid, PageActions, Page} from "../../../common/directive";
-import {PageAction} from "../../../common/models/ui";
+import { Grid, PageActions, Page } from "../../../common/directive";
+import { PageAction } from "../../../common/models/ui";
 import route from "../_share/config/route";
 @Component({
     templateUrl: "app/modules/store/order/orders.html",

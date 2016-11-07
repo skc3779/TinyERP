@@ -13,7 +13,7 @@ namespace App.Entity.Store
         public Store(){
             this.Products = new List<Product>();
         }
-        public Store(string name, ItemStatus status, string description): this()
+        public Store(string name, StoreItemStatus status, string description): this()
         {
             this.Name = name;
             this.Description = description;
@@ -21,7 +21,7 @@ namespace App.Entity.Store
         }
 
         public string Name { get; set; }
-        public ItemStatus Status { get; set; }
+        public StoreItemStatus Status { get; set; }
         public string Description { get; set; }
         public StoreAccount Owner { get; set; }
         public IList<App.Entity.ProductManagement.Product> Products { get; set; }

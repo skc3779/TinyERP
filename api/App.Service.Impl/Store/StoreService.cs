@@ -23,7 +23,7 @@ namespace App.Service.Impl.Store
             {
                 IStoreRepository repo = IoC.Container.Resolve<IStoreRepository>(uow);
                 App.Entity.Store.Store item = repo.GetById(id.ToString());
-                item.Status = ItemStatus.Deleted;
+                item.Status = StoreItemStatus.Deleted;
                 repo.Update(item);
                 uow.Commit();
             }
