@@ -75,5 +75,11 @@ namespace App.Service.Impl.Store
             IOrderRepository repository = IoC.Container.Resolve<IOrderRepository>();
             return repository.GetOrders<OrderSummaryListItem>();
         }
+
+        public OrderSummary GetOrderSummary(Guid id)
+        {
+            IOrderRepository repo = IoC.Container.Resolve<IOrderRepository>();
+            return repo.GetById<OrderSummary>(id.ToString(), "Contact,Items,Items.Product");
+        }
     }
 }

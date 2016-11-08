@@ -115,6 +115,7 @@
     <Compile Include="Store\Order\OrderItem.cs" />
     <Compile Include="Store\Order\OrderSummary.cs" />
     <Compile Include="Store\Order\OrderSummaryListItem.cs" />
+    <Compile Include="Store\Order\OrderSummaryProduct.cs" />
     <Compile Include="Store\Store\CreateStoreRequest.cs" />
     <Compile Include="Store\Store\CreateStoreResponse.cs" />
     <Compile Include="Store\Store\GetStoreResponse.cs" />

@@ -9,6 +9,7 @@ import {FormMode, Guid} from "../../../common/enum";
 import route from "../_share/config/route";
 import {OrderItems} from "../_share/directives/orderItems";
 import {OrderContact} from "../_share/directives/orderContact";
+import {OrderStatus} from "../_share/models/enum";
 
 @Component({
     templateUrl: "app/modules/store/order/viewOrder.html",
@@ -28,5 +29,10 @@ export class ViewOrder extends BasePage {
                 self.model.import(item);
             });
         }
+    }
+    public getOrderStatus(status: any){
+        let key = OrderStatus[status];
+        key = String.firstCharToLower(key);
+        return this.i18nHelper.resolve(String.format("store.orders.status.{0}", key));
     }
 }
