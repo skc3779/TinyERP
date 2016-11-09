@@ -31,7 +31,8 @@
             "totalPrice":"Total price",
             "comment":"Comment"
         },
-        "orderContact":{
+        "contact":{
+            "title":"Contact",
             "name":"Name",
             "email":"Email",
             "phone":"Phone"

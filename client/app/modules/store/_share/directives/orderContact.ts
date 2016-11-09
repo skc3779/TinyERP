@@ -1,6 +1,7 @@
 import { Component, Input } from "angular2/core";
 import { BaseControl } from "../../../../common/models/ui";
 @Component({
+    selector: "order-contact",
     templateUrl: "app/modules/store/_share/directives/orderContact.html"
 })
 export class OrderContact extends BaseControl {
