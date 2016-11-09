@@ -2,7 +2,7 @@ import { Component } from "angular2/core";
 import { Input } from "angular2/core";
 import { BaseControl } from "../../../../common/models/ui";
 import { Model } from "./orderItemsModel";
-import { Grid, PageActions, Page } from "../../../../common/directive";
+import { Grid, PageActions, Page, } from "../../../../common/directive";
 @Component({
     selector: "order-items",
     templateUrl: "app/modules/store/_share/directives/orderItems.html",

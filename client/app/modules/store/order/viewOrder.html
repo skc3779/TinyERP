@@ -3,41 +3,30 @@
         {{i18n.store.viewOrder.title}}
     </page-header>
     <page-content>
-        <form data-parsley-validate class="form-horizontal form-label-left">
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.viewOrder.transactionDate}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{model.transactionDate}}
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.viewOrder.price}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{model.price}}
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.viewOrder.numberOfItems}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{model.numberOfItems}}
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.viewOrder.status}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{getOrderStatus(model.status)}}
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.viewOrder.comment}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{model.comment}}
-                </div>
-            </div>
+        <form-default>
+             <form-label 
+                [labelText]=i18n.store.viewOrder.transactionDate
+                [model]=model.transactionDate>
+            </form-label>
+            <form-label 
+                [labelText]=i18n.store.viewOrder.price
+                [model]=model.price>
+            </form-label>
+            <form-label 
+                [labelText]=i18n.store.viewOrder.numberOfItems
+                [model]=model.numberOfItems>
+            </form-label>
+            <form-label 
+                [labelText]=i18n.store.viewOrder.status
+                [model]=getOrderStatus(model.status)>
+            </form-label>
+            <form-label 
+                [labelText]=i18n.store.viewOrder.comment
+                [model]=model.comment
+                [mode]=FormLabelType.MultipleLine>
+            </form-label>
             <order-contact [model]=model.contact></order-contact>
             <order-items [model]=model.items></order-items>
-            
-        </form>
+         </form-default>
     </page-content>
 </page>

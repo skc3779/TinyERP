@@ -2,10 +2,10 @@ import {BasePage} from "../../../common/models/ui";
 import {Router, RouteParams} from "angular2/router";
 import {Component} from "angular2/core";
 import {Model} from "./viewOrderModel";
-import {SelectPermission} from "../../../common/directive";
-import {ValidationDirective, FormStatusToggle, FormSelect, Page} from "../../../common/directive";
+import {FormLabel} from "../../../common/directive";
+import {Form, FormStatusToggle, FormSelect, Page} from "../../../common/directive";
 import storeService from "../_share/services/storeService";
-import {FormMode, Guid} from "../../../common/enum";
+import {FormMode, Guid, FormLabelType} from "../../../common/enum";
 import route from "../_share/config/route";
 import {OrderItems} from "../_share/directives/orderItems";
 import {OrderContact} from "../_share/directives/orderContact";
@@ -13,9 +13,10 @@ import {OrderStatus} from "../_share/models/enum";
 
 @Component({
     templateUrl: "app/modules/store/order/viewOrder.html",
-    directives: [Page, OrderItems, OrderContact]
+    directives: [Page, Form, OrderItems, OrderContact, FormLabel]
 })
 export class ViewOrder extends BasePage {
+    public FormLabelType: any = FormLabelType;
     public model: Model = new Model();
     private router: Router;
     private itemId: any;

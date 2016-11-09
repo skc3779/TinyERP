@@ -1,27 +1,21 @@
-<div class="x_panel page">
-    <h3 class="page-title x_title title_right">
+<page>
+    <page-header>
         {{i18n.store.viewOrder.contact.title}}
-    </h3>
-    <div class="page-content x_content">
-        <form data-parsley-validate class="form-horizontal form-label-left">
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.viewOrder.contact.name}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{model.name}}
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.viewOrder.contact.email}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{model.email}}
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{i18n.store.viewOrder.contact.phone}}</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{model.phone}}
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+    </page-header>
+    <page-content>
+        <form-default>
+             <form-label 
+                [labelText]=i18n.store.viewOrder.contact.name
+                [model]=model.name>
+            </form-label>
+            <form-label 
+                [labelText]=i18n.store.viewOrder.contact.email
+                [model]=model.email>
+            </form-label>
+            <form-label 
+                [labelText]=i18n.store.viewOrder.contact.phone
+                [model]=model.phone>
+            </form-label>
+         </form-default>
+    </page-content>
+</page>

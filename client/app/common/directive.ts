@@ -19,5 +19,6 @@ export * from "./directives/form/formEmailInput";
 export * from "./directives/form/formDatetime";
 export * from "./directives/form/selectOptions";
 export * from "./directives/form/toggle";
+export * from "./directives/form/formLabel";
 /*export * from "./directives/page/pageHeader";
 export * from "./directives/page/pageContent";*/

@@ -13,7 +13,7 @@ export enum FormSelectMode {
     Group,
     Item
 };
-export enum FormSelectType{
+export enum FormSelectType {
     SingleButton
 }
 export enum FormMode {
@@ -60,3 +60,8 @@ export const IoCNames = {
     IResource: "IResource",
     IApplicationState: "IApplicationState",
 };
+
+export enum FormLabelType {
+    Single = 0,
+    MultipleLine= 1
+}
