@@ -1,7 +1,7 @@
 import { IModule, Module, MenuItem } from "../../../../common/models/layout";
 import { AuthenticationMode } from "../../../../common/enum";
 import route from "./route";
-import { Categories } from "../../categories/categories";
+import { Categories } from "../../category/categories";
 
 let module: IModule = createModule();
 export default module;

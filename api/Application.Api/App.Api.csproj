@@ -192,12 +192,14 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Features\Common\FilesController.cs" />
+    <Compile Include="Features\Inventory\CategoryController.cs" />
     <Compile Include="Features\Security\PermissionsController.cs" />
     <Compile Include="Features\Security\UserGroupsController.cs" />
     <Compile Include="Features\Security\RolesController.cs" />
     <Compile Include="Features\Setting\ContentTypesController.cs" />
     <Compile Include="Features\Share\Authorize\UserLoginAuthorization.cs" />
     <Compile Include="Features\Share\Bootstrap.cs" />
+    <Compile Include="Features\Share\Tasks\Data\CreateCategoryTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateContentTypesTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreatePermissionTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateTestUsersTask.cs" />

@@ -1,0 +1,9 @@
+<page>
+    <page-header>
+        {{i18n.inventory.categories.title}}
+        <page-actions class="pull-right" [actions]=model.actions></page-actions>
+    </page-header>
+    <page-content>
+        <grid [options]=model.options [eventKey]="model.eventKey" (onItemDeleteClicked)="onCategoryDeleteClicked($event)" (onItemEditClicked)="onCategoryEditClicked($event)"></grid>
+    </page-content>
+</page>

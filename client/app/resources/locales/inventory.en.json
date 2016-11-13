@@ -1,5 +1,8 @@
 {
     "categories": {
-        "title": "Categories"
+        "title": "Categories",
+        "addCategoryAction": "Add Category",
+        "name": "Name",
+        "description": "Description"
     }
 }

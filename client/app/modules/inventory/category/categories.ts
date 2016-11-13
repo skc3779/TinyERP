@@ -1,0 +1,43 @@
+import { Component } from "angular2/core";
+import { BasePage } from "../../../common/models/ui";
+import { Grid, PageActions, Page } from "../../../common/directive";
+import { CategoriesModel } from "./categoriesModel";
+import { PageAction } from "../../../common/models/ui";
+import categoryService from "../_share/services/categoryService";
+
+@Component({
+    selector: "categories",
+    templateUrl: "app/modules/inventory/category/categories.html",
+    directives: [Grid, PageActions, Page]
+})
+
+export class Categories extends BasePage {
+    public model: CategoriesModel;
+    constructor() {
+        super();
+        let self: Categories = this;
+        self.model = new CategoriesModel(self.i18nHelper);
+        self.model.addPageAction(new PageAction("btnAddCategory", "inventory.categories.addCategoryAction", () => self.onAddNewCategoryClicked()));
+        self.loadCategories();
+    }
+
+    private onAddNewCategoryClicked() {
+        console.log("add new category");
+    }
+
+    private onCategoryDeleteClicked(event: any) {
+        console.log("delete category");
+    }
+
+    private onCategoryEditClicked(event: any) {
+        console.log("edit category");
+
+    }
+
+    private loadCategories() {
+        let self: Categories = this;
+        categoryService.getCategories().then(function (items: Array<any>) {
+            self.model.importCategory(items);
+        })
+    }
+}
