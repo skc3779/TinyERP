@@ -2,14 +2,13 @@ import { Component } from "angular2/core";
 import { BasePage } from "../../../common/models/ui";
 import { Router, RouteParams } from "angular2/router";
 import { Page, Form, FormTextInput, FormFooter, FormTextArea } from "../../../common/directive";
-import { ValidationDirective } from "../../../common/directive";
 import { FormMode } from "../../../common/enum";
 import route from "../_share/config/route";
 import { AddOrUpdateCategoryModel } from "./addOrUpdateCategoryModel";
-import addOrUpdateCategoryService from "../_share/services/addOrUpdateCategoryService";
+import categoryService from "../_share/services/categoryService ";
 @Component({
-    templateUrl: "app/modules/inventory/categories/addOrUpdateCategory.html",
-    directives: [ValidationDirective, Page, Form, FormTextInput, FormFooter, FormTextArea]
+    templateUrl: "app/modules/inventory/category/addOrUpdateCategory.html",
+    directives: [Page, Form, FormTextInput, FormFooter, FormTextArea]
 })
 export class AddOrUpdateCategory extends BasePage {
     public model: AddOrUpdateCategoryModel = new AddOrUpdateCategoryModel();
@@ -25,7 +24,7 @@ export class AddOrUpdateCategory extends BasePage {
             self.pageTitle = self.i18nHelper.resolve("inventory.addOrUpdateCategory.updatePageTitle");
             self.mode = FormMode.Edit;
             self.itemId = routeParams.get("id");
-            addOrUpdateCategoryService.get(self.itemId).then(function (item: any) {
+            categoryService.getCategorybyId(self.itemId).then(function (item: any) {
                 self.model.import(item);
             });
         }
@@ -36,10 +35,11 @@ export class AddOrUpdateCategory extends BasePage {
     }
     public onSaveClicked(event: any): void {
         let self: AddOrUpdateCategory = this;
-        if (!self.model.validate())
+        if (!self.model.validate()) {
             return;
+        }
         if (self.mode === FormMode.Edit) {
-            addOrUpdateCategoryService.update(this.model).then(function () {
+            categoryService.updateCategory(this.model).then(function () {
                 self.router.navigate([route.inventory.categories.name]);
             });
         }

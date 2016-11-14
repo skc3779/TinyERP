@@ -11,8 +11,7 @@
         "inputDesc": "Please input description for Category",
         "validation": {
             "nameIsRequired": "Please input name of Category",
-            "nameAlreadyExisted": "This name is already existed. Please input another name",
-            "fieldTooLong": "Please enter no more than {0} characters"
+            "nameAlreadyExisted": "This name is already existed. Please input another name"
         }
     }
 }
