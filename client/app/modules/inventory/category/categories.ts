@@ -37,7 +37,7 @@ export class Categories extends BasePage {
     private loadCategories() {
         let self: Categories = this;
         categoryService.getCategories().then(function (items: Array<any>) {
-            self.model.importCategory(items);
+            self.model.importCategories(items);
         })
     }
 }

@@ -20,7 +20,7 @@ export class CategoriesModel {
         this.actions.push(action);
     }
 
-    public importCategory(items: Array<any>) {
+    public importCategories(items: Array<any>) {
         let eventManager = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.publish(this.eventKey, items);
     }

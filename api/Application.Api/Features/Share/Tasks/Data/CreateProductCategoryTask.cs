@@ -12,20 +12,20 @@ using App.Entity.ProductManagement;
 
 namespace App.Api.Features.Share.Tasks.Data
 {
-    public class CreateCategoryTask : BaseTask<TaskArgument<System.Web.HttpApplication>>, IApplicationReadyTask<TaskArgument<System.Web.HttpApplication>>
+    public class CreateProductCategoryTask : BaseTask<TaskArgument<System.Web.HttpApplication>>, IApplicationReadyTask<TaskArgument<System.Web.HttpApplication>>
     {
-        public CreateCategoryTask() : base(ApplicationType.All)
+        public CreateProductCategoryTask() : base(ApplicationType.All)
         {
         }
 
         public override void Execute(TaskArgument<HttpApplication> context)
         {
-            ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-            IList<ProductCategory> categories = GetCategoryies();
+            IProductCategoryService categoryService = IoC.Container.Resolve<IProductCategoryService>();
+            IList<ProductCategory> categories = GetCategories();
             categoryService.CreateIfNotExist(categories);
         }
 
-        private IList<ProductCategory> GetCategoryies()
+        private IList<ProductCategory> GetCategories()
         {
             return new List<ProductCategory>()
             {

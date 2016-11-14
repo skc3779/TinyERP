@@ -3,9 +3,9 @@ using App.Entity.ProductManagement;
 
 namespace App.Service.Inventory
 {
-    public interface ICategoryService
+    public interface IProductCategoryService
     {
-        IList<CategoryListItem> GetCategories();
+        IList<CategoryListItem> GetProductCategories();
         void CreateIfNotExist(IList<ProductCategory> categories);
     }
 }
