@@ -57,6 +57,6 @@ export const IoCNames = {
     IApplicationState: "IApplicationState",
 };
 export const enum FormValidationRules {
-    maxNameLength = 50,
-    maxDescriptionLength = 512
+    MaxNameLength = 50,
+    MaxDescriptionLength = 512
 };
