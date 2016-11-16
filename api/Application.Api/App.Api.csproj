@@ -199,7 +199,7 @@
     <Compile Include="Features\Setting\ContentTypesController.cs" />
     <Compile Include="Features\Share\Authorize\UserLoginAuthorization.cs" />
     <Compile Include="Features\Share\Bootstrap.cs" />
-    <Compile Include="Features\Share\Tasks\Data\CreateProductCategoryTask.cs" />
+    <Compile Include="Features\Share\Tasks\Data\CreateCategoryTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateContentTypesTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreatePermissionTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateTestUsersTask.cs" />

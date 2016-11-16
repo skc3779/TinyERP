@@ -10,25 +10,26 @@ namespace App.Service.Impl.Inventory
 {
     public class CategoryService : ICategoryService
     {
-        public void CreateIfNotExist(List<Category> categories)
+        public void CreateIfNotExist(List<CategoryListItem> categoryListItems)
         {
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
-                foreach (Category category in categories)
+                foreach (CategoryListItem categoryListItem in categoryListItems)
                 {
-                    ValidateCreateCategoryRequest(category);
-                    if (categoryRepository.GetById(category.Id.ToString()) != null)
+                    ValidateCreateCategoryRequest(categoryListItem);
+                    if (categoryRepository.GetById(categoryListItem.Id.ToString()) != null)
                     {
                         continue;
                     }
+                    Category category = new Category(categoryListItem.Name, categoryListItem.Description);
                     categoryRepository.Add(category);
                 }
                 uow.Commit();
             }
         }
 
-        private void ValidateCreateCategoryRequest(Category category)
+        private void ValidateCreateCategoryRequest(CategoryListItem category)
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             if (string.IsNullOrEmpty(category.Name))
@@ -38,14 +39,14 @@ namespace App.Service.Impl.Inventory
 
             if (categoryRepository.GetByName(category.Name) != null)
             {
-                throw new ValidationException("categories.addProductCategory.nameIsReadyExist");
+                //throw new ValidationException("categories.addProductCategory.nameIsReadyExist");
             }
         }
 
         public IList<CategoryListItem> GetCategories()
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-            return categoryRepository.GetItems<CategoryListItem>();
+            return categoryRepository.GetItems<CategoryListItem>();            
         }
     }
 }
