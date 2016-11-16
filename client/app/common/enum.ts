@@ -56,7 +56,7 @@ export const IoCNames = {
     IResource: "IResource",
     IApplicationState: "IApplicationState",
 };
-export const enum MaxLenghtForFields {
-    Name = 50,
-    Description = 512
+export const enum FormValidationRules {
+    maxNameLength = 50,
+    maxDescriptionLength = 512
 };

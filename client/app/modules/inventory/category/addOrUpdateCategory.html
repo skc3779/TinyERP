@@ -1,9 +1,11 @@
 <page>
-    <page-header *ngIf="mode == FormMode.Edit">
-        {{i18n.inventory.addOrUpdateCategory.updatePageTitle}}
-    </page-header>
-    <page-header *ngIf="mode == FormMode.AddNew">
-        {{i18n.inventory.addOrUpdateCategory.addPageTitle}}
+    <page-header>
+        <span *ngIf="mode == FormMode.Edit">  
+            {{i18n.inventory.addOrUpdateCategory.pageTitleForUpdating }}
+        </span>
+        <span *ngIf="mode == FormMode.AddNew"> 
+            {{i18n.inventory.addOrUpdateCategory.pageTitleForAddNew }}
+        </span>
     </page-header>
     <page-content>
         <form-default>

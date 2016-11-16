@@ -3,8 +3,8 @@
         "title": "Categories"
     },
     "addOrUpdateCategory": {
-        "addPageTitle": "Add Category",
-        "updatePageTitle": "Update Category",
+        "pageTitleForAddNew": "Add Category",
+        "pageTitleForUpdatting": "Update Category",
         "name": "Name",
         "inputName": "Please input name of Category",
         "desc": "Description",

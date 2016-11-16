@@ -1,6 +1,6 @@
 import { ValidationException } from "../../../common/models/exceptions/ValidationException";
-import { MaxLenghtForFields } from "../../../common/enum";
-export class AddOrUpdateCategoryModel {
+import { FormValidationRules } from "../../../common/enum";
+export class Model {
     public id: string;
     public name: string;
     public description: string;
@@ -9,11 +9,11 @@ export class AddOrUpdateCategoryModel {
         if (String.isNullOrWhiteSpace(this.name)) {
             validation.add("inventory.addOrUpdateCategory.validation.nameIsRequired");
         }
-        if (this.name.length > MaxLenghtForFields.Name) {
-            validation.add(String.format("inventory.addOrUpdateCategory.validation.fieldTooLong", MaxLenghtForFields.Name));
+        if (this.name.length > FormValidationRules.maxNameLength) {
+            validation.add(String.format("inventory.addOrUpdateCategory.validation.fieldTooLong", FormValidationRules.maxNameLength));
         }
-        if (String.isNullOrWhiteSpace(this.name) && this.description.length > MaxLenghtForFields.Description) {
-            validation.add(String.format("inventory.addOrUpdateCategory.validation.fieldTooLong", MaxLenghtForFields.Description));
+        if (String.isNullOrWhiteSpace(this.description) && this.description.length > FormValidationRules.maxDescriptionLength) {
+            validation.add(String.format("inventory.addOrUpdateCategory.validation.fieldTooLong", FormValidationRules.maxDescriptionLength));
         }
         validation.throwIfHasError();
         return !validation.hasError();
