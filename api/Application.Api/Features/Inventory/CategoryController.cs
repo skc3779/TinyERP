@@ -12,13 +12,13 @@ namespace App.Api.Features.Inventory
     {
         [HttpGet]
         [Route("")]
-        public IResponseData<IList<CategoryListItem>> GetProductCategories()
+        public IResponseData<IList<CategoryListItem>> GetCategories()
         {
             IResponseData<IList<CategoryListItem>> dataResponse = new ResponseData<IList<CategoryListItem>>();
             try
             {
-                IProductCategoryService productCategoryService = IoC.Container.Resolve<IProductCategoryService>();
-                IList<CategoryListItem> items = productCategoryService.GetProductCategories();
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                IList<CategoryListItem> items = categoryService.GetCategories();
                 dataResponse.SetData(items);
             }
             catch (ValidationException exception)

@@ -22,15 +22,15 @@ export class Categories extends BasePage {
     }
 
     private onAddNewCategoryClicked() {
-        console.log("add new category");
+        console.log("execute add new category funtion");
     }
 
     private onCategoryDeleteClicked(event: any) {
-        console.log("delete category");
+        console.log("execute delete category funtion");
     }
 
     private onCategoryEditClicked(event: any) {
-        console.log("edit category");
+        console.log("execute edit category funtion");
 
     }
 

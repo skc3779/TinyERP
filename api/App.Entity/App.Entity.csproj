@@ -62,6 +62,7 @@
     <Compile Include="Common\FileUpload.cs" />
     <Compile Include="Common\Language.cs" />
     <Compile Include="Common\Parameter.cs" />
+    <Compile Include="Inventory\Category.cs" />
     <Compile Include="ProductManagement\Product.cs" />
     <Compile Include="ProductManagement\ProductCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
