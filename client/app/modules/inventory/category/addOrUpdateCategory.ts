@@ -34,6 +34,10 @@ export class AddOrUpdateCategory extends BasePage {
             categoryService.updateCategory(this.model).then(function () {
                 self.router.navigate([route.inventory.categories.name]);
             });
+        } else {
+            categoryService.addNewCategory(this.model).then(function () {
+                self.router.navigate([route.inventory.categories.name]);
+            });
         }
     }
     public onCancelClicked(event: any): void {
