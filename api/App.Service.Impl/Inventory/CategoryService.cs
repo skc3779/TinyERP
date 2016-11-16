@@ -10,15 +10,15 @@ namespace App.Service.Impl.Inventory
 {
     public class CategoryService : ICategoryService
     {
-        public void CreateIfNotExist(IList<Category> categories)
+        public void CreateIfNotExist(List<Category> categories)
         {
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
                 foreach (Category category in categories)
                 {
-                    ValidationCategory(category);
-                    if (categoryRepository.GetById(category.Id.ToString()) != null || categoryRepository.GetByName(category.Name) != null)
+                    ValidateCreateCategoryRequest(category);
+                    if (categoryRepository.GetById(category.Id.ToString()) != null)
                     {
                         continue;
                     }
@@ -28,18 +28,24 @@ namespace App.Service.Impl.Inventory
             }
         }
 
-        private void ValidationCategory(Category category)
+        private void ValidateCreateCategoryRequest(Category category)
         {
+            ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             if (string.IsNullOrEmpty(category.Name))
             {
                 throw new ValidationException("categories.addProductCategory.invalidName");
-            };
+            }
+
+            if (categoryRepository.GetByName(category.Name) != null)
+            {
+                throw new ValidationException("categories.addProductCategory.nameIsReadyExist");
+            }
         }
 
         public IList<CategoryListItem> GetCategories()
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-            return categoryRepository.GetCategories<CategoryListItem>();
+            return categoryRepository.GetItems<CategoryListItem>();
         }
     }
 }

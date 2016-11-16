@@ -12,9 +12,5 @@ namespace App.Repository.Impl.Inventory
     {
         public CategoryRepository(IUnitOfWork uow) : base(uow.Context as IMSSQLDbContext) { }
         public CategoryRepository() : base(new AppDbContext(App.Common.IOMode.Read)) { }
-        public IList<TResult> GetCategories<TResult>() where TResult : IMappedFrom<Category>
-        {
-            return this.GetItems<TResult>();
-        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using App.Common;
 using App.Common.DI;
+using System;
 using App.Service.Inventory;
 using App.Entity.Inventory;
 
@@ -17,11 +18,11 @@ namespace App.Api.Features.Share.Tasks.Data
         public override void Execute(TaskArgument<HttpApplication> context)
         {
             ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-            IList<Category> categories = GetCategories();
+            List<Category> categories = GetCategories();
             categoryService.CreateIfNotExist(categories);
         }
 
-        private IList<Category> GetCategories()
+        private List<Category> GetCategories()
         {
             return new List<Category>()
             {

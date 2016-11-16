@@ -8,7 +8,7 @@ using App.Service.Inventory;
 namespace App.Api.Features.Inventory
 {
     [RoutePrefix("api/categories")]
-    public class CategoryController : ApiController
+    public class CategoriesController : ApiController
     {
         [HttpGet]
         [Route("")]

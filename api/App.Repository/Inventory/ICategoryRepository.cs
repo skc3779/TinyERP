@@ -6,6 +6,6 @@ namespace App.Repository.Inventory
 {
     public interface ICategoryRepository : IBaseContentRepository<Category>
     {
-        System.Collections.Generic.IList<TResult> GetCategories<TResult>() where TResult : IMappedFrom<Category>;
+
     }
 }

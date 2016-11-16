@@ -6,6 +6,6 @@ namespace App.Service.Inventory
     public interface ICategoryService
     {
         IList<CategoryListItem> GetCategories();
-        void CreateIfNotExist(IList<Category> categories);
+        void CreateIfNotExist(List<Category> categories);
     }
 }
