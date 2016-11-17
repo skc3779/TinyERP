@@ -5,48 +5,49 @@ using App.Repository.Inventory;
 using App.Common.DI;
 using App.Common;
 using App.Entity.Inventory;
+using System;
 
 namespace App.Service.Impl.Inventory
 {
     public class CategoryService : ICategoryService
     {
-        public void CreateIfNotExist(List<CategoryListItem> categoryListItems)
+        public void CreateIfNotExist(List<CreateCategoryRequest> createCategoriesRequest)
         {
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
-                foreach (CategoryListItem categoryListItem in categoryListItems)
+                foreach (CreateCategoryRequest createCategoryRequest in createCategoriesRequest)
                 {
-                    ValidateCreateCategoryRequest(categoryListItem);
-                    if (categoryRepository.GetById(categoryListItem.Id.ToString()) != null)
+                    ValidateCreateCategoryRequest(createCategoryRequest);
+                    if (categoryRepository.GetById(createCategoryRequest.Id.ToString()) != null)
                     {
                         continue;
                     }
-                    Category category = new Category(categoryListItem.Name, categoryListItem.Description);
+                    Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
                     categoryRepository.Add(category);
                 }
                 uow.Commit();
             }
         }
 
-        private void ValidateCreateCategoryRequest(CategoryListItem category)
+        private void ValidateCreateCategoryRequest(CreateCategoryRequest createCategoryRequest)
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-            if (string.IsNullOrEmpty(category.Name))
+            if (string.IsNullOrEmpty(createCategoryRequest.Name))
             {
-                throw new ValidationException("categories.addProductCategory.invalidName");
+                throw new ValidationException("inventory.addCategory.validation.nameRequire");
             }
 
-            if (categoryRepository.GetByName(category.Name) != null)
+            if (categoryRepository.GetByName(createCategoryRequest.Name) != null)
             {
-                //throw new ValidationException("categories.addProductCategory.nameIsReadyExist");
+                throw new ValidationException("inventory.addCategory.validation.nameAlreadyExist");
             }
         }
 
         public IList<CategoryListItem> GetCategories()
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-            return categoryRepository.GetItems<CategoryListItem>();            
+            return categoryRepository.GetItems<CategoryListItem>();
         }
     }
 }

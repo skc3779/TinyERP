@@ -19,6 +19,7 @@ namespace App.Api.Features.Inventory
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
                 IList<CategoryListItem> items = categoryService.GetCategories();
+                dataResponse.SetStatus(System.Net.HttpStatusCode.OK);
                 dataResponse.SetData(items);
             }
             catch (ValidationException exception)

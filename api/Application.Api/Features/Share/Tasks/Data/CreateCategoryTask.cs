@@ -16,16 +16,16 @@ namespace App.Api.Features.Share.Tasks.Data
         public override void Execute(TaskArgument<HttpApplication> context)
         {
             ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-            List<CategoryListItem> categories = GetCategories();
-            categoryService.CreateIfNotExist(categories);
+            List<CreateCategoryRequest> createCategoriesRequest = GetCreateCategoriesRequest();
+            categoryService.CreateIfNotExist(createCategoriesRequest);
         }
 
-        private List<CategoryListItem> GetCategories()
+        private List<CreateCategoryRequest> GetCreateCategoriesRequest()
         {
-            return new List<CategoryListItem>()
+            return new List<CreateCategoryRequest>()
             {
-                new CategoryListItem("name 1", "description 1"),
-                new CategoryListItem("name 2","description 2")
+                new CreateCategoryRequest("name 1", "description 1"),
+                new CreateCategoryRequest("name 2","description 2")
             };
         }
     }

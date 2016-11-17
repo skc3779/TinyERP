@@ -6,10 +6,5 @@ namespace App.Service.Inventory
     public class CategoryListItem : BaseContent, IMappedFrom<App.Entity.Inventory.Category>
     {
         public CategoryListItem() { }
-        public CategoryListItem(string name, string description)
-        {
-            this.Name = name;
-            this.Description = description;
-        }
     }
 }
