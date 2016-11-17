@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-using App.Common.Http;
-using App.Common.Validation;
-using App.Common.DI;
-using App.Service.Inventory;
-
-namespace App.Api.Features.Inventory
+﻿namespace App.Api.Features.Inventory
 {
+    using System.Collections.Generic;
+    using System.Web.Http;
+    using App.Common.Http;
+    using App.Common.Validation;
+    using App.Common.DI;
+    using App.Service.Inventory;
+
     [RoutePrefix("api/categories")]
     public class CategoriesController : ApiController
     {
@@ -27,6 +27,7 @@ namespace App.Api.Features.Inventory
                 dataResponse.SetErrors(exception.Errors);
                 dataResponse.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return dataResponse;
         }
     }

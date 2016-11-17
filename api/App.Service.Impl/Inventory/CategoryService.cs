@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using App.Service.Inventory;
-using App.Common.Validation;
-using App.Repository.Inventory;
-using App.Common.DI;
-using App.Common;
-using App.Entity.Inventory;
-using System;
-
-namespace App.Service.Impl.Inventory
+﻿namespace App.Service.Impl.Inventory
 {
+    using System.Collections.Generic;
+    using App.Service.Inventory;
+    using App.Common.Validation;
+    using App.Repository.Inventory;
+    using App.Common.DI;
+    using App.Common;
+    using App.Entity.Inventory;    
+
     public class CategoryService : ICategoryService
     {
         public void CreateIfNotExist(List<CreateCategoryRequest> createCategoriesRequest)
@@ -18,14 +17,16 @@ namespace App.Service.Impl.Inventory
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
                 foreach (CreateCategoryRequest createCategoryRequest in createCategoriesRequest)
                 {
-                    ValidateCreateCategoryRequest(createCategoryRequest);
+                    this.ValidateCreateCategoryRequest(createCategoryRequest);
                     if (categoryRepository.GetById(createCategoryRequest.Id.ToString()) != null)
                     {
                         continue;
                     }
+
                     Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
                     categoryRepository.Add(category);
                 }
+
                 uow.Commit();
             }
         }
