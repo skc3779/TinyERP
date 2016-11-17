@@ -12,7 +12,7 @@ export class Model {
         if (this.name.length > FormValidationRules.MaxNameLength) {
             validation.add("inventory.addOrUpdateCategory.validation.fieldTooLong");
         }
-        if (String.isNullOrWhiteSpace(this.description) && this.description.length > FormValidationRules.MaxDescriptionLength) {
+        if (!String.isNullOrWhiteSpace(this.description) && this.description.length > FormValidationRules.MaxDescriptionLength) {
             validation.add("inventory.addOrUpdateCategory.validation.fieldTooLong");
         }
         validation.throwIfHasError();
