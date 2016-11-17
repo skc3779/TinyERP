@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Entity.Common;
-using App.Common.Data;
-using App.Common;
-using App.Repository.Common;
-
-namespace App.Service.Impl.Common
+﻿namespace App.Service.Impl.Common
 {
+    using System.Collections.Generic;
+    using App.Entity.Common;
+    using App.Common.Data;
+    using App.Common;
+    using App.Repository.Common;
+
     internal class LanguageService : Service.Common.ILanguageService
     {
         public void Add(IList<Language> languages)
@@ -18,9 +17,9 @@ namespace App.Service.Impl.Common
                 {
                     repository.AddIfNotExist(item);
                 }
+
                 uow.Commit();
             }
-            
         }
     }
 }
