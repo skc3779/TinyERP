@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Entity.Security;
-
-namespace App.Service.Security
+﻿namespace App.Service.Security
 {
+    using System;
+    using System.Collections.Generic;
+    using App.Entity.Security;
+
     public interface IRoleService
     {
         System.Collections.Generic.IList<RoleListItemSummary> GetRoles();

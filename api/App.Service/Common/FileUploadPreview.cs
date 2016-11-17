@@ -1,10 +1,10 @@
-﻿using App.Common.Data;
-using App.Common.Mapping;
-using App.Entity.Common;
-using System;
-
-namespace App.Service.Common
+﻿namespace App.Service.Common
 {
+    using App.Common.Data;
+    using App.Common.Mapping;
+    using App.Entity.Common;
+    using System;
+
     public class FileUploadPreview : BaseEntity, IMappedFrom<FileUpload>
     {
         public string FileName { get; set; }

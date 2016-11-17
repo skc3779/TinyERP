@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace App.Service.Setting
+﻿namespace App.Service.Setting
 {
+    using System;
+
     public interface IContentTypeService
     {
         System.Collections.Generic.IList<ContentTypeListItem> GetContentTypes();

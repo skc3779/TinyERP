@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace App.Service.Support
+﻿namespace App.Service.Support
 {
+    using System;
+    using System.Collections.Generic;
+
     public interface IRequestService
     {
         void CreateRequest(CreateRequest request);

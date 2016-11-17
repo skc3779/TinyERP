@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace App.Service.Setting
+﻿namespace App.Service.Setting
 {
+    using System;
+    using System.Collections.Generic;
+
     public class UpdateContentTypeRequest
     {
         public Guid Id { get; set; }
