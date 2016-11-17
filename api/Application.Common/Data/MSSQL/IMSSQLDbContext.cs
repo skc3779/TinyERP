@@ -2,6 +2,6 @@
 {
     public interface IMSSQLDbContext : IDbContext
     {
-        IDbSet<TEntity> GetDbSet<TEntity>() where TEntity: class, IBaseEntity<System.Guid>;
+        IDbSet<TEntity> GetDbSet<TEntity>() where TEntity : class, IBaseEntity<System.Guid>;
     }
 }

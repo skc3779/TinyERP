@@ -1,6 +1,6 @@
 ﻿namespace App.Service.Security
 {
-    public class CreateRoleResponse: RoleListItemSummary
+    public class CreateRoleResponse : RoleListItemSummary
     {
     }
 }

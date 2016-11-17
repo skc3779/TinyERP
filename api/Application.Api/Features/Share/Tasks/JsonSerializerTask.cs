@@ -2,7 +2,6 @@
 {
     using App.Common.Tasks;
     using System.Web.Http;
-    using System.Web.Routing;
     using App.Common;
     using Newtonsoft.Json.Serialization;
 
@@ -11,10 +10,10 @@
         public JsonSerializerTask() : base(ApplicationType.MVC | ApplicationType.WebApi)
         {
         }
+
         public override void Execute(TaskArgument<System.Web.HttpApplication> arg)
         {
             if (!this.IsValid(arg.Type)) { return; }
-
             var formatters = GlobalConfiguration.Configuration.Formatters;
             var jsonFormatter = formatters.JsonFormatter;
             var settings = jsonFormatter.SerializerSettings;

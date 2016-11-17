@@ -1,21 +1,22 @@
-﻿using App.Common;
-using App.Common.DI;
-using App.Common.Helpers;
-using App.Common.Http;
-using App.Common.MVC.Attributes;
-using App.Common.Providers;
-using App.Common.Validation;
-using App.Service.Common.File;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-namespace App.Api.Features.Common
+﻿namespace App.Api.Features.Common
 {
+    using App.Common;
+    using App.Common.DI;
+    using App.Common.Helpers;
+    using App.Common.Http;
+    using App.Common.MVC.Attributes;
+    using App.Common.Providers;
+    using App.Common.Validation;
+    using App.Service.Common.File;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+
     [RoutePrefix("api/files")]
     public class FilesController : ApiController
     {
@@ -33,6 +34,7 @@ namespace App.Api.Features.Common
             response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/png");
             return response;
         }
+
         [HttpPost]
         [Route("")]
         [ValidateMimeMultipartContentFilter]
@@ -53,26 +55,8 @@ namespace App.Api.Features.Common
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
-
-
-        //[HttpGet]
-        //[Route("{fileId}")]
-        //public IResponseData<App.Entity.Common.File> GetFile(Guid fileId)
-        //{
-        //    IResponseData<App.Entity.Common.File> response = new ResponseData<App.Entity.Common.File>();
-        //    try
-        //    {
-        //        IFileService service = IoC.Container.Resolve<IFileService>();
-        //        response.SetData(service.GetById(fileId));
-        //    }
-        //    catch (ValidationException ex)
-        //    {
-        //        response.SetErrors(ex.Errors);
-        //        response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
-        //    }
-        //    return response;
-        //}
     }
 }

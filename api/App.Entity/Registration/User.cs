@@ -1,14 +1,26 @@
-﻿using App.Common.Configurations;
-using App.Common.Data;
-using App.Common.Helpers;
-using App.Entity.Common;
-using System;
-
-namespace App.Entity.Registration
+﻿namespace App.Entity.Registration
 {
+    using System;
+    using App.Common.Configurations;
+    using App.Common.Data;
+    using App.Common.Helpers;
+    using App.Entity.Common;
+
     public class User : BaseEntity
     {
-        public User() { }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public DateTime LastLoggedInDate { get; set; }
+        public string Token { get; set; }
+        public DateTime TokenExpiredAfter { get; set; }
+        public string Password { get; set; }
+        public string LanguageCode { get; set; }
+        public Language Language { get; set; }
+        public User()
+        {
+        }
+
         public User(string email, string pwd)
         {
             this.Email = email;
@@ -21,20 +33,10 @@ namespace App.Entity.Registration
             this.LanguageCode = Configuration.Current.Localization.DefaultLanguageCode;
         }
 
-        public User(string email, string pwd, string fistName, string lastName) : this(email, pwd)
+        public User(string email, string pwd, string firstName, string lastName) : this(email, pwd)
         {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
-
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public DateTime LastLoggedInDate { get; set; }
-        public string Token { get; set; }
-        public DateTime TokenExpiredAfter { get; set; }
-        public string Password { get; set; }
-        public string LanguageCode { get; set; }
-        public Language Language { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace App.Common.UITest.Runner.Selenium
                 element.Click();
                 action.Status = TestResultType.Success;
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
 
@@ -50,7 +50,7 @@ namespace App.Common.UITest.Runner.Selenium
                 element.SendKeys(action.Value);
                 action.Status = TestResultType.Success;
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
 
@@ -67,7 +67,7 @@ namespace App.Common.UITest.Runner.Selenium
             {
                 action.Status = SeleniumUIHelper.Assert(action, this.Driver) ? TestResultType.Success : TestResultType.Fail;
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
 
@@ -92,7 +92,7 @@ namespace App.Common.UITest.Runner.Selenium
                     System.Threading.Thread.Sleep(action.Timeout.AsInt());
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
 

@@ -1,7 +1,7 @@
-﻿using System.Configuration;
-
-namespace App.Common.Configurations
+﻿namespace App.Common.Configurations
 {
+    using System.Configuration;
+
     public class FolderElement : ConfigurationElement
     {
         [ConfigurationProperty("mailTemplate")]
@@ -9,6 +9,7 @@ namespace App.Common.Configurations
         {
             get { return System.IO.Path.Combine(this.BaseResourceFolder, (string)this["mailTemplate"]); }
         }
+
         [ConfigurationProperty("baseResourceFolder")]
         public string BaseResourceFolder
         {

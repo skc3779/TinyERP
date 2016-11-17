@@ -91,17 +91,13 @@ namespace App.Common.UITest.Runner.Selenium
             {
                 case UIActionSeertType.Text:
                     return CheckTextAssert(element, action);
-                    break;
                 case UIActionSeertType.CssClass:
                     return CheckCssClassAssert(element, action);
-                    break;
                 case UIActionSeertType.Count:
                     System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> elements = SeleniumUIHelper.GetElements(webDriver, locator);
                     return CheckCountElementAssert(elements, action);
-                    break;
                 case UIActionSeertType.Browser:
                     return CheckBrowserAssert(webDriver, action);
-                    break;
                 case UIActionSeertType.Exist:
                 default:
                     return CheckExistAssert(element, action);

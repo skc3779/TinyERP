@@ -9,3 +9,4 @@ obj
 *.debug.config
 *.release.config
 /App.UI.Test/output
+StyleCop.Cache

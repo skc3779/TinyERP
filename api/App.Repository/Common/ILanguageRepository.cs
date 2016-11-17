@@ -1,8 +1,8 @@
-﻿using App.Common.Data;
-using App.Entity.Common;
-
-namespace App.Repository.Common
+﻿namespace App.Repository.Common
 {
+    using App.Common.Data;
+    using App.Entity.Common;
+
     public interface ILanguageRepository : IBaseRepository<Language>
     {
         void AddIfNotExist(Language item);

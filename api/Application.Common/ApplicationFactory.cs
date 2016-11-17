@@ -8,16 +8,12 @@ namespace App.Common
             switch(type){
                 case ApplicationType.Console: 
                     return new ConsoleApplication<TContext>(application);
-                    break;
                 case ApplicationType.MVC:
                     return new MVCApplication<TContext>(application);
-                    break;
                 case ApplicationType.WebApi:
                     return new WebApiApplication(application as System.Web.HttpApplication);
-                    break;
                 default:
                     throw new ValidationException("Common.ApplicationDoesNotSupported", type);
-                    break;
             }
         }
     }

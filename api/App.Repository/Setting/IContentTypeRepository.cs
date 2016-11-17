@@ -1,8 +1,8 @@
-﻿using App.Common.Data;
-
-namespace App.Repository.Setting
+﻿namespace App.Repository.Setting
 {
-    public interface IContentTypeRepository: IBaseContentRepository<App.Entity.Setting.ContentType>
+    using App.Common.Data;
+
+    public interface IContentTypeRepository : IBaseContentRepository<App.Entity.Setting.ContentType>
     {
     }
 }
