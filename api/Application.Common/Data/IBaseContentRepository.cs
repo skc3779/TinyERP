@@ -1,6 +1,6 @@
 ﻿namespace App.Common.Data
 {
-    public interface IBaseContentRepository<TEntity>: IBaseRepository<TEntity> where TEntity: IBaseContent
+    public interface IBaseContentRepository<TEntity> : IBaseRepository<TEntity> where TEntity : IBaseContent
     {
         TEntity GetByKey(string key);
         TResult GetByKey<TResult>(string key) where TResult : App.Common.Mapping.IMappedFrom<TEntity>;

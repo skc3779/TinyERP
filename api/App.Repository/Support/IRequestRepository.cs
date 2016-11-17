@@ -1,8 +1,8 @@
-﻿using App.Common.Data;
-
-namespace App.Repository.Support
+﻿namespace App.Repository.Support
 {
-    public interface IRequestRepository: IBaseRepository<App.Entity.Support.Request>
+    using App.Common.Data;
+
+    public interface IRequestRepository : IBaseRepository<App.Entity.Support.Request>
     {
     }
 }

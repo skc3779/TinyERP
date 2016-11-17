@@ -1,7 +1,8 @@
-﻿using System;
-namespace App.Common.Data
+﻿namespace App.Common.Data
 {
-    public abstract class BaseEntity: IBaseEntity<Guid>
+    using System;
+
+    public abstract class BaseEntity : IBaseEntity<Guid>
     {
         public System.Guid Id { get; set; }
         public DateTime CreatedDate { get; set; }

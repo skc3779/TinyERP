@@ -1,9 +1,4 @@
-﻿using App.Common.DI;
-using App.Common.Logging;
-using System;
-using System.Collections.Generic;
-
-namespace App.Common.Event
+﻿namespace App.Common.Event
 {
     public class BaseEventManager : IEventManager
     {

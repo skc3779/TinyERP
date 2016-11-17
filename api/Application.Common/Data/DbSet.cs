@@ -7,6 +7,7 @@
         {
             context.RegisterSaveChangeEvent(this.OnContextSaveChange);
         }
+
         public DbSet()
         {
         }
@@ -31,11 +32,11 @@
             throw new System.NotImplementedException();
         }
 
-
         public virtual void OnContextSaveChange(IDbContext context)
         {
             throw new System.NotImplementedException();
         }
+
         public virtual System.Linq.IQueryable<TEntity> AsQueryable(string include = "")
         {
             throw new System.NotImplementedException();

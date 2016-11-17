@@ -1,6 +1,7 @@
-﻿using System.Configuration;
-namespace App.Common.Configurations
+﻿namespace App.Common.Configurations
 {
+    using System.Configuration;
+
     public class Configuration : System.Configuration.ConfigurationSection
     {
         private static Configuration current;
@@ -12,9 +13,11 @@ namespace App.Common.Configurations
                 {
                     current = (Configuration)System.Configuration.ConfigurationManager.GetSection("appconfiguration");
                 }
+
                 return current;
             }
         }
+
         [ConfigurationProperty("authentication")]
         public AuthenticationElement Authentication
         {
@@ -33,7 +36,7 @@ namespace App.Common.Configurations
             }
         }
 
-        [ConfigurationProperty("databases", IsDefaultCollection=false)]
+        [ConfigurationProperty("databases", IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(DatabasesElement),
             AddItemName = "add",
             ClearItemsName = "clear",
@@ -72,6 +75,7 @@ namespace App.Common.Configurations
                 return (MailElement)this["mail"];
             }
         }
+
         [ConfigurationProperty("folder")]
         public FolderElement Folder
         {

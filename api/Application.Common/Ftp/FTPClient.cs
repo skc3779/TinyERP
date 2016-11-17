@@ -1,9 +1,10 @@
-﻿using App.Common.Helpers;
-using System.IO;
-using System.Net;
-using System.Text;
-namespace App.Common.Ftp
+﻿namespace App.Common.Ftp
 {
+    using App.Common.Helpers;
+    using System.IO;
+    using System.Net;
+    using System.Text;
+
     public class FTPClient
     {
         public FTPRequest FTPRequest { get; set; }
@@ -11,6 +12,7 @@ namespace App.Common.Ftp
         {
             this.FTPRequest = request;
         }
+
         public void UploadFile(string filePath)
         {
             string fileRelativePath = FileHelper.GetRelativeFilePath(filePath, this.FTPRequest.LocalFolder);
@@ -58,6 +60,7 @@ namespace App.Common.Ftp
             {
                 return false;
             }
+
             return true;
         }
 
@@ -68,8 +71,8 @@ namespace App.Common.Ftp
             foreach (string pathItem in pathItems)
             {
                 basePath = Path.Combine(basePath, pathItem);
-                if (Exists(basePath, FTPResourceType.Directory)) { continue; }
-                string ftpPath = GetServerPath(basePath);
+                if (this.Exists(basePath, FTPResourceType.Directory)) { continue; }
+                string ftpPath = this.GetServerPath(basePath);
                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpPath);
                 request.Method = WebRequestMethods.Ftp.MakeDirectory;
                 request.Credentials = new NetworkCredential(this.FTPRequest.UserName, this.FTPRequest.Pwd);
