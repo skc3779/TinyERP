@@ -7,8 +7,8 @@ export class CategoriesModel {
     constructor(resourceHelper: any) {
         this.options = {
             columns: [
-                { field: "name", title: resourceHelper.resolve("inventory.categories.name"), index: 0 },
-                { field: "description", title: resourceHelper.resolve("inventory.categories.description"), index: 1 },
+                { field: "name", title: resourceHelper.resolve("inventory.categories.name") },
+                { field: "description", title: resourceHelper.resolve("inventory.categories.description") },
             ],
             data: [],
             enableEdit: true,

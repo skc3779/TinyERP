@@ -38,6 +38,6 @@ export class Categories extends BasePage {
         let self: Categories = this;
         categoryService.getCategories().then(function (items: Array<any>) {
             self.model.importCategories(items);
-        })
+        });
     }
 }

@@ -4,7 +4,7 @@ import configHelper from "../../../../common/helpers/configHelper";
 
 let categoryService = {
     getCategories: getCategories
-}
+};
 export default categoryService;
 
 function getCategories(): Promise {

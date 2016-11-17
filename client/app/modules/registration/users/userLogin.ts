@@ -1,14 +1,14 @@
-import {Component}  from "angular2/core";
-import {UserLoginModel} from "./userLoginModel";
-import {Router} from "angular2/router";
+import { Component } from "angular2/core";
+import { UserLoginModel } from "./userLoginModel";
+import { Router } from "angular2/router";
 
 import userService from "../_share/services/userService";
 import configHelper from "../../../common/helpers/configHelper";
 import authService from "../../../common/services/authService";
-import {AuthenticatedEvent, CommonEvent} from "../../../common/event";
-import {ValidationException} from "../../../common/models/exception";
-import {BasePage} from "../../../common/models/ui";
-import {ValidationDirective} from "../../../common/directive";
+import { AuthenticatedEvent, CommonEvent } from "../../../common/event";
+import { ValidationException } from "../../../common/models/exception";
+import { BasePage } from "../../../common/models/ui";
+import { ValidationDirective } from "../../../common/directive";
 
 @Component({
     selector: "user-login",
@@ -28,7 +28,7 @@ export class UserLogin extends BasePage {
         // this.router.navigate(["Forgot Password"]);
         // console.log(this.i18n.resolve('signin.yourEmail'));
     }
-    public onSupportRequestClicked(){
+    public onSupportRequestClicked() {
         this.router.navigate(["Create Request"]);
     }
     public onSignInClicked(event: any) {
