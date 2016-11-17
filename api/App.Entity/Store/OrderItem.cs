@@ -1,10 +1,10 @@
-﻿using App.Common;
-using App.Common.Data;
-using App.Entity.ProductManagement;
-using System;
-
-namespace App.Entity.Store
+﻿namespace App.Entity.Store
 {
+    using App.Common;
+    using App.Common.Data;
+    using App.Entity.ProductManagement;
+    using System;
+
     public class OrderItem : BaseEntity
     {
         public Product Product { get; set; }
@@ -14,9 +14,6 @@ namespace App.Entity.Store
         public DateTime TransationDate { get; set; }
         public ItemStatus Status { get; set; }
         public string Comment { get; set; }
-        /// <summary>
-        /// called by EF only
-        /// </summary>
         public OrderItem() : base()
         {
             this.TransationDate = DateTime.UtcNow;

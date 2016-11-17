@@ -1,11 +1,10 @@
-﻿using App.Common;
-using App.Common.Data;
-using App.Common.Helpers;
-using System;
-
-namespace App.Entity.Common
+﻿namespace App.Entity.Common
 {
-    public class Parameter: BaseContent
+    using System;
+    using App.Common;
+    using App.Common.Data;
+
+    public class Parameter : BaseContent
     {
         public Guid ParentId { get; set; }
         public ParameterParentType ParentType { get; set; }
@@ -13,7 +12,7 @@ namespace App.Entity.Common
         public bool IsEncoded { get; set; }
         public string Value { get; set; }
         public ParameterValueType ValueType { get; set; }
-        public Parameter():base()
+        public Parameter() : base()
         {
             this.IsEncoded = false;
             this.ValueType = ParameterValueType.String;
@@ -35,7 +34,6 @@ namespace App.Entity.Common
         {
             this.Name = param.Name;
             this.Key = param.Key;
-            //this.Key = ParameterHelper.ToKey(param.Name);
             this.ParentId = param.ParentId;
             this.ParentType = param.ParentType;
             this.Description = param.Description;

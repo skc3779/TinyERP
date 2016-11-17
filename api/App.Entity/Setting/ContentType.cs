@@ -1,10 +1,13 @@
-﻿using App.Common.Data;
-
-namespace App.Entity.Setting
+﻿namespace App.Entity.Setting
 {
+    using App.Common.Data;
+
     public class ContentType : BaseContent
     {
-        public ContentType():base(){}
+        public ContentType() : base()
+        {
+        }
+
         public ContentType(string name, string key, string description) : base(name, key, description)
         {
         }
