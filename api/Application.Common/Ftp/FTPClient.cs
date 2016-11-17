@@ -54,7 +54,7 @@ namespace App.Common.Ftp
                 response.Close();
                 response.Dispose();
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 return false;
             }

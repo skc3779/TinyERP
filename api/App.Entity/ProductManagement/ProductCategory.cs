@@ -15,6 +15,5 @@ namespace App.Entity.ProductManagement
             this.Description = description;
             this.ParentId = parentId;
         }
-        public ItemStatus Status { get; set; }
     }
 }

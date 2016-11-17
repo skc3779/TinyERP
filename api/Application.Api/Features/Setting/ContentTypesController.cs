@@ -1,14 +1,14 @@
-﻿using App.Common.DI;
-using App.Common.Http;
-using App.Common.Validation;
-using App.Service.Setting;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Web.Http;
-
-namespace App.Api.Features.Setting
+﻿namespace App.Api.Features.Setting
 {
+    using App.Common.DI;
+    using App.Common.Http;
+    using App.Common.Validation;
+    using App.Service.Setting;
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Web.Http;
+
     [RoutePrefix("api/contenttypes")]
     public class ContentTypesController : ApiController
     {
@@ -28,6 +28,7 @@ namespace App.Api.Features.Setting
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -47,6 +48,7 @@ namespace App.Api.Features.Setting
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -66,8 +68,10 @@ namespace App.Api.Features.Setting
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
+
         [Route("{id}")]
         [HttpDelete]
         public IResponseData<bool> DeleteContentType(Guid id)
@@ -84,6 +88,7 @@ namespace App.Api.Features.Setting
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -103,6 +108,7 @@ namespace App.Api.Features.Setting
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
     }

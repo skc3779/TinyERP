@@ -1,13 +1,14 @@
-﻿using App.Common.DI;
-using App.Common.Http;
-using App.Common.Validation;
-using App.Service.Support;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Web.Http;
-namespace App.Api.Features.Support
+﻿namespace App.Api.Features.Support
 {
+    using App.Common.DI;
+    using App.Common.Http;
+    using App.Common.Validation;
+    using App.Service.Support;
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Web.Http;
+
     [RoutePrefix("api/support/requests")]
     public class RequestsController : ApiController
     {
@@ -26,8 +27,10 @@ namespace App.Api.Features.Support
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
+
         [HttpPost]
         [Route("{itemId}/cancel")]
         public IResponseData<string> CancelRequest(Guid itemId)
@@ -43,6 +46,7 @@ namespace App.Api.Features.Support
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -62,8 +66,10 @@ namespace App.Api.Features.Support
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
+
         [HttpGet]
         [Route("")]
         public IResponseData<IList<SupportRequestListItem>> GetRequests()
@@ -80,12 +86,14 @@ namespace App.Api.Features.Support
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
         [HttpPost]
         [Route("")]
-        public IResponseData<string> CreateRequest(CreateRequest request) {
+        public IResponseData<string> CreateRequest(CreateRequest request)
+        {
             IResponseData<string> response = new ResponseData<string>();
             try
             {
@@ -97,6 +105,7 @@ namespace App.Api.Features.Support
                 response.SetErrors(ex.Errors);
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
     }

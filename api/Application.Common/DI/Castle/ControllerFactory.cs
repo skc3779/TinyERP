@@ -31,7 +31,7 @@ namespace App.Common.DI.Castle
             {
                 controller = kernel.Resolve(controllerType) as IController;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 controller = base.GetControllerInstance(requestContext, controllerType);
             }

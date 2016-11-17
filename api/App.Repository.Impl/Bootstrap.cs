@@ -10,7 +10,7 @@ namespace App.Repository.Impl
         {
 
         }
-        public void Execute(IBaseContainer context)
+        public override void Execute(IBaseContainer context)
         {
             context.RegisterTransient<IUserRepository, UserRepository>();
             context.RegisterTransient<Repository.Common.ILanguageRepository, App.Repository.Impl.Common.LanguageRepository>();

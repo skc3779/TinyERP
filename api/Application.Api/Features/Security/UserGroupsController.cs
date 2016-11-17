@@ -1,14 +1,14 @@
-﻿using App.Common.DI;
-using App.Common.Http;
-using App.Common.Validation;
-using App.Service.Security;
-using App.Service.Security.UserGroup;
-using System;
-using System.Collections.Generic;
-using System.Web.Http;
-
-namespace App.Api.Features.Security
+﻿namespace App.Api.Features.Security
 {
+    using App.Common.DI;
+    using App.Common.Http;
+    using App.Common.Validation;
+    using App.Service.Security;
+    using App.Service.Security.UserGroup;
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Http;
+
     [RoutePrefix("api/usergroups")]
     public class UserGroupsController : ApiController
     {
@@ -20,7 +20,7 @@ namespace App.Api.Features.Security
             try
             {
                 IUserGroupService userGroupService = IoC.Container.Resolve<IUserGroupService>();
-                IList<UserGroupListItemSummary> userGroups=userGroupService.GetUserGroups();
+                IList<UserGroupListItemSummary> userGroups = userGroupService.GetUserGroups();
                 response.SetData(userGroups);
             }
             catch (ValidationException ex)
@@ -28,6 +28,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -47,6 +48,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -66,6 +68,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -84,6 +87,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -103,6 +107,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
     }
