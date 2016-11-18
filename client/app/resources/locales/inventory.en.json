@@ -4,5 +4,10 @@
         "addCategoryAction": "Add Category",
         "name": "Name",
         "description": "Description"
+    },
+    "inventory": {
+        "category": {
+            "categoryIsInvalid": "The Category is invalid"
+        }
     }
 }

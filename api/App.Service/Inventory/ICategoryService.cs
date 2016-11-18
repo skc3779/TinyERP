@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using App.Entity.Inventory;
 
     public interface ICategoryService
     {
