@@ -1,5 +1,6 @@
 ﻿namespace App.Service.Inventory
 {
+    using System;
     using System.Collections.Generic;
     using App.Entity.Inventory;
 
@@ -7,5 +8,6 @@
     {
         IList<CategoryListItem> GetCategories();
         void CreateIfNotExist(List<CreateCategoryRequest> categories);
+        void DeleteCategory(Guid id);
     }
 }

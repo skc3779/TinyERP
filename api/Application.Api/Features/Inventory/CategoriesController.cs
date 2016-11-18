@@ -6,6 +6,8 @@
     using App.Common.Validation;
     using App.Common.DI;
     using App.Service.Inventory;
+    using System;
+    using System.Net;
 
     [RoutePrefix("api/categories")]
     public class CategoriesController : ApiController
@@ -29,6 +31,25 @@
             }
 
             return dataResponse;
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IResponseData<string> DeleteCategory([FromUri] Guid id)
+        {
+            IResponseData<string> response = new ResponseData<string>();
+            try
+            {
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                categoryService.DeleteCategory(id);
+            }
+            catch (ValidationException ex)
+            {
+                response.SetErrors(ex.Errors);
+                response.SetStatus(HttpStatusCode.PreconditionFailed);
+            }
+
+            return response;
         }
     }
 }

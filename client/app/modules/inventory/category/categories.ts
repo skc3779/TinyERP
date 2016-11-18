@@ -25,8 +25,11 @@ export class Categories extends BasePage {
         console.log("execute add new category funtion");
     }
 
-    private onCategoryDeleteClicked(event: any) {
-        console.log("execute delete category funtion");
+    private onCategoryDeleteClicked(categoryItem: any) {
+        let self: Categories = this;
+        categoryService.deleteCategory(categoryItem.item.id).then(function () {
+            self.loadCategories();
+        });
     }
 
     private onCategoryEditClicked(event: any) {
