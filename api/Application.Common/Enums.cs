@@ -36,7 +36,8 @@
         Console = 1,
         MVC = 2,
         WebApi = 4,
-        All = 7
+        UnitTest = 8,
+        All = 15
     }
 
     [Flags]

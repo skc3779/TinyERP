@@ -9,7 +9,7 @@
     {
         System.Collections.Generic.IList<PermissionAsKeyNamePair> GetPermissions();
         void CreateIfNotExist(IList<App.Entity.Security.Permission> pers);
-        BaseContent CreatePermission(BaseContent permission);
+        App.Entity.Security.Permission Create(CreatePermissionRequest permission);
         void Delete(Guid id);
         GetPermissionResponse GetPermission(Guid id);
         void UpdatePermission(UpdatePermissionRequest request);

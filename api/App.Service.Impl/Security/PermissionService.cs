@@ -29,9 +29,9 @@
             }
         }
 
-        public BaseContent CreatePermission(BaseContent permission)
+        public Permission Create(CreatePermissionRequest permission)
         {
-            this.CreatePermissionValidation(permission);
+            this.ValidateCreatePermissionRequest(permission);
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
             {
                 IPermissionRepository perRepository = IoC.Container.Resolve<IPermissionRepository>(uow);
@@ -42,7 +42,7 @@
             }
         }
 
-        private void CreatePermissionValidation(BaseContent permission)
+        private void ValidateCreatePermissionRequest(CreatePermissionRequest permission)
         {
             if (string.IsNullOrWhiteSpace(permission.Name))
             {
