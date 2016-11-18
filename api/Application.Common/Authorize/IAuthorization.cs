@@ -1,6 +1,7 @@
-﻿using System.Web.Http.Controllers;
-namespace App.Common.Authorize
+﻿namespace App.Common.Authorize
 {
+    using System.Web.Http.Controllers;
+
     public interface IAuthorization
     {
         bool IsAuthorized(System.Web.HttpContextBase httpContext);

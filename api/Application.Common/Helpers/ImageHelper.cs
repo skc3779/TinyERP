@@ -1,16 +1,16 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.IO;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System;
+    using System.Drawing;
+    using System.Drawing.Drawing2D;
+    using System.Drawing.Imaging;
+    using System.IO;
+
     public class ImageHelper
     {
         public static string ToBase64(string fileName, byte[] content, ThumbnailSize size = ThumbnailSize.Small)
         {
-            string fileExt = Path.GetExtension(fileName).Replace(".", "").ToUpper();
+            string fileExt = Path.GetExtension(fileName).Replace(".", string.Empty).ToUpper();
             switch (fileExt)
             {
                 case FileContentExt.Png:
@@ -32,7 +32,6 @@ namespace App.Common.Helpers
             Dimension photoSize = GetPhotoSize(size);
             Bitmap image = Resize(content, photoSize.Width, photoSize.Height);
             return ToBase64(image);
-
         }
 
         public static byte[] GetContent(Bitmap bitmap)
@@ -46,7 +45,7 @@ namespace App.Common.Helpers
 
         public static Bitmap GetThumbnail(string fileName, byte[] content, ThumbnailSize size)
         {
-            string fileExt = Path.GetExtension(fileName).Replace(".", "").ToUpper();
+            string fileExt = Path.GetExtension(fileName).Replace(".", string.Empty).ToUpper();
             switch (fileExt)
             {
                 case FileContentExt.Png:
@@ -102,6 +101,7 @@ namespace App.Common.Helpers
                 resizeWidth = maxWidth;
                 resizeHeight = resizeWidth / aspect;
             }
+
             if (resizeHeight > maxHeight)
             {
                 aspect = resizeWidth / resizeHeight;

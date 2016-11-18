@@ -1,8 +1,8 @@
-﻿using System.Configuration;
-
-namespace App.Common.Configurations
+﻿namespace App.Common.Configurations
 {
-    public class LocalizationElement: ConfigurationElement
+    using System.Configuration;
+
+    public class LocalizationElement : ConfigurationElement
     {
         [ConfigurationProperty("defaultLanguageCode")]
         public string DefaultLanguageCode

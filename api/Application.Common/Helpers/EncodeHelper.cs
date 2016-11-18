@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Security.Cryptography;
+    using System.Text;
+
     public class EncodeHelper
     {
         public static string EncodePassword(string password)
@@ -13,8 +13,10 @@ namespace App.Common.Helpers
             {
                 return string.Empty;
             }
-            return Md5Encode(password);
+
+            return EncodeHelper.Md5Encode(password);
         }
+
         public static string Md5Encode(string input)
         {
             MD5 md5 = System.Security.Cryptography.MD5.Create();
@@ -26,16 +28,12 @@ namespace App.Common.Helpers
             {
                 sb.Append(hashBytes[i].ToString("X2"));
             }
+
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Generate random string which contains only characters following: A->Z, a->z, 0->9
-        /// </summary>
-        /// <param name="length">length of ouput string</param>
-        /// <returns></returns>
-        public static string GenerateRandomString(int length) {
-
+        public static string GenerateRandomString(int length)
+        {
             Random random = new Random();
             Dictionary<int, StringBuilder> stringBuilders = new Dictionary<int, StringBuilder>();
             string seedCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -55,17 +53,12 @@ namespace App.Common.Helpers
             }
 
             return result.ToString();
-
         }
     }
 
-    /// <summary>
-    /// Move class Md5Crypt from Omega.Web.Lib to here use in Omega.Services.Impl
-    /// </summary>
     public static class Md5Crypt
     {
-        private const string Senha = "Norpost$";
-
+        private const string Senha = "Md5Crypt$";
         public static string Encrypt(string password)
         {
             byte[] results;
@@ -89,6 +82,7 @@ namespace App.Common.Helpers
                 tdesAlgorithm.Clear();
                 hashProvider.Clear();
             }
+
             return Convert.ToBase64String(results);
         }
 
@@ -115,6 +109,7 @@ namespace App.Common.Helpers
                 tdesAlgorithm.Clear();
                 hashProvider.Clear();
             }
+
             return utf8.GetString(results);
         }
     }

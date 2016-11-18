@@ -1,8 +1,8 @@
-﻿using App.Common.Event;
-
-namespace App.EventHandler.Support
+﻿namespace App.EventHandler.Support
 {
-    public interface ISupportRequestEventHandler: IEventHandler<SupportRequestOnStatusChanged>
+    using App.Common.Event;
+
+    public interface ISupportRequestEventHandler : IEventHandler<SupportRequestOnStatusChanged>
     {
     }
 }

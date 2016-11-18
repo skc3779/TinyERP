@@ -1,7 +1,7 @@
-﻿using System.Configuration;
-
-namespace App.Common.Configurations
+﻿namespace App.Common.Configurations
 {
+    using System.Configuration;
+
     public class MailElement : ConfigurationElement
     {
         [ConfigurationProperty("server")]

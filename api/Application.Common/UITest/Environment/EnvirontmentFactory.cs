@@ -1,6 +1,7 @@
-﻿using App.Common.Helpers;
-namespace App.Common.UITest.Environment
+﻿namespace App.Common.UITest.Environment
 {
+    using App.Common.Helpers;
+
     public class EnvironmentFactory
     {
         public static System.Collections.Generic.IList<IEnvironment> Load(string environtmentFilePath)

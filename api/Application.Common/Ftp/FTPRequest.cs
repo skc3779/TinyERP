@@ -2,6 +2,11 @@
 {
     public class FTPRequest
     {
+        public string LocalFolder { get; set; }
+        public string Server { get; set; }
+        public string UserName { get; set; }
+        public string Pwd { get; set; }
+        public string BasePath { get; set; }
         public FTPRequest(string server, string userName, string pwd, string basePath, string localFolder)
         {
             this.Server = server;
@@ -10,6 +15,7 @@
             this.BasePath = basePath;
             this.LocalFolder = localFolder;
         }
+
         public FTPRequest(FTPRequest request)
         {
             this.Server = request.Server;
@@ -18,10 +24,5 @@
             this.BasePath = request.BasePath;
             this.LocalFolder = request.LocalFolder;
         }
-        public string LocalFolder { get; set; }
-        public string Server { get; set; }
-        public string UserName { get; set; }
-        public string Pwd { get; set; }
-        public string BasePath { get; set; }
     }
 }

@@ -1,11 +1,11 @@
-﻿using App.Common;
-using App.Common.Authorize;
-using App.Common.DI;
-using App.Common.Validation;
-using App.Service.Registration.User;
-
-namespace App.Api.Features.Share.Authorize
+﻿namespace App.Api.Features.Share.Authorize
 {
+    using App.Common;
+    using App.Common.Authorize;
+    using App.Common.DI;
+    using App.Common.Validation;
+    using App.Service.Registration.User;
+
     public class UserLoginAuthorization : IUserLoginAuthorization
     {
         private readonly IUserService userService;
@@ -19,7 +19,6 @@ namespace App.Api.Features.Share.Authorize
             return true;
         }
 
-
         public bool IsAuthorized(string authenticationToken)
         {
             if (string.IsNullOrWhiteSpace(authenticationToken))
@@ -27,7 +26,7 @@ namespace App.Api.Features.Share.Authorize
                 throw new AuthenticationException(AuthenticationType.User, "AuthenticationException.UnAuthorizedRequest");
             }
 
-            return userService.IsValidToken(authenticationToken);
+            return this.userService.IsValidToken(authenticationToken);
         }
     }
 }

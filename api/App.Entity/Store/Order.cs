@@ -1,10 +1,10 @@
-﻿using App.Common;
-using App.Common.Data;
-using System;
-using System.Collections.Generic;
-
-namespace App.Entity.Store
+﻿namespace App.Entity.Store
 {
+    using App.Common;
+    using App.Common.Data;
+    using System;
+    using System.Collections.Generic;
+
     public class Order : BaseEntity
     {
         public OrderContact Contact { get; set; }

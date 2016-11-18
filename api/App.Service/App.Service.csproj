@@ -60,6 +60,7 @@
     <Compile Include="Common\FileUploadPreview.cs" />
     <Compile Include="Common\File\IFileService.cs" />
     <Compile Include="Common\ILanguageService.cs" />
+    <Compile Include="Inventory\CategoryListItem.cs" />
     <Compile Include="Inventory\Config\ValidationConfig.cs" />
     <Compile Include="Inventory\CreateCategoryRequest.cs" />
     <Compile Include="Inventory\GetCategoryResponse.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Registration\User\UserQuickProfile.cs" />
     <Compile Include="Registration\User\UserSignInRequest.cs" />
     <Compile Include="Registration\User\UserSignInResponse.cs" />
+    <Compile Include="Security\Permission\CreatePermissionRequest.cs" />
     <Compile Include="Security\Permission\DeletePermissionResponse.cs" />
     <Compile Include="Security\Permission\GetPermissionResponse.cs" />
     <Compile Include="Security\Permission\UpdatePermissionRequest.cs" />

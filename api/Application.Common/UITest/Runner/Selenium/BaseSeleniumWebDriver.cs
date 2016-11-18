@@ -1,19 +1,17 @@
-﻿using App.Common.Validation;
-using OpenQA.Selenium;
-using App.Common.Extensions;
-using System;
-
-namespace App.Common.UITest.Runner.Selenium
+﻿namespace App.Common.UITest.Runner.Selenium
 {
+    using App.Common.Validation;
+    using App.Common.Extensions;
+
     public class BaseSeleniumWebDriver : IWebDriver
     {
         public ITestRunner TestRunner { get; protected set; }
         public OpenQA.Selenium.IWebDriver Driver { get; protected set; }
-
         public BaseSeleniumWebDriver(ITestRunner testRunner)
         {
             this.TestRunner = testRunner;
         }
+
         public virtual void Dispose()
         {
             if (this.Driver == null) { return; }
@@ -29,13 +27,11 @@ namespace App.Common.UITest.Runner.Selenium
                 element.Click();
                 action.Status = TestResultType.Success;
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
-
                 string fileName = string.Format("{0}_{1}_{2}.png", action.TestCaseAction.TestCase.TestCaseRef.Key, action.TestCaseAction.ActionRef.Action, System.DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 SeleniumScreenshotHelper.CreateScreenshot(this.Driver, this.TestRunner.Environment, fileName);
-
                 action.Error = new ValidationException("Common.ElementCanNotFound", action.Element, fileName);
             }
         }
@@ -50,13 +46,11 @@ namespace App.Common.UITest.Runner.Selenium
                 element.SendKeys(action.Value);
                 action.Status = TestResultType.Success;
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
-
                 string fileName = string.Format("{0}_{1}_{2}.png", action.TestCaseAction.TestCase.TestCaseRef.Key, action.TestCaseAction.ActionRef.Action, System.DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 SeleniumScreenshotHelper.CreateScreenshot(this.Driver, this.TestRunner.Environment, fileName);
-
                 action.Error = new ValidationException("Common.ElementCanNotFound", action.Element, fileName);
             }
         }
@@ -67,13 +61,11 @@ namespace App.Common.UITest.Runner.Selenium
             {
                 action.Status = SeleniumUIHelper.Assert(action, this.Driver) ? TestResultType.Success : TestResultType.Fail;
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
-
                 string fileName = string.Format("{0}_{1}_{2}.png", action.TestCaseAction.TestCase.TestCaseRef.Key, action.TestCaseAction.ActionRef.Action, System.DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 SeleniumScreenshotHelper.CreateScreenshot(this.Driver, this.TestRunner.Environment, fileName);
-
                 action.Error = new ValidationException("Common.ElementCanNotFound", action.Element, fileName);
             }
         }
@@ -82,7 +74,6 @@ namespace App.Common.UITest.Runner.Selenium
         {
             try
             {
-
                 action.Status = TestResultType.Fail;
                 this.Driver.Navigate().GoToUrl(action.Url);
                 action.Status = TestResultType.Success;
@@ -92,13 +83,11 @@ namespace App.Common.UITest.Runner.Selenium
                     System.Threading.Thread.Sleep(action.Timeout.AsInt());
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
-
                 string fileName = string.Format("{0}_{1}_{2}.png", action.TestCaseAction.TestCase.TestCaseRef.Key, action.TestCaseAction.ActionRef.Action, System.DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 SeleniumScreenshotHelper.CreateScreenshot(this.Driver, this.TestRunner.Environment, fileName);
-
                 action.Error = new ValidationException("Common.ElementCanNotFound", action.Element, fileName);
             }
         }

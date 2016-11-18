@@ -1,6 +1,6 @@
 ﻿namespace App.Common.UITest.Runner.Selenium
 {
-    public class SeleniumFirefoxWebDriver: BaseSeleniumWebDriver
+    public class SeleniumFirefoxWebDriver : BaseSeleniumWebDriver
     {
         public SeleniumFirefoxWebDriver(ITestRunner testRunner)
             : base(testRunner)

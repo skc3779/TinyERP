@@ -1,7 +1,7 @@
-﻿using System.Web.Routing;
-
-namespace App.Common.Tasks
+﻿namespace App.Common.Tasks
 {
+    using System.Web.Routing;
+
     public interface IRouteConfiguredTask : IBaseTask<TaskArgument<RouteCollection>>
     {
     }

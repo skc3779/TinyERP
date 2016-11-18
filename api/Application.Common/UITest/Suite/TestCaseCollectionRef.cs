@@ -1,6 +1,7 @@
-﻿using System.Xml.Serialization;
-namespace App.Common.UITest.Suite
+﻿namespace App.Common.UITest.Suite
 {
+    using System.Xml.Serialization;
+
     [System.Serializable()]
     [XmlType("testcases")]
     public class TestCaseCollectionRef

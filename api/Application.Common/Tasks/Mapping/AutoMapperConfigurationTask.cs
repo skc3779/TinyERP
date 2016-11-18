@@ -1,29 +1,24 @@
-﻿using System;
-using System.Linq;
-using App.Common.Mapping;
-using System.Reflection;
-using System.Web;
-using App.Common.Helpers;
-using AutoMapper;
-
-namespace App.Common.Tasks.Mapping
+﻿namespace App.Common.Tasks.Mapping
 {
+    using System;
+    using System.Linq;
+    using App.Common.Mapping;
+    using App.Common.Helpers;
+
     public class AutoMapperConfigurationTask : BaseTask<TaskArgument<System.Web.HttpApplication>>, IApplicationStartedTask<TaskArgument<System.Web.HttpApplication>>
     {
-        public AutoMapperConfigurationTask():base(ApplicationType.All)
+        public AutoMapperConfigurationTask() : base(ApplicationType.All)
         {
         }
+
         public override void Execute(TaskArgument<System.Web.HttpApplication> arg)
         {
             if (!this.IsValid(arg.Type)) { return; }
-
             var types = AssemblyHelper.GetAllApplicationTypes();
-            //var types = Assembly.Load("Application.Common").GetTypes().ToList();
-            //types.AddRange(Assembly.Load("Omega.Context").GetTypes());
-            ConfigStandardMappings(types.ToArray());
+            this.ConfigStandardMappings(types.ToArray());
         }
 
-        private static void ConfigStandardMappings(Type[] types)
+        private void ConfigStandardMappings(Type[] types)
         {
             var maps = (from type in types
                         from i in type.GetInterfaces()
@@ -40,17 +35,5 @@ namespace App.Common.Tasks.Mapping
                 AutoMapper.Mapper.CreateMap(map.Dest, map.Source);
             }
         }
-        //public static IMappingExpression<TSource, TDestination> IgnoreAllNonExisting<TSource, TDestination>(this IMappingExpression<TSource, TDestination> expression)
-        //{
-        //    var sourceType = typeof(TSource);
-        //    var destinationType = typeof(TDestination);
-        //    var existingMaps = Mapper.GetAllTypeMaps().First(x => x.SourceType.Equals(sourceType)
-        //        && x.DestinationType.Equals(destinationType));
-        //    foreach (var property in existingMaps.GetUnmappedPropertyNames())
-        //    {
-        //        expression.ForMember(property, opt => opt.Ignore());
-        //    }
-        //    return expression;
-        //}
     }
 }

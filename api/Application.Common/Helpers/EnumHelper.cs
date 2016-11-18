@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class EnumHelper
     {
         public static IList<TEnumType> ToList<TEnumType>()
@@ -19,6 +19,7 @@ namespace App.Common.Helpers
                 if (value.ToString().ToLower() != enumValue) { continue; }
                 return value;
             }
+
             throw new KeyNotFoundException();
         }
     }

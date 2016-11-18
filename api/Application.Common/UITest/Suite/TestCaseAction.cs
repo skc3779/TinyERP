@@ -1,14 +1,15 @@
-﻿using App.Common.Configurations;
-using App.Common.Helpers;
-using App.Common.UITest.UI;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Xml;
-namespace App.Common.UITest.Suite
+﻿namespace App.Common.UITest.Suite
 {
+    using App.Common.Configurations;
+    using App.Common.Helpers;
+    using App.Common.UITest.UI;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Xml;
+
     public class TestCaseAction : BaseExecutable
     {
         public TestCaseActionRef ActionRef { get; set; }
@@ -26,6 +27,7 @@ namespace App.Common.UITest.Suite
             this.Includes = includes;
             this.TestCase = testCase;
         }
+
         public override void Execute()
         {
             IList<TestDataKeyNamePair> actionParams = this.ResolveActionData();
@@ -43,7 +45,6 @@ namespace App.Common.UITest.Suite
                     break;
                 }
             }
-            
         }
 
         private IList<IUIAction> GetUIActions()
@@ -53,13 +54,14 @@ namespace App.Common.UITest.Suite
             string actionName = this.ActionRef.Action.Split('.')[1];
             TestIncludeRef includeRef = this.Includes.Where(item => item.Alias.ToLower() == alias).FirstOrDefault();
             string filePath = Path.Combine(Configuration.Current.UITest.BasePath, includeRef.Path);
-            XmlNode uiSteps = XmlHelper.GetNodeByXPath(filePath, String.Format("/steps/step[@name='{0}']", actionName));
+            XmlNode uiSteps = XmlHelper.GetNodeByXPath(filePath, string.Format("/steps/step[@name='{0}']", actionName));
             foreach (XmlNode uiStepAction in uiSteps.ChildNodes)
             {
                 IUIAction uiAction = UIActionFactory.Create(uiStepAction, this.TestCase.WebDriver);
                 uiAction.TestCaseAction = this;
                 uiActions.Add(uiAction);
             }
+
             return uiActions;
         }
 
@@ -68,9 +70,10 @@ namespace App.Common.UITest.Suite
             IList<TestDataKeyNamePair> actionParams = new List<TestDataKeyNamePair>();
             foreach (TestDataKeyNamePair actionRefParam in this.ActionRef.Params)
             {
-                actionRefParam.Value = RepalceParamValue(actionRefParam.Value);
+                actionRefParam.Value = this.RepalceParamValue(actionRefParam.Value);
                 actionParams.Add(actionRefParam);
             }
+
             return actionParams;
         }
 
@@ -79,14 +82,12 @@ namespace App.Common.UITest.Suite
             MatchCollection matches = Regex.Matches(pattern, "({{(\\w+)}})");
             foreach (Match match in matches)
             {
-                string paramKey = match.Value.Replace("{{", "").Replace("}}", "").ToLower();
+                string paramKey = match.Value.Replace("{{", string.Empty).Replace("}}", string.Empty).ToLower();
                 TestDataKeyNamePair testDataParam = this.TestData.Where(item => item.Key.ToLower() == paramKey).FirstOrDefault();
-                if (testDataParam == null)
-                {
-                    continue;
-                }
+                if (testDataParam == null) { continue; }
                 pattern = Regex.Replace(pattern, match.Value, testDataParam.Value, RegexOptions.IgnoreCase);
             }
+
             return pattern;
         }
     }

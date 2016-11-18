@@ -1,13 +1,13 @@
-﻿using App.Common.DI;
-using App.Common.Http;
-using App.Common.Validation;
-using App.Service.Security;
-using System;
-using System.Collections.Generic;
-using System.Web.Http;
-
-namespace App.Api.Features.Security
+﻿namespace App.Api.Features.Security
 {
+    using App.Common.DI;
+    using App.Common.Http;
+    using App.Common.Validation;
+    using App.Service.Security;
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Http;
+
     [RoutePrefix("api/roles")]
     public class RolesController : ApiController
     {
@@ -19,7 +19,7 @@ namespace App.Api.Features.Security
             try
             {
                 IRoleService roleService = IoC.Container.Resolve<IRoleService>();
-                IList<RoleListItemSummary> roles=roleService.GetRoles();
+                IList<RoleListItemSummary> roles = roleService.GetRoles();
                 response.SetData(roles);
             }
             catch (ValidationException ex)
@@ -27,6 +27,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -46,6 +47,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -65,6 +67,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -84,6 +87,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
 
@@ -102,6 +106,7 @@ namespace App.Api.Features.Security
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
     }

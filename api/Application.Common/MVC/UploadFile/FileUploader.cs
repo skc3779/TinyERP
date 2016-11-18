@@ -1,9 +1,7 @@
-﻿using System.IO;
-using System.Web.Mvc;
-using System;
-
-namespace App.Common.MVC.Upload
+﻿namespace App.Common.MVC.Upload
 {
+    using System.IO;
+    using System.Web.Mvc;
 
     [ModelBinder(typeof(UploadFileBinder))]
     public class FileUploader
@@ -18,14 +16,13 @@ namespace App.Common.MVC.Upload
             if (autoCreateDirectory)
             {
                 var directory = new FileInfo(destination).Directory;
-                if (directory.Exists == false)
-                {
-                    directory.Create();
-                }
+                if (directory.Exists) { return; }
+                directory.Create();
             }
+
             using (var file = new FileStream(destination, overwrite ? FileMode.Create : FileMode.CreateNew))
             {
-                InputStream.CopyTo(file);
+                this.InputStream.CopyTo(file);
                 file.Close();
             }
         }
@@ -55,6 +52,5 @@ namespace App.Common.MVC.Upload
                 return upload;
             }
         }
-
     }
 }

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Web;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System.Web;
+
     public class HttpHelper
     {
         public static void AddCookie(string key, string value)
@@ -26,6 +25,7 @@ namespace App.Common.Helpers
         {
             HttpContext.Current.Response.Redirect(url, endResponse);
         }
+
         public static string Resolve(string url)
         {
             return HttpContext.Current == null ? System.IO.Path.Combine(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName, url) : HttpContext.Current.Server.MapPath(url);

@@ -1,6 +1,7 @@
-﻿using System.Xml.Serialization;
-namespace App.Common.UITest.Suite
+﻿namespace App.Common.UITest.Suite
 {
+    using System.Xml.Serialization;
+
     [System.Serializable()]
     [XmlType("testcase")]
     public class TestCaseRef
@@ -15,8 +16,5 @@ namespace App.Common.UITest.Suite
         public System.Collections.Generic.List<TestCaseActionRef> Actions { get; set; }
         [XmlIgnore]
         public TestResultType Status { get; set; }
-        //[XmlArray("steps")]
-        //[XmlArrayItem("step")]
-        //TestCaseActionRef[] Actions { get; set; }
     }
 }

@@ -1,11 +1,10 @@
-﻿using System;
-using App.EventHandler.Support;
-using App.Common.Mail;
-using App.Common.DI;
-using App.Common.Event;
-
-namespace App.EventHandler.Impl.Support
+﻿namespace App.EventHandler.Impl.Support
 {
+    using App.EventHandler.Support;
+    using App.Common.Mail;
+    using App.Common.DI;
+    using App.Common.Event;
+
     internal class SupportRequestEventHandler : BaseEventHandler<SupportRequestOnStatusChanged>, ISupportRequestEventHandler
     {
         public override void Execute(SupportRequestOnStatusChanged ev)

@@ -2,8 +2,8 @@
 {
     public interface IPagingRequest<RequestDataType>
     {
-        RequestDataType Data { get;  }
-        int PageIndex { get;  }
-        int PageSize { get;  }
+        RequestDataType Data { get; }
+        int PageIndex { get; }
+        int PageSize { get; }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace App.Common.Mail
+﻿namespace App.Common.Mail
 {
+    using System.Collections.Generic;
+
     public interface IEmailContent
     {
         string From { get; set; }

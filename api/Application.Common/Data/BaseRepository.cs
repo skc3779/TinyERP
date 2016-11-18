@@ -1,18 +1,16 @@
-﻿using App.Common.Data.MSSQL;
-using App.Common.Mapping;
-using AutoMapper.QueryableExtensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace App.Common.Data
+﻿namespace App.Common.Data
 {
+    using App.Common.Data.MSSQL;
+    using App.Common.Mapping;
+    using AutoMapper.QueryableExtensions;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IBaseEntity<System.Guid>
     {
         public IDbSet<TEntity> DbSet { get; protected set; }
         public BaseRepository(IMSSQLDbContext context)
         {
-            //throw new Exception("Function was not implemented");
             this.DbSet = context.GetDbSet<TEntity>();
         }
 
@@ -20,10 +18,12 @@ namespace App.Common.Data
         {
             return this.DbSet.Get(id, includes);
         }
+
         public virtual TEntity GetById(string id)
         {
-            return this.GetById(id, "");
+            return this.GetById(id, string.Empty);
         }
+
         public virtual TResult GetById<TResult>(string id) where TResult : IMappedFrom<TEntity>
         {
             TEntity entity = this.GetById(id);
@@ -59,7 +59,5 @@ namespace App.Common.Data
         {
             throw new System.NotImplementedException();
         }
-
-
     }
 }

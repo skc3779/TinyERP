@@ -1,17 +1,8 @@
 {
     "categories": {
-        "title": "Categories"
-    },
-    "addOrUpdateCategory": {
-        "pageTitleForAddNew": "Add Category",
-        "pageTitleForUpdatting": "Update Category",
+        "title": "Categories",
+        "addCategoryAction": "Add Category",
         "name": "Name",
-        "inputName": "Please input name of Category",
-        "desc": "Description",
-        "inputDesc": "Please input description for Category",
-        "validation": {
-            "nameIsRequired": "Please input name of Category",
-            "nameAlreadyExisted": "This name is already existed. Please input another name"
-        }
+        "description": "Description"
     }
 }

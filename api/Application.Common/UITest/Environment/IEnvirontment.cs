@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-namespace App.Common.UITest.Environment
+﻿namespace App.Common.UITest.Environment
 {
+    using System.Collections.Generic;
+
     public interface IEnvironment : IExecutable
     {
         string Name { get; set; }
@@ -11,6 +12,6 @@ namespace App.Common.UITest.Environment
         TestReport Report { get; set; }
         List<App.Common.UITest.Suite.TestSuiteRef> Suites { get; set; }
         BrowserRef Browser { get; set; }
-        string OutputFolder { get;}
+        string OutputFolder { get; }
     }
 }

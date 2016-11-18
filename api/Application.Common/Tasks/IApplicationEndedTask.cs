@@ -1,7 +1,7 @@
-﻿using System.Web;
-
-namespace App.Common.Tasks
+﻿namespace App.Common.Tasks
 {
+    using System.Web;
+
     public interface IApplicationEndedTask : IBaseTask<HttpContext>
     {
     }

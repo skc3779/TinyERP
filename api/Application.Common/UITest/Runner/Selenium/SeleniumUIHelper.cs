@@ -1,6 +1,7 @@
-﻿using OpenQA.Selenium;
-namespace App.Common.UITest.Runner.Selenium
+﻿namespace App.Common.UITest.Runner.Selenium
 {
+    using OpenQA.Selenium;
+
     public class SeleniumUIHelper
     {
         public static By GetBy(string element)
@@ -49,16 +50,11 @@ namespace App.Common.UITest.Runner.Selenium
                     webDriver.Manage().Timeouts().ImplicitlyWait(System.TimeSpan.FromSeconds(interval));
                     System.Threading.Thread.Sleep(interval * 1000);
                 }
-                //if (element == null)
-                //{
-                //    webDriver.Manage().Timeouts().ImplicitlyWait(System.TimeSpan.FromSeconds(interval));
-                //    System.Threading.Thread.Sleep(interval * 1000);
-                //}
-
             } while (element == null && currentRetry++ < maxRetry);
 
             return element;
         }
+
         public static System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> GetElements(OpenQA.Selenium.IWebDriver webDriver, By selector, int maxRetry = 2, int interval = 700)
         {
             int currentRetry = 0;
@@ -69,15 +65,16 @@ namespace App.Common.UITest.Runner.Selenium
                 {
                     elements = webDriver.FindElements(selector);
                 }
-                catch (System.Exception) { }
+                catch (System.Exception)
+                {
+                }
+
                 if (elements == null)
                 {
                     webDriver.Manage().Timeouts().ImplicitlyWait(System.TimeSpan.FromSeconds(10));
                     System.Threading.Thread.Sleep(interval);
                 }
-
             } while (elements == null && currentRetry++ < maxRetry);
-
             return elements;
         }
 
@@ -86,31 +83,28 @@ namespace App.Common.UITest.Runner.Selenium
         {
             By locator = SeleniumUIHelper.GetBy(action.Element);
             OpenQA.Selenium.IWebElement element = SeleniumUIHelper.GetElement(webDriver, locator);
-
             switch (action.AssertType)
             {
                 case UIActionSeertType.Text:
                     return CheckTextAssert(element, action);
-                    break;
                 case UIActionSeertType.CssClass:
                     return CheckCssClassAssert(element, action);
-                    break;
                 case UIActionSeertType.Count:
                     System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> elements = SeleniumUIHelper.GetElements(webDriver, locator);
                     return CheckCountElementAssert(elements, action);
-                    break;
                 case UIActionSeertType.Browser:
                     return CheckBrowserAssert(webDriver, action);
-                    break;
                 case UIActionSeertType.Exist:
                 default:
                     return CheckExistAssert(element, action);
             }
         }
+
         private static bool CheckBrowserAssert(OpenQA.Selenium.IWebDriver webDriver, UI.UIAssertAction action)
         {
             return webDriver.Url.ToLower() == action.Value.ToLower();
         }
+
         private static bool CheckExistAssert(IWebElement element, UI.UIAssertAction action)
         {
             return element != null;

@@ -2,6 +2,6 @@
 {
     public interface IEventManager
     {
-        void pubish<TEventType>(TEventType eventType) where TEventType : IEvent;
+        void Pubish<TEventType>(TEventType eventType) where TEventType : IEvent;
     }
 }

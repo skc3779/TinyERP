@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Web;
-using App.Common.UITest.Environment;
-using Ionic.Zip;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Web;
+    using App.Common.UITest.Environment;
+    using Ionic.Zip;
+
     public class FileHelper
     {
         internal static string GetRelativeFilePath(string filePath, string basePath)
         {
-            return filePath.Replace(basePath, "");
+            return filePath.Replace(basePath, string.Empty);
         }
 
         public static void CreateIfNotExist(string folder)
@@ -23,6 +19,7 @@ namespace App.Common.Helpers
             {
                 return;
             }
+
             Directory.CreateDirectory(folder);
         }
 
@@ -33,6 +30,7 @@ namespace App.Common.Helpers
             {
                 content = reader.ReadToEnd();
             }
+
             return content;
         }
 
@@ -43,6 +41,7 @@ namespace App.Common.Helpers
             {
                 zipFile.AddDirectory(environment.OutputFolder);
             }
+
             zipFile.Save(zipFileName);
         }
 

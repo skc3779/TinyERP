@@ -1,6 +1,7 @@
-﻿using System;
-namespace App.Common
+﻿namespace App.Common
 {
+    using System;
+
     [Flags]
     public enum ItemStatus
     {
@@ -14,26 +15,31 @@ namespace App.Common
         Resolved = 7,
         Cancelled = 8
     }
+
     [Flags]
     public enum IOMode
     {
         Read,
         Write
     }
+
     public enum DatabaseType
     {
         MSSQL,
         MongoDB,
         ElasticSearch
     }
+
     [Flags]
     public enum ApplicationType
     {
         Console = 1,
         MVC = 2,
         WebApi = 4,
-        All = 7
+        UnitTest = 8,
+        All = 15
     }
+
     [Flags]
     public enum UserRole
     {
@@ -87,17 +93,20 @@ namespace App.Common
         Expired,
         Closed
     }
+
     public enum FTPResourceType
     {
         Directory,
         File
     }
+
     public enum ResourceType
     {
         Resource,
         MailTemplate,
         Text
     }
+
     public enum ThumbnailType
     {
         Small,
@@ -105,12 +114,13 @@ namespace App.Common
         Large,
         Origin
     }
+
     public class FileContentType
     {
         public const string Png = "image/png";
         public const string Jpeg = "image/jpeg";
-
     }
+
     public enum ThumbnailSize
     {
         Small,
@@ -118,6 +128,7 @@ namespace App.Common
         Large,
         Ogirin
     }
+
     public class FileContentExt
     {
         public const string Png = "PNG";
@@ -128,13 +139,14 @@ namespace App.Common
         public const string Xsl = "XSL";
         public const string Xslx = "XSLX";
         public const string UnSupported = "UnSupported";
-
     }
+
     public enum ParameterParentType
     {
         None,
         ContentType
     }
+
     public enum ParameterValueType
     {
         String,
@@ -142,4 +154,3 @@ namespace App.Common
         Password
     }
 }
-

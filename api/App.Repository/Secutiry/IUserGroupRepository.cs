@@ -1,8 +1,8 @@
-﻿using App.Entity.Security;
-
-namespace App.Repository.Secutiry
+﻿namespace App.Repository.Secutiry
 {
-    public interface IUserGroupRepository: App.Common.Data.IBaseContentRepository<UserGroup>
+    using App.Entity.Security;
+
+    public interface IUserGroupRepository : App.Common.Data.IBaseContentRepository<UserGroup>
     {
     }
 }

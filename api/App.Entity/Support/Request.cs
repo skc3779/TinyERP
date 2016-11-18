@@ -1,13 +1,18 @@
-﻿using App.Common;
-using App.Common.Data;
-
-namespace App.Entity.Support
+﻿namespace App.Entity.Support
 {
-    public class Request:BaseEntity
+    using App.Common;
+    using App.Common.Data;
+
+    public class Request : BaseEntity
     {
+        public string Subject { get; set; }
+        public string Description { get; set; }
+        public string Email { get; set; }
+        public ItemStatus Status { get; set; }
         public Request()
         {
         }
+
         public Request(string subject, string description, string email)
         {
             this.Subject = subject;
@@ -15,10 +20,5 @@ namespace App.Entity.Support
             this.Email = email;
             this.Status = ItemStatus.New;
         }
-
-        public string Subject { get; set; }
-        public string Description { get; set; }
-        public string Email { get; set; }
-        public ItemStatus Status { get; set; }
     }
 }

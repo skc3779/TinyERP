@@ -1,8 +1,9 @@
-﻿using App.Common.UITest.Suite;
-using System.Text.RegularExpressions;
-using System.Linq;
-namespace App.Common.UITest.UI
+﻿namespace App.Common.UITest.UI
 {
+    using App.Common.UITest.Suite;
+    using System.Text.RegularExpressions;
+    using System.Linq;
+
     public class BaseUIAction : BaseExecutable, IUIAction
     {
         public App.Common.Validation.ValidationException Error { get; set; }
@@ -11,13 +12,14 @@ namespace App.Common.UITest.UI
         public TestResultType Status { get; set; }
         public Suite.TestCaseAction TestCaseAction { get; set; }
         public App.Common.UITest.Runner.IWebDriver WebDriver { get; protected set; }
-        public BaseUIAction(System.Xml.XmlNode node, UIActionType uIActionType, App.Common.UITest.Runner.IWebDriver webDriver)
+        public BaseUIAction(System.Xml.XmlNode node, UIActionType uiActionType, App.Common.UITest.Runner.IWebDriver webDriver)
         {
             this.WebDriver = webDriver;
-            this.Type = uIActionType;
+            this.Type = uiActionType;
             this.Element = node.Attributes["element"] != null ? node.Attributes["element"].Value : string.Empty;
             this.Status = TestResultType.None;
         }
+
         public override void Execute()
         {
             this.Status = TestResultType.Success;
@@ -25,21 +27,20 @@ namespace App.Common.UITest.UI
 
         public virtual void ResolveParams(System.Collections.Generic.IList<Suite.TestDataKeyNamePair> actionParams)
         {
-            this.Element = RepalceParamValue(this.Element, actionParams);
+            this.Element = this.RepalceParamValue(this.Element, actionParams);
         }
+
         protected string RepalceParamValue(string pattern, System.Collections.Generic.IList<Suite.TestDataKeyNamePair> actionParams)
         {
             MatchCollection matches = Regex.Matches(pattern, "({{(\\w+)}})");
             foreach (Match match in matches)
             {
-                string paramKey = match.Value.Replace("{{", "").Replace("}}", "").ToLower();
+                string paramKey = match.Value.Replace("{{", string.Empty).Replace("}}", string.Empty).ToLower();
                 TestDataKeyNamePair testDataParam = actionParams.Where(item => item.Key.ToLower() == paramKey).FirstOrDefault();
-                if (testDataParam == null)
-                {
-                    continue;
-                }
+                if (testDataParam == null) { continue; }
                 pattern = Regex.Replace(pattern, match.Value, testDataParam.Value, RegexOptions.IgnoreCase);
             }
+
             return pattern;
         }
     }

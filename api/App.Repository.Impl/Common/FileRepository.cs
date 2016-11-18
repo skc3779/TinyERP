@@ -1,22 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Common;
-using App.Common.Data;
-using App.Common.Data.MSSQL;
-using App.Context;
-using App.Entity.Common;
-using App.Repository.Common;
-using System.Linq;
-using AutoMapper.QueryableExtensions;
-
-namespace App.Repository.Impl.Common
+﻿namespace App.Repository.Impl.Common
 {
-    internal class FileRepository: BaseRepository<FileUpload>, IFileRepository
+    using System;
+    using System.Collections.Generic;
+    using App.Common;
+    using App.Common.Data;
+    using App.Common.Data.MSSQL;
+    using App.Context;
+    using App.Entity.Common;
+    using App.Repository.Common;
+    using System.Linq;
+    using AutoMapper.QueryableExtensions;
+
+    internal class FileRepository : BaseRepository<FileUpload>, IFileRepository
     {
-        public FileRepository(): base(new AppDbContext(IOMode.Read))
+        public FileRepository() : base(new AppDbContext(IOMode.Read))
         {
         }
-        public FileRepository(IUnitOfWork uow): base(uow.Context as IMSSQLDbContext)
+
+        public FileRepository(IUnitOfWork uow) : base(uow.Context as IMSSQLDbContext)
         {
         }
 
@@ -24,10 +25,5 @@ namespace App.Repository.Impl.Common
         {
             return this.DbSet.AsQueryable().Where(item => ids.Contains(item.Id)).ProjectTo<TEntity>().ToList();
         }
-
-        //public IList<TEntity> GetByParentId<TEntity>(Guid parentId) where TEntity: IMappedFrom<FileUpload>
-        //{
-        //    return this.DbSet.AsQueryable().Where(item => item.ParentId == parentId).ProjectTo<TEntity>().ToList();
-        //}
     }
 }

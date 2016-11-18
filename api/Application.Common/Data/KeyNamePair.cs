@@ -1,5 +1,4 @@
-﻿
-namespace App.Common.Data
+﻿namespace App.Common.Data
 {
     public class KeyNamePair
     {

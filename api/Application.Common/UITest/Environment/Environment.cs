@@ -1,13 +1,13 @@
-﻿using App.Common.Configurations;
-using App.Common.Helpers;
-using App.Common.UITest.Runner;
-using App.Common.UITest.Suite;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Xml.Serialization;
-namespace App.Common.UITest.Environment
+﻿namespace App.Common.UITest.Environment
 {
+    using App.Common.Configurations;
+    using App.Common.Helpers;
+    using App.Common.UITest.Runner;
+    using App.Common.UITest.Suite;
+    using System;
+    using System.Collections.Generic;
+    using System.Xml.Serialization;
+
     [Serializable()]
     [XmlType("environment")]
     public class Environment : BaseExecutable, IEnvironment
@@ -32,7 +32,7 @@ namespace App.Common.UITest.Environment
 
         public override void Execute()
         {
-            Prepare();
+            this.Prepare();
             using (ITestRunner testRunner = TestRunnerFactory.Create(this))
             {
                 testRunner.Writer.Write(this);
@@ -51,11 +51,13 @@ namespace App.Common.UITest.Environment
 
         public string OutputFolder
         {
-            get {
+            get
+            {
                 if (string.IsNullOrWhiteSpace(Environment.outputFolder))
                 {
                     Environment.outputFolder = string.Format("{0}{1}\\{2}", Configuration.Current.UITest.BaseOutput, this.Browser.Type.ToString(), DateTime.Now.ToString("yyyyMMddHHmmss"));
                 }
+
                 return Environment.outputFolder;
             }
         }

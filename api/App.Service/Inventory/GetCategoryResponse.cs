@@ -6,6 +6,8 @@ namespace App.Service.Inventory
 {
     public class GetCategoryResponse : BaseContent, IMappedFrom<Category>
     {
-
+        public GetCategoryResponse()
+        {
+        }
     }
 }

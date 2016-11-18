@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Service.Setting;
-using App.Common.DI;
-using App.Repository.Setting;
-using App.Entity.Setting;
-using App.Common.Data;
-using App.Context;
-using App.Common;
-using App.Common.Validation;
-using App.Repository.Common;
-using App.Entity.Common;
-using System.Linq;
-
-namespace App.Service.Impl.Setting
+﻿namespace App.Service.Impl.Setting
 {
+    using System;
+    using System.Collections.Generic;
+    using App.Service.Setting;
+    using App.Common.DI;
+    using App.Repository.Setting;
+    using App.Entity.Setting;
+    using App.Common.Data;
+    using App.Context;
+    using App.Common;
+    using App.Common.Validation;
+    using App.Repository.Common;
+    using App.Entity.Common;
+    using System.Linq;
+
     internal class ContentTypeService : IContentTypeService
     {
         public void Create(CreateContentTypeRequest request)
         {
-            ValidateCreateRequest(request);
+            this.ValidateCreateRequest(request);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
                 IContentTypeRepository repo = IoC.Container.Resolve<IContentTypeRepository>(uow);
                 ContentType contentType = new ContentType(request.Name, request.Key, request.Description);
-                UpdateParameters(contentType.Id, request.Parameters, uow);
+                this.UpdateParameters(contentType.Id, request.Parameters, uow);
                 repo.Add(contentType);
                 uow.Commit();
             }
@@ -35,10 +35,12 @@ namespace App.Service.Impl.Setting
             {
                 throw new ValidationException("common.errors.invalidRequest");
             }
+
             if (string.IsNullOrWhiteSpace(request.Name))
             {
                 throw new ValidationException("setting.addOrUpdateContentType.validation.nameIsRequired");
             }
+
             IContentTypeRepository repo = IoC.Container.Resolve<IContentTypeRepository>();
             if (repo.GetByName(request.Name) != null)
             {
@@ -49,6 +51,7 @@ namespace App.Service.Impl.Setting
             {
                 throw new ValidationException("setting.addOrUpdateContentType.validation.keyIsRequired");
             }
+
             if (request.Key.Contains(" "))
             {
                 throw new ValidationException("setting.addOrUpdateContentType.validation.keyShouldNotHaveWhiteSpace");
@@ -71,6 +74,7 @@ namespace App.Service.Impl.Setting
                     ContentType contentType = new ContentType(item.Name, item.Key, item.Description);
                     repo.Add(contentType);
                 }
+
                 uow.Commit();
             }
         }
@@ -102,7 +106,7 @@ namespace App.Service.Impl.Setting
 
         public void Update(UpdateContentTypeRequest request)
         {
-            ValidateUpdateRequest(request);
+            this.ValidateUpdateRequest(request);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
                 IContentTypeRepository repo = IoC.Container.Resolve<IContentTypeRepository>(uow);
@@ -110,7 +114,7 @@ namespace App.Service.Impl.Setting
                 contentType.Name = request.Name;
                 contentType.Key = request.Key;
                 contentType.Description = request.Description;
-                UpdateParameters(contentType.Id, request.Parameters, uow);
+                this.UpdateParameters(contentType.Id, request.Parameters, uow);
                 repo.Update(contentType);
                 uow.Commit();
             }
@@ -137,7 +141,6 @@ namespace App.Service.Impl.Setting
             foreach (Parameter param in parameters)
             {
                 if (currentParams.Any(item => item.Id == param.Id)) { continue; }
-                //if (param.Id != null && param.Id != Guid.Empty) { continue; }
                 Parameter newParam = new Parameter();
                 newParam.CreateFrom(param);
                 newParam.ParentType = ParameterParentType.ContentType;
@@ -152,10 +155,12 @@ namespace App.Service.Impl.Setting
             {
                 throw new ValidationException("common.errors.invalidRequest");
             }
+
             if (string.IsNullOrWhiteSpace(request.Name))
             {
                 throw new ValidationException("setting.addOrUpdateContentType.validation.nameIsRequired");
             }
+
             IContentTypeRepository repo = IoC.Container.Resolve<IContentTypeRepository>();
             ContentType contentType = repo.GetByName(request.Name);
             if (contentType != null && contentType.Id != request.Id)
@@ -167,10 +172,12 @@ namespace App.Service.Impl.Setting
             {
                 throw new ValidationException("setting.addOrUpdateContentType.validation.keyIsRequired");
             }
+
             if (request.Key.Contains(" "))
             {
                 throw new ValidationException("setting.addOrUpdateContentType.validation.keyShouldNotHaveWhiteSpace");
             }
+
             contentType = repo.GetByKey(request.Key);
             if (contentType != null && contentType.Id != request.Id)
             {

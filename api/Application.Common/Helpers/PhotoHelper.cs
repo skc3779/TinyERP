@@ -1,10 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-using System.Text;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System.Drawing;
+    using System.IO;
+    using System.Text;
+
     public class PhotoHelper
     {
         public static Image CreatePngStream(string content, ThumbnailType type)

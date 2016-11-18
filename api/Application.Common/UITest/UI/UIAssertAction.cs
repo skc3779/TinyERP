@@ -1,10 +1,10 @@
-﻿using App.Common.Helpers;
-using System.Xml;
-using App.Common.UITest.Suite;
-using System.Collections.Generic;
-
-namespace App.Common.UITest.UI
+﻿namespace App.Common.UITest.UI
 {
+    using App.Common.Helpers;
+    using System.Xml;
+    using App.Common.UITest.Suite;
+    using System.Collections.Generic;
+
     public class UIAssertAction : BaseUIAction
     {
         public UIActionSeertType AssertType { get; set; }
@@ -16,16 +16,17 @@ namespace App.Common.UITest.UI
             this.AssertType = EnumHelper.Convert<UIActionSeertType>(type);
             this.Value = node.Attributes["value"] != null ? node.Attributes["value"].Value : string.Empty;
         }
+
         public override void ResolveParams(IList<TestDataKeyNamePair> actionParams)
         {
             base.ResolveParams(actionParams);
-            this.Value = RepalceParamValue(this.Value, actionParams);
+            this.Value = this.RepalceParamValue(this.Value, actionParams);
         }
+
         public override void Execute()
         {
             base.Execute();
             this.WebDriver.Assert(this);
-            //throw new System.NotImplementedException();
         }
     }
 }

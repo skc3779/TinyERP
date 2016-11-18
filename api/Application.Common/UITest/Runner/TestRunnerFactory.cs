@@ -1,6 +1,7 @@
-﻿using App.Common.UITest.Environment;
-namespace App.Common.UITest.Runner
+﻿namespace App.Common.UITest.Runner
 {
+    using App.Common.UITest.Environment;
+
     public class TestRunnerFactory
     {
         public static ITestRunner Create(IEnvironment environment)

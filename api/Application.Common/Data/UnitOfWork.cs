@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace App.Common.Data
+﻿namespace App.Common.Data
 {
+    using System;
+
     public class UnitOfWork : IUnitOfWork
     {
         public IDbContext Context { get; private set; }
-
-
         public UnitOfWork(IDbContext context)
         {
             this.Context = context;

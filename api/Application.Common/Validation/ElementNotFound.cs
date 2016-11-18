@@ -1,6 +1,7 @@
-﻿using System;
-namespace App.Common.Validation
+﻿namespace App.Common.Validation
 {
+    using System;
+
     public class ElementNotFound : Exception
     {
         public string[] Params { get; set; }

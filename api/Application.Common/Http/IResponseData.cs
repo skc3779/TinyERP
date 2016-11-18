@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using App.Common.Validation;
-
-namespace App.Common.Http
+﻿namespace App.Common.Http
 {
+    using System.Collections.Generic;
+    using App.Common.Validation;
+
     public interface IResponseData<DataType>
     {
         void SetStatus(System.Net.HttpStatusCode httpStatusCode);

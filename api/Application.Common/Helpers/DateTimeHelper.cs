@@ -1,13 +1,12 @@
-﻿using System;
-using App.Common.Configurations;
-using App.Common.Logging;
-using App.Common.DI;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System;
+    using App.Common.Configurations;
+    using App.Common.Logging;
+    using App.Common.DI;
+
     public class DateTimeHelper
     {
-        //compare the valueToCompare with current datetime. return tru if valueToCompare is bigger than current datetime
         public static bool IsExpired(System.DateTime utcValueToCompare)
         {
             DateTime currentUtc = GetUtcDateTime();

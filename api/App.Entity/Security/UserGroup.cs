@@ -1,16 +1,18 @@
-﻿using App.Common.Data;
-using System.Collections.Generic;
-
-namespace App.Entity.Security
+﻿namespace App.Entity.Security
 {
-    public class UserGroup: BaseContent
+    using App.Common.Data;
+    using System.Collections.Generic;
+
+    public class UserGroup : BaseContent
     {
         public IList<Permission> Permissions { get; set; }
-        public UserGroup():base()
+        public UserGroup() : base()
         {
             this.Permissions = new List<Permission>();
         }
-        public UserGroup(string name, string desc, IList<Permission> permissions): this() {
+
+        public UserGroup(string name, string desc, IList<Permission> permissions) : this()
+        {
             this.Name = name;
             this.Key = App.Common.Helpers.UtilHelper.ToKey(name);
             this.Description = desc;

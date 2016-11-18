@@ -1,18 +1,19 @@
-﻿using App.Common.DI;
-using App.Common.Http;
-using App.Common.MVC.Attributes;
-using App.Common.Validation;
-using App.Service.Registration.User;
-using System.Web.Http;
-
-namespace App.Api.Features.Registration
+﻿namespace App.Api.Features.Registration
 {
+    using App.Common.DI;
+    using App.Common.Http;
+    using App.Common.MVC.Attributes;
+    using App.Common.Validation;
+    using App.Service.Registration.User;
+    using System.Web.Http;
+
     [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
         [HttpPost]
         [Route("signin")]
-        public IResponseData<UserSignInResponse> SignIn([FromBody]UserSignInRequest request) {
+        public IResponseData<UserSignInResponse> SignIn([FromBody]UserSignInRequest request)
+        {
             IResponseData<UserSignInResponse> response = new ResponseData<UserSignInResponse>();
             try
             {
@@ -25,8 +26,10 @@ namespace App.Api.Features.Registration
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
+
         [HttpPost]
         [Route("{token}/signout")]
         public IResponseData<string> SignOut([FromUri]string token)
@@ -42,6 +45,7 @@ namespace App.Api.Features.Registration
                 response.SetErrors(ex.Errors);
                 response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
+
             return response;
         }
     }
