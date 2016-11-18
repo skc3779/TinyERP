@@ -1,7 +1,8 @@
-﻿using App.Common.UITest.Environment;
-namespace App.Common.UITest.Runner
+﻿namespace App.Common.UITest.Runner
 {
-    public interface ITestRunner:System.IDisposable
+    using App.Common.UITest.Environment;
+
+    public interface ITestRunner : System.IDisposable
     {
         App.Common.UITest.Writer.ITestWriter Writer { get; }
         IEnvironment Environment { get; }

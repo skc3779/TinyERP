@@ -1,19 +1,17 @@
-﻿using App.Common.Validation;
-using OpenQA.Selenium;
-using App.Common.Extensions;
-using System;
-
-namespace App.Common.UITest.Runner.Selenium
+﻿namespace App.Common.UITest.Runner.Selenium
 {
+    using App.Common.Validation;
+    using App.Common.Extensions;
+
     public class BaseSeleniumWebDriver : IWebDriver
     {
         public ITestRunner TestRunner { get; protected set; }
         public OpenQA.Selenium.IWebDriver Driver { get; protected set; }
-
         public BaseSeleniumWebDriver(ITestRunner testRunner)
         {
             this.TestRunner = testRunner;
         }
+
         public virtual void Dispose()
         {
             if (this.Driver == null) { return; }
@@ -32,10 +30,8 @@ namespace App.Common.UITest.Runner.Selenium
             catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
-
                 string fileName = string.Format("{0}_{1}_{2}.png", action.TestCaseAction.TestCase.TestCaseRef.Key, action.TestCaseAction.ActionRef.Action, System.DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 SeleniumScreenshotHelper.CreateScreenshot(this.Driver, this.TestRunner.Environment, fileName);
-
                 action.Error = new ValidationException("Common.ElementCanNotFound", action.Element, fileName);
             }
         }
@@ -53,10 +49,8 @@ namespace App.Common.UITest.Runner.Selenium
             catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
-
                 string fileName = string.Format("{0}_{1}_{2}.png", action.TestCaseAction.TestCase.TestCaseRef.Key, action.TestCaseAction.ActionRef.Action, System.DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 SeleniumScreenshotHelper.CreateScreenshot(this.Driver, this.TestRunner.Environment, fileName);
-
                 action.Error = new ValidationException("Common.ElementCanNotFound", action.Element, fileName);
             }
         }
@@ -70,10 +64,8 @@ namespace App.Common.UITest.Runner.Selenium
             catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
-
                 string fileName = string.Format("{0}_{1}_{2}.png", action.TestCaseAction.TestCase.TestCaseRef.Key, action.TestCaseAction.ActionRef.Action, System.DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 SeleniumScreenshotHelper.CreateScreenshot(this.Driver, this.TestRunner.Environment, fileName);
-
                 action.Error = new ValidationException("Common.ElementCanNotFound", action.Element, fileName);
             }
         }
@@ -82,7 +74,6 @@ namespace App.Common.UITest.Runner.Selenium
         {
             try
             {
-
                 action.Status = TestResultType.Fail;
                 this.Driver.Navigate().GoToUrl(action.Url);
                 action.Status = TestResultType.Success;
@@ -95,10 +86,8 @@ namespace App.Common.UITest.Runner.Selenium
             catch (System.Exception)
             {
                 action.Status = TestResultType.Fail;
-
                 string fileName = string.Format("{0}_{1}_{2}.png", action.TestCaseAction.TestCase.TestCaseRef.Key, action.TestCaseAction.ActionRef.Action, System.DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 SeleniumScreenshotHelper.CreateScreenshot(this.Driver, this.TestRunner.Environment, fileName);
-
                 action.Error = new ValidationException("Common.ElementCanNotFound", action.Element, fileName);
             }
         }

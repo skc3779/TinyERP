@@ -1,7 +1,7 @@
 ﻿namespace App.Common.Logging.Attributes
 {
     using System.Web.Mvc;
-    public class HandleExceptionAttribute:FilterAttribute, IExceptionFilter
+    public class HandleExceptionAttribute : FilterAttribute, IExceptionFilter
     {
         private ILogger logger;
 
@@ -9,6 +9,7 @@
         {
             this.logger = new DefaultLogger();
         }
+
         public void OnException(ExceptionContext filterContext)
         {
             this.logger.Error(filterContext.Exception.ToString());

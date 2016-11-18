@@ -1,11 +1,11 @@
-﻿using App.Common.Configurations;
-using System;
-using System.IO;
-using System.Reflection;
-using System.Resources;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using App.Common.Configurations;
+    using System;
+    using System.IO;
+    using System.Reflection;
+    using System.Resources;
+
     public class ResourceHelper
     {
         private const string RESOURCE_ASSEMBLY_NAME = "Application.Resources";
@@ -13,51 +13,35 @@ namespace App.Common.Helpers
         {
             foreach (var item in items)
             {
-                item.Message = Resolve(item);
+                item.Message = ResourceHelper.Resolve(item);
             }
         }
 
         public static string Resolve(IResourceItem item)
         {
-            string message = Resolve(item.Key);
-            if (item.Params != null && item.Params.Count > 0)
+            string message = ResourceHelper.Resolve(item.Key);
+            if (item.Params == null || item.Params.Count <= 0) { return message; }
+            for (int index = 0; index < item.Params.Count; index++)
             {
-                for (int index = 0; index < item.Params.Count; index++)
-                {
-                    message = message.Replace("{" + index + "}", item.Params[index]);
-                }
+                message = message.Replace("{" + index + "}", item.Params[index]);
             }
+
             return message;
         }
-        //public static string Resolve(string key, bool isResourceKeyAlways = true)
-        //{
-        //    if (isResourceKeyAlways == false && !isResourceKey(key)) { return key; }
-        //    string[] keys = GetResourceKey(key).Split('.');
-        //    string baseName = string.Format("{0}.{1}", RESOURCE_ASSEMBLY_NAME, keys[0]);
-        //    ResourceManager resourceManager = new ResourceManager(baseName, Assembly.Load(RESOURCE_ASSEMBLY_NAME));
-        //    return resourceManager.GetString(keys[1]);
-        //}
 
-        //public static bool isResourceKey(string key)
-        //{
-        //    return !string.IsNullOrWhiteSpace(key) && key.StartsWith(Constants.RESOURCE_KEY);
-        //}
-        //public static string GetResourceKey(string key)
-        //{
-        //    return key.Replace(Constants.RESOURCE_KEY, "");
-        //}
         public static string Resolve(string key)
         {
-            ResourceType type = GetResourceType(key);
-            key = GetKeyValue(key, type);
-            switch (type) {
+            ResourceType type = ResourceHelper.GetResourceType(key);
+            key = ResourceHelper.GetKeyValue(key, type);
+            switch (type)
+            {
                 case ResourceType.Resource:
-                    return GetResourceContent(key);
+                    return ResourceHelper.GetResourceContent(key);
                 case ResourceType.MailTemplate:
-                    return GetMailTemplateContent(key);
+                    return ResourceHelper.GetMailTemplateContent(key);
                 case ResourceType.Text:
                 default:
-                    return GetTextResourceKey(key);
+                    return ResourceHelper.GetTextResourceKey(key);
             }
         }
 
@@ -71,7 +55,7 @@ namespace App.Common.Helpers
         {
             string[] keys = key.Split('.');
             string baseName = string.Format("{0}.{1}", RESOURCE_ASSEMBLY_NAME, keys[0]);
-            ResourceManager resourceManager = new ResourceManager(baseName, Assembly.Load(RESOURCE_ASSEMBLY_NAME));
+            ResourceManager resourceManager = new ResourceManager(baseName, Assembly.Load(ResourceHelper.RESOURCE_ASSEMBLY_NAME));
             return resourceManager.GetString(keys[1]);
         }
 
@@ -82,16 +66,18 @@ namespace App.Common.Helpers
 
         private static string GetKeyValue(string key, ResourceType type)
         {
-            string emptyResourceKey = string.Format(Constants.RESOURCE_KEY_PATTERN, type.ToString(), "");
+            string emptyResourceKey = string.Format(Constants.RESOURCE_KEY_PATTERN, type.ToString(), string.Empty);
             return key.Replace(emptyResourceKey, string.Empty);
         }
 
         private static ResourceType GetResourceType(string key)
         {
-            string emptyResourceKey = string.Format(Constants.RESOURCE_KEY_PATTERN,"","");
-            if (key.IndexOf(emptyResourceKey) < 0) {
+            string emptyResourceKey = string.Format(Constants.RESOURCE_KEY_PATTERN, string.Empty, string.Empty);
+            if (key.IndexOf(emptyResourceKey) < 0)
+            {
                 return ResourceType.Resource;
             }
+
             string resourceType = key.Substring(0, key.IndexOf(emptyResourceKey));
             return EnumHelper.Convert<ResourceType>(resourceType);
         }
@@ -102,4 +88,3 @@ namespace App.Common.Helpers
         }
     }
 }
-

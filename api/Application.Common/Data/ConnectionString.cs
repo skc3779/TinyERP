@@ -15,10 +15,10 @@
         {
         }
 
-        public ConnectionString(DatabaseType dbType, string connectionName = "")
+        public ConnectionString(DatabaseType dbtype, string connectionName = "")
         {
             System.Console.WriteLine(Configurations.Configuration.Current.Databases.Count);
-            App.Common.Configurations.ConnectionStringElement connectionString = Configurations.Configuration.Current.Databases.ToList().Where(item => item.DbType == dbType && ((string.IsNullOrWhiteSpace(connectionName) && item.IsDefault) || item.Name == connectionName)).FirstOrDefault();
+            App.Common.Configurations.ConnectionStringElement connectionString = Configurations.Configuration.Current.Databases.ToList().Where(item => item.DbType == dbtype && ((string.IsNullOrWhiteSpace(connectionName) && item.IsDefault) || item.Name == connectionName)).FirstOrDefault();
             if (string.IsNullOrWhiteSpace(connectionName) && connectionString == null)
             {
                 throw new App.Common.Validation.ValidationException("CommonMessage.ConnectionStringNoDefaultItem");

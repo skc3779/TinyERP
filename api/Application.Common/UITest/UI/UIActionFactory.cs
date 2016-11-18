@@ -1,13 +1,15 @@
-﻿using App.Common.Helpers;
-namespace App.Common.UITest.UI
+﻿namespace App.Common.UITest.UI
 {
+    using App.Common.Helpers;
+
     public class UIActionFactory
     {
         public static IUIAction Create(System.Xml.XmlNode node, App.Common.UITest.Runner.IWebDriver webDriver)
         {
             string tagName = node.Name;
             UIActionType actionType = EnumHelper.Convert<UIActionType>(tagName);
-            switch (actionType) {
+            switch (actionType)
+            {
                 case UIActionType.Assert:
                     return new UIAssertAction(node, webDriver);
                 case UIActionType.Navigate:

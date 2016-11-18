@@ -1,14 +1,12 @@
-﻿using System.Security.Policy;
-using System.Web.Mvc;
-
-namespace App.Common.Logging.Attributes
+﻿namespace App.Common.Logging.Attributes
 {
     using System;
+    using System.Web.Mvc;
+
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public class LogAttribute : FilterAttribute, IActionFilter
     {
         private ILogger logger;
-
         public string Message { get; set; }
         public LogType Type { get; set; }
 
@@ -17,7 +15,6 @@ namespace App.Common.Logging.Attributes
             this.logger = new DefaultLogger();
             this.Message = message;
             this.Type = type;
-            
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)

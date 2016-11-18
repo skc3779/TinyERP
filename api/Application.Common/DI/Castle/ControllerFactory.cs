@@ -29,7 +29,7 @@
             IController controller;
             try
             {
-                controller = kernel.Resolve(controllerType) as IController;
+                controller = this.kernel.Resolve(controllerType) as IController;
             }
             catch (Exception)
             {

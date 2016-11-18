@@ -30,14 +30,14 @@
             where TInterface : class
             where TInstance : TInterface
         {
-            windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>());
+            this.windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>());
         }
 
         public void RegisterSingleton<TInterface, TInstance>(string refName)
             where TInterface : class
             where TInstance : TInterface
         {
-            windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().Named(refName));
+            this.windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().Named(refName));
         }
 
         #endregion
@@ -45,21 +45,21 @@
         #region Transient
         public void RegisterTransient(Type type)
         {
-            windsorContainer.Register(Component.For(type).LifestyleTransient());
+            this.windsorContainer.Register(Component.For(type).LifestyleTransient());
         }
 
         public void RegisterTransient<TInterface, TInstance>()
             where TInterface : class
             where TInstance : TInterface
         {
-            windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().LifestyleTransient());
+            this.windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().LifestyleTransient());
         }
 
         public void RegisterTransient<TInterface, TInstance>(string refName)
             where TInterface : class
             where TInstance : TInterface
         {
-            windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().Named(refName).LifestyleTransient());
+            this.windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().Named(refName).LifestyleTransient());
         }
 
         #endregion
@@ -67,19 +67,19 @@
         #region PerRequest
         public void RegisterPerRequest<TInstance>() where TInstance : class
         {
-            windsorContainer.Register(Component.For<TInstance>().LifestylePerWebRequest());
+            this.windsorContainer.Register(Component.For<TInstance>().LifestylePerWebRequest());
         }
 
         public void RegisterPerRequest(Type type)
         {
-            windsorContainer.Register(Component.For(type).LifestylePerWebRequest());
+            this.windsorContainer.Register(Component.For(type).LifestylePerWebRequest());
         }
 
         public void RegisterPerRequest<TInterface, TInstance>()
             where TInterface : class
             where TInstance : TInterface
         {
-            windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().LifestylePerWebRequest());
+            this.windsorContainer.Register(Component.For<TInterface>().ImplementedBy<TInstance>().LifestylePerWebRequest());
         }
 
         #endregion
@@ -87,22 +87,22 @@
         #region Resolve
         public TInterface Resolve<TInterface>(string refName) where TInterface : class
         {
-            return windsorContainer.Resolve<TInterface>(refName);
+            return this.windsorContainer.Resolve<TInterface>(refName);
         }
 
         public TInterface Resolve<TInterface>() where TInterface : class
         {
-            return windsorContainer.Resolve<TInterface>();
+            return this.windsorContainer.Resolve<TInterface>();
         }
 
         public TInterface Resolve<TInterface>(IUnitOfWork unitOfWork) where TInterface : class
         {
-            return windsorContainer.Resolve<TInterface>(new { uow = unitOfWork });
+            return this.windsorContainer.Resolve<TInterface>(new { uow = unitOfWork });
         }
 
         public IList<IInterface> ResolveAll<IInterface>() where IInterface : class
         {
-            return windsorContainer.ResolveAll<IInterface>();
+            return this.windsorContainer.ResolveAll<IInterface>();
         }
 
         #endregion

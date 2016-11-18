@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Common.UITest.Environment;
-using App.Common.UITest.Suite;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System.Collections.Generic;
+    using App.Common.UITest.Environment;
+    using App.Common.UITest.Suite;
+
     public class TestCaseHelper
     {
         public static void AddEnvirontmentParams(IList<TestDataKeyNamePair> keyPairs, IEnvironment environment)
@@ -14,6 +13,7 @@ namespace App.Common.Helpers
             keyPairs.Add(new TestDataKeyNamePair("outputFolder", environment.OutputFolder));
             keyPairs.Add(new TestDataKeyNamePair("width", environment.Width));
         }
+
         private static string GetParamKey(string name)
         {
             return "{{" + name + "}}";

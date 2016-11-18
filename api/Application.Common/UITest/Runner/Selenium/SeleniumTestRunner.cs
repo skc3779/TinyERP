@@ -1,7 +1,8 @@
-﻿using App.Common.UITest.Environment;
-using App.Common.UITest.Writer;
-namespace App.Common.UITest.Runner.Selenium
+﻿namespace App.Common.UITest.Runner.Selenium
 {
+    using App.Common.UITest.Environment;
+    using App.Common.UITest.Writer;
+
     public class SeleniumTestRunner : ITestRunner
     {
         public App.Common.UITest.Writer.ITestWriter Writer { get; protected set; }
@@ -11,11 +12,11 @@ namespace App.Common.UITest.Runner.Selenium
             this.Writer = TestWriterFactory.Create(environment);
             this.Environment = environment;
         }
+
         public void Dispose()
         {
             this.Writer.Dispose();
         }
-
 
         public IWebDriver CreateWebDriver()
         {

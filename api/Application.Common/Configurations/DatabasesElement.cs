@@ -20,6 +20,7 @@
             {
                 return (ConnectionStringElement)this.BaseGet(index);
             }
+
             set
             {
                 if (this.BaseGet(index) != null)
@@ -31,11 +32,11 @@
             }
         }
 
-        new public ConnectionStringElement this[string Name]
+        public new ConnectionStringElement this[string name]
         {
             get
             {
-                return (ConnectionStringElement)this.BaseGet(Name);
+                return (ConnectionStringElement)this.BaseGet(name);
             }
         }
 

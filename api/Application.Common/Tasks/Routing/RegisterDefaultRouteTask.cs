@@ -1,15 +1,14 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
-using App.Common.Extensions;
-namespace App.Common.Tasks.Routing
+﻿namespace App.Common.Tasks.Routing
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     public class RegisterDefaultRouteTask : BaseTask<TaskArgument<RouteCollection>>, IRouteConfiguredTask
     {
-        public RegisterDefaultRouteTask()
-            : base(ApplicationType.MVC | ApplicationType.WebApi)
+        public RegisterDefaultRouteTask() : base(ApplicationType.MVC | ApplicationType.WebApi)
         {
-
         }
+
         public override void Execute(TaskArgument<RouteCollection> arg)
         {
             if (!this.IsValid(arg.Type)) { return; }

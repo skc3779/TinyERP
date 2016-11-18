@@ -1,13 +1,10 @@
-﻿
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Net;
-using AutoMapper.Internal;
-using App.Common.Validation;
-
-namespace App.Common.Http
+﻿namespace App.Common.Http
 {
+    using System.Collections.Generic;
+    using System.Net;
+    using AutoMapper.Internal;
+    using App.Common.Validation;
+
     public class ResponseData<DataType> : IResponseData<DataType>
     {
         public HttpStatusCode Status { get; set; }
@@ -18,6 +15,7 @@ namespace App.Common.Http
         {
             this.Errors = new List<ValidationError>();
         }
+
         public void SetStatus(System.Net.HttpStatusCode httpStatusCode)
         {
             this.Status = httpStatusCode;
@@ -28,11 +26,9 @@ namespace App.Common.Http
             errors.Each(error => this.Errors.Add(error));
         }
 
-
         public void SetData(DataType data)
         {
             this.Data = data;
         }
-
     }
 }

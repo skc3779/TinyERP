@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-namespace App.Common.Paging
+﻿namespace App.Common.Paging
 {
+    using System.Collections.Generic;
+
     public class PagingData<DataType> : IPagingData<DataType>
     {
         public IList<DataType> Items { get; private set; }
@@ -14,7 +15,7 @@ namespace App.Common.Paging
             this.PageIndex = pageIndex;
             this.PageSize = pageSize;
             this.TotalItems = totalItems;
-            this.TotalPages = totalItems / pageSize + (totalItems % pageSize != 0 ? 1 : 0);
+            this.TotalPages = (totalItems / pageSize) + (totalItems % pageSize != 0 ? 1 : 0);
         }
     }
 }

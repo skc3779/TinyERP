@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System;
+
     public class TokenHelper
     {
         public static AuthenticationToken CreateNewAuthenticationToken()

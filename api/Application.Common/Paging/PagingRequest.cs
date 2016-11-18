@@ -5,7 +5,7 @@
         public RequestDataType Data { get; private set; }
         public int PageIndex { get; private set; }
         public int PageSize { get; private set; }
-        public PagingRequest(RequestDataType data,int pageIndex, int pageSize)
+        public PagingRequest(RequestDataType data, int pageIndex, int pageSize)
         {
             this.Data = data;
             this.PageIndex = pageIndex;

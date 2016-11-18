@@ -1,6 +1,7 @@
-﻿using System.Xml;
-namespace App.Common.UITest.UI
+﻿namespace App.Common.UITest.UI
 {
+    using System.Xml;
+
     public class UIInputAction : BaseUIAction
     {
         public string Value { get; set; }
@@ -9,16 +10,17 @@ namespace App.Common.UITest.UI
         {
             this.Value = node.Attributes["value"].Value;
         }
+
         public override void ResolveParams(System.Collections.Generic.IList<Suite.TestDataKeyNamePair> actionParams)
         {
             base.ResolveParams(actionParams);
-            this.Value = RepalceParamValue(this.Value, actionParams);
+            this.Value = this.RepalceParamValue(this.Value, actionParams);
         }
+
         public override void Execute()
         {
             base.Execute();
             this.WebDriver.Input(this);
-            //throw new System.NotImplementedException();
         }
     }
 }

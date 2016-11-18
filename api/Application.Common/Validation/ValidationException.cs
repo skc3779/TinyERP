@@ -1,13 +1,12 @@
-
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-
 namespace App.Common.Validation
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class ValidationException : Exception, IValidationException
     {
+        public System.Collections.Generic.IList<ValidationError> Errors { get; set; }
         public ValidationException(string key) : base()
         {
             this.Errors = new List<ValidationError>();
@@ -19,16 +18,16 @@ namespace App.Common.Validation
             this.Errors = new List<ValidationError>();
         }
 
-        public ValidationException(string key, params object[] args): this()
+        public ValidationException(string key, params object[] args) : this()
         {
             IList<string> extParam = new List<string>();
-            foreach (object param in args) {
+            foreach (object param in args)
+            {
                 extParam.Add(param.ToString());
             }
+
             this.Add(new ValidationError(key, string.Empty, extParam));
         }
-
-        public System.Collections.Generic.IList<ValidationError> Errors { get; set; }
 
         public void Add(ValidationError error)
         {
@@ -61,7 +60,7 @@ namespace App.Common.Validation
 
         public EntityException(ValidationResult error)
         {
-            this.Errors = new List<ValidationResult>(){error};
+            this.Errors = new List<ValidationResult>() { error };
         }
     }
 }

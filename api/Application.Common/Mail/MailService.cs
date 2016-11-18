@@ -1,18 +1,17 @@
-﻿using App.Common.Configurations;
-using App.Common.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Mail;
-
-namespace App.Common.Mail
+﻿namespace App.Common.Mail
 {
+    using App.Common.Configurations;
+    using App.Common.Helpers;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Mail;
+
     public class MailService : IMailService
     {
         public void Send<TEntity>(TEntity emailConent) where TEntity : IEmailContent
         {
-            SmtpClient smtpClient = GetSmtpClient();
-            MailMessage mesage = GetMailMessage(emailConent);
+            SmtpClient smtpClient = this.GetSmtpClient();
+            MailMessage mesage = this.GetMailMessage(emailConent);
             smtpClient.Send(mesage);
         }
 
@@ -20,25 +19,31 @@ namespace App.Common.Mail
         {
             MailMessage message = new MailMessage();
             message.From = new MailAddress(Configuration.Current.Mail.DefaultSender, Configuration.Current.Mail.DisplayName);
-            IList<MailAddress> toAddresses = GetMaillAddresses(emailConent.To);
-            foreach (MailAddress toAddress in toAddresses) {
+            IList<MailAddress> toAddresses = this.GetMaillAddresses(emailConent.To);
+            foreach (MailAddress toAddress in toAddresses)
+            {
                 message.To.Add(toAddress);
             }
+
             message.Body = ResourceHelper.Resolve(emailConent.Body);
             message.Subject = ResourceHelper.Resolve(emailConent.Subject);
             message.IsBodyHtml = true;
-            foreach (string attchment in emailConent.Attachments) {
+            foreach (string attchment in emailConent.Attachments)
+            {
                 message.Attachments.Add(new Attachment(attchment));
             }
+
             return message;
         }
 
         public IList<MailAddress> GetMaillAddresses(string emails)
         {
             IList<MailAddress> addresses = new List<MailAddress>();
-            foreach (string email in emails.Split(';')) {
+            foreach (string email in emails.Split(';'))
+            {
                 addresses.Add(new MailAddress(email));
             }
+
             return addresses;
         }
 

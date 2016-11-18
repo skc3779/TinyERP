@@ -1,5 +1,4 @@
-﻿using System.Web.Routing;
-namespace App.Common
+﻿namespace App.Common
 {
     public interface IApplication
     {

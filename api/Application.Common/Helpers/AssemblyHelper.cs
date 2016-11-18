@@ -11,7 +11,7 @@
     {
         public static string GetBinDirectory()
         {
-            var binFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().EscapedCodeBase).Replace("file:\\", "");
+            var binFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().EscapedCodeBase).Replace("file:\\", string.Empty);
             return binFolderPath;
         }
 
@@ -31,7 +31,7 @@
             IEnumerable<Type> tasksToRun = AssemblyHelper.GetTypes<TaskType>();
             if (runTasksInOrder)
             {
-                AssemblyHelper.runTasksInOrder<TaskType, ContextType>(tasksToRun, context);
+                AssemblyHelper.RunTasksInOrder<TaskType, ContextType>(tasksToRun, context);
                 return;
             }
 
@@ -42,7 +42,7 @@
             }
         }
 
-        private static void runTasksInOrder<TaskType, ContextType>(IEnumerable<Type> tasks, ContextType context) where TaskType : IBaseTask<ContextType>
+        private static void RunTasksInOrder<TaskType, ContextType>(IEnumerable<Type> tasks, ContextType context) where TaskType : IBaseTask<ContextType>
         {
             IList<IBaseTask<ContextType>> taskInstances = new List<IBaseTask<ContextType>>();
             foreach (var task in tasks)
@@ -97,7 +97,7 @@
             var binFolderPath = AssemblyHelper.GetBinDirectory();
             IList<string> files =
                 Directory.GetFiles(binFolderPath, filePattern)
-                    .Where(file => (Path.GetFileNameWithoutExtension(file) ?? "").StartsWith(Constants.APPLICATION_NAMESPACE_START_WITH))
+                    .Where(file => (Path.GetFileNameWithoutExtension(file) ?? string.Empty).StartsWith(Constants.APPLICATION_NAMESPACE_START_WITH))
                     .Select(fileItem => Path.GetFileNameWithoutExtension(fileItem))
                     .ToList();
             return files;

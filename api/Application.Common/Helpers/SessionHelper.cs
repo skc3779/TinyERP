@@ -1,14 +1,11 @@
-﻿using System.CodeDom.Compiler;
-using System.Web;
-using App.Common.Configurations;
-using System.Linq;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System.Web;
+
     public class SessionHelper
     {
-        const string CultureKey = "Culture";
-        const string RolesKey = "Roles";
+        private const string CultureKey = "Culture";
+        private const string RolesKey = "Roles";
 
         public static ExpectedType Get<ExpectedType>(string key)
         {
@@ -16,11 +13,13 @@ namespace App.Common.Helpers
             {
                 return default(ExpectedType);
             }
+
             object obj = HttpContext.Current.Session[key];
             if (obj == null)
             {
                 return default(ExpectedType);
             }
+
             return (ExpectedType)obj;
         }
     }

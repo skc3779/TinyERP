@@ -1,12 +1,13 @@
-﻿using App.Common.Configurations;
-using App.Common.Helpers;
-using System;
-using System.Xml.Serialization;
-namespace App.Common.UITest.Suite
+﻿namespace App.Common.UITest.Suite
 {
+    using App.Common.Configurations;
+    using App.Common.Helpers;
+    using System;
+    using System.Xml.Serialization;
+
     [Serializable()]
     [XmlType("testcases")]
-    public class TestCaseCollection :BaseExecutable, ITestCaseCollection
+    public class TestCaseCollection : BaseExecutable, ITestCaseCollection
     {
         [XmlIgnore]
         public TestCaseCollectionRef TestCaseCollectionRef { get; set; }
@@ -16,7 +17,10 @@ namespace App.Common.UITest.Suite
         public System.Collections.Generic.List<TestIncludeRef> Includes { get; set; }
         [XmlElement("testcase")]
         public System.Collections.Generic.List<TestCaseRef> TestCases { get; set; }
-        public TestCaseCollection() { }
+        public TestCaseCollection()
+        {
+        }
+
         public TestCaseCollection(TestCaseCollectionRef tcr, ITestSuite testSuite)
         {
             this.TestCaseCollectionRef = tcr;
@@ -29,7 +33,6 @@ namespace App.Common.UITest.Suite
             TestCaseCollection testCaseCollection = XmlHelper.Load<TestCaseCollection>(filePath, "testcases");
             testCaseCollection.TestCaseCollectionRef = this.TestCaseCollectionRef;
             testCaseCollection.Suite = this.Suite;
-
             this.Suite.TestRunner.Writer.Write(testCaseCollection);
             foreach (TestCaseRef tcf in testCaseCollection.TestCases)
             {

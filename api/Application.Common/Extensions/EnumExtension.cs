@@ -6,6 +6,7 @@
         {
             return (first & second) != 0;
         }
+
         public static bool IsIncludedIn(this UserRole first, UserRole second)
         {
             return (first & second) != 0;

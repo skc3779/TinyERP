@@ -10,10 +10,10 @@
         public new App.Common.Data.MSSQL.IMSSQLDbContext Context { get; protected set; }
         public IOMode Mode { get; set; }
         private System.Data.Entity.DbContext EFContext { get; set; }
-        public MSSQLDbSet(App.Common.Data.MSSQL.IMSSQLDbContext mssqlDbContext, System.Data.Entity.DbContext efContext, IOMode mode = IOMode.Read)
+        public MSSQLDbSet(App.Common.Data.MSSQL.IMSSQLDbContext mssqlDbContext, System.Data.Entity.DbContext efcontext, IOMode mode = IOMode.Read)
         {
             this.Context = mssqlDbContext;
-            this.EFContext = efContext;
+            this.EFContext = efcontext;
             this.Mode = mode;
             this.DbSet = this.EFContext.Set<TEntity>();
             this.Context.RegisterSaveChangeEvent(this.OnContextSaveChange);
@@ -41,7 +41,7 @@
 
         public override void Delete(string id)
         {
-            TEntity entity = Get(id);
+            TEntity entity = this.Get(id);
             this.DbSet.Remove(entity);
         }
 
@@ -63,16 +63,18 @@
 
         public override void Update(TEntity item)
         {
-            System.Data.Entity.Infrastructure.DbEntityEntry<TEntity> dbEntityEntry = this.EFContext.Entry(item);
-            if (dbEntityEntry.State == System.Data.Entity.EntityState.Detached)
+            System.Data.Entity.Infrastructure.DbEntityEntry<TEntity> dbentityEntry = this.EFContext.Entry(item);
+            if (dbentityEntry.State == System.Data.Entity.EntityState.Detached)
             {
-                var keys = GetEntityKey<TEntity>(this.EFContext, item);
+                var keys = this.GetEntityKey<TEntity>(this.EFContext, item);
                 TEntity attachedItem = this.DbSet.Find(keys);
                 if (attachedItem == null)
                 {
                     this.DbSet.Attach(item);
-                    dbEntityEntry.State = System.Data.Entity.EntityState.Modified;
-                }else{
+                    dbentityEntry.State = System.Data.Entity.EntityState.Modified;
+                }
+                else
+                {
                     this.EFContext.Entry(attachedItem).CurrentValues.SetValues(item);
                 }
             }
@@ -84,7 +86,6 @@
 
         private object[] GetEntityKey<T>(System.Data.Entity.DbContext context, T entity) where T : class, IBaseEntity<Guid>
         {
-
             var oc = ((IObjectContextAdapter)context).ObjectContext;
             var keys = oc.MetadataWorkspace.GetEntityContainer(oc.DefaultContainerName, System.Data.Entity.Core.Metadata.Edm.DataSpace.CSpace)
                                              .BaseEntitySets

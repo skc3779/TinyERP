@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Dynamic;
-using System.Runtime.Remoting.Channels;
-
-namespace App.Common
+﻿namespace App.Common
 {
+    using System.Collections.Generic;
+
     public interface IResourceItem
     {
         string Key { get; set; }

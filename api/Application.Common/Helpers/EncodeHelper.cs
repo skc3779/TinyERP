@@ -13,8 +13,10 @@
             {
                 return string.Empty;
             }
+
             return EncodeHelper.Md5Encode(password);
         }
+
         public static string Md5Encode(string input)
         {
             MD5 md5 = System.Security.Cryptography.MD5.Create();

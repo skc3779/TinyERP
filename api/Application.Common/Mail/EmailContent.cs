@@ -1,9 +1,9 @@
-﻿using App.Common.Configurations;
-using System.Collections.Generic;
-
-namespace App.Common.Mail
+﻿namespace App.Common.Mail
 {
-    public class EmailContent: IEmailContent
+    using App.Common.Configurations;
+    using System.Collections.Generic;
+
+    public class EmailContent : IEmailContent
     {
         public string From { get; set; }
         public string To { get; set; }

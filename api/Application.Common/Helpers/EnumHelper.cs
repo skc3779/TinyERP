@@ -19,6 +19,7 @@
                 if (value.ToString().ToLower() != enumValue) { continue; }
                 return value;
             }
+
             throw new KeyNotFoundException();
         }
     }

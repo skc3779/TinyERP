@@ -1,14 +1,14 @@
-﻿using App.Common.Logging;
-using System.Web;
-
-namespace App.Common.Tasks.Request
+﻿namespace App.Common.Tasks.Request
 {
+    using App.Common.Logging;
+    using System.Web;
+
     public class RequestEnded : BaseTask<TaskArgument<HttpApplication>>, IApplicationRequestEndedTask<TaskArgument<HttpApplication>>
     {
-        public RequestEnded():base(ApplicationType.MVC|ApplicationType.WebApi)
+        public RequestEnded() : base(ApplicationType.MVC | ApplicationType.WebApi)
         {
-
         }
+
         public override void Execute(TaskArgument<HttpApplication> arg)
         {
             if (!this.IsValid(arg.Type)) { return; }

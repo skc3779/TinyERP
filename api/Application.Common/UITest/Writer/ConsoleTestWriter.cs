@@ -1,11 +1,15 @@
-﻿using App.Common.UITest.Environment;
-using App.Common.UITest.UI;
-namespace App.Common.UITest.Writer
+﻿namespace App.Common.UITest.Writer
 {
+    using App.Common.UITest.Environment;
+    using App.Common.UITest.UI;
+
     public class ConsoleTestWriter : BaseTestWriter
     {
-        public ConsoleTestWriter(IEnvironment environtment): base(environtment) {}
-        public override void Write(Environment.Environment environment)
+        public ConsoleTestWriter(IEnvironment environtment) : base(environtment)
+        {
+        }
+
+        public override void Write(IEnvironment environment)
         {
             string str = string.Format("Environment :{0}-{1}-{2}", environment.Name, environment.Browser.Type, environment.Description);
             System.Console.WriteLine(str);
@@ -33,10 +37,12 @@ namespace App.Common.UITest.Writer
         {
             string str = string.Format("TestCaseAction :{0}-{1}", action.ActionRef.Action, action.Status);
             System.Console.WriteLine(str);
-            foreach (IUIAction uiAction in action.UIActions) {
-                Write(uiAction);
+            foreach (IUIAction uiAction in action.UIActions)
+            {
+                this.Write(uiAction);
             }
         }
+
         public override void Write(IUIAction uiAction)
         {
             string str = string.Format("IUIAction:{0}-{1}-{2}", uiAction.Type.ToString(), uiAction.Element, uiAction.Status.ToString());

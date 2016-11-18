@@ -1,9 +1,11 @@
-﻿using System;
-
-namespace App.Common
+﻿namespace App.Common
 {
+    using System;
+
     public class AuthenticationToken
     {
+        public string Value { get; set; }
+        public DateTime ExpiredAfter { get; set; }
         public AuthenticationToken(Guid value, DateTime expiredAfter)
         {
             this.Value = value.ToString();
@@ -13,10 +15,7 @@ namespace App.Common
         public AuthenticationToken(string value)
         {
             this.Value = value;
-            ExpiredAfter = DateTime.Now;
+            this.ExpiredAfter = DateTime.Now;
         }
-
-        public string Value { get; set; }
-        public DateTime ExpiredAfter { get; set; }
     }
 }

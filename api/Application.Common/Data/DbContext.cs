@@ -5,10 +5,10 @@
     public delegate void OnContextSaveChange(IDbContext context);
     public class DbContext : IDbContext
     {
-        IList<OnContextSaveChange> saveChangeEvents;
+        private IList<OnContextSaveChange> saveChangeEvents;
         public DbContext()
         {
-            saveChangeEvents = new List<OnContextSaveChange>();
+            this.saveChangeEvents = new List<OnContextSaveChange>();
         }
 
         public int SaveChanges()

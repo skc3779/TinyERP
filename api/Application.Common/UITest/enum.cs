@@ -1,36 +1,47 @@
-﻿using System.Xml.Serialization;
-
-namespace App.Common.UITest
+﻿namespace App.Common.UITest
 {
-    public enum EnvironmentType { 
+    using System.Xml.Serialization;
+
+    public enum EnvironmentType
+    {
         Firefox,
         Chrome
     }
-    public enum TestReportType {
+
+    public enum TestReportType
+    {
         [XmlEnum("Console")]
         Console,
         [XmlEnum("Excel")]
         Excel
     }
-    public enum TestResultType { 
+
+    public enum TestResultType
+    {
         None,
         Fail,
         Success
     }
-    public enum UIActionType {
+
+    public enum UIActionType
+    {
         Assert,
         Click,
         Input,
         Navigate
     }
-    public enum BrowserType { 
+
+    public enum BrowserType
+    {
         Firefox,
         Chrome,
         Safari,
         IE,
         Edge
     }
-    public enum UIActionSeertType { 
+
+    public enum UIActionSeertType
+    {
         Exist,
         Text,
         Count,

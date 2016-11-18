@@ -1,15 +1,15 @@
-﻿using App.Common.UITest.Environment;
-
-namespace App.Common.UITest.Writer
+﻿namespace App.Common.UITest.Writer
 {
-    public class BaseTestWriter: ITestWriter
+    using App.Common.UITest.Environment;
+
+    public class BaseTestWriter : ITestWriter
     {
         public IEnvironment Environment { get; protected set; }
-
         public BaseTestWriter(IEnvironment environment)
         {
             this.Environment = environment;
         }
+
         public virtual void Write(Suite.ITestSuite testSuite)
         {
             throw new System.NotImplementedException();
@@ -25,7 +25,7 @@ namespace App.Common.UITest.Writer
             throw new System.NotImplementedException();
         }
 
-        public virtual void Write(Environment.Environment environment)
+        public virtual void Write(IEnvironment environment)
         {
             throw new System.NotImplementedException();
         }
@@ -34,10 +34,12 @@ namespace App.Common.UITest.Writer
         {
             throw new System.NotImplementedException();
         }
+
         public virtual void Write(UI.IUIAction uiAction)
         {
             throw new System.NotImplementedException();
         }
+
         public virtual void Dispose()
         {
         }

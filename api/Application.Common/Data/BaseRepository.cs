@@ -21,7 +21,7 @@
 
         public virtual TEntity GetById(string id)
         {
-            return this.GetById(id, "");
+            return this.GetById(id, string.Empty);
         }
 
         public virtual TResult GetById<TResult>(string id) where TResult : IMappedFrom<TEntity>

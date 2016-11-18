@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
-
-namespace App.Common.Tasks
+﻿namespace App.Common.Tasks
 {
+    using System.Data.Entity;
+
     public interface IModelCreatingInDbContext : IBaseTask<DbModelBuilder>
     {
     }

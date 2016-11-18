@@ -19,7 +19,7 @@
         {
             SupportRequestOnStatusChanged ev = this.SetRequestStatus(itemId, ItemStatus.Cancelled);
             IEventManager eventManager = IoC.Container.Resolve<IEventManager>();
-            eventManager.pubish(ev);
+            eventManager.Pubish(ev);
         }
 
         private SupportRequestOnStatusChanged SetRequestStatus(Guid itemId, ItemStatus status)
@@ -52,7 +52,7 @@
         {
             SupportRequestOnStatusChanged ev = this.SetRequestStatus(itemId, ItemStatus.Resolved);
             IEventManager eventManager = IoC.Container.Resolve<IEventManager>();
-            eventManager.pubish(ev);
+            eventManager.Pubish(ev);
         }
 
         public void CreateRequest(CreateRequest request)

@@ -1,13 +1,12 @@
-﻿using App.Common.Configurations;
-using App.Common.UITest.Environment;
-using App.Common.UITest.Suite;
-using App.Common.UITest.UI;
-using OfficeOpenXml;
-using System.IO;
-using System.Linq;
-
-namespace App.Common.UITest.Writer
+﻿namespace App.Common.UITest.Writer
 {
+    using App.Common.Configurations;
+    using App.Common.UITest.Environment;
+    using App.Common.UITest.UI;
+    using OfficeOpenXml;
+    using System.IO;
+    using System.Linq;
+
     public class ExcelTestWriter : BaseTestWriter
     {
         private ExcelPackage package;
@@ -20,53 +19,52 @@ namespace App.Common.UITest.Writer
             this.package = new ExcelPackage(new FileInfo(outputTo), new FileInfo(templateFile));
             this.workSheet = this.package.Workbook.Worksheets["firefox"];
         }
-        public override void Write(Environment.Environment environment)
-        {
 
+        public override void Write(IEnvironment environment)
+        {
         }
 
         public override void Write(Suite.ITestSuite testSuite)
         {
-            this.workSheet.Cells[currentRow, 1].Value = testSuite.Name;
-            this.workSheet.Cells[currentRow, 6].Value = testSuite.Description;
+            this.workSheet.Cells[this.currentRow, 1].Value = testSuite.Name;
+            this.workSheet.Cells[this.currentRow, 6].Value = testSuite.Description;
             this.currentRow++;
         }
 
         public override void Write(Suite.TestCaseCollection testCaseCollection)
         {
-
         }
 
         public override void Write(Suite.TestCaseRef testCaseRef, System.Collections.Generic.IList<Suite.TestCaseAction> actions)
         {
-            this.workSheet.Cells[currentRow, 2].Value = testCaseRef.Name;
-            //this.workSheet.Cells[currentRow, 5].Value = testcase.Status.ToString();
-            this.workSheet.Cells[currentRow, 5].Value = actions.Any(item => item.Status == TestResultType.Fail) ? TestResultType.Fail.ToString() : TestResultType.Success.ToString();
-            this.workSheet.Cells[currentRow, 6].Value = testCaseRef.Description;
+            this.workSheet.Cells[this.currentRow, 2].Value = testCaseRef.Name;
+            this.workSheet.Cells[this.currentRow, 5].Value = actions.Any(item => item.Status == TestResultType.Fail) ? TestResultType.Fail.ToString() : TestResultType.Success.ToString();
+            this.workSheet.Cells[this.currentRow, 6].Value = testCaseRef.Description;
             this.currentRow++;
         }
 
         public override void Write(Suite.TestCaseAction action)
         {
-            this.workSheet.Cells[currentRow, 3].Value = action.ActionRef.Action;
-            this.workSheet.Cells[currentRow, 5].Value = action.Status.ToString();
+            this.workSheet.Cells[this.currentRow, 3].Value = action.ActionRef.Action;
+            this.workSheet.Cells[this.currentRow, 5].Value = action.Status.ToString();
             if (action.Status == TestResultType.Fail)
             {
                 foreach (IUIAction uiAction in action.UIActions)
                 {
                     this.Write(uiAction);
                 }
-                //this.workSheet.Cells[currentRow, 6].Value = step.Error.ToString();
-                //this.workSheet.Cells[currentRow, 7].Value = step.Error.Attachment;
             }
+
             this.currentRow++;
         }
+
         public override void Write(IUIAction uiAction)
         {
-            this.workSheet.Cells[currentRow, 4].Value = string.Format("{0}-{1}", uiAction.Type.ToString(), uiAction.Element);
-            this.workSheet.Cells[currentRow, 5].Value = uiAction.Status.ToString();
+            this.workSheet.Cells[this.currentRow, 4].Value = string.Format("{0}-{1}", uiAction.Type.ToString(), uiAction.Element);
+            this.workSheet.Cells[this.currentRow, 5].Value = uiAction.Status.ToString();
             this.currentRow++;
         }
+
         public override void Dispose()
         {
             base.Dispose();

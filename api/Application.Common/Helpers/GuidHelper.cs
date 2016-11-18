@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace App.Common.Helpers
+﻿namespace App.Common.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+
     public class GuidHelper
     {
         public static IList<Guid> ToGuid(string value)
@@ -14,12 +14,13 @@ namespace App.Common.Helpers
             {
                 itemIds.Add(Guid.Parse(item));
             }
+
             return itemIds;
         }
 
         public static string ToString(IList<Guid> ids)
         {
-            return String.Join(";", ids);
+            return string.Join(";", ids);
         }
     }
 }
