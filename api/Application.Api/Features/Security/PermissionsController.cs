@@ -6,6 +6,7 @@
     using App.Common.Validation;
     using App.Service.Security;
     using App.Service.Security.Permission;
+    using Entity.Security;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -55,13 +56,13 @@
 
         [HttpPost]
         [Route("")]
-        public IResponseData<BaseContent> CreatePermission(BaseContent permission)
+        public IResponseData<Permission> CreatePermission(CreatePermissionRequest permission)
         {
-            IResponseData<BaseContent> response = new ResponseData<BaseContent>();
+            IResponseData<Permission> response = new ResponseData<Permission>();
             try
             {
                 IPermissionService permissionService = IoC.Container.Resolve<IPermissionService>();
-                BaseContent per = permissionService.CreatePermission(permission);
+                Permission per = permissionService.Create(permission);
                 response.SetData(per);
             }
             catch (ValidationException ex)

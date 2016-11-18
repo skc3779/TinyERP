@@ -3,6 +3,7 @@ namespace App.Common.Validation
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     public class ValidationException : Exception, IValidationException
     {
@@ -46,6 +47,11 @@ namespace App.Common.Validation
         {
             if (this.Errors.Count <= 0) { return; }
             throw this;
+        }
+
+        public bool HasExceptionKey(string key)
+        {
+            return this.Errors.Any(errorItem => errorItem.Key.ToLower() == key.ToLower());
         }
     }
 
