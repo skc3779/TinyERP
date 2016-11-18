@@ -14,6 +14,7 @@ namespace App.Service.Impl
             context.RegisterSingleton<App.Service.Security.IRoleService, App.Service.Impl.Security.RoleService>();
             context.RegisterSingleton<App.Service.Security.IPermissionService, App.Service.Impl.Security.PermissionService>();
             context.RegisterSingleton<App.Service.Security.IUserGroupService, App.Service.Impl.Security.UserGroupService>();
+            context.RegisterSingleton<App.Service.Inventory.ICategoryService, App.Service.Impl.Inventory.CategoryService>();
 
             context.RegisterSingleton<App.Service.Common.File.IFileService, App.Service.Impl.Common.FileService>();
             context.RegisterSingleton<App.Service.Setting.IContentTypeService, App.Service.Impl.Setting.ContentTypeService>();

@@ -7,6 +7,7 @@ using App.Entity.Common;
 using App.Entity.Store;
 using App.Entity.Setting;
 using App.Entity.Support;
+using App.Entity.Inventory;
 
 namespace App.Context
 {
@@ -32,13 +33,14 @@ namespace App.Context
         public System.Data.Entity.DbSet<OrderItem> OrderItems { get; set; }
         public System.Data.Entity.DbSet<Parameter> Parameters { get; set; }
         public System.Data.Entity.DbSet<Request> Requests { get; set; }
+        public System.Data.Entity.DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Order>()
                 .HasMany(order => order.Items);
-            
+
 
             modelBuilder.Entity<Role>().ToTable("Roles");
             modelBuilder.Entity<Permission>().ToTable("Permissions");

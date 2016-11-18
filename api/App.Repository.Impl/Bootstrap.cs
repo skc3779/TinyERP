@@ -17,6 +17,7 @@ namespace App.Repository.Impl
             context.RegisterTransient<Repository.Secutiry.IRoleRepository, App.Repository.Impl.Security.RoleRepository>();
             context.RegisterTransient<Repository.Secutiry.IPermissionRepository, App.Repository.Impl.Security.PermissionRepository>();
             context.RegisterTransient<Repository.Secutiry.IUserGroupRepository, App.Repository.Impl.Security.UserGroupRepository>();
+            context.RegisterTransient<Repository.Inventory.ICategoryRepository, App.Repository.Impl.Inventory.CategoryRepository>();
 
             context.RegisterTransient<Repository.Common.IFileRepository, App.Repository.Impl.Common.FileRepository>();
 
