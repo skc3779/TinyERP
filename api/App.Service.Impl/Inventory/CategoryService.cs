@@ -20,7 +20,7 @@
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
                 foreach (CreateCategoryRequest createCategoryRequest in createCategoriesRequest)
                 {
-                    this.ValidateCreateCategoryRequest(createCategoryRequest);
+                   // this.ValidateCreateCategoryRequest(createCategoryRequest);
                     if (categoryRepository.GetById(createCategoryRequest.Id.ToString()) != null)
                     {
                         continue;
@@ -39,12 +39,12 @@
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             if (string.IsNullOrEmpty(createCategoryRequest.Name))
             {
-                throw new ValidationException("inventory.addCategory.validation.nameRequire");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameRequired");
             }
 
             if (categoryRepository.GetByName(createCategoryRequest.Name) != null)
             {
-                throw new ValidationException("inventory.addCategory.validation.nameAlreadyExist");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
             }
         }
 
@@ -77,7 +77,7 @@
             ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>();
             if (string.IsNullOrWhiteSpace(request.Name))
             {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameIsRequired");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameRequired");
             }
             if (request.Name.Length > ValidationConfig.nameLength)
             {
@@ -98,7 +98,7 @@
             ValiateForUpdate(itemId, request);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
-                ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>();
+                ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>(uow);
                 Category category = catRepo.GetById(itemId);
                 category.Name = request.Name;
                 category.Description = request.Description;
@@ -113,7 +113,7 @@
             Category oldItem = catRepo.GetById(itemId);
             if (oldItem == null)
             {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.itemIsNotExist");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.categoryIsNotExist");
             }
             if (string.IsNullOrWhiteSpace(request.Name))
             {

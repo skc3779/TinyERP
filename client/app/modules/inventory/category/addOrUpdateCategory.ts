@@ -5,7 +5,7 @@ import { Page, Form, FormTextInput, FormFooter, FormTextArea } from "../../../co
 import { FormMode } from "../../../common/enum";
 import route from "../_share/config/route";
 import { Model } from "./addOrUpdateCategoryModel";
-import categoryService from "../_share/services/categoryService ";
+import categoryService from "../_share/services/categoryService";
 @Component({
     templateUrl: "app/modules/inventory/category/addOrUpdateCategory.html",
     directives: [Page, Form, FormTextInput, FormFooter, FormTextArea]
@@ -14,7 +14,7 @@ export class AddOrUpdateCategory extends BasePage {
     public model: Model = new Model();
     private router: Router;
     private mode: FormMode = FormMode.AddNew;
-    private itemId: any;
+    private itemId: String = String.empty;
     constructor(router: Router, routeParams: RouteParams) {
         super();
         let self: AddOrUpdateCategory = this;
