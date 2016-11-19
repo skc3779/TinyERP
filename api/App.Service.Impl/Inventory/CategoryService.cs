@@ -6,7 +6,7 @@
     using App.Repository.Inventory;
     using App.Common.DI;
     using App.Common;
-    using App.Entity.Inventory;    
+    using App.Entity.Inventory;
 
     public class CategoryService : ICategoryService
     {
@@ -17,14 +17,19 @@
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
                 foreach (CreateCategoryRequest createCategoryRequest in createCategoriesRequest)
                 {
-                    this.ValidateCreateCategoryRequest(createCategoryRequest);
-                    if (categoryRepository.GetById(createCategoryRequest.Id.ToString()) != null)
+                    try
                     {
-                        continue;
+                        this.ValidateCreateCategoryRequest(createCategoryRequest);
+                        Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
+                        categoryRepository.Add(category);
                     }
-
-                    Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
-                    categoryRepository.Add(category);
+                    catch (ValidationException exception)
+                    {
+                        if (exception.HasExceptionKey("inventory.addCategory.validation.nameAlreadyExist"))
+                        {
+                            continue;
+                        }
+                    }
                 }
 
                 uow.Commit();
