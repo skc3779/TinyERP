@@ -4,6 +4,8 @@
         "addCategoryAction": "Add Category",
         "name": "Name",
         "description": "Description",
-         "categoryIsInvalid": "The category is invalid."
-    }         
+        "validation": {
+            "categoryIsInvalid": "The category is invalid."
+        }
+    }
 }
