@@ -4,5 +4,18 @@
         "addCategoryAction": "Add Category",
         "name": "Name",
         "description": "Description"
+    },
+    "addOrUpdateCategory": {
+        "pageTitleForAddNew": "Add Category",
+        "pageTitleForUpdatting": "Update Category",
+        "name": "Name",
+        "inputName": "Please input name of Category",
+        "desc": "Description",
+        "inputDesc": "Please input description for Category",
+        "validation": {
+            "nameIsRequired": "Please input name of Category",
+            "nameAlreadyExisted": "This name is already existed. Please input another name",
+            "categoryIsNotExist" : "Category not found."
+        }
     }
 }

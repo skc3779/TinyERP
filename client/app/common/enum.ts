@@ -16,7 +16,7 @@ export enum FormSelectMode {
 export enum FormMode {
     AddNew,
     Edit
-}
+};
 export enum ItemStatus {
     None = 0,
     InActive = 1,
@@ -28,14 +28,14 @@ export enum ItemStatus {
     Resolved = 7,
     Cancelled = 8
 
-}
+};
 export enum InputValueType {
     Text,
     Currency
-}
+};
 export enum HttpStatusCode {
     OK = 200
-}
+};
 export const Guid = {
     Empty: "00000000-0000-0000-0000-000000000000"
 };
@@ -43,17 +43,20 @@ export enum DisplayMode {
     View = 0,
     Edit = 1,
     Add = 4
-}
+};
 export enum ParameterValueType {
     String,
     Number,
     Password
-}
-
+};
 export const IoCNames = {
     ILogger: "ILogger",
     IConnector: "IConnector",
     IEventManager: "IEventManager",
     IResource: "IResource",
     IApplicationState: "IApplicationState",
+};
+export const enum FormValidationRules {
+    MaxNameLength = 50,
+    MaxDescriptionLength = 512
 };

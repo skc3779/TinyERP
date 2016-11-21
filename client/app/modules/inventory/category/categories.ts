@@ -4,36 +4,35 @@ import { Grid, PageActions, Page } from "../../../common/directive";
 import { CategoriesModel } from "./categoriesModel";
 import { PageAction } from "../../../common/models/ui";
 import categoryService from "../_share/services/categoryService";
+import { Router } from "angular2/router";
+import route from "../_share/config/route";
+
 
 @Component({
     selector: "categories",
     templateUrl: "app/modules/inventory/category/categories.html",
     directives: [Grid, PageActions, Page]
 })
-
 export class Categories extends BasePage {
     public model: CategoriesModel;
-    constructor() {
+    public router: Router;
+    constructor(router: Router) {
         super();
         let self: Categories = this;
+        self.router = router;
         self.model = new CategoriesModel(self.i18nHelper);
         self.model.addPageAction(new PageAction("btnAddCategory", "inventory.categories.addCategoryAction", () => self.onAddNewCategoryClicked()));
         self.loadCategories();
     }
-
     private onAddNewCategoryClicked() {
-        console.log("execute add new category funtion");
+        this.router.navigate([route.inventory.addCategory.name]);
     }
-
     private onCategoryDeleteClicked(event: any) {
         console.log("execute delete category funtion");
     }
-
     private onCategoryEditClicked(event: any) {
-        console.log("execute edit category funtion");
-
+        this.router.navigate([route.inventory.updateCategory.name, { id: event.item.id }]);
     }
-
     private loadCategories() {
         let self: Categories = this;
         categoryService.getCategories().then(function (items: Array<any>) {
