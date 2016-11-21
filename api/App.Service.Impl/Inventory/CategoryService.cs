@@ -28,7 +28,7 @@
                     }
                     catch (ValidationException exception)
                     {
-                        if (exception.HasExceptionKey("inventory.addCategory.validation.nameAlreadyExist"))
+                        if (exception.HasExceptionKey("inventory.addOrUpdateCategory.validation.nameAlreadyExisted"))
                         {
                             continue;
                         }
