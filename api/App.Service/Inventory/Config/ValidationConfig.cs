@@ -2,7 +2,7 @@
 {
     public static class ValidationConfig
     {
-        public const int NameLength = 50;
-        public const int DescriptionLength = 512;
+        public const int MaxNameLength = 50;
+        public const int MaxDescriptionLength = 512;
     }
 }

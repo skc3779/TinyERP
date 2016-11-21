@@ -13,9 +13,9 @@
         "desc": "Description",
         "inputDesc": "Please input description for Category",
         "validation": {
-            "nameIsRequired": "Please input name of Category",
+            "nameRequired": "Please input name of Category",
             "nameAlreadyExisted": "This name is already existed. Please input another name",
-            "categoryIsNotExist" : "Category not found."
+            "categoryNotExisted": "Category not found"
         }
     }
 }
