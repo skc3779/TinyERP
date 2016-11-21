@@ -70,7 +70,7 @@
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             if (categoryRepository.GetById(id.ToString()) == null)
             {
-                throw new ValidationException("categories.categoryIsInvalid");
+                throw new ValidationException("inventory.categories.categoryIsInvalid");
             }
         }
     }
