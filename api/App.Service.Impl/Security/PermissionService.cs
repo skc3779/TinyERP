@@ -11,6 +11,7 @@
     using Context;
     using App.Common.Validation;
     using Service.Security.Permission;
+    using App.Common.Helpers;
 
     internal class PermissionService : IPermissionService
     {
@@ -120,28 +121,30 @@
 
         private void ValidateUpdateRequest(UpdatePermissionRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Name))
-            {
-                throw new App.Common.Validation.ValidationException("security.addPermission.validation.nameIsRequire");
-            }
+            ValidationException validationException = ValidationHelper.Validate(request);
+            //if (string.IsNullOrWhiteSpace(request.Name))
+            //{
+            //    throw new App.Common.Validation.ValidationException("security.addPermission.validation.nameIsRequire");
+            //}
 
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
             Permission per = perRepo.GetByName(request.Name);
             if (per != null && per.Id != request.Id)
             {
-                throw new App.Common.Validation.ValidationException("security.addPermission.validation.nameAlreadyExist");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.nameAlreadyExist"));
             }
 
-            if (string.IsNullOrWhiteSpace(request.Key))
-            {
-                throw new App.Common.Validation.ValidationException("security.addPermission.validation.keyIsRequire");
-            }
+            //if (string.IsNullOrWhiteSpace(request.Key))
+            //{
+            //    validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.keyIsRequire"));
+            //}
 
             per = perRepo.GetByName(request.Key);
             if (per != null && per.Id != request.Id)
             {
-                throw new App.Common.Validation.ValidationException("security.addPermission.validation.keyAlreadyExist");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.keyAlreadyExist"));
             }
+            validationException.ThrowIfError();
         }
     }
 }
