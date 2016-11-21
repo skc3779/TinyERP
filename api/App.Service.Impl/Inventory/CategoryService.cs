@@ -65,7 +65,7 @@
             return catRepo.GetById<GetCategoryResponse>(itemId);
         }
 
-        public void Create(CreateCategoryRequest request)
+        public Category Create(CreateCategoryRequest request)
         {
             this.ValiateForCreation(request);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
@@ -74,6 +74,7 @@
                 Category category = new Category(request.Name, request.Description);
                 catRepo.Add(category);
                 uow.Commit();
+                return category;
             }
         }
 

@@ -60,7 +60,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Common\ValidationHelper\ValidateUsingCustomAttribute.cs" />
+    <Compile Include="Inventory\Category\CreateCategory.cs" />
     <Compile Include="Security\Permission\CreatePermission.cs" />
+    <Compile Include="Inventory\Category\DeleteCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
