@@ -7,6 +7,9 @@
     using App.Common.DI;
     using App.Common;
     using App.Entity.Inventory;
+    using App.Common.Data;
+    using Context;
+    using Service.Inventory.Config;
 
     public class CategoryService : ICategoryService
     {
