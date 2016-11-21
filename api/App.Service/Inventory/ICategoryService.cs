@@ -12,6 +12,3 @@
         void Update(string itemId, UpdateCategoryRequest request);
     }
 }
-
-        
-

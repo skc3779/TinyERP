@@ -44,7 +44,7 @@
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             if (string.IsNullOrEmpty(createCategoryRequest.Name))
             {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameRequired");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameIsRequired");
             }
 
             if (categoryRepository.GetByName(createCategoryRequest.Name) != null)
@@ -67,7 +67,7 @@
 
         public void Create(CreateCategoryRequest request)
         {
-            ValiateForCreation(request);
+            this.ValiateForCreation(request);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>(uow);
@@ -82,17 +82,20 @@
             ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>();
             if (string.IsNullOrWhiteSpace(request.Name))
             {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameRequired");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameIsRequired");
             }
-            if (request.Name.Length > ValidationConfig.nameLength)
+
+            if (request.Name.Length > ValidationConfig.NameLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
+
             if (catRepo.GetByName(request.Name) != null)
             {
                 throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
             }
-            if (!string.IsNullOrWhiteSpace(request.Description) && request.Description.Length > ValidationConfig.descriptionLength)
+
+            if (!string.IsNullOrWhiteSpace(request.Description) && request.Description.Length > ValidationConfig.DescriptionLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
@@ -100,7 +103,7 @@
 
         public void Update(string itemId, UpdateCategoryRequest request)
         {
-            ValiateForUpdate(itemId, request);
+            this.ValiateForUpdate(itemId, request);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>(uow);
@@ -120,14 +123,17 @@
             {
                 throw new ValidationException("inventory.addOrUpdateCategory.validation.categoryIsNotExist");
             }
+
             if (string.IsNullOrWhiteSpace(request.Name))
             {
                 throw new ValidationException("inventory.addOrUpdateCategory.validation.nameIsRequired");
             }
-            if (request.Name.Length > ValidationConfig.nameLength)
+
+            if (request.Name.Length > ValidationConfig.NameLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
+
             if (oldItem.Name != request.Name)
             {
                 if (catRepo.GetByName(request.Name) != null)
@@ -135,7 +141,8 @@
                     throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
                 }
             }
-            if (!string.IsNullOrWhiteSpace(request.Description) && request.Description.Length > ValidationConfig.descriptionLength)
+
+            if (!string.IsNullOrWhiteSpace(request.Description) && request.Description.Length > ValidationConfig.DescriptionLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }

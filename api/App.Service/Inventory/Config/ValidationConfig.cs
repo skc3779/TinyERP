@@ -2,7 +2,7 @@
 {
     public static class ValidationConfig
     {
-        public const int nameLength = 50;
-        public const int descriptionLength = 512;
+        public const int NameLength = 50;
+        public const int DescriptionLength = 512;
     }
 }

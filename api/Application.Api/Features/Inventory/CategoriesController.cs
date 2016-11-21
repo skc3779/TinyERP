@@ -48,6 +48,7 @@
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
                 response.SetErrors(ex.Errors);
             }
+
             return response;
         }
 
@@ -66,6 +67,7 @@
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
                 response.SetErrors(ex.Errors);
             }
+
             return response;
         }
 
@@ -86,9 +88,8 @@
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
                 response.SetErrors(ex.Errors);
             }
+
             return response;
         }
     }
 }
-
-        
