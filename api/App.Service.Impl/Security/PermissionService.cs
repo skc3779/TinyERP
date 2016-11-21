@@ -36,7 +36,7 @@
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
             {
                 IPermissionRepository perRepository = IoC.Container.Resolve<IPermissionRepository>(uow);
-                Permission per = new Permission(permission);
+                Permission per = new Permission(permission.Name, permission.Key, permission.Description);
                 perRepository.Add(per);
                 uow.Commit();
                 return per;
@@ -45,26 +45,20 @@
 
         private void ValidateCreatePermissionRequest(CreatePermissionRequest permission)
         {
-            if (string.IsNullOrWhiteSpace(permission.Name))
-            {
-                throw new App.Common.Validation.ValidationException("security.addPermission.validation.nameIsRequire");
-            }
+            IValidationException validationException = ValidationHelper.Validate(permission);
 
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
             if (perRepo.GetByName(permission.Name) != null)
             {
-                throw new App.Common.Validation.ValidationException("security.addPermission.validation.nameAlreadyExist");
-            }
-
-            if (string.IsNullOrWhiteSpace(permission.Key))
-            {
-                throw new App.Common.Validation.ValidationException("security.addPermission.validation.keyIsRequire");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.nameAlreadyExist"));
             }
 
             if (perRepo.GetByKey(permission.Key) != null)
             {
-                throw new App.Common.Validation.ValidationException("security.addPermission.validation.keyAlreadyExist");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.keyAlreadyExist"));
             }
+
+            validationException.ThrowIfError();
         }
 
         public IList<PermissionAsKeyNamePair> GetPermissions()
@@ -121,11 +115,12 @@
 
         private void ValidateUpdateRequest(UpdatePermissionRequest request)
         {
-            ValidationException validationException = ValidationHelper.Validate(request);
-            //if (string.IsNullOrWhiteSpace(request.Name))
-            //{
-            //    throw new App.Common.Validation.ValidationException("security.addPermission.validation.nameIsRequire");
-            //}
+            IValidationException validationException = new ValidationException();
+
+            if (string.IsNullOrWhiteSpace(request.Name))
+            {
+                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.nameIsRequire"));
+            }
 
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
             Permission per = perRepo.GetByName(request.Name);
@@ -134,10 +129,10 @@
                 validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.nameAlreadyExist"));
             }
 
-            //if (string.IsNullOrWhiteSpace(request.Key))
-            //{
-            //    validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.keyIsRequire"));
-            //}
+            if (string.IsNullOrWhiteSpace(request.Key))
+            {
+                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.keyIsRequire"));
+            }
 
             per = perRepo.GetByName(request.Key);
             if (per != null && per.Id != request.Id)

@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Common\ValidationHelper\ValidateUsingCustomAttribute.cs" />
     <Compile Include="Security\Permission\CreatePermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

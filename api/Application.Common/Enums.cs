@@ -153,4 +153,9 @@
         Number,
         Password
     }
+
+    public enum DataType {
+        String,
+        Number
+    }
 }
