@@ -19,8 +19,7 @@
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetProperty).Select(
                     item => item.GetCustomAttributes<TValidator>()
                             .Select(validator => new ValidationRequest(validator, item.GetValue(obj, null), item.PropertyType.FullName))
-                            .ToList()
-                );
+                            .ToList());
             foreach (IEnumerable<ValidationRequest> attrs in properties)
             {
                 if (attrs.Count() == 0) { continue; }

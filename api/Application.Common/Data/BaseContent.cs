@@ -1,6 +1,4 @@
-﻿using App.Common.Validation.Attribute;
-
-namespace App.Common.Data
+﻿namespace App.Common.Data
 {
     public class BaseContent : BaseEntity, IBaseContent
     {

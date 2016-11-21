@@ -1,8 +1,7 @@
-﻿using System;
-using App.Common.Validation.Attribute;
-
-namespace App.Common.Validation.Validator
+﻿namespace App.Common.Validation.Validator
 {
+    using System;
+
     public abstract class BaseValidator : IValidator
     {
         public virtual bool Require(object value)

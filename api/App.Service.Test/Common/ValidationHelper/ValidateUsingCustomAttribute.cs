@@ -25,6 +25,7 @@
                 this.Subject = subject;
             }
         }
+
         [TestMethod]
         public void Common_ValidationHelper_ValidateUsingCustomAttribute_ShouldBeSuccess_WithValidObject()
         {
@@ -57,6 +58,5 @@
             Assert.IsTrue(ex.Errors.Count == 2 && ex.HasExceptionKey(ValidateUsingCustomAttribute.NameExceptionKey));
             Assert.IsTrue(ex.Errors.Count == 2 && ex.HasExceptionKey(ValidateUsingCustomAttribute.SubjectExceptionKey));
         }
-
     }
 }

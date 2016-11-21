@@ -139,6 +139,7 @@
             {
                 validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.keyAlreadyExist"));
             }
+
             validationException.ThrowIfError();
         }
     }
