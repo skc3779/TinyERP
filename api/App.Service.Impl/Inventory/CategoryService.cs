@@ -67,15 +67,10 @@
 
         private void ValidateDeleteRequest(Guid id)
         {
-            if (id == null)
-            {
-                throw new ValidationException("inventory.category.categoryIsInvalid");
-            }
-
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             if (categoryRepository.GetById(id.ToString()) == null)
             {
-                throw new ValidationException("inventory.category.categoryIsInvalid");
+                throw new ValidationException("categories.categoryIsInvalid");
             }
         }
     }

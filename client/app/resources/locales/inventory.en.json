@@ -3,11 +3,7 @@
         "title": "Categories",
         "addCategoryAction": "Add Category",
         "name": "Name",
-        "description": "Description"
-    },
-    "inventory": {
-        "category": {
-            "categoryIsInvalid": "The Category is invalid"
-        }
+        "description": "Description",
+        "categoryIsInvalid": "Invalid category"
     }
 }
