@@ -9,6 +9,7 @@
     using System;
     using App.Common.Data;
     using Context;
+    using Entity.Inventory;
 
     public class CategoryService : ICategoryService
     {
@@ -19,7 +20,18 @@
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
                 foreach (CreateCategoryRequest createCategoryRequest in createCategoriesRequest)
                 {
+                    try
                     {
+                        this.ValidateCreateCategoryRequest(createCategoryRequest);
+                        Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
+                        categoryRepository.Add(category);
+                    }
+                    catch (ValidationException exception)
+                    {
+                        if (exception.HasExceptionKey("inventory.addCategory.validation.nameAlreadyExist"))
+                        {
+                            continue;
+                        }
                     }
                 }
 
