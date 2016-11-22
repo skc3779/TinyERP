@@ -22,7 +22,7 @@
                 {
                     try
                     {
-                        ValidateCreateCategoryRequest(createCategoryRequest);
+                        this.ValidateCreateCategoryRequest(createCategoryRequest);
                         Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
                         categoryRepository.Add(category);
                     }
@@ -32,7 +32,6 @@
                         {
                             continue;
                         }
-
                     }
                 }
 
