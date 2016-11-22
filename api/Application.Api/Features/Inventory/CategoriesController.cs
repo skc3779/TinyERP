@@ -32,21 +32,21 @@
             return dataResponse;
         }
 
-        [Route("{itemId}")]
+        [Route("{id}")]
         [HttpGet]
-        public IResponseData<GetCategoryResponse> GetById([FromUri]string itemId)
+        public IResponseData<GetCategoryResponse> GetById([FromUri]string id)
         {
             IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
             try
             {
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
-                GetCategoryResponse item = catService.GetById(itemId);
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                GetCategoryResponse item = categoryService.GetById(id);
                 response.SetData(item);
             }
-            catch (ValidationException ex)
+            catch (ValidationException exception)
             {
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
-                response.SetErrors(ex.Errors);
+                response.SetErrors(exception.Errors);
             }
 
             return response;
@@ -59,34 +59,34 @@
             IResponseData<string> response = new ResponseData<string>();
             try
             {
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
-                catService.Create(request);
+                ICategoryService categorytService = IoC.Container.Resolve<ICategoryService>();
+                categorytService.Create(request);
             }
-            catch (ValidationException ex)
+            catch (ValidationException exception)
             {
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
-                response.SetErrors(ex.Errors);
+                response.SetErrors(exception.Errors);
             }
 
             return response;
         }
 
-        [Route("{itemId}")]
+        [Route("{id}")]
         [HttpPut]
-        public IResponseData<GetCategoryResponse> UpdateCategory([FromUri]string itemId, [FromBody]UpdateCategoryRequest request)
+        public IResponseData<GetCategoryResponse> UpdateCategory([FromBody]UpdateCategoryRequest request)
         {
             IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
             try
             {
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
-                catService.Update(itemId, request);
-                GetCategoryResponse item = catService.GetById(itemId);
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                categoryService.Update(request);
+                GetCategoryResponse item = categoryService.GetById(request.Id);
                 response.SetData(item);
             }
-            catch (ValidationException ex)
+            catch (ValidationException exception)
             {
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
-                response.SetErrors(ex.Errors);
+                response.SetErrors(exception.Errors);
             }
 
             return response;

@@ -13,12 +13,12 @@
 
     public class CategoryService : ICategoryService
     {
-        public void CreateIfNotExist(List<CreateCategoryRequest> createCategoryRequest)
+        public void CreateIfNotExist(List<CreateCategoryRequest> createCategoryRequests)
         {
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
-                foreach (CreateCategoryRequest request in createCategoryRequest)
+                foreach (CreateCategoryRequest request in createCategoryRequests)
                 {
                     try
                     {
@@ -51,84 +51,84 @@
             return categoryRepository.GetById<GetCategoryResponse>(id);
         }
 
-        public void Create(CreateCategoryRequest request)
+        public void Create(CreateCategoryRequest createCategoryRequest)
         {
-            this.ValiateCreateCategoryRequest(request);
+            this.ValiateCreateCategoryRequest(createCategoryRequest);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
-                Category category = new Category(request.Name, request.Description);
+                Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
                 categoryRepository.Add(category);
                 uow.Commit();
             }
         }
 
-        private void ValiateCreateCategoryRequest(CreateCategoryRequest request)
+        private void ValiateCreateCategoryRequest(CreateCategoryRequest createCategoryRequest)
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-            if (string.IsNullOrWhiteSpace(request.Name))
+            if (string.IsNullOrWhiteSpace(createCategoryRequest.Name))
             {
                 throw new ValidationException("inventory.addOrUpdateCategory.validation.nameRequired");
             }
 
-            if (request.Name.Length > ValidationConfig.MaxNameLength)
+            if (createCategoryRequest.Name.Length > ValidationConfig.MaxNameLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
 
-            if (categoryRepository.GetByName(request.Name) != null)
+            if (categoryRepository.GetByName(createCategoryRequest.Name) != null)
             {
                 throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
             }
 
-            if (!string.IsNullOrWhiteSpace(request.Description) && request.Description.Length > ValidationConfig.MaxDescriptionLength)
+            if (!string.IsNullOrWhiteSpace(createCategoryRequest.Description) && createCategoryRequest.Description.Length > ValidationConfig.MaxDescriptionLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
         }
 
-        public void Update(string id, UpdateCategoryRequest request)
+        public void Update(UpdateCategoryRequest updateCategoryRequest)
         {
-            this.ValiateUpdateCategoryRequest(id, request);
+            this.ValiateUpdateCategoryRequest(updateCategoryRequest);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
-                Category category = categoryRepository.GetById(id);
-                category.Name = request.Name;
-                category.Description = request.Description;
+                Category category = categoryRepository.GetById(updateCategoryRequest.Id);
+                category.Name = updateCategoryRequest.Name;
+                category.Description = updateCategoryRequest.Description;
                 categoryRepository.Update(category);
                 uow.Commit();
             }
         }
 
-        private void ValiateUpdateCategoryRequest(string id, UpdateCategoryRequest request)
+        private void ValiateUpdateCategoryRequest(UpdateCategoryRequest updateCategoryRequest)
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-            Category oldItem = categoryRepository.GetById(id);
-            if (oldItem == null)
+            Category oldCategory = categoryRepository.GetById(updateCategoryRequest.Id);
+            if (oldCategory == null)
             {
                 throw new ValidationException("inventory.addOrUpdateCategory.validation.categoryNotExisted");
             }
 
-            if (string.IsNullOrWhiteSpace(request.Name))
+            if (string.IsNullOrWhiteSpace(updateCategoryRequest.Name))
             {
                 throw new ValidationException("inventory.addOrUpdateCategory.validation.nameRequired");
             }
 
-            if (request.Name.Length > ValidationConfig.MaxNameLength)
+            if (updateCategoryRequest.Name.Length > ValidationConfig.MaxNameLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
 
-            if (oldItem.Name != request.Name)
+            if (oldCategory.Name != updateCategoryRequest.Name)
             {
-                if (categoryRepository.GetByName(request.Name) != null)
+                if (categoryRepository.GetByName(updateCategoryRequest.Name) != null)
                 {
                     throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(request.Description) && request.Description.Length > ValidationConfig.MaxDescriptionLength)
+            if (!string.IsNullOrWhiteSpace(updateCategoryRequest.Description) && updateCategoryRequest.Description.Length > ValidationConfig.MaxDescriptionLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }

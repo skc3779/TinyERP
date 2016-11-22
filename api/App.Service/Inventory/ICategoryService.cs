@@ -9,6 +9,6 @@
         void CreateIfNotExist(List<CreateCategoryRequest> categories);
         GetCategoryResponse GetById(string itemId);
         void Create(CreateCategoryRequest request);
-        void Update(string itemId, UpdateCategoryRequest request);
+        void Update(UpdateCategoryRequest request);
     }
 }
