@@ -8,5 +8,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public virtual bool ValueInRange(object value, object lowerBound, object upperBound)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
