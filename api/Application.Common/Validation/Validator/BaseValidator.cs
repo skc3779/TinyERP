@@ -1,6 +1,7 @@
 ﻿namespace App.Common.Validation.Validator
 {
     using System;
+    using System.Collections.Generic;
 
     public abstract class BaseValidator : IValidator
     {
@@ -9,12 +10,17 @@
             throw new NotImplementedException();
         }
 
-        public virtual bool Require(object value)
+        public virtual bool CheckRequire(object value)
         {
             throw new NotImplementedException();
         }
 
-        public virtual bool ValueInRange(object value, object lowerBound, object upperBound)
+        public virtual bool CheckValueInRange(object value, object lowerBound, object upperBound)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual bool CheckValueInCollection(object value, IEnumerable<object> values)
         {
             throw new NotImplementedException();
         }

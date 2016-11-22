@@ -15,7 +15,7 @@
         public override bool IsValid(ValidationRequest validateRequest)
         {
             IValidator validator = ValidatorResolver.Resolve(validateRequest.DataType);
-            return validator.ValueInRange(validateRequest.Value, this.LowerBound, this.UpperBound);
+            return validator.CheckValueInRange(validateRequest.Value, this.LowerBound, this.UpperBound);
         }
     }
 }

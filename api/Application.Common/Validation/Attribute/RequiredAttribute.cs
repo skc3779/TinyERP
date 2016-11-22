@@ -11,7 +11,7 @@
         public override bool IsValid(ValidationRequest validateRequest)
         {
             IValidator validator = ValidatorResolver.Resolve(validateRequest.DataType);
-            return validator.Require(validateRequest.Value);
+            return validator.CheckRequire(validateRequest.Value);
         }
     }
 }
