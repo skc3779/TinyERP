@@ -1,5 +1,7 @@
 ﻿namespace App.Common.Validation.Validator
 {
+    using App.Common.Helpers;
+
     public class StringValidator : BaseValidator
     {
         public override bool Require(object value)
@@ -13,6 +15,13 @@
             int low = (int)lowerBound;
             int upper = (int)upperBound;
             return !string.IsNullOrWhiteSpace(str) && str.Length >= low && str.Length <= upper;
+        }
+
+        public override bool Match(object value, object evaluator)
+        {
+            string pattern = evaluator as string;
+            string val = value as string;
+            return RegexHelper.IsMatch(pattern, val);
         }
     }
 }

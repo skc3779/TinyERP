@@ -4,6 +4,11 @@
 
     public abstract class BaseValidator : IValidator
     {
+        public virtual bool Match(object value, object evaluator)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual bool Require(object value)
         {
             throw new NotImplementedException();

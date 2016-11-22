@@ -1,7 +1,7 @@
-﻿using App.Common.Validation.Validator;
-
-namespace App.Common.Validation.Attribute
+﻿namespace App.Common.Validation.Attribute
 {
+    using App.Common.Validation.Validator;
+
     public class ValueInRangeAttribute : BaseAttribute
     {
         public object LowerBound { get; set; }
