@@ -171,10 +171,11 @@
     <Compile Include="Helpers\ObjectHelper.cs" />
     <Compile Include="Helpers\ParameterHelper.cs" />
     <Compile Include="Helpers\PhotoHelper.cs" />
-    <Compile Include="Helpers\RegHelper.cs" />
     <Compile Include="BaseExecutable.cs" />
+    <Compile Include="Helpers\RegexHelper.cs" />
     <Compile Include="Helpers\TestCaseHelper.cs" />
     <Compile Include="Helpers\UtilHelper.cs" />
+    <Compile Include="Helpers\ValidationHelper.cs" />
     <Compile Include="Mail\EmailContent.cs" />
     <Compile Include="Mail\IEmailContent.cs" />
     <Compile Include="Mail\IMailService.cs" />
@@ -200,6 +201,12 @@
     <Compile Include="UITest\Writer\BaseTestWriter.cs" />
     <Compile Include="UITest\Writer\ExcelTestWriter.cs" />
     <Compile Include="UnitTest\BaseUnitTest.cs" />
+    <Compile Include="Validation\Attribute\BaseValidator.cs" />
+    <Compile Include="Validation\Attribute\MatchAttribute.cs" />
+    <Compile Include="Validation\Attribute\RequiredAttribute.cs" />
+    <Compile Include="Validation\Attribute\ValidationRequest.cs" />
+    <Compile Include="Validation\Attribute\ValueInCollectionAttribute.cs" />
+    <Compile Include="Validation\Attribute\ValueInRangeAttribute.cs" />
     <Compile Include="Validation\ElementNotFound.cs" />
     <Compile Include="Extensions\DecimalExtension.cs" />
     <Compile Include="Extensions\EnumExtension.cs" />
@@ -310,6 +317,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidationException.cs" />
     <Compile Include="UnitTestApiApplication.cs" />
+    <Compile Include="Validation\Validator\BaseValidator.cs" />
+    <Compile Include="Validation\Validator\IValidator.cs" />
+    <Compile Include="Validation\Validator\StringValidator.cs" />
+    <Compile Include="Validation\Validator\ValidatorResolver.cs" />
     <Compile Include="WebApiApplication.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -328,7 +339,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tasks\Attribute\" />

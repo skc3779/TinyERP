@@ -11,10 +11,6 @@
         {
         }
 
-        public Permission(BaseContent permission) : this(permission.Name, permission.Key, permission.Description)
-        {
-        }
-
         public Permission(string name, string key, string desc) : base(name, key, desc)
         {
         }

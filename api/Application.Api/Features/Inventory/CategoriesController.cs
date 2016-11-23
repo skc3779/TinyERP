@@ -35,13 +35,13 @@
 
         [Route("{id}")]
         [HttpGet]
-        public IResponseData<GetCategoryResponse> GetById([FromUri]string id)
+        public IResponseData<GetCategoryResponse> GetById([FromUri]Guid id)
         {
             IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                GetCategoryResponse item = categoryService.GetById(id);
+                GetCategoryResponse item = categoryService.GetById(id.ToString());
                 response.SetData(item);
             }
             catch (ValidationException exception)
@@ -87,6 +87,25 @@
             {
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
                 response.SetErrors(exception.Errors);
+            }
+
+            return response;
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IResponseData<string> DeleteCategory([FromUri] Guid id)
+        {
+            IResponseData<string> response = new ResponseData<string>();
+            try
+            {
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                categoryService.DeleteCategory(id);
+            }
+            catch (ValidationException ex)
+            {
+                response.SetErrors(ex.Errors);
+                response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
 
             return response;

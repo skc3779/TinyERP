@@ -6,7 +6,8 @@ let categoryService = {
     getCategories: getCategories,
     getCategoryById: getCategoryById,
     updateCategory: updateCategory,
-    createCategory: createCategory
+    createCategory: createCategory,
+    deleteCategory: deleteCategory
 };
 export default categoryService;
 function getCategories(): Promise {
@@ -28,4 +29,9 @@ function createCategory(item: any): Promise {
     let connector = window.ioc.resolve(IoCNames.IConnector);
     let url = String.format("{0}inventory/categories", configHelper.getAppConfig().api.baseUrl);
     return connector.post(url, item);
+}
+function deleteCategory(id: any) {
+    let connector = window.ioc.resolve(IoCNames.IConnector);
+    let url = String.format("{0}inventory/categories/{1}", configHelper.getAppConfig().api.baseUrl, id);
+    return connector.delete(url);
 }

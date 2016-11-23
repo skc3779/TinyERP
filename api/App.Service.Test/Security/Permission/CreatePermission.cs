@@ -24,7 +24,7 @@
         }
 
         [TestMethod]
-        public void CreatePermission_ShouldBeSuccess_WithValidRequest()
+        public void Security_Permission_CreatePermission_ShouldBeSuccess_WithValidRequest()
         {
             string name = "Name of Permission" + Guid.NewGuid();
             string key = "Key of Permission" + Guid.NewGuid();
@@ -35,7 +35,7 @@
         }
 
         [TestMethod]
-        public void CreatePermission_ShouldGetException_WithEmptyName()
+        public void Security_Permission_CreatePermission_ShouldGetException_WithEmptyName()
         {
             try
             {
@@ -53,7 +53,7 @@
         }
 
         [TestMethod]
-        public void CreatePermission_ShouldGetException_WithDuplicatedName()
+        public void Security_Permission_CreatePermission_ShouldGetException_WithDuplicatedName()
         {
             try
             {
@@ -72,7 +72,7 @@
         }
 
         [TestMethod]
-        public void CreatePermission_ShouldGetException_WithEmptyKey()
+        public void Security_Permission_CreatePermission_ShouldGetException_WithEmptyKey()
         {
             try
             {
@@ -90,7 +90,7 @@
         }
 
         [TestMethod]
-        public void CreatePermission_ShouldGetException_WithDuplicatedKey()
+        public void Security_Permission_CreatePermission_ShouldGetException_WithDuplicatedKey()
         {
             try
             {

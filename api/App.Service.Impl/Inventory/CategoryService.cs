@@ -6,9 +6,10 @@
     using App.Repository.Inventory;
     using App.Common.DI;
     using App.Common;
-    using App.Entity.Inventory;
+    using System;
     using App.Common.Data;
     using Context;
+    using Entity.Inventory;
 
     public class CategoryService : ICategoryService
     {
@@ -127,6 +128,26 @@
             if (!string.IsNullOrWhiteSpace(updateCategoryRequest.Description) && updateCategoryRequest.Description.Length > FormValidationRules.MaxDescriptionLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
+            }
+        }
+
+        public void DeleteCategory(Guid id)
+        {
+            this.ValidateDeleteRequest(id);
+            using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
+            {
+                ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
+                categoryRepository.Delete(id.ToString());
+                uow.Commit();
+            }
+        }
+
+        private void ValidateDeleteRequest(Guid id)
+        {
+            ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
+            if (categoryRepository.GetById(id.ToString()) == null)
+            {
+                throw new ValidationException("inventory.categories.validation.categoryIsInvalid");
             }
         }
     }

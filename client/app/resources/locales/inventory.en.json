@@ -3,7 +3,10 @@
         "title": "Categories",
         "addCategoryAction": "Add Category",
         "name": "Name",
-        "description": "Description"
+        "description": "Description",
+        "validation": {
+            "categoryIsInvalid": "The category is invalid."
+        }
     },
     "addOrUpdateCategory": {
         "pageTitleForAdding": "Add Category",

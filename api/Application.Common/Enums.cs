@@ -159,4 +159,10 @@
         public const int MaxNameLength = 50;
         public const int MaxDescriptionLength = 512;
     }
+
+    public enum DataType {
+        String,
+        Number,
+        Object
+    }
 }
