@@ -15,22 +15,31 @@
 
     internal class PermissionService : IPermissionService
     {
-        public void CreateIfNotExist(IList<Permission> pers)
+        public void CreateIfNotExist(IList<CreatePermissionRequest> pers)
         {
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
             {
                 IPermissionRepository perRepository = IoC.Container.Resolve<IPermissionRepository>(uow);
-                foreach (Permission per in pers)
+                foreach (CreatePermissionRequest perRequest in pers)
                 {
-                    if (perRepository.GetByKey(per.Key) != null) { continue; }
-                    perRepository.Add(per);
+                    try
+                    {
+                        this.ValidateCreatePermissionRequest(perRequest);
+                        Permission permission = new Permission(perRequest.Name, perRequest.Key, perRequest.Description);
+                        perRepository.Add(permission);
+                    }
+                    catch (ValidationException ex)
+                    {
+                        if (ex.HasExceptionKey("security.addPermission.validation.nameAlreadyExist")) { continue; }
+                        if (ex.HasExceptionKey("security.addPermission.validation.keyAlreadyExist")) { continue; }
+                    }
                 }
 
                 uow.Commit();
             }
         }
 
-        public Permission Create(CreatePermissionRequest permission)
+        public CreatePermissionResponse Create(CreatePermissionRequest permission)
         {
             this.ValidateCreatePermissionRequest(permission);
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
@@ -39,7 +48,7 @@
                 Permission per = new Permission(permission.Name, permission.Key, permission.Description);
                 perRepository.Add(per);
                 uow.Commit();
-                return per;
+                return ObjectHelper.Convert<CreatePermissionResponse>(per);
             }
         }
 
@@ -116,22 +125,11 @@
         private void ValidateUpdateRequest(UpdatePermissionRequest request)
         {
             IValidationException validationException = new ValidationException();
-
-            if (string.IsNullOrWhiteSpace(request.Name))
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.nameIsRequire"));
-            }
-
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
             Permission per = perRepo.GetByName(request.Name);
             if (per != null && per.Id != request.Id)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.nameAlreadyExist"));
-            }
-
-            if (string.IsNullOrWhiteSpace(request.Key))
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.keyIsRequire"));
             }
 
             per = perRepo.GetByName(request.Key);

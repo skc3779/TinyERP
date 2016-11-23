@@ -1,9 +1,15 @@
 ﻿namespace App.Service.Security.Permission
 {
-    using App.Common.Data;
-    using App.Common.Mapping;
+    using App.Common.Validation.Attribute;
+    using System;
 
-    public class UpdatePermissionRequest : BaseContent, IMappedFrom<App.Entity.Security.Permission>
+    public class UpdatePermissionRequest
     {
+        public Guid Id { get; set; }
+        [Required("security.addPermission.validation.nameIsRequire")]
+        public string Name { get; set; }
+        [Required("security.addPermission.validation.keyIsRequire")]
+        public string Key { get; set; }
+        public string Description { get; set; }
     }
 }

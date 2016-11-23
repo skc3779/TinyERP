@@ -30,7 +30,7 @@
             string key = "Key of Permission" + Guid.NewGuid();
             string desc = "Desc of Permission";
             IPermissionService service = IoC.Container.Resolve<IPermissionService>();
-            App.Entity.Security.Permission permission = this.CreatePermissionItem(name, key, desc);
+            CreatePermissionResponse permission = this.CreatePermissionItem(name, key, desc);
             Assert.IsNotNull(permission);
         }
 
@@ -108,12 +108,11 @@
             }
         }
 
-        private App.Entity.Security.Permission CreatePermissionItem(string name, string key, string desc)
+        private CreatePermissionResponse CreatePermissionItem(string name, string key, string desc)
         {
-            CreatePermissionRequest request = new CreatePermissionRequest() { Name = name, Key = key, Description = desc };
+            CreatePermissionRequest request = new CreatePermissionRequest(name, key, desc);
             IPermissionService service = IoC.Container.Resolve<IPermissionService>();
-            App.Entity.Security.Permission permission = service.Create(request);
-            return permission;
+            return service.Create(request);
         }
     }
 }

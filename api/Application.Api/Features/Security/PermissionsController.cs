@@ -1,6 +1,5 @@
 ﻿namespace App.Api.Features.Security
 {
-    using App.Common.Data;
     using App.Common.DI;
     using App.Common.Http;
     using App.Common.Validation;
@@ -56,13 +55,13 @@
 
         [HttpPost]
         [Route("")]
-        public IResponseData<Permission> CreatePermission(CreatePermissionRequest permission)
+        public IResponseData<CreatePermissionResponse> CreatePermission(CreatePermissionRequest request)
         {
-            IResponseData<Permission> response = new ResponseData<Permission>();
+            IResponseData<CreatePermissionResponse> response = new ResponseData<CreatePermissionResponse>();
             try
             {
                 IPermissionService permissionService = IoC.Container.Resolve<IPermissionService>();
-                Permission per = permissionService.Create(permission);
+                CreatePermissionResponse per = permissionService.Create(request);
                 response.SetData(per);
             }
             catch (ValidationException ex)
