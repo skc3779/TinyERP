@@ -2,19 +2,20 @@
 {
     using App.Common.Validation.Validator;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class ValueInCollectionAttribute : BaseAttribute
     {
-        public IEnumerable<object> Values { get; set; }
-        public ValueInCollectionAttribute(string key, IEnumerable<object> values) : base(key)
+        public IList<object> Values { get; set; }
+        public ValueInCollectionAttribute(string key, object[] values) : base(key)
         {
-            this.Values = values;
+            this.Values = values.ToList();
         }
 
         public override bool IsValid(ValidationRequest validateRequest)
         {
             IValidator validator = ValidatorResolver.Resolve(validateRequest.DataType);
-            return validator.CheckValueInCollection(validateRequest.Value, this.Values);
+            return validator.IsValueInCollection(validateRequest.Value, this.Values);
         }
     }
 }

@@ -5,22 +5,22 @@
 
     public abstract class BaseValidator : IValidator
     {
-        public virtual bool Match(object value, object evaluator)
+        public virtual bool IsMatch(object value, object evaluator)
         {
             throw new NotImplementedException();
         }
 
-        public virtual bool CheckRequire(object value)
+        public virtual bool IsRequire(object value)
         {
             throw new NotImplementedException();
         }
 
-        public virtual bool CheckValueInRange(object value, object lowerBound, object upperBound)
+        public virtual bool IsValueInRange(object value, object lowerBound, object upperBound)
         {
             throw new NotImplementedException();
         }
 
-        public virtual bool CheckValueInCollection(object value, IEnumerable<object> values)
+        public virtual bool IsValueInCollection(object value, IList<object> values)
         {
             throw new NotImplementedException();
         }

@@ -5,6 +5,7 @@
     using App.Common.Validation;
     using App.Common.Validation.Attribute;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Generic;
 
     [TestClass]
     public class ValidateValueInCollectionAttribute : BaseUnitTest
@@ -12,7 +13,7 @@
         private const string NameExceptionKey = "Name.ValueInCollection.Key";
         private class CustomAttributeObject
         {
-            [ValueInCollection(ValidateValueInCollectionAttribute.NameExceptionKey, new string[] { "one", "two", "three" })]
+            [ValueInCollection(ValidateValueInCollectionAttribute.NameExceptionKey, new object[] { "one", "two", "three" })]
             public string Name { get; set; }
             public CustomAttributeObject(string name = "")
             {

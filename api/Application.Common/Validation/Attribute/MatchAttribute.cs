@@ -13,7 +13,7 @@
         public override bool IsValid(ValidationRequest validateRequest)
         {
             IValidator validator = ValidatorResolver.Resolve(validateRequest.DataType);
-            return validator.Match(validateRequest.Value, this.Evaluator);
+            return validator.IsMatch(validateRequest.Value, this.Evaluator);
         }
     }
 }
