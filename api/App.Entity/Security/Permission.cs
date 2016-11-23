@@ -15,4 +15,9 @@
         {
         }
     }
+    public enum PermissionField {
+        Name,
+        Key,
+        Description
+    }
 }

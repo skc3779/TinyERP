@@ -159,4 +159,9 @@
         Number,
         Object
     }
+    public enum DataOperationType {
+        Create,
+        Update,
+        Delete
+    }
 }
