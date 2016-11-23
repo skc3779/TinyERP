@@ -156,6 +156,7 @@
 
     public enum DataType {
         String,
-        Number
+        Number,
+        Object
     }
 }

@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public abstract class BaseValidator : IValidator
+    public class BaseValidator : IValidator
     {
         public virtual bool IsMatch(object value, object evaluator)
         {
