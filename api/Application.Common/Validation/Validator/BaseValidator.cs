@@ -12,7 +12,7 @@
 
         public virtual bool IsRequire(object value)
         {
-            throw new NotImplementedException();
+            return value != null;
         }
 
         public virtual bool IsValueInRange(object value, object lowerBound, object upperBound)
