@@ -5,8 +5,5 @@
 
     public class CategoryListItem : BaseContent, IMappedFrom<App.Entity.Inventory.Category>
     {
-        public CategoryListItem()
-        {
-        }
     }
 }

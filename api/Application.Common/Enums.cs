@@ -153,4 +153,10 @@
         Number,
         Password
     }
+
+    public class FormValidationRules
+    {
+        public const int MaxNameLength = 50;
+        public const int MaxDescriptionLength = 512;
+    }
 }

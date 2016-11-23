@@ -6,7 +6,7 @@
         "description": "Description"
     },
     "addOrUpdateCategory": {
-        "pageTitleForAddNew": "Add Category",
+        "pageTitleForAdding": "Add Category",
         "pageTitleForUpdatting": "Update Category",
         "name": "Name",
         "inputName": "Please input name of Category",

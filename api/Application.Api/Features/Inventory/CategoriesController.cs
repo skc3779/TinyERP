@@ -7,8 +7,9 @@
     using App.Common.DI;
     using App.Service.Inventory;
     using System.Net;
+    using System;
 
-    [RoutePrefix("api/categories")]
+    [RoutePrefix("api/inventory/categories")]
     public class CategoriesController : ApiController
     {
         [HttpGet]
@@ -73,15 +74,14 @@
 
         [Route("{id}")]
         [HttpPut]
-        public IResponseData<GetCategoryResponse> UpdateCategory([FromBody]UpdateCategoryRequest request)
+        public IResponseData<string> UpdateCategory([FromUri]Guid id, [FromBody]UpdateCategoryRequest request)
         {
-            IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
+            IResponseData<string> response = new ResponseData<string>();
             try
             {
+                request.Id = id;
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
                 categoryService.Update(request);
-                GetCategoryResponse item = categoryService.GetById(request.Id);
-                response.SetData(item);
             }
             catch (ValidationException exception)
             {
