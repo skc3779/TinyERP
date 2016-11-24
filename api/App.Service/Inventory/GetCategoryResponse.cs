@@ -6,8 +6,5 @@
 
     public class GetCategoryResponse : BaseContent, IMappedFrom<Category>
     {
-        public GetCategoryResponse()
-        {
-        }
     }
 }

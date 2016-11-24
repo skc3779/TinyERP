@@ -59,6 +59,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Common\Validator\StringValidator\ValidateValueInCollectionAttribute.cs" />
+    <Compile Include="Common\Validator\StringValidator\ValidateMatchAttribute.cs" />
+    <Compile Include="Common\Validator\StringValidator\ValidateValueInRangeAttribute.cs" />
+    <Compile Include="Common\Validator\StringValidator\ValidateRequireAttribute.cs" />
     <Compile Include="Common\ValidationHelper\ValidateUsingCustomAttribute.cs" />
     <Compile Include="Inventory\Category\CreateCategory.cs" />
     <Compile Include="Security\Permission\CreatePermission.cs" />

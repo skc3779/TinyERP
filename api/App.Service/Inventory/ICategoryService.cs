@@ -1,7 +1,7 @@
 ﻿namespace App.Service.Inventory
 {
+    using System;
     using System.Collections.Generic;
-    using App.Entity.Inventory;
 
     public interface ICategoryService
     {
@@ -9,6 +9,7 @@
         void CreateIfNotExist(List<CreateCategoryRequest> categories);
         GetCategoryResponse GetById(string itemId);
         Category Create(CreateCategoryRequest request);
-        void Update(string itemId, UpdateCategoryRequest request);
+        void Update(UpdateCategoryRequest request);
+        void DeleteCategory(Guid id);
     }
 }

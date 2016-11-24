@@ -8,8 +8,9 @@
             switch (dataType)
             {
                 case DataType.String:
-                default:
                     return new StringValidator();
+                default:
+                    return new BaseValidator();
             }
         }
 
@@ -18,8 +19,9 @@
             switch (type.ToLower())
             {
                 case "system.string":
-                default:
                     return DataType.String;
+                default:
+                    return DataType.Object;
             }
         }
     }

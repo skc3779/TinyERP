@@ -6,24 +6,24 @@
     using App.Repository.Inventory;
     using App.Common.DI;
     using App.Common;
-    using App.Entity.Inventory;
+    using System;
     using App.Common.Data;
     using Context;
-    using Service.Inventory.Config;
+    using Entity.Inventory;
 
     public class CategoryService : ICategoryService
     {
-        public void CreateIfNotExist(List<CreateCategoryRequest> createCategoriesRequest)
+        public void CreateIfNotExist(List<CreateCategoryRequest> createCategoryRequests)
         {
             using (App.Common.Data.IUnitOfWork uow = new App.Common.Data.UnitOfWork(new App.Context.AppDbContext(IOMode.Write)))
             {
                 ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
-                foreach (CreateCategoryRequest createCategoryRequest in createCategoriesRequest)
+                foreach (CreateCategoryRequest request in createCategoryRequests)
                 {
                     try
                     {
-                        this.ValidateCreateCategoryRequest(createCategoryRequest);
-                        Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
+                        this.ValiateCreateCategoryRequest(request);
+                        Category category = new Category(request.Name, request.Description);
                         categoryRepository.Add(category);
                     }
                     catch (ValidationException exception)
@@ -39,113 +39,116 @@
             }
         }
 
-        private void ValidateCreateCategoryRequest(CreateCategoryRequest createCategoryRequest)
-        {
-            ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-            if (string.IsNullOrEmpty(createCategoryRequest.Name))
-            {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameIsRequired");
-            }
-
-            if (categoryRepository.GetByName(createCategoryRequest.Name) != null)
-            {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
-            }
-        }
-
         public IList<CategoryListItem> GetCategories()
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             return categoryRepository.GetItems<CategoryListItem>();
         }
 
-        public GetCategoryResponse GetById(string itemId)
+        public GetCategoryResponse GetById(string id)
         {
-            ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>();
-            return catRepo.GetById<GetCategoryResponse>(itemId);
+            ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
+            return categoryRepository.GetById<GetCategoryResponse>(id);
         }
 
         public Category Create(CreateCategoryRequest request)
         {
-            this.ValiateForCreation(request);
+            this.ValiateCreateCategoryRequest(createCategoryRequest);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
-                ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>(uow);
-                Category category = new Category(request.Name, request.Description);
-                catRepo.Add(category);
+                ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
+                Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
+                categoryRepository.Add(category);
                 uow.Commit();
                 return category;
             }
         }
 
-        private void ValiateForCreation(CreateCategoryRequest request)
+        private void ValiateCreateCategoryRequest(CreateCategoryRequest createCategoryRequest)
         {
-            ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>();
-            if (string.IsNullOrWhiteSpace(request.Name))
+            ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
+            if (string.IsNullOrWhiteSpace(createCategoryRequest.Name))
             {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameIsRequired");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameRequired");
             }
 
-            if (request.Name.Length > ValidationConfig.NameLength)
+            if (createCategoryRequest.Name.Length > FormValidationRules.MaxNameLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
 
-            if (catRepo.GetByName(request.Name) != null)
+            if (categoryRepository.GetByName(createCategoryRequest.Name) != null)
             {
                 throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
             }
 
-            if (!string.IsNullOrWhiteSpace(request.Description) && request.Description.Length > ValidationConfig.DescriptionLength)
+            if (!string.IsNullOrWhiteSpace(createCategoryRequest.Description) && createCategoryRequest.Description.Length > FormValidationRules.MaxDescriptionLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
         }
 
-        public void Update(string itemId, UpdateCategoryRequest request)
+        public void Update(UpdateCategoryRequest updateCategoryRequest)
         {
-            this.ValiateForUpdate(itemId, request);
+            this.ValiateUpdateCategoryRequest(updateCategoryRequest);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
             {
-                ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>(uow);
-                Category category = catRepo.GetById(itemId);
-                category.Name = request.Name;
-                category.Description = request.Description;
-                catRepo.Update(category);
+                ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
+                Category category = categoryRepository.GetById(updateCategoryRequest.Id.ToString());
+                category.Name = updateCategoryRequest.Name;
+                category.Description = updateCategoryRequest.Description;
+                categoryRepository.Update(category);
                 uow.Commit();
             }
         }
 
-        private void ValiateForUpdate(string itemId, UpdateCategoryRequest request)
+        private void ValiateUpdateCategoryRequest(UpdateCategoryRequest updateCategoryRequest)
         {
-            ICategoryRepository catRepo = IoC.Container.Resolve<ICategoryRepository>();
-            Category oldItem = catRepo.GetById(itemId);
-            if (oldItem == null)
+            ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
+            Category oldCategory = categoryRepository.GetById(updateCategoryRequest.Id.ToString());
+            if (oldCategory == null)
             {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.categoryIsNotExist");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.categoryNotExisted");
             }
 
-            if (string.IsNullOrWhiteSpace(request.Name))
+            if (string.IsNullOrWhiteSpace(updateCategoryRequest.Name))
             {
-                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameIsRequired");
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameRequired");
             }
 
-            if (request.Name.Length > ValidationConfig.NameLength)
+            if (updateCategoryRequest.Name.Length > FormValidationRules.MaxNameLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
             }
 
-            if (oldItem.Name != request.Name)
+            if (oldCategory.Name != updateCategoryRequest.Name && categoryRepository.GetByName(updateCategoryRequest.Name) != null)
             {
-                if (catRepo.GetByName(request.Name) != null)
-                {
-                    throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
-                }
+                throw new ValidationException("inventory.addOrUpdateCategory.validation.nameAlreadyExisted");
             }
 
-            if (!string.IsNullOrWhiteSpace(request.Description) && request.Description.Length > ValidationConfig.DescriptionLength)
+            if (!string.IsNullOrWhiteSpace(updateCategoryRequest.Description) && updateCategoryRequest.Description.Length > FormValidationRules.MaxDescriptionLength)
             {
                 throw new ValidationException("common.form.validation.fieldTooLong");
+            }
+        }
+
+        public void DeleteCategory(Guid id)
+        {
+            this.ValidateDeleteRequest(id);
+            using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
+            {
+                ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>(uow);
+                categoryRepository.Delete(id.ToString());
+                uow.Commit();
+            }
+        }
+
+        private void ValidateDeleteRequest(Guid id)
+        {
+            ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
+            if (categoryRepository.GetById(id.ToString()) == null)
+            {
+                throw new ValidationException("inventory.categories.validation.categoryIsInvalid");
             }
         }
     }

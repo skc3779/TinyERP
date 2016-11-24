@@ -171,8 +171,8 @@
     <Compile Include="Helpers\ObjectHelper.cs" />
     <Compile Include="Helpers\ParameterHelper.cs" />
     <Compile Include="Helpers\PhotoHelper.cs" />
-    <Compile Include="Helpers\RegHelper.cs" />
     <Compile Include="BaseExecutable.cs" />
+    <Compile Include="Helpers\RegexHelper.cs" />
     <Compile Include="Helpers\TestCaseHelper.cs" />
     <Compile Include="Helpers\UtilHelper.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
@@ -202,8 +202,11 @@
     <Compile Include="UITest\Writer\ExcelTestWriter.cs" />
     <Compile Include="UnitTest\BaseUnitTest.cs" />
     <Compile Include="Validation\Attribute\BaseValidator.cs" />
+    <Compile Include="Validation\Attribute\MatchAttribute.cs" />
     <Compile Include="Validation\Attribute\RequiredAttribute.cs" />
     <Compile Include="Validation\Attribute\ValidationRequest.cs" />
+    <Compile Include="Validation\Attribute\ValueInCollectionAttribute.cs" />
+    <Compile Include="Validation\Attribute\ValueInRangeAttribute.cs" />
     <Compile Include="Validation\ElementNotFound.cs" />
     <Compile Include="Extensions\DecimalExtension.cs" />
     <Compile Include="Extensions\EnumExtension.cs" />

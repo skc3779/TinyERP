@@ -6,12 +6,13 @@ import { PageAction } from "../../../common/models/ui";
 import categoryService from "../_share/services/categoryService";
 import { Router } from "angular2/router";
 import route from "../_share/config/route";
+import {ErrorMessage} from "../../../common/layouts/default/directives/common/errorMessage";
 
 
 @Component({
     selector: "categories",
     templateUrl: "app/modules/inventory/category/categories.html",
-    directives: [Grid, PageActions, Page]
+    directives: [Grid, PageActions, Page, ErrorMessage]
 })
 export class Categories extends BasePage {
     public model: CategoriesModel;
@@ -27,8 +28,12 @@ export class Categories extends BasePage {
     private onAddNewCategoryClicked() {
         this.router.navigate([route.inventory.addCategory.name]);
     }
-    private onCategoryDeleteClicked(event: any) {
-        console.log("execute delete category funtion");
+
+    private onCategoryDeleteClicked(categoryItem: any) {
+        let self: Categories = this;
+        categoryService.deleteCategory(categoryItem.item.id).then(function () {
+            self.loadCategories();
+        });
     }
     private onCategoryEditClicked(event: any) {
         this.router.navigate([route.inventory.updateCategory.name, { id: event.item.id }]);

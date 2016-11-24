@@ -7,8 +7,9 @@
     using App.Common.DI;
     using App.Service.Inventory;
     using System.Net;
+    using System;
 
-    [RoutePrefix("api/categories")]
+    [RoutePrefix("api/inventory/categories")]
     public class CategoriesController : ApiController
     {
         [HttpGet]
@@ -32,21 +33,21 @@
             return dataResponse;
         }
 
-        [Route("{itemId}")]
+        [Route("{id}")]
         [HttpGet]
-        public IResponseData<GetCategoryResponse> GetById([FromUri]string itemId)
+        public IResponseData<GetCategoryResponse> GetById([FromUri]Guid id)
         {
             IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
             try
             {
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
-                GetCategoryResponse item = catService.GetById(itemId);
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                GetCategoryResponse item = categoryService.GetById(id.ToString());
                 response.SetData(item);
             }
-            catch (ValidationException ex)
+            catch (ValidationException exception)
             {
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
-                response.SetErrors(ex.Errors);
+                response.SetErrors(exception.Errors);
             }
 
             return response;
@@ -59,34 +60,52 @@
             IResponseData<string> response = new ResponseData<string>();
             try
             {
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
-                catService.Create(request);
+                ICategoryService categorytService = IoC.Container.Resolve<ICategoryService>();
+                categorytService.Create(request);
             }
-            catch (ValidationException ex)
+            catch (ValidationException exception)
             {
                 response.SetStatus(HttpStatusCode.PreconditionFailed);
-                response.SetErrors(ex.Errors);
+                response.SetErrors(exception.Errors);
             }
 
             return response;
         }
 
-        [Route("{itemId}")]
+        [Route("{id}")]
         [HttpPut]
-        public IResponseData<GetCategoryResponse> UpdateCategory([FromUri]string itemId, [FromBody]UpdateCategoryRequest request)
+        public IResponseData<string> UpdateCategory([FromUri]Guid id, [FromBody]UpdateCategoryRequest request)
         {
-            IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
+            IResponseData<string> response = new ResponseData<string>();
             try
             {
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
-                catService.Update(itemId, request);
-                GetCategoryResponse item = catService.GetById(itemId);
-                response.SetData(item);
+                request.Id = id;
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                categoryService.Update(request);
+            }
+            catch (ValidationException exception)
+            {
+                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetErrors(exception.Errors);
+            }
+
+            return response;
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IResponseData<string> DeleteCategory([FromUri] Guid id)
+        {
+            IResponseData<string> response = new ResponseData<string>();
+            try
+            {
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                categoryService.DeleteCategory(id);
             }
             catch (ValidationException ex)
             {
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
                 response.SetErrors(ex.Errors);
+                response.SetStatus(HttpStatusCode.PreconditionFailed);
             }
 
             return response;

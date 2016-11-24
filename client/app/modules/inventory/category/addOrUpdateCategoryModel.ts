@@ -7,13 +7,13 @@ export class Model {
     public validate(): boolean {
         let validation: ValidationException = new ValidationException();
         if (String.isNullOrWhiteSpace(this.name)) {
-            validation.add("inventory.addOrUpdateCategory.validation.nameIsRequired");
+            validation.add("inventory.addOrUpdateCategory.validation.nameRequired");
         }
         if (!String.isNullOrWhiteSpace(this.name) && this.name.length > FormValidationRules.MaxNameLength) {
-            validation.add("inventory.addOrUpdateCategory.validation.fieldTooLong");
+            validation.add("common.form.validation.fieldTooLong");
         }
         if (!String.isNullOrWhiteSpace(this.description) && this.description.length > FormValidationRules.MaxDescriptionLength) {
-            validation.add("inventory.addOrUpdateCategory.validation.fieldTooLong");
+            validation.add("common.form.validation.fieldTooLong");
         }
         validation.throwIfHasError();
         return !validation.hasError();

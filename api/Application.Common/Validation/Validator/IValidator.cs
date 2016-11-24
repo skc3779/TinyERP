@@ -1,7 +1,12 @@
 ﻿namespace App.Common.Validation.Validator
 {
+    using System.Collections.Generic;
+
     public interface IValidator
     {
-        bool Require(object value);
+        bool IsRequire(object value);
+        bool IsValueInRange(object value, object lowerBound, object upperBound);
+        bool IsMatch(object value, object evaluator);
+        bool IsValueInCollection(object value, IList<object> values);
     }
 }

@@ -33,12 +33,12 @@ export class AddOrUpdateCategory extends BasePage {
         if (self.mode === FormMode.Edit) {
             categoryService.updateCategory(this.model).then(function () {
                 self.router.navigate([route.inventory.categories.name]);
-            });
-        } else {
-            categoryService.addNewCategory(this.model).then(function () {
-                self.router.navigate([route.inventory.categories.name]);
+                return;
             });
         }
+        categoryService.createCategory(this.model).then(function () {
+            self.router.navigate([route.inventory.categories.name]);
+        });
     }
     public onCancelClicked(event: any): void {
         let self: AddOrUpdateCategory = this;
