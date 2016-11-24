@@ -46,7 +46,7 @@ namespace App.Service.Test.Inventory.Category
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("inventory.addOrUpdateCategory.validation.nameIsRequired"));
+                Assert.IsTrue(ex.HasExceptionKey("inventory.addOrUpdateCategory.validation.nameRequired"));
             }
         }
 
