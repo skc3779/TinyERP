@@ -1,4 +1,5 @@
-﻿using App.Common.DI;
+﻿using App.Common;
+using App.Common.DI;
 using App.Common.UnitTest;
 using App.Common.Validation;
 using App.Service.Inventory;
@@ -72,7 +73,7 @@ namespace App.Service.Test.Inventory.Category
         {
             try
             {
-                string name = "Name Too Long" + new String('g', App.Service.Inventory.Config.ValidationConfig.NameLength);
+                string name = "Name Too Long" + new String('g', FormValidationRules.MaxNameLength);
                 string desc = "Desc of Category";
                 ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
                 this.CreateCategoryItem(name, desc);
@@ -90,7 +91,7 @@ namespace App.Service.Test.Inventory.Category
             try
             {
                 string name = "Name of Category";
-                string desc = "Desc Too Long" + new String('g', App.Service.Inventory.Config.ValidationConfig.DescriptionLength);
+                string desc = "Desc Too Long" + new String('g', FormValidationRules.MaxDescriptionLength);
                 ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
                 this.CreateCategoryItem(name, desc);
                 Assert.IsTrue(false);

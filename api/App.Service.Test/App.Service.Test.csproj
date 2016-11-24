@@ -63,7 +63,6 @@
     <Compile Include="Common\Validator\StringValidator\ValidateMatchAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateValueInRangeAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateRequireAttribute.cs" />
-    <Compile Include="Common\ValidationHelper\ValidateUsingCustomAttribute.cs" />
     <Compile Include="Inventory\Category\CreateCategory.cs" />
     <Compile Include="Security\Permission\CreatePermission.cs" />
     <Compile Include="Inventory\Category\DeleteCategory.cs" />

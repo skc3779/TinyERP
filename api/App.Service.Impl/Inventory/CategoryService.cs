@@ -51,7 +51,7 @@
             return categoryRepository.GetById<GetCategoryResponse>(id);
         }
 
-        public Category Create(CreateCategoryRequest request)
+        public Category Create(CreateCategoryRequest createCategoryRequest)
         {
             this.ValiateCreateCategoryRequest(createCategoryRequest);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))

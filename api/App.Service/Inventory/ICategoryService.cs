@@ -1,5 +1,6 @@
 ﻿namespace App.Service.Inventory
 {
+    using Entity.Inventory;
     using System;
     using System.Collections.Generic;
 
