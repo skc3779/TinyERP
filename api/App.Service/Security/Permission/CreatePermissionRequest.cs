@@ -6,7 +6,7 @@
 
     public class CreatePermissionRequest
     {
-        [Unique("security.addPermission.validation.nameAlreadyExist", typeof(App.Entity.Security.Permission), new {Operation = DataOperationType.Create, Field = PermissionField.Name})]
+        //[Unique("security.addPermission.validation.nameAlreadyExist", typeof(App.Entity.Security.Permission), new ValidatorOption(DataOperationType.Create, PermissionField.Name.ToString()))]
         [Required("security.addPermission.validation.nameIsRequire")]
     public string Name { get; set; }
 

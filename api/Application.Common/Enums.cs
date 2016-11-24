@@ -160,6 +160,7 @@
         Object
     }
     public enum DataOperationType {
+        None,
         Create,
         Update,
         Delete

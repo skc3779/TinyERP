@@ -5,7 +5,6 @@
     using App.Common.Validation;
     using App.Common.Validation.Attribute;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Collections.Generic;
 
     [TestClass]
     public class ValidateValueInCollectionAttribute : BaseUnitTest
