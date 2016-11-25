@@ -12,6 +12,6 @@
         App.Entity.Security.Permission Create(CreatePermissionRequest permission);
         void Delete(Guid id);
         GetPermissionResponse GetPermission(Guid id);
-        void UpdatePermission(UpdatePermissionRequest request);
+        void Update(UpdatePermissionRequest request);
     }
 }

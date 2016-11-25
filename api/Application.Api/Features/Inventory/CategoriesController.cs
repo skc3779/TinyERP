@@ -16,33 +16,33 @@
         [Route("")]
         public IResponseData<IList<CategoryListItem>> GetCategories()
         {
-            IResponseData<IList<CategoryListItem>> dataResponse = new ResponseData<IList<CategoryListItem>>();
+            IResponseData<IList<CategoryListItem>> response = new ResponseData<IList<CategoryListItem>>();
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                IList<CategoryListItem> items = categoryService.GetCategories();
-                dataResponse.SetStatus(System.Net.HttpStatusCode.OK);
-                dataResponse.SetData(items);
+                IList<CategoryListItem> categories = categoryService.GetCategories();
+                response.SetStatus(System.Net.HttpStatusCode.OK);
+                response.SetData(categories);
             }
             catch (ValidationException exception)
             {
-                dataResponse.SetErrors(exception.Errors);
-                dataResponse.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
+                response.SetErrors(exception.Errors);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
 
-            return dataResponse;
+            return response;
         }
 
         [Route("{id}")]
         [HttpGet]
-        public IResponseData<GetCategoryResponse> GetById([FromUri]Guid id)
+        public IResponseData<GetCategoryResponse> GetCategoryById([FromUri]Guid id)
         {
             IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                GetCategoryResponse item = categoryService.GetById(id.ToString());
-                response.SetData(item);
+                GetCategoryResponse category = categoryService.GetCategoryById(id);
+                response.SetData(category);
             }
             catch (ValidationException exception)
             {
@@ -100,7 +100,7 @@
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                categoryService.DeleteCategory(id);
+                categoryService.Delete(id);
             }
             catch (ValidationException ex)
             {

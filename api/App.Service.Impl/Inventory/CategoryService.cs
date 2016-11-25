@@ -45,10 +45,10 @@
             return categoryRepository.GetItems<CategoryListItem>();
         }
 
-        public GetCategoryResponse GetById(string id)
+        public GetCategoryResponse GetCategoryById(Guid id)
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-            return categoryRepository.GetById<GetCategoryResponse>(id);
+            return categoryRepository.GetById<GetCategoryResponse>(id.ToString());
         }
 
         public void Create(CreateCategoryRequest createCategoryRequest)
@@ -131,7 +131,7 @@
             }
         }
 
-        public void DeleteCategory(Guid id)
+        public void Delete(Guid id)
         {
             this.ValidateDeleteRequest(id);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))

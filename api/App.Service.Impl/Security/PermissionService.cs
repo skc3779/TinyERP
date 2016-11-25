@@ -98,7 +98,7 @@
             return perRepo.GetById<GetPermissionResponse>(id.ToString());
         }
 
-        public void UpdatePermission(UpdatePermissionRequest request)
+        public void Update(UpdatePermissionRequest request)
         {
             this.ValidateUpdateRequest(request);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
