@@ -6,8 +6,8 @@
     <ProjectGuid>{41D2654B-DFF9-45E9-93F6-6DBA9F1768BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>App.Service.Test</RootNamespace>
-    <AssemblyName>App.Service.Test</AssemblyName>
+    <RootNamespace>App.Test</RootNamespace>
+    <AssemblyName>App.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Common\Validator\StringValidator\ValidateUniqueAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateValueInCollectionAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateMatchAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateValueInRangeAttribute.cs" />

@@ -6,7 +6,7 @@
     public class UniqueAttribute : BaseAttribute
     {
         public Type EntityType { get; set; }
-        public dynamic Options { get; set; }
+        public object Options { get; set; }
         public UniqueAttribute(string key, Type type, object options) : base(key)
         {
             this.EntityType = type;

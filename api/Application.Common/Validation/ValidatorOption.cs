@@ -8,9 +8,9 @@
         {
             this.Operation = DataOperationType.None;
         }
-        public ValidatorOption(DataOperationType operation, string field)
+        public ValidatorOption(string operation, string field)
         {
-            this.Operation = operation;
+            //this.Operation = operation;
             this.Field = field;
         }
     }

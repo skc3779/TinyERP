@@ -204,6 +204,7 @@
     <Compile Include="Validation\Attribute\BaseValidator.cs" />
     <Compile Include="Validation\Attribute\MatchAttribute.cs" />
     <Compile Include="Validation\Attribute\RequiredAttribute.cs" />
+    <Compile Include="Validation\Attribute\UniqueAttribute.cs" />
     <Compile Include="Validation\Attribute\ValidationRequest.cs" />
     <Compile Include="Validation\Attribute\ValueInCollectionAttribute.cs" />
     <Compile Include="Validation\Attribute\ValueInRangeAttribute.cs" />
@@ -352,7 +353,7 @@ xcopy /Y /S /r "$(ProjectDir)Configurations\configuration.debug.config" "$(Solut
 xcopy /Y /S /r "$(ProjectDir)Configurations\configuration.release.config" "$(SolutionDir)Application.Api\Config\"
 xcopy /Y /S /r "$(ProjectDir)Configurations\configuration.release.config" "$(SolutionDir)App.UI.Test\Config\"
 
-xcopy /Y /S /r "$(ProjectDir)Configurations\configuration.debug.config" "$(SolutionDir)App.Service.Test\Config\"</PostBuildEvent>
+xcopy /Y /S /r "$(ProjectDir)Configurations\configuration.debug.config" "$(SolutionDir)App.Test\Config\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

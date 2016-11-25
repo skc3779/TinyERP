@@ -25,7 +25,7 @@
             throw new NotImplementedException();
         }
 
-        public bool IsUnique(object value, dynamic options)
+        public bool IsUnique(object value, object options)
         {
             throw new NotImplementedException();
         }

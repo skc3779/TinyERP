@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.EventHandler.Impl", "Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{0E44EAE7-B1E3-44EE-BD0B-3D5F22164C53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Service.Test", "App.Service.Test\App.Service.Test.csproj", "{41D2654B-DFF9-45E9-93F6-6DBA9F1768BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Test", "App.Test\App.Test.csproj", "{41D2654B-DFF9-45E9-93F6-6DBA9F1768BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
