@@ -15,7 +15,6 @@
         private const string NameExceptionKey = "Name.Unique.Key";
         private class CustomAttributeObject
         {
-            //[Unique("security.addPermission.validation.nameAlreadyExist", typeof(App.Entity.Security.Permission), new ValidatorOption("", PermissionField.Name.ToString()))]
             public string Name { get; set; }
             public CustomAttributeObject(string name = "")
             {

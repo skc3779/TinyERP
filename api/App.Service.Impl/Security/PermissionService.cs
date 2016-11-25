@@ -124,8 +124,9 @@
 
         private void ValidateUpdateRequest(UpdatePermissionRequest request)
         {
-            IValidationException validationException = new ValidationException();
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
+            IValidationException validationException = ValidationHelper.Validate(request);
+
             Permission per = perRepo.GetByName(request.Name);
             if (per != null && per.Id != request.Id)
             {

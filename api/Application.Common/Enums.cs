@@ -159,6 +159,7 @@
         Number,
         Object
     }
+
     public enum DataOperationType {
         None,
         Create,
