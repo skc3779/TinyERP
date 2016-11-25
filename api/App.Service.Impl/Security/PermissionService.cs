@@ -133,7 +133,7 @@
                 validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.nameAlreadyExist"));
             }
 
-            per = perRepo.GetByName(request.Key);
+            per = perRepo.GetByKey(request.Key);
             if (per != null && per.Id != request.Id)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.keyAlreadyExist"));

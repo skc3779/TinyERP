@@ -64,6 +64,7 @@
     <Compile Include="Common\Validator\StringValidator\ValidateMatchAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateValueInRangeAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateRequireAttribute.cs" />
+    <Compile Include="Security\Permission\UpdatePermission.cs" />
     <Compile Include="Security\Permission\CreatePermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
