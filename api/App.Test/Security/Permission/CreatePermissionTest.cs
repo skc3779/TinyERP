@@ -9,7 +9,7 @@
     using System;
 
     [TestClass]
-    public class CreatePermission : BaseUnitTest
+    public class CreatePermissionTest : BaseUnitTest
     {
         [TestInitialize()]
         public void Init()
@@ -29,7 +29,6 @@
             string name = "Name of Permission" + Guid.NewGuid();
             string key = "Key of Permission" + Guid.NewGuid();
             string desc = "Desc of Permission";
-            IPermissionService service = IoC.Container.Resolve<IPermissionService>();
             CreatePermissionResponse permission = this.CreatePermissionItem(name, key, desc);
             Assert.IsNotNull(permission);
         }
@@ -42,7 +41,6 @@
                 string name = string.Empty;
                 string key = "Key of Permission" + Guid.NewGuid();
                 string desc = "Desc of Permission";
-                IPermissionService service = IoC.Container.Resolve<IPermissionService>();
                 this.CreatePermissionItem(name, key, desc);
                 Assert.IsTrue(false);
             }
@@ -60,7 +58,6 @@
                 string name = "Duplicated Name" + Guid.NewGuid();
                 string key = "Key of Permission" + Guid.NewGuid();
                 string desc = "Desc of Permission";
-                IPermissionService service = IoC.Container.Resolve<IPermissionService>();
                 this.CreatePermissionItem(name, key, desc);
                 this.CreatePermissionItem(name, Guid.NewGuid().ToString(), desc);
                 Assert.IsTrue(false);
@@ -79,7 +76,6 @@
                 string name = "Name Of Permission" + Guid.NewGuid();
                 string key = string.Empty;
                 string desc = "Desc of Permission";
-                IPermissionService service = IoC.Container.Resolve<IPermissionService>();
                 this.CreatePermissionItem(name, key, desc);
                 Assert.IsTrue(false);
             }
@@ -97,7 +93,6 @@
                 string name = "Name of Pemrission" + Guid.NewGuid();
                 string key = "Duplicated Key" + Guid.NewGuid();
                 string desc = "Desc of Permission";
-                IPermissionService service = IoC.Container.Resolve<IPermissionService>();
                 this.CreatePermissionItem(name, key, desc);
                 this.CreatePermissionItem(Guid.NewGuid().ToString(), key, desc);
                 Assert.IsTrue(false);

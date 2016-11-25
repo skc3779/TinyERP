@@ -89,7 +89,7 @@
 
         private void ValidateDeleteRequest(Guid id)
         {
-            if (id == null)
+            if (id == null || id == Guid.Empty)
             {
                 throw new ValidationException("security.permissons.permissionIdIsInvalid");
             }

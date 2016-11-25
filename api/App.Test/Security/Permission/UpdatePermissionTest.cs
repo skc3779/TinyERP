@@ -9,7 +9,7 @@
     using System;
 
     [TestClass]
-    public class UpdatePermission : BaseUnitTest
+    public class UpdatePermissionTest : BaseUnitTest
     {
         private CreatePermissionResponse permission;
         private CreatePermissionResponse permission1;
@@ -21,7 +21,6 @@
             string name = "Name of Permission" + Guid.NewGuid();
             string key = "Key of Permission" + Guid.NewGuid();
             string desc = "Desc of Permission";
-            IPermissionService service = IoC.Container.Resolve<IPermissionService>();
             this.permission = this.CreatePermissionItem(name, key, desc);
 
             name = "Duplicated Name" + Guid.NewGuid();
