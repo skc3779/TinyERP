@@ -84,5 +84,14 @@
                 return (FolderElement)this["folder"];
             }
         }
+
+        [ConfigurationProperty("integration-test")]
+        public IntegrationTestElement IntegrationTest
+        {
+            get
+            {
+                return (IntegrationTestElement)this["integration-test"];
+            }
+        }
     }
 }

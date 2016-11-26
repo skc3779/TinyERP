@@ -1,4 +1,4 @@
-﻿namespace App.Service.Security
+﻿namespace App.Service.Security.Permission
 {
     using App.Common.Data;
     using App.Common.Mapping;
