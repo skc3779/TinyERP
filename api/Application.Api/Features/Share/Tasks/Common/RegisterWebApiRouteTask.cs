@@ -1,4 +1,4 @@
-﻿namespace App.Api.Feature.Share.Tasks
+﻿namespace App.Api.Feature.Share.Tasks.Common
 {
     using App.Common.Tasks;
     using System.Web.Http;

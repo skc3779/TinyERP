@@ -199,14 +199,14 @@
     <Compile Include="Features\Setting\ContentTypesController.cs" />
     <Compile Include="Features\Share\Authorize\UserLoginAuthorization.cs" />
     <Compile Include="Features\Share\Bootstrap.cs" />
+    <Compile Include="Features\Share\Tasks\Common\JsonSerializerTask.cs" />
+    <Compile Include="Features\Share\Tasks\Common\RegisterWebApiRouteTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateCategoryTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateContentTypesTask.cs" />
-    <Compile Include="Features\Share\Tasks\Data\CreatePermissionTask.cs" />
+    <Compile Include="Features\Share\Tasks\Secutiry\CreatePermissionTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateTestUsersTask.cs" />
     <Compile Include="Features\Share\Tasks\Data\CreateRoleAndPermissionTask.cs" />
-    <Compile Include="Features\Share\Tasks\JsonSerializerTask.cs" />
     <Compile Include="Features\Registration\UsersController.cs" />
-    <Compile Include="Features\Share\Tasks\RegisterWebApiRouteTask.cs" />
     <Compile Include="Features\Support\RequestsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
