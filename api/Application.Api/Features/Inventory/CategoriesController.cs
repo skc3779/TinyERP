@@ -6,7 +6,6 @@
     using App.Common.Validation;
     using App.Common.DI;
     using App.Service.Inventory;
-    using System.Net;
     using System;
 
     [RoutePrefix("api/inventory/categories")]
@@ -35,18 +34,18 @@
 
         [Route("{id}")]
         [HttpGet]
-        public IResponseData<GetCategoryResponse> GetCategoryById([FromUri]Guid id)
+        public IResponseData<GetCategoryResponse> GetCategory([FromUri]Guid id)
         {
             IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                GetCategoryResponse category = categoryService.GetCategoryById(id);
+                GetCategoryResponse category = categoryService.GetCategory(id);
                 response.SetData(category);
             }
             catch (ValidationException exception)
             {
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
                 response.SetErrors(exception.Errors);
             }
 
@@ -65,7 +64,7 @@
             }
             catch (ValidationException exception)
             {
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
                 response.SetErrors(exception.Errors);
             }
 
@@ -85,7 +84,7 @@
             }
             catch (ValidationException exception)
             {
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
                 response.SetErrors(exception.Errors);
             }
 
@@ -105,7 +104,7 @@
             catch (ValidationException ex)
             {
                 response.SetErrors(ex.Errors);
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
 
             return response;

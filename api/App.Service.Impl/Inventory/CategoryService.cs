@@ -45,7 +45,7 @@
             return categoryRepository.GetItems<CategoryListItem>();
         }
 
-        public GetCategoryResponse GetCategoryById(Guid id)
+        public GetCategoryResponse GetCategory(Guid id)
         {
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             return categoryRepository.GetById<GetCategoryResponse>(id.ToString());
