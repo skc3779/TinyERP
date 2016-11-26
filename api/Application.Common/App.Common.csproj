@@ -130,10 +130,14 @@
     <Compile Include="Configurations\AuthenticationElement.cs" />
     <Compile Include="Configurations\DatabasesElement.cs" />
     <Compile Include="Configurations\FolderElement.cs" />
+    <Compile Include="Configurations\IntegrationTestElement.cs" />
     <Compile Include="Configurations\MailElement.cs" />
     <Compile Include="Configurations\UITestElement.cs" />
     <Compile Include="Configurations\LocalizationElement.cs" />
     <Compile Include="Configurations\PagingElement.cs" />
+    <Compile Include="Connector\ConnectorFactory.cs" />
+    <Compile Include="Connector\IConnector.cs" />
+    <Compile Include="Connector\RESTConnector.cs" />
     <Compile Include="ConsoleApplication.cs" />
     <Compile Include="Data\BaseContent.cs" />
     <Compile Include="Data\BaseContentRepository.cs" />
@@ -201,6 +205,7 @@
     <Compile Include="UITest\UI\UIInputAction.cs" />
     <Compile Include="UITest\Writer\BaseTestWriter.cs" />
     <Compile Include="UITest\Writer\ExcelTestWriter.cs" />
+    <Compile Include="UnitTest\BaseIntegrationTest.cs" />
     <Compile Include="UnitTest\BaseUnitTest.cs" />
     <Compile Include="Validation\Attribute\BaseValidator.cs" />
     <Compile Include="Validation\Attribute\MatchAttribute.cs" />
