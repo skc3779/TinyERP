@@ -2,7 +2,8 @@
 {
     public class ConnectorFactory
     {
-        public IConnector Create(ConnectorType type){
+        public static IConnector Create(ConnectorType type)
+        {
             switch (type)
             {
                 case ConnectorType.REST:

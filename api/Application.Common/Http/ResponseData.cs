@@ -7,7 +7,7 @@
 
     public class ResponseData<DataType> : IResponseData<DataType>
     {
-        public HttpStatusCode Status { get; protected set; }
+        public HttpStatusCode Status { get; set; }
         public IList<ValidationError> Errors { get; set; }
         public DataType Data { get; set; }
         public ResponseData()

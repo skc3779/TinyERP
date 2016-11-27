@@ -12,7 +12,7 @@
         public BaseIntegrationTest(string uri)
         {
             this.Application = App.Common.ApplicationFactory.Create<System.Web.HttpApplication>(App.Common.ApplicationType.UnitTest, null);
-            this.BaseUrl = string.Format("{0}/{1}", Configuration.Current.IntegrationTest.BaseUrl, uri);
+            this.BaseUrl = uri;
             this.Connector = ConnectorFactory.Create(ConnectorType.REST);
         }
 

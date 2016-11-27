@@ -4,9 +4,9 @@
 
     public interface IConnector
     {
-        IResponseData<TEntity> Delete<TEntity>(string uri);
-        IResponseData<TEntity> Create<TEntity>(string uri, TEntity data);
-        IResponseData<TEntity> Update<TEntity>(string uri, TEntity data);
-        IResponseData<TEntity> Get<TEntity>(string uri);
+        IResponseData<TResponse> Delete<TResponse>(string uri);
+        IResponseData<TResponse> Post<TRequest, TResponse>(string uri, TRequest data);
+        IResponseData<TResponse> Put<TRequest, TResponse>(string uri, TRequest data);
+        IResponseData<TResponse> Get<TResponse>(string uri);
     }
 }

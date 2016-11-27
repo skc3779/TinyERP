@@ -8,7 +8,7 @@
     {
         DataType Data { get; set; }
         IList<ValidationError> Errors { get; set; }
-        HttpStatusCode Status { get;}
+        HttpStatusCode Status { get; set; }
         void SetStatus(System.Net.HttpStatusCode httpStatusCode);
         void SetErrors(IList<ValidationError> errors);
         void SetData(DataType data);
