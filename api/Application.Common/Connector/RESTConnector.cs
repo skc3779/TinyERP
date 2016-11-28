@@ -5,11 +5,6 @@
     using System.Net.Http;
     using App.Common.Configurations;
     using System.Net.Http.Headers;
-    using System.IO;
-    using System.Text;
-    using Newtonsoft.Json;
-    using Logging;
-    using DI;
 
     public class RESTConnector : IConnector
     {
@@ -57,21 +52,8 @@
 
         private TResponse GetResponseAs<TResponse>(HttpContent content)
         {
-            try
-            {
-                Stream receiveStream = content.ReadAsStreamAsync().Result;
-                StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
-                string contentStr = readStream.ReadToEnd();
-                return JsonConvert.DeserializeObject<TResponse>(contentStr);
-            }
-            catch (Exception ex) {
-                ILogger logger = IoC.Container.Resolve<ILogger>();
-                logger.Error(ex);
-                throw ex;
-            }
-
-            //TResponse result = content.ReadAsAsync<TResponse>().Result;
-            //return result;
+            TResponse result = content.ReadAsAsync<TResponse>().Result;
+            return result;
         }
 
         private HttpClient CreateHttpClient(string baseUrl)
