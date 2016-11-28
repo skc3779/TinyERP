@@ -11,25 +11,6 @@
     [TestClass]
     public class DeletePermissionTest : BaseUnitTest
     {
-        [TestInitialize()]
-        public void Init()
-        {
-            this.Application.OnApplicationStarted();
-        }
-
-        private CreatePermissionResponse CreatePermissionItem(string name, string key, string desc)
-        {
-            CreatePermissionRequest request = new CreatePermissionRequest(name, key, desc);
-            IPermissionService service = IoC.Container.Resolve<IPermissionService>();
-            return service.Create(request);
-        }
-
-        [TestCleanup()]
-        public void Finished()
-        {
-            this.Application.OnApplicationEnded();
-        }
-
         [TestMethod]
         public void Security_Permission_DeletePermission_ShouldBeSuccess_WithValidRequest()
         {
@@ -42,6 +23,13 @@
             IPermissionService service = IoC.Container.Resolve<IPermissionService>();
             App.Service.Security.Permission.GetPermissionResponse deletedPermisison = service.GetPermission(permission.Id);
             Assert.IsNull(deletedPermisison);
+        }
+
+        private CreatePermissionResponse CreatePermissionItem(string name, string key, string desc)
+        {
+            CreatePermissionRequest request = new CreatePermissionRequest(name, key, desc);
+            IPermissionService service = IoC.Container.Resolve<IPermissionService>();
+            return service.Create(request);
         }
 
         [TestMethod]

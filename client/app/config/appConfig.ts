@@ -28,7 +28,7 @@ export default {
         token: "authtoken"
     },
     api: {
-        baseUrl: "http://localhost:22383/api/"
+        baseUrl: "http://localhost:132/api/"
     },
     localeUrl: "/app/resources/locales/"
 };

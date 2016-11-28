@@ -172,4 +172,8 @@
         Update,
         Delete
     }
+
+    public enum ConnectorType {
+        REST
+    }
 }

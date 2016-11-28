@@ -13,11 +13,9 @@
     {
         private CreatePermissionResponse permission;
         private CreatePermissionResponse permission1;
-
-        [TestInitialize()]
-        public void Init()
+        protected override void OnInit()
         {
-            this.Application.OnApplicationStarted();
+            base.OnInit();
             string name = "Name of Permission" + Guid.NewGuid();
             string key = "Key of Permission" + Guid.NewGuid();
             string desc = "Desc of Permission";
@@ -34,12 +32,6 @@
             CreatePermissionRequest request = new CreatePermissionRequest(name, key, desc);
             IPermissionService service = IoC.Container.Resolve<IPermissionService>();
             return service.Create(request);
-        }
-
-        [TestCleanup()]
-        public void Finished()
-        {
-            this.Application.OnApplicationEnded();
         }
 
         [TestMethod]
