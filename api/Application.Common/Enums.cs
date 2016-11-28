@@ -165,4 +165,15 @@
         Number,
         Object
     }
+
+    public enum DataOperationType {
+        None,
+        Create,
+        Update,
+        Delete
+    }
+
+    public enum ConnectorType {
+        REST
+    }
 }

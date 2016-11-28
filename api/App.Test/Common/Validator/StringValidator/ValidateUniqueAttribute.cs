@@ -1,19 +1,20 @@
 ﻿namespace App.Service.Test.Common
 {
+    using App.Common;
+    using App.Common.DI;
     using App.Common.Helpers;
     using App.Common.UnitTest;
     using App.Common.Validation;
     using App.Common.Validation.Attribute;
+    using Entity.Security;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Collections.Generic;
+    using Service.Security.Permission;
 
-    [TestClass]
-    public class ValidateValueInCollectionAttribute : BaseUnitTest
+    public class ValidateUniqueAttribute : BaseUnitTest
     {
-        private const string NameExceptionKey = "Name.ValueInCollection.Key";
+        private const string NameExceptionKey = "Name.Unique.Key";
         private class CustomAttributeObject
         {
-            [ValueInCollection(ValidateValueInCollectionAttribute.NameExceptionKey, new object[] { "one", "two", "three" })]
             public string Name { get; set; }
             public CustomAttributeObject(string name = "")
             {
@@ -22,19 +23,23 @@
         }
 
         [TestMethod]
-        public void Common_StringValidator_ValidateValueInCollectionAttribute_ShouldBeSuccess_WithValidValue()
+        public void Common_Validator_ValidateUniqueAttribute_ShouldBeSuccess_WithValidName()
         {
-            CustomAttributeObject obj = new CustomAttributeObject("one");
+            CustomAttributeObject obj = new CustomAttributeObject("132");
             IValidationException ex = ValidationHelper.Validate(obj);
             Assert.IsTrue(ex.Errors.Count == 0);
         }
 
         [TestMethod]
-        public void Common_StringValidator_ValidateValueInCollectionAttribute_ShouldThrowException_WithInvalidNumber()
+        public void Common_Validator_ValidateUniqueAttribute_ShouldThrowException_WithDuplicatedName()
         {
+            CreatePermissionRequest request = new CreatePermissionRequest("abc", "dsfsdfs", "sdfdfs");
+            IPermissionService service = IoC.Container.Resolve<IPermissionService>();
+            service.Create(request);
+
             CustomAttributeObject obj = new CustomAttributeObject("abc");
             IValidationException ex = ValidationHelper.Validate(obj);
-            Assert.IsTrue(ex.HasExceptionKey(ValidateValueInCollectionAttribute.NameExceptionKey));
+            Assert.IsTrue(ex.HasExceptionKey(ValidateUniqueAttribute.NameExceptionKey));
         }
     }
 }

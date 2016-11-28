@@ -6,7 +6,6 @@
     using App.Common.Validation;
     using App.Common.DI;
     using App.Service.Inventory;
-    using System.Net;
     using System;
 
     [RoutePrefix("api/inventory/categories")]
@@ -16,37 +15,37 @@
         [Route("")]
         public IResponseData<IList<CategoryListItem>> GetCategories()
         {
-            IResponseData<IList<CategoryListItem>> dataResponse = new ResponseData<IList<CategoryListItem>>();
+            IResponseData<IList<CategoryListItem>> response = new ResponseData<IList<CategoryListItem>>();
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                IList<CategoryListItem> items = categoryService.GetCategories();
-                dataResponse.SetStatus(System.Net.HttpStatusCode.OK);
-                dataResponse.SetData(items);
+                IList<CategoryListItem> categories = categoryService.GetCategories();
+                response.SetStatus(System.Net.HttpStatusCode.OK);
+                response.SetData(categories);
             }
             catch (ValidationException exception)
             {
-                dataResponse.SetErrors(exception.Errors);
-                dataResponse.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
+                response.SetErrors(exception.Errors);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
 
-            return dataResponse;
+            return response;
         }
 
         [Route("{id}")]
         [HttpGet]
-        public IResponseData<GetCategoryResponse> GetById([FromUri]Guid id)
+        public IResponseData<GetCategoryResponse> GetCategory([FromUri]Guid id)
         {
             IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                GetCategoryResponse item = categoryService.GetById(id.ToString());
-                response.SetData(item);
+                GetCategoryResponse category = categoryService.GetCategory(id);
+                response.SetData(category);
             }
             catch (ValidationException exception)
             {
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
                 response.SetErrors(exception.Errors);
             }
 
@@ -65,7 +64,7 @@
             }
             catch (ValidationException exception)
             {
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
                 response.SetErrors(exception.Errors);
             }
 
@@ -85,7 +84,7 @@
             }
             catch (ValidationException exception)
             {
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
                 response.SetErrors(exception.Errors);
             }
 
@@ -100,12 +99,12 @@
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                categoryService.DeleteCategory(id);
+                categoryService.Delete(id);
             }
             catch (ValidationException ex)
             {
                 response.SetErrors(ex.Errors);
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
 
             return response;

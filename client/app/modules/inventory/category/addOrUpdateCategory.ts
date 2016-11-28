@@ -33,8 +33,8 @@ export class AddOrUpdateCategory extends BasePage {
         if (self.mode === FormMode.Edit) {
             categoryService.updateCategory(this.model).then(function () {
                 self.router.navigate([route.inventory.categories.name]);
-                return;
             });
+             return;
         }
         categoryService.createCategory(this.model).then(function () {
             self.router.navigate([route.inventory.categories.name]);

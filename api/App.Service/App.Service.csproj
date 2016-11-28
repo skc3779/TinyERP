@@ -70,6 +70,7 @@
     <Compile Include="Registration\User\UserQuickProfile.cs" />
     <Compile Include="Registration\User\UserSignInRequest.cs" />
     <Compile Include="Registration\User\UserSignInResponse.cs" />
+    <Compile Include="Security\Permission\CreatePermissionResponse.cs" />
     <Compile Include="Security\Permission\CreatePermissionRequest.cs" />
     <Compile Include="Security\Permission\DeletePermissionResponse.cs" />
     <Compile Include="Security\Permission\GetPermissionResponse.cs" />
@@ -81,10 +82,10 @@
     <Compile Include="Security\CreateUserGroupResponse.cs" />
     <Compile Include="Security\DeleteRoleResponse.cs" />
     <Compile Include="Security\GetRoleResponse.cs" />
-    <Compile Include="Security\IPermissionService.cs" />
+    <Compile Include="Security\Permission\IPermissionService.cs" />
     <Compile Include="Security\IRoleService.cs" />
     <Compile Include="Security\IUserGroupService.cs" />
-    <Compile Include="Security\PermissionAsKeyNamePair.cs" />
+    <Compile Include="Security\Permission\PermissionAsKeyNamePair.cs" />
     <Compile Include="Security\RoleKeyNamePair.cs" />
     <Compile Include="Security\RoleListItemSummary.cs" />
     <Compile Include="Security\UserGroupListItemSummary.cs" />
@@ -111,6 +112,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
