@@ -82,7 +82,7 @@
             {
                 request.Id = id;
                 IPermissionService permissionService = IoC.Container.Resolve<IPermissionService>();
-                permissionService.UpdatePermission(request);
+                permissionService.Update(request);
             }
             catch (ValidationException ex)
             {

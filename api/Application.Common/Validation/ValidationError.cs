@@ -7,6 +7,9 @@
         public string Key { get; set; }
         public string Message { get; set; }
         public IList<string> Params { get; set; }
+        public ValidationError()
+        {
+        }
 
         public ValidationError(string key, string message, IList<string> args = null)
         {

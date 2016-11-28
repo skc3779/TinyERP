@@ -1,0 +1,25 @@
+<page>
+    <page-header>
+        <span *ngIf="itemId.length > 0">  
+            {{i18n.inventory.addOrUpdateCategory.pageTitleForUpdating }}
+        </span>
+        <span *ngIf="itemId.length == 0"> 
+            {{i18n.inventory.addOrUpdateCategory.pageTitleForAddNew }}
+        </span>
+    </page-header>
+    <page-content>
+        <form-default>
+            <form-text-input [placeHolderText]=i18n.inventory.addOrUpdateCategory.inputName [labelText]=i18n.inventory.addOrUpdateCategory.name
+                [validation]="['inventory.addOrUpdateCategory.validation.nameRequired','inventory.addOrUpdateCategory.validation.nameAlreadyExisted','common.form.validation.fieldTooLong']"
+                [(model)]=model.name>
+            </form-text-input>
+            <form-textarea [placeHolderText]=i18n.inventory.addOrUpdateCategory.inputDesc [labelText]=i18n.inventory.addOrUpdateCategory.desc
+                [validation]="['common.form.validation.fieldTooLong']" [(model)]=model.description>
+            </form-textarea>
+            <form-footer>
+                <button (click)="onSaveClicked($event)" type="button" class="btn btn-primary">{{i18n.common.form.save}}</button>
+                <button (click)="onCancelClicked($event)" type="button" class="btn btn-default">{{i18n.common.form.cancel}}</button>
+            </form-footer>
+        </form-default>
+    </page-content>
+</page>

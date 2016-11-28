@@ -15,11 +15,9 @@ export class CategoriesModel {
             enableDelete: true,
         };
     }
-
     public addPageAction(action: any) {
         this.actions.push(action);
     }
-
     public importCategories(items: Array<any>) {
         let eventManager = window.ioc.resolve(IoCNames.IEventManager);
         eventManager.publish(this.eventKey, items);
