@@ -10,20 +10,8 @@
     [TestClass]
     public class DeleteCategory : BaseUnitTest
     {
-        [TestInitialize()]
-        public void Init()
-        {
-            this.Application.OnApplicationStarted();
-        }
-
-        [TestCleanup()]
-        public void Finished()
-        {
-            this.Application.OnApplicationEnded();
-        }
-
         [TestMethod]
-        public void DeleteCategory__ShouldGetException_WithInValidCategoryId()
+        public void Inventory_Category_DeleteCategory_ShouldGetException_WithInValidCategoryId()
         {
             try
             {
@@ -39,7 +27,7 @@
         }
 
         [TestMethod]
-        public void DeleteCategory_ShouldBeSuccess_WithValidRequest()
+        public void Inventory_Category_DeleteCategory_ShouldBeSuccess_WithValidRequest()
         {
             string name = "Name of category";
             string description = "Description of category";
