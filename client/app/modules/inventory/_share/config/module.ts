@@ -13,13 +13,13 @@ function createModule() {
         new MenuItem(
             "Inventory", route.inventory.categories.name, "fa fa-cogs",
             new MenuItem("Categories", route.inventory.categories.name, ""),
-            new MenuItem("Unit Measurements", route.inventory.unitOfMeasurements.name, "")
+            new MenuItem("Unit Of Measurements", route.inventory.unitOfMeasurements.name, "")
         )
     );
     module.addRoutes([
         { path: route.inventory.categories.path, name: route.inventory.categories.name, component: Categories, data: { authentication: AuthenticationMode.Require } },
-{ path: route.inventory.addCategory.path, name: route.inventory.addCategory.name, component: AddOrUpdateCategory, data: { authentication: AuthenticationMode.Require } },
-        { path: route.inventory.updateCategory.path, name: route.inventory.updateCategory.name, component: AddOrUpdateCategory, data: { authentication: AuthenticationMode.Require } }
+        { path: route.inventory.addCategory.path, name: route.inventory.addCategory.name, component: AddOrUpdateCategory, data: { authentication: AuthenticationMode.Require } },
+        { path: route.inventory.updateCategory.path, name: route.inventory.updateCategory.name, component: AddOrUpdateCategory, data: { authentication: AuthenticationMode.Require } },
         { path: route.inventory.unitOfMeasurements.path, name: route.inventory.unitOfMeasurements.name, component: UnitOfMeasurements, data: { authentication: AuthenticationMode.Require } }
     ]);
     return module;
