@@ -10,7 +10,6 @@
         public HttpStatusCode Status { get; set; }
         public IList<ValidationError> Errors { get; set; }
         public DataType Data { get; set; }
-
         public ResponseData()
         {
             this.Errors = new List<ValidationError>();

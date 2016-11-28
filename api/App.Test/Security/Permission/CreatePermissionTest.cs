@@ -11,18 +11,6 @@
     [TestClass]
     public class CreatePermissionTest : BaseUnitTest
     {
-        [TestInitialize()]
-        public void Init()
-        {
-            this.Application.OnApplicationStarted();
-        }
-
-        [TestCleanup()]
-        public void Finished()
-        {
-            this.Application.OnApplicationEnded();
-        }
-
         [TestMethod]
         public void Security_Permission_CreatePermission_ShouldBeSuccess_WithValidRequest()
         {
