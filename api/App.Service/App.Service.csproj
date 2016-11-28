@@ -61,6 +61,7 @@
     <Compile Include="Common\File\IFileService.cs" />
     <Compile Include="Common\ILanguageService.cs" />
     <Compile Include="Inventory\CategoryListItem.cs" />
+    <Compile Include="Inventory\CreateCategoryReponse.cs" />
     <Compile Include="Inventory\CreateCategoryRequest.cs" />
     <Compile Include="Inventory\GetCategoryResponse.cs" />
     <Compile Include="Inventory\ICategoryService.cs" />

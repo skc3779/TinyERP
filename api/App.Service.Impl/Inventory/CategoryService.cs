@@ -49,7 +49,7 @@
             return categoryRepository.GetById<GetCategoryResponse>(id.ToString());
         }
 
-        public void Create(CreateCategoryRequest createCategoryRequest)
+        public CreateCategoryReponse Create(CreateCategoryRequest createCategoryRequest)
         {
             this.ValiateCreateCategoryRequest(createCategoryRequest);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
@@ -58,6 +58,7 @@
                 Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
                 categoryRepository.Add(category);
                 uow.Commit();
+                return new CreateCategoryReponse(category.Id, category.Name, category.Description);
             }
         }
 
