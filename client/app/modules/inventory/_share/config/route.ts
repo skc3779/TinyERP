@@ -1,7 +1,7 @@
 let route = {
     inventory: {
         categories: { name: "Categories", path: "/inventory/categories" },
-        unitMeasurements: { name: "Unit Measurements", path: "/inventory/unitMeasurements" }
+        unitOfMeasurements: { name: "Unit Of Measurements", path: "/inventory/unitOfMeasurements" }
     }
 };
 export default route;

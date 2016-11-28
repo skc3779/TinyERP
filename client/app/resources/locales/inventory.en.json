@@ -8,7 +8,7 @@
             "categoryIsInvalid": "The category is invalid."
         }
     },
-    "unitMeasurements": {
-        "title": "Unit Mesurements"
+    "unitOfMeasurements": {
+        "title": "Unit Of Mesurements"
     }
 }
