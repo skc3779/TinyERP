@@ -64,13 +64,7 @@
         private void ValiateCreateCategoryRequest(CreateCategoryRequest createCategoryRequest)
         {
             IValidationException validationException = ValidationHelper.Validate(createCategoryRequest);
-
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
-
-            if (string.IsNullOrWhiteSpace(createCategoryRequest.Name))
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.nameRequired"));
-            }
 
             if (createCategoryRequest.Name.Length > FormValidationRules.MaxNameLength)
             {
