@@ -29,10 +29,7 @@
                     }
                     catch (ValidationException exception)
                     {
-                        if (exception.HasExceptionKey("inventory.addOrUpdateCategory.validation.nameAlreadyExisted"))
-                        {
-                            continue;
-                        }
+                        if (exception.HasExceptionKey("inventory.addOrUpdateCategory.validation.nameAlreadyExisted")) { continue; }
                     }
                 }
 

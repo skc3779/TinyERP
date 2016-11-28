@@ -18,6 +18,7 @@
             this.Key = key;
             this.Description = desc;
         }
+
         public CreatePermissionRequest()
         {
         }
