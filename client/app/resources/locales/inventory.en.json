@@ -7,5 +7,18 @@
         "validation": {
             "categoryIsInvalid": "The category is invalid."
         }
+    },
+    "addOrUpdateCategory": {
+        "pageTitleForAdding": "Add Category",
+        "pageTitleForUpdatting": "Update Category",
+        "name": "Name",
+        "inputName": "Please input name of Category",
+        "desc": "Description",
+        "inputDesc": "Please input description for Category",
+        "validation": {
+            "nameRequired": "Please input name of Category",
+            "nameAlreadyExisted": "This name is already existed. Please input another name",
+            "categoryNotExisted": "Category not found"
+        }
     }
 }

@@ -59,7 +59,7 @@
     <Compile Include="Common\FileService.cs" />
     <Compile Include="Common\LanguageService.cs" />
     <Compile Include="Inventory\CategoryService.cs" />
-    <Compile Include="Inventory\UnitMeasurementService.cs" />
+    <Compile Include="Inventory\UnitOfMeasurementService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\UserService.cs" />
     <Compile Include="Security\PermissionService.cs" />

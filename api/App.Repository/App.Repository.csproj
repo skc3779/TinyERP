@@ -57,7 +57,7 @@
     <Compile Include="Common\ILanguageRepository.cs" />
     <Compile Include="Common\IParameterRepository.cs" />
     <Compile Include="Inventory\ICategoryRepository.cs" />
-    <Compile Include="Inventory\IUnitMeasurementRepository.cs" />
+    <Compile Include="Inventory\IUnitOfMeasurementRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\IUserRepository.cs" />
     <Compile Include="Setting\IContentTypeRepository.cs" />

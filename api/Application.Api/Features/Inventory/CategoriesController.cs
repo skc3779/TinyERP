@@ -7,30 +7,88 @@
     using App.Common.DI;
     using App.Service.Inventory;
     using System;
-    using System.Net;
 
-    [RoutePrefix("api/categories")]
+    [RoutePrefix("api/inventory/categories")]
     public class CategoriesController : ApiController
     {
         [HttpGet]
         [Route("")]
         public IResponseData<IList<CategoryListItem>> GetCategories()
         {
-            IResponseData<IList<CategoryListItem>> dataResponse = new ResponseData<IList<CategoryListItem>>();
+            IResponseData<IList<CategoryListItem>> response = new ResponseData<IList<CategoryListItem>>();
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                IList<CategoryListItem> items = categoryService.GetCategories();
-                dataResponse.SetStatus(System.Net.HttpStatusCode.OK);
-                dataResponse.SetData(items);
+                IList<CategoryListItem> categories = categoryService.GetCategories();
+                response.SetStatus(System.Net.HttpStatusCode.OK);
+                response.SetData(categories);
             }
             catch (ValidationException exception)
             {
-                dataResponse.SetErrors(exception.Errors);
-                dataResponse.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
+                response.SetErrors(exception.Errors);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
 
-            return dataResponse;
+            return response;
+        }
+
+        [Route("{id}")]
+        [HttpGet]
+        public IResponseData<GetCategoryResponse> GetCategory([FromUri]Guid id)
+        {
+            IResponseData<GetCategoryResponse> response = new ResponseData<GetCategoryResponse>();
+            try
+            {
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                GetCategoryResponse category = categoryService.GetCategory(id);
+                response.SetData(category);
+            }
+            catch (ValidationException exception)
+            {
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
+                response.SetErrors(exception.Errors);
+            }
+
+            return response;
+        }
+
+        [Route("")]
+        [HttpPost]
+        public IResponseData<string> CreateCategory([FromBody]CreateCategoryRequest request)
+        {
+            IResponseData<string> response = new ResponseData<string>();
+            try
+            {
+                ICategoryService categorytService = IoC.Container.Resolve<ICategoryService>();
+                categorytService.Create(request);
+            }
+            catch (ValidationException exception)
+            {
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
+                response.SetErrors(exception.Errors);
+            }
+
+            return response;
+        }
+
+        [Route("{id}")]
+        [HttpPut]
+        public IResponseData<string> UpdateCategory([FromUri]Guid id, [FromBody]UpdateCategoryRequest request)
+        {
+            IResponseData<string> response = new ResponseData<string>();
+            try
+            {
+                request.Id = id;
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                categoryService.Update(request);
+            }
+            catch (ValidationException exception)
+            {
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
+                response.SetErrors(exception.Errors);
+            }
+
+            return response;
         }
 
         [HttpDelete]
@@ -41,12 +99,12 @@
             try
             {
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                categoryService.DeleteCategory(id);
+                categoryService.Delete(id);
             }
             catch (ValidationException ex)
             {
                 response.SetErrors(ex.Errors);
-                response.SetStatus(HttpStatusCode.PreconditionFailed);
+                response.SetStatus(System.Net.HttpStatusCode.PreconditionFailed);
             }
 
             return response;

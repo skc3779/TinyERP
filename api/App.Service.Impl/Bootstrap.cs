@@ -19,7 +19,7 @@
             context.RegisterSingleton<App.Service.Setting.IContentTypeService, App.Service.Impl.Setting.ContentTypeService>();
             context.RegisterSingleton<App.Service.Support.IRequestService, App.Service.Impl.Support.RequestService>();
             context.RegisterSingleton<App.Service.Inventory.ICategoryService, App.Service.Impl.Inventory.CategoryService>();
-            context.RegisterSingleton<App.Service.Inventory.IUnitMeasurementService, App.Service.Impl.Inventory.UnitMeasurementService>();
+            context.RegisterSingleton<App.Service.Inventory.IUnitOfMeasurementService, App.Service.Impl.Inventory.UnitOfMeasurementService>();
         }
     }
 }

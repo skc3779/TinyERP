@@ -63,7 +63,7 @@
     <Compile Include="Common\LanguageRepository.cs" />
     <Compile Include="Common\ParameterRepository.cs" />
     <Compile Include="Inventory\CategoryRepository.cs" />
-    <Compile Include="Inventory\UnitMeasurementRepository.cs" />
+    <Compile Include="Inventory\UnitOfMeasurementRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\UserRepository.cs" />
     <Compile Include="Security\PermissionRepository.cs" />

@@ -119,7 +119,7 @@
         {
             UpdatePermissionRequest request = new UpdatePermissionRequest(id, name, key, desc);
             IPermissionService service = IoC.Container.Resolve<IPermissionService>();
-            service.UpdatePermission(request);
+            service.Update(request);
         }
     }
 }

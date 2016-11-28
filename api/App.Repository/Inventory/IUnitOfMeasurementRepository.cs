@@ -3,7 +3,7 @@
     using App.Common.Data;
     using Entity.Inventory;
 
-    public interface IUnitMeasurementRepository : IBaseContentRepository<UnitMeasurement>
+    public interface IUnitOfMeasurementRepository : IBaseContentRepository<UnitOfMeasurement>
     {
     }
 }

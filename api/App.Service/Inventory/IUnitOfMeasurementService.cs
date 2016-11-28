@@ -1,6 +1,6 @@
 ﻿namespace App.Service.Inventory
 {
-    public interface IUnitMeasurementService
+    public interface IUnitOfMeasurementService
     {
     }
 }

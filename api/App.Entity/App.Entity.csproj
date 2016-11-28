@@ -63,7 +63,7 @@
     <Compile Include="Common\Language.cs" />
     <Compile Include="Common\Parameter.cs" />
     <Compile Include="Inventory\Category.cs" />
-    <Compile Include="Inventory\UnitMeasurement.cs" />
+    <Compile Include="Inventory\UnitOfMeasurement.cs" />
     <Compile Include="ProductManagement\Product.cs" />
     <Compile Include="ProductManagement\ProductCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

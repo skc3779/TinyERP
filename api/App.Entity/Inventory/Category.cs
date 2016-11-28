@@ -4,7 +4,7 @@
 
     public class Category : BaseContent
     {
-        public Category()
+        public Category() : base()
         {
         }
 

@@ -193,7 +193,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Features\Common\FilesController.cs" />
     <Compile Include="Features\Inventory\CategoriesController.cs" />
-    <Compile Include="Features\Inventory\UnitMeasurementsController.cs" />
+    <Compile Include="Features\Inventory\UnitOfMeasurementsController.cs" />
     <Compile Include="Features\Security\PermissionsController.cs" />
     <Compile Include="Features\Security\UserGroupsController.cs" />
     <Compile Include="Features\Security\RolesController.cs" />

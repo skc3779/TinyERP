@@ -1,13 +1,13 @@
 ﻿namespace App.Entity.Inventory
 {
     using App.Common.Data;
-    public class UnitMeasurement : BaseContent
+    public class UnitOfMeasurement : BaseContent
     {
-        public UnitMeasurement() : base()
+        public UnitOfMeasurement() : base()
         {
         }
 
-        public UnitMeasurement(string name, string description)
+        public UnitOfMeasurement(string name, string description)
         {
             this.Name = name;
             this.Description = description;

@@ -2,8 +2,9 @@
 {
     using App.Common.Data;
     using App.Common.Mapping;
+    using App.Entity.Inventory;
 
-    public class CategoryListItem : BaseContent, IMappedFrom<App.Entity.Inventory.Category>
+    public class GetCategoryResponse : BaseContent, IMappedFrom<Category>
     {
     }
 }
