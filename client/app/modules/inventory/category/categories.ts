@@ -6,11 +6,8 @@ import { PageAction } from "../../../common/models/ui";
 import categoryService from "../_share/services/categoryService";
 import { Router } from "angular2/router";
 import route from "../_share/config/route";
-import {ErrorMessage} from "../../../common/layouts/default/directives/common/errorMessage";
-
-
+import { ErrorMessage } from "../../../common/layouts/default/directives/common/errorMessage";
 @Component({
-    selector: "categories",
     templateUrl: "app/modules/inventory/category/categories.html",
     directives: [Grid, PageActions, Page, ErrorMessage]
 })
