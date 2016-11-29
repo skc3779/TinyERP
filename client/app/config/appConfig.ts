@@ -22,7 +22,7 @@ export default {
     defaultUrl: "Roles",
     localization: {
         lang: Languages.EN,
-        files: ["common", "registration", "security", "productManagement", "store", "setting", "support", "inventory","formInput"]
+        files: ["common", "registration", "security", "productManagement", "store", "setting", "support", "inventory"]
     },
     auth: {
         token: "authtoken"

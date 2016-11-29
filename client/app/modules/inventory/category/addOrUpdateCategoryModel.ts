@@ -10,10 +10,10 @@ export class Model {
             validation.add("inventory.addOrUpdateCategory.validation.nameRequired");
         }
         if (!String.isNullOrWhiteSpace(this.name) && this.name.length > FormValidationRules.MaxNameLength) {
-            validation.add("formInput.validation.fieldTooLong");
+            validation.add("inventory.addOrUpdateCategory.validation.fieldTooLong");
         }
         if (!String.isNullOrWhiteSpace(this.description) && this.description.length > FormValidationRules.MaxDescriptionLength) {
-            validation.add("formInput.validation.fieldTooLong");
+            validation.add("inventory.addOrUpdateCategory.validation.fieldTooLong");
         }
         validation.throwIfHasError();
         return !validation.hasError();
