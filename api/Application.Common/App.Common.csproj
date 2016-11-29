@@ -329,6 +329,7 @@
     <Compile Include="UnitTestApiApplication.cs" />
     <Compile Include="Validation\ValidatorOption.cs" />
     <Compile Include="Validation\Validator\BaseValidator.cs" />
+    <Compile Include="Validation\Validator\GuidValidator.cs" />
     <Compile Include="Validation\Validator\IValidator.cs" />
     <Compile Include="Validation\Validator\StringValidator.cs" />
     <Compile Include="Validation\Validator\ValidatorResolver.cs" />
