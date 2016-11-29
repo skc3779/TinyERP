@@ -2,9 +2,8 @@ import { IModule, Module, MenuItem } from "../../../../common/models/layout";
 import { AuthenticationMode } from "../../../../common/enum";
 import route from "./route";
 import { Categories } from "../../category/categories";
-import { UnitOfMeasurements } from "../../unitOfMeasurement/unitOfMeasurements";
 import { AddOrUpdateCategory } from "../../category/addOrUpdateCategory";
-
+import { UnitOfMeasurements } from "../../unitOfMeasurement/unitOfMeasurements";
 let module: IModule = createModule();
 export default module;
 function createModule() {
