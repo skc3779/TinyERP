@@ -66,6 +66,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Permission\DeletePermission.cs" />
+    <Compile Include="Security\Permission\UpdatePermission.cs" />
     <Compile Include="Security\Permission\CreatePermission.cs" />
   </ItemGroup>
   <ItemGroup>
