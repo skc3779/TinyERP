@@ -126,8 +126,12 @@
         {
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
             IValidationException validationException = ValidationHelper.Validate(request);
+            Permission per = perRepo.GetById(request.Id.ToString());
+            if (per == null) {
+                validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.invalidId"));
+            }
 
-            Permission per = perRepo.GetByName(request.Name);
+            per = perRepo.GetByName(request.Name);
             if (per != null && per.Id != request.Id)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("security.addPermission.validation.nameAlreadyExist"));

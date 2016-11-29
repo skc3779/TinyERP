@@ -18,9 +18,6 @@
       "resolved": "Resolved",
       "cancelled": "Cancelled",
       "new": "New"
-    },
-    "validation": {
-      "fieldTooLong": "Your input text is too long."
     }
   },
   "permissions": {

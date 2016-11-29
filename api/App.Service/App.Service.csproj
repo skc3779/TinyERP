@@ -61,10 +61,12 @@
     <Compile Include="Common\File\IFileService.cs" />
     <Compile Include="Common\ILanguageService.cs" />
     <Compile Include="Inventory\CategoryListItem.cs" />
+    <Compile Include="Inventory\CreateCategoryReponse.cs" />
     <Compile Include="Inventory\CreateCategoryRequest.cs" />
     <Compile Include="Inventory\GetCategoryResponse.cs" />
     <Compile Include="Inventory\ICategoryService.cs" />
     <Compile Include="Inventory\UpdateCategoryRequest.cs" />
+    <Compile Include="Inventory\IUnitOfMeasurementService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\User\IUserService.cs" />
     <Compile Include="Registration\User\UserQuickProfile.cs" />
