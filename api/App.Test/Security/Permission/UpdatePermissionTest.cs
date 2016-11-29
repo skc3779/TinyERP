@@ -65,6 +65,40 @@
         }
 
         [TestMethod]
+        public void Security_Permission_UpdatePermission_ShouldGetException_WithEmptyId()
+        {
+            try
+            {
+                string name = this.permission1.Name;
+                string key = "Key of Permission" + Guid.NewGuid();
+                string desc = "Desc of Permission";
+                this.UpdatePermissionItem(Guid.Empty, name, key.ToString(), desc);
+                Assert.IsTrue(false);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.IsTrue(ex.HasExceptionKey("common.validation.invalidRequest"));
+            }
+        }
+
+        [TestMethod]
+        public void Security_Permission_UpdatePermission_ShouldGetException_WithNotExistedId()
+        {
+            try
+            {
+                string name = this.permission1.Name;
+                string key = "Key of Permission" + Guid.NewGuid();
+                string desc = "Desc of Permission";
+                this.UpdatePermissionItem(Guid.NewGuid(), name, key.ToString(), desc);
+                Assert.IsTrue(false);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.IsTrue(ex.HasExceptionKey("security.addPermission.validation.invalidId"));
+            }
+        }
+
+        [TestMethod]
         public void Security_Permission_UpdatePermission_ShouldGetException_WithDuplicatedName()
         {
             try
