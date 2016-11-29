@@ -1,5 +1,6 @@
 ﻿namespace App.Service.Test.Inventory.Category
 {
+    using App.Common;
     using App.Common.DI;
     using App.Common.UnitTest;
     using App.Common.Validation;
@@ -8,12 +9,13 @@
     using System;
 
     [TestClass]
-    public class EditCategoryTest : BaseUnitTest
+    public class UpdateCategoryTest : BaseUnitTest
     {
         private CreateCategoryReponse category;
         [TestInitialize]
-        public void Init()
+        protected override void OnInit()
         {
+            base.OnInit();
             string name = "Name" + Guid.NewGuid();
             string desc = "Desc" + Guid.NewGuid();
             CreateCategoryRequest request = new CreateCategoryRequest(name, desc);
@@ -34,7 +36,7 @@
             this.UpdateCategory(updateCategoryRequest);
             ICategoryService service = IoC.Container.Resolve<ICategoryService>();
             var categoryAfterUpdate = service.GetCategory(this.category.Id);
-            Assert.IsFalse(this.category.Name == categoryAfterUpdate.Name);
+            Assert.IsTrue(this.category.Name != categoryAfterUpdate.Name);
         }
 
         [TestMethod]
@@ -66,7 +68,7 @@
                 UpdateCategoryRequest updateCategoryRequest = new UpdateCategoryRequest()
                 {
                     Id = this.category.Id,
-                    Name = "Name of category too longggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+                    Name = "Name of category" + new string('g', FormValidationRules.MaxNameLength),
                     Description = "Des of category updated"
                 };
 
@@ -75,7 +77,7 @@
             }
             catch (ValidationException exception)
             {
-                Assert.IsTrue(exception.HasExceptionKey("common.form.validation.fieldTooLong"));
+                Assert.IsTrue(exception.HasExceptionKey("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
         }
 
@@ -115,7 +117,7 @@
                 {
                     Id = this.category.Id,
                     Name = "Name" + Guid.NewGuid(),
-                    Description = "Description too longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+                    Description = "Description too" + new string('g', FormValidationRules.MaxDescriptionLength)
                 };
 
                 this.UpdateCategory(updateCategoryRequest);
@@ -123,7 +125,7 @@
             }
             catch (ValidationException exception)
             {
-                Assert.IsTrue(exception.HasExceptionKey("common.form.validation.fieldTooLong"));
+                Assert.IsTrue(exception.HasExceptionKey("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
         }
 

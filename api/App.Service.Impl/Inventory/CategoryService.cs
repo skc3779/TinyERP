@@ -58,7 +58,7 @@
                 Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
                 categoryRepository.Add(category);
                 uow.Commit();
-                return new CreateCategoryReponse(category.Id, category.Name, category.Description);
+                return ObjectHelper.Convert<CreateCategoryReponse>(category);
             }
         }
 
