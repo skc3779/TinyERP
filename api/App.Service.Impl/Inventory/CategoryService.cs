@@ -67,19 +67,9 @@
             IValidationException validationException = ValidationHelper.Validate(createCategoryRequest);
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
 
-            if (createCategoryRequest.Name.Length > FormValidationRules.MaxNameLength)
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
-            }
-
             if (categoryRepository.GetByName(createCategoryRequest.Name) != null)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.nameAlreadyExisted"));
-            }
-
-            if (!string.IsNullOrWhiteSpace(createCategoryRequest.Description) && createCategoryRequest.Description.Length > FormValidationRules.MaxDescriptionLength)
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
 
             validationException.ThrowIfError();
