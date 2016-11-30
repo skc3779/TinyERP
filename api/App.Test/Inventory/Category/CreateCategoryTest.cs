@@ -9,16 +9,15 @@
     using System;
 
     [TestClass]
-    public class CreateCategory : BaseUnitTest
+    public class CreateCategoryTest : BaseUnitTest
     {
         [TestMethod]
         public void Inventory_Category_CreateCategory_ShouldBeSuccess_WithValidRequest()
         {
             string name = "Name of Category" + Guid.NewGuid().ToString("N");
             string desc = "Desc of Category";
-            ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
-            App.Entity.Inventory.Category item = this.CreateCategoryItem(name, desc);
-            Assert.IsNotNull(item);
+            CreateCategoryResponse permission = this.CreateCategoryItem(name, desc);
+            Assert.IsNotNull(permission);
         }
 
         [TestMethod]
@@ -28,7 +27,6 @@
             {
                 string name = string.Empty;
                 string desc = "Desc of Category";
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
                 this.CreateCategoryItem(name, desc);
                 Assert.IsTrue(false);
             }
@@ -45,7 +43,6 @@
             {
                 string name = "Duplicated Name" + Guid.NewGuid().ToString("N");
                 string desc = "Desc of Category";
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
                 this.CreateCategoryItem(name, desc);
                 this.CreateCategoryItem(name, desc);
                 Assert.IsTrue(false);
@@ -63,13 +60,12 @@
             {
                 string name = "Name Too Long" + new string('g', FormValidationRules.MaxNameLength);
                 string desc = "Desc of Category";
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
                 this.CreateCategoryItem(name, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("common.form.validation.fieldTooLong"));
+                Assert.IsTrue(ex.HasExceptionKey("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
         }
 
@@ -80,22 +76,20 @@
             {
                 string name = "Name of Category";
                 string desc = "Desc Too Long" + new string('g', FormValidationRules.MaxDescriptionLength);
-                ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
                 this.CreateCategoryItem(name, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("common.form.validation.fieldTooLong"));
+                Assert.IsTrue(ex.HasExceptionKey("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
         }
 
-        private App.Entity.Inventory.Category CreateCategoryItem(string name, string desc)
+        private CreateCategoryResponse CreateCategoryItem(string name, string desc)
         {
             CreateCategoryRequest request = new CreateCategoryRequest(name, desc);
-            ICategoryService catService = IoC.Container.Resolve<ICategoryService>();
-            App.Entity.Inventory.Category item = catService.Create(request);
-            return item;
+            ICategoryService service = IoC.Container.Resolve<ICategoryService>();
+            return service.Create(request);
         }
     }
 }
