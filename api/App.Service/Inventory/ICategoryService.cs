@@ -8,7 +8,7 @@
         IList<CategoryListItem> GetCategories();
         void CreateIfNotExist(List<CreateCategoryRequest> categories);
         GetCategoryResponse GetCategory(Guid id);
-        CreateCategoryReponse Create(CreateCategoryRequest request);
+        CreateCategoryResponse Create(CreateCategoryRequest request);
         void Update(UpdateCategoryRequest request);
         void Delete(Guid id);
     }
