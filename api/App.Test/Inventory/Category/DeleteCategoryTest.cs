@@ -32,7 +32,8 @@
             try
             {
                 Guid categoryId = Guid.NewGuid();
-                this.Delete(categoryId);
+                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
+                categoryService.Delete(categoryId);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
