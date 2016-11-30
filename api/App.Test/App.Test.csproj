@@ -66,6 +66,7 @@
     <Compile Include="Common\Validator\StringValidator\ValidateRequireAttribute.cs" />
     <Compile Include="Inventory\Category\DeleteCategoryTest.cs" />
     <Compile Include="Inventory\Category\UpdateCategoryTest.cs" />
+    <Compile Include="Inventory\Category\CreateCategoryTest.cs" />
     <Compile Include="Security\Permission\DeletePermissionTest.cs" />
     <Compile Include="Security\Permission\UpdatePermissionTest.cs" />
     <Compile Include="Security\Permission\CreatePermissionTest.cs" />
