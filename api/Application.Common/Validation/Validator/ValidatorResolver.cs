@@ -7,6 +7,8 @@
             DataType dataType = GetDataType(type);
             switch (dataType)
             {
+                case DataType.Guid:
+                    return new GuidValidator();
                 case DataType.String:
                     return new StringValidator();
                 default:
@@ -18,6 +20,8 @@
         {
             switch (type.ToLower())
             {
+                case "system.guid":
+                    return DataType.Guid;
                 case "system.string":
                     return DataType.String;
                 default:

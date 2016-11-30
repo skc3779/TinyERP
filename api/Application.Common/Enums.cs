@@ -163,7 +163,8 @@
     public enum DataType {
         String,
         Number,
-        Object
+        Object,
+        Guid
     }
 
     public enum DataOperationType {

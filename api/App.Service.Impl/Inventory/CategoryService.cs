@@ -49,7 +49,7 @@
             return categoryRepository.GetById<GetCategoryResponse>(id.ToString());
         }
 
-        public Category Create(CreateCategoryRequest createCategoryRequest)
+        public CreateCategoryResponse Create(CreateCategoryRequest createCategoryRequest)
         {
             this.ValiateCreateCategoryRequest(createCategoryRequest);
             using (IUnitOfWork uow = new UnitOfWork(new AppDbContext(IOMode.Write)))
@@ -58,7 +58,7 @@
                 Category category = new Category(createCategoryRequest.Name, createCategoryRequest.Description);
                 categoryRepository.Add(category);
                 uow.Commit();
-                return category;
+                return ObjectHelper.Convert<CreateCategoryResponse>(category);
             }
         }
 
@@ -75,7 +75,7 @@
 
             if (createCategoryRequest.Name.Length > FormValidationRules.MaxNameLength)
             {
-                validationException.Add(new App.Common.Validation.ValidationError("common.form.validation.fieldTooLong"));
+                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
 
             if (categoryRepository.GetByName(createCategoryRequest.Name) != null)
@@ -85,7 +85,7 @@
 
             if (!string.IsNullOrWhiteSpace(createCategoryRequest.Description) && createCategoryRequest.Description.Length > FormValidationRules.MaxDescriptionLength)
             {
-                validationException.Add(new App.Common.Validation.ValidationError("common.form.validation.fieldTooLong"));
+                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
 
             validationException.ThrowIfError();
@@ -123,7 +123,7 @@
 
             if (updateCategoryRequest.Name.Length > FormValidationRules.MaxNameLength)
             {
-                validationException.Add(new App.Common.Validation.ValidationError("common.form.validation.fieldTooLong"));
+                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
 
             if (oldCategory.Name != updateCategoryRequest.Name && categoryRepository.GetByName(updateCategoryRequest.Name) != null)
@@ -133,7 +133,7 @@
 
             if (!string.IsNullOrWhiteSpace(updateCategoryRequest.Description) && updateCategoryRequest.Description.Length > FormValidationRules.MaxDescriptionLength)
             {
-                validationException.Add(new App.Common.Validation.ValidationError("common.form.validation.fieldTooLong"));
+                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
 
             validationException.ThrowIfError();
