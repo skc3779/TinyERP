@@ -111,6 +111,11 @@
 
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             Category oldCategory = categoryRepository.GetById(updateCategoryRequest.Id.ToString());
+            if (Guid.Empty == updateCategoryRequest.Id)
+            {
+                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.categoryIdIsInvalid"));
+            }
+
             if (oldCategory == null)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.categoryNotExisted"));
@@ -126,7 +131,7 @@
                 validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
 
-            if (oldCategory.Name != updateCategoryRequest.Name && categoryRepository.GetByName(updateCategoryRequest.Name) != null)
+            if (oldCategory != null && oldCategory.Name != updateCategoryRequest.Name && categoryRepository.GetByName(updateCategoryRequest.Name) != null)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.nameAlreadyExisted"));
             }
