@@ -3,7 +3,7 @@
     using App.Common.Data;
     using App.Common.Mapping;
 
-    public class CreateCategoryReponse : BaseContent, IMappedFrom<App.Entity.Inventory.Category>
+    public class CreateCategoryResponse : BaseContent, IMappedFrom<App.Entity.Inventory.Category>
     {
     }
 }

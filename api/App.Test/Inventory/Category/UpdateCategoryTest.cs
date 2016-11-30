@@ -11,7 +11,7 @@
     [TestClass]
     public class UpdateCategoryTest : BaseUnitTest
     {
-        private CreateCategoryReponse category;
+        private CreateCategoryResponse category;
         [TestInitialize]
         protected override void OnInit()
         {
@@ -90,7 +90,7 @@
                 string otherDescription = "Other description";
                 CreateCategoryRequest createCategoryRequest = new CreateCategoryRequest(otherName, otherDescription);
                 ICategoryService service = IoC.Container.Resolve<ICategoryService>();
-                CreateCategoryReponse otherCategory = service.Create(createCategoryRequest);
+                CreateCategoryResponse otherCategory = service.Create(createCategoryRequest);
 
                 UpdateCategoryRequest updateCategoryRequest = new UpdateCategoryRequest()
                 {
