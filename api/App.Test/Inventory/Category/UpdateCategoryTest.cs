@@ -146,7 +146,7 @@
             }
             catch (ValidationException exception)
             {
-                Assert.IsTrue(exception.HasExceptionKey("inventory.categories.validation.categoryIsInvalid"));
+                Assert.IsTrue(exception.HasExceptionKey("inventory.addOrUpdateCategory.validation.categoryIdIsInvalid"));
             }
         }
 
