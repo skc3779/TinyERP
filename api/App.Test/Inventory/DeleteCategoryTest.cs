@@ -8,16 +8,31 @@
     using Service.Inventory;
 
     [TestClass]
-    public class DeleteCategory : BaseUnitTest
+    public class DeleteCategoryTest : BaseUnitTest
     {
         [TestMethod]
-        public void Inventory_Category_DeleteCategory_ShouldGetException_WithInValidCategoryId()
+        public void Inventory_Category_DeleteCategory_ShouldGetException_WithEmptyCategoryId()
         {
             try
             {
                 Guid id = Guid.Empty;
                 ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
                 categoryService.Delete(id);
+                Assert.IsTrue(false);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.IsTrue(ex.HasExceptionKey("inventory.categories.validation.categoryIsInvalid"));
+            }
+        }
+
+        [TestMethod]
+        public void Inventory_Category_DeleteCategory_ShouldGetException_WithInvalidId()
+        {
+            try
+            {
+                Guid categoryId = Guid.NewGuid();
+                this.Delete(categoryId);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
