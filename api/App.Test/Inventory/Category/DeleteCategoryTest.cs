@@ -11,13 +11,12 @@
     public class DeleteCategoryTest : BaseUnitTest
     {
         [TestMethod]
-        public void Inventory_Category_DeleteCategory_ShouldGetException_WithEmptyCategoryId()
+        public void Inventory_Category_DeleteCategory_ShouldGetException_WithEmptyId()
         {
             try
             {
                 Guid id = Guid.Empty;
-                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                categoryService.Delete(id);
+                this.DeleteCategory(id);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
@@ -32,8 +31,7 @@
             try
             {
                 Guid categoryId = Guid.NewGuid();
-                ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-                categoryService.Delete(categoryId);
+                this.DeleteCategory(categoryId);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
@@ -48,10 +46,10 @@
             string name = "Name of category";
             string description = "Description of category";
             ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
-            CreateCategoryResponse categoryItem = this.CreateCategoryItem(name, description);
-            categoryService.Delete(categoryItem.Id);
-            GetCategoryResponse categoryItemAfterDelete = categoryService.GetCategory(categoryItem.Id);
-            Assert.IsNull(categoryItemAfterDelete);
+            CreateCategoryResponse category = this.CreateCategoryItem(name, description);
+            this.DeleteCategory(category.Id);
+            GetCategoryResponse deleteCategory = categoryService.GetCategory(category.Id);
+            Assert.IsNull(deleteCategory);
         }
 
         private CreateCategoryResponse CreateCategoryItem(string name, string desc)
@@ -60,6 +58,12 @@
             ICategoryService service = IoC.Container.Resolve<ICategoryService>();
             CreateCategoryResponse category = service.Create(request);
             return category;
+        }
+
+        private void DeleteCategory(Guid id)
+        {
+            ICategoryService service = IoC.Container.Resolve<ICategoryService>();
+            service.Delete(id);
         }
     }
 }
