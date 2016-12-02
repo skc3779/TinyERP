@@ -1,11 +1,11 @@
 ﻿namespace App.Test.Inventory.Category
 {
-    using App.Common.UnitTest;
+    using Common.UnitTest;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using App.Common.DI;
-    using System;
-    using App.Common.Validation;
+    using Common.DI;
+    using Common.Validation;
     using Service.Inventory;
+    using System;
 
     [TestClass]
     public class DeleteCategoryTest : BaseUnitTest

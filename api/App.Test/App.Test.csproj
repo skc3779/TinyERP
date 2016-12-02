@@ -118,6 +118,7 @@
     <None Include="app.config" />
     <None Include="config\configuration.debug.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup />
