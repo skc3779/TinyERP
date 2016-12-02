@@ -4,11 +4,8 @@
     {
         void OnApplicationStarted();
         void OnApplicationEnded();
-        void OnRouteConfigured();
         void OnApplicationRequestStarted();
         void OnApplicationRequestEnded();
         void OnUnHandledError();
-        void OnApplicationRequestExecuting();
-        void ConfigServiceContainer();
     }
 }

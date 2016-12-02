@@ -16,51 +16,35 @@
             this.Type = type;
         }
 
-        public void OnApplicationStarted()
+        public virtual void OnApplicationStarted()
         {
             TaskArgument<TContext> taskArg = new TaskArgument<TContext>(this.Context, this.Type);
             AssemblyHelper.ExecuteTasks<IApplicationStartedTask<TaskArgument<TContext>>, TaskArgument<TContext>>(taskArg);
             AssemblyHelper.ExecuteTasks<IApplicationReadyTask<TaskArgument<TContext>>, TaskArgument<TContext>>(taskArg, true);
         }
 
-        public void OnApplicationEnded()
+        public virtual void OnApplicationEnded()
         {
+            TaskArgument<TContext> taskArg = new TaskArgument<TContext>(this.Context, this.Type);
+            AssemblyHelper.ExecuteTasks<IApplicationEndedTask<TaskArgument<TContext>>, TaskArgument<TContext>>(taskArg);
         }
 
-        public void OnRouteConfigured()
-        {
-            TaskArgument<RouteCollection> taskArg = new TaskArgument<RouteCollection>(RouteTable.Routes, this.Type);
-            AssemblyHelper.ExecuteTasks<IRouteConfiguredTask, TaskArgument<RouteCollection>>(taskArg);
-        }
-
-        public void OnApplicationRequestStarted()
+        public virtual void OnApplicationRequestStarted()
         {
             TaskArgument<TContext> taskArg = new TaskArgument<TContext>(this.Context, this.Type);
             AssemblyHelper.ExecuteTasks<IApplicationRequestStartedTask<TaskArgument<TContext>>, TaskArgument<TContext>>(taskArg);
         }
 
-        public void OnApplicationRequestEnded()
+        public virtual void OnApplicationRequestEnded()
         {
             TaskArgument<TContext> taskArg = new TaskArgument<TContext>(this.Context, this.Type);
             AssemblyHelper.ExecuteTasks<IApplicationRequestEndedTask<TaskArgument<TContext>>, TaskArgument<TContext>>(taskArg);
         }
 
-        public void OnUnHandledError()
+        public virtual void OnUnHandledError()
         {
             TaskArgument<TContext> taskArg = new TaskArgument<TContext>(this.Context, this.Type);
             AssemblyHelper.ExecuteTasks<IUnHandledErrorTask<TaskArgument<TContext>>, TaskArgument<TContext>>(taskArg);
-        }
-
-        public void OnApplicationRequestExecuting()
-        {
-            TaskArgument<TContext> taskArg = new TaskArgument<TContext>(this.Context, this.Type);
-            AssemblyHelper.ExecuteTasks<IApplicationRequestExecutingTask<TaskArgument<TContext>>, TaskArgument<TContext>>(taskArg);
-        }
-
-        public void ConfigServiceContainer()
-        {
-            TaskArgument<ServicesContainer> taskArg = new TaskArgument<ServicesContainer>(GlobalConfiguration.Configuration.Services, this.Type);
-            AssemblyHelper.ExecuteTasks<IServiceContainerConfiguredTask<TaskArgument<ServicesContainer>>, TaskArgument<ServicesContainer>>(taskArg);
         }
     }
 }

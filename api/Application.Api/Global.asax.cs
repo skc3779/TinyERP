@@ -11,17 +11,11 @@
         protected void Application_Start()
         {
             this.application.OnApplicationStarted();
-            this.RegisterRoutes();
         }
 
         protected void Application_End()
         {
             this.application.OnApplicationEnded();
-        }
-
-        protected void RegisterRoutes()
-        {
-            this.application.OnRouteConfigured();
         }
     }
 }
