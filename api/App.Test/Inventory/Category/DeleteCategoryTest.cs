@@ -1,10 +1,10 @@
 ﻿namespace App.Test.Inventory.Category
 {
-    using Common.UnitTest;
+    using App.Common.UnitTest;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Common.DI;
-    using Common.Validation;
-    using Service.Inventory;
+    using App.Common.DI;
+    using App.Common.Validation;
+    using App.Service.Inventory;
     using System;
 
     [TestClass]
