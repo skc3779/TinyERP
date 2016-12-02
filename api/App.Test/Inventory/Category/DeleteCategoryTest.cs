@@ -48,8 +48,8 @@
             ICategoryService categoryService = IoC.Container.Resolve<ICategoryService>();
             CreateCategoryResponse category = this.CreateCategoryItem(name, description);
             this.DeleteCategory(category.Id);
-            GetCategoryResponse deleteCategory = categoryService.GetCategory(category.Id);
-            Assert.IsNull(deleteCategory);
+            GetCategoryResponse deletedCategory = categoryService.GetCategory(category.Id);
+            Assert.IsNull(deletedCategory);
         }
 
         private CreateCategoryResponse CreateCategoryItem(string name, string desc)
