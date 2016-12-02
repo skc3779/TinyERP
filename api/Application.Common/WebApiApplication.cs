@@ -17,10 +17,12 @@
 
         private void OnEndRequest(object sender, System.EventArgs e)
         {
+            this.OnApplicationRequestEnded();
         }
 
         private void OnError(object sender, System.EventArgs e)
         {
+            this.OnUnHandledError();
         }
     }
 }

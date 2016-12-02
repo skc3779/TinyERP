@@ -14,8 +14,9 @@
             this.RegisterRoutes();
         }
 
-        protected void Application_PreRequestHandlerExecute()
+        protected void Application_End()
         {
+            this.application.OnApplicationEnded();
         }
 
         protected void RegisterRoutes()
