@@ -37,7 +37,8 @@
         MVC = 2,
         WebApi = 4,
         UnitTest = 8,
-        All = 15
+        IntegraitonTest = 16,
+        All = 31
     }
 
     [Flags]
@@ -160,21 +161,24 @@
         public const int MaxDescriptionLength = 512;
     }
 
-    public enum DataType {
+    public enum DataType
+    {
         String,
         Number,
         Object,
         Guid
     }
 
-    public enum DataOperationType {
+    public enum DataOperationType
+    {
         None,
         Create,
         Update,
         Delete
     }
 
-    public enum ConnectorType {
+    public enum ConnectorType
+    {
         REST
     }
 }
