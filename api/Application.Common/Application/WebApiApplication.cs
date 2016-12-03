@@ -1,4 +1,4 @@
-﻿namespace App.Common
+﻿namespace App.Common.Application
 {
     using App.Common.Helpers;
     using App.Common.Tasks;

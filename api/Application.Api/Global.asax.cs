@@ -2,10 +2,10 @@
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        private App.Common.IApplication application;
+        private App.Common.Application.IApplication application;
         public WebApiApplication()
         {
-            this.application = App.Common.ApplicationFactory.Create<System.Web.HttpApplication>(App.Common.ApplicationType.WebApi, this);
+            this.application = App.Common.Application.ApplicationFactory.Create<System.Web.HttpApplication>(App.Common.ApplicationType.WebApi, this);
         }
 
         protected void Application_Start()

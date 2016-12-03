@@ -1,4 +1,4 @@
-﻿namespace App.Common
+﻿namespace App.Common.Application
 {
     public interface IApplication
     {

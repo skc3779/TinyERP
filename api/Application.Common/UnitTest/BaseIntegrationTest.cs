@@ -6,12 +6,12 @@
 
     public abstract class BaseIntegrationTest
     {
-        public App.Common.IApplication Application { get; protected set; }
+        public App.Common.Application.IApplication Application { get; protected set; }
         protected string BaseUrl { get; private set; }
         protected IConnector Connector { get; private set; }
         public BaseIntegrationTest(string uri)
         {
-            this.Application = App.Common.ApplicationFactory.Create<System.Web.HttpApplication>(App.Common.ApplicationType.UnitTest, null);
+            this.Application = App.Common.Application.ApplicationFactory.Create<System.Web.HttpApplication>(App.Common.ApplicationType.UnitTest, null);
             this.BaseUrl = uri;
             this.Connector = ConnectorFactory.Create(ConnectorType.REST);
         }
