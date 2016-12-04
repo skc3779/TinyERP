@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using App.Service.Security;
     using App.Common.DI;
     using App.Repository.Secutiry;
     using App.Entity.Security;
@@ -11,6 +10,7 @@
     using App.Common.Validation;
     using App.Context;
     using System.Linq;
+    using App.Service.Security.Role;
 
     internal class RoleService : IRoleService
     {
@@ -108,7 +108,7 @@
             }
         }
 
-        public GetRoleResponse Get(Guid id)
+        public GetRoleResponse GetRole(Guid id)
         {
             IRoleRepository repository = IoC.Container.Resolve<IRoleRepository>();
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
