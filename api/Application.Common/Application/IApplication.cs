@@ -1,14 +1,11 @@
-﻿namespace App.Common
+﻿namespace App.Common.Application
 {
     public interface IApplication
     {
         void OnApplicationStarted();
-        void OnApplicationEnded();
-        void OnRouteConfigured();
         void OnApplicationRequestStarted();
         void OnApplicationRequestEnded();
         void OnUnHandledError();
-        void OnApplicationRequestExecuting();
-        void ConfigServiceContainer();
+        void OnApplicationEnded();
     }
 }

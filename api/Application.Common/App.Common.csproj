@@ -125,7 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationFactory.cs" />
+    <Compile Include="Application\ApplicationFactory.cs" />
     <Compile Include="Authorize\IAuthorization.cs" />
     <Compile Include="Authorize\IUserLoginAuthorization.cs" />
     <Compile Include="Authorize\UnAuthorizedException.cs" />
@@ -141,7 +141,7 @@
     <Compile Include="Connector\IConnector.cs" />
     <Compile Include="Connector\JsonContent.cs" />
     <Compile Include="Connector\RESTConnector.cs" />
-    <Compile Include="ConsoleApplication.cs" />
+    <Compile Include="Application\ConsoleApplication.cs" />
     <Compile Include="Data\BaseContent.cs" />
     <Compile Include="Data\BaseContentRepository.cs" />
     <Compile Include="Data\BaseRepository.cs" />
@@ -233,10 +233,10 @@
     <Compile Include="Helpers\RoleHelper.cs" />
     <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
-    <Compile Include="IApplication.cs" />
+    <Compile Include="Application\IApplication.cs" />
     <Compile Include="IExecutable.cs" />
     <Compile Include="IResourceItem.cs" />
-    <Compile Include="MVCApplication.cs" />
+    <Compile Include="Application\MVCApplication.cs" />
     <Compile Include="MVC\Attributes\AuthenticationAttribute.cs" />
     <Compile Include="MVC\BaseController.cs" />
     <Compile Include="Bootstrap.cs" />
@@ -279,7 +279,7 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\LogType.cs" />
     <Compile Include="Mapping\IMappedFrom.cs" />
-    <Compile Include="BaseApplication.cs" />
+    <Compile Include="Application\BaseApplication.cs" />
     <Compile Include="Tasks\Error\UnHandledError.cs" />
     <Compile Include="Tasks\IApplicationEndedTask.cs" />
     <Compile Include="Tasks\IApplicationRequestEndedTask.cs" />
@@ -326,14 +326,14 @@
     <Compile Include="Validation\ValidationError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidationException.cs" />
-    <Compile Include="UnitTestApiApplication.cs" />
+    <Compile Include="Application\UnitTestApiApplication.cs" />
     <Compile Include="Validation\ValidatorOption.cs" />
     <Compile Include="Validation\Validator\BaseValidator.cs" />
     <Compile Include="Validation\Validator\GuidValidator.cs" />
     <Compile Include="Validation\Validator\IValidator.cs" />
     <Compile Include="Validation\Validator\StringValidator.cs" />
     <Compile Include="Validation\Validator\ValidatorResolver.cs" />
-    <Compile Include="WebApiApplication.cs" />
+    <Compile Include="Application\WebApiApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configurations\configuration.config">

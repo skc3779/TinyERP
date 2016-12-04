@@ -2,7 +2,7 @@
 {
     using System.Web;
 
-    public interface IApplicationEndedTask : IBaseTask<HttpContext>
+    public interface IApplicationEndedTask<TContext> : IBaseTask<TContext>
     {
     }
 }

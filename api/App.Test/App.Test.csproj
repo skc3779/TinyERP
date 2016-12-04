@@ -64,6 +64,7 @@
     <Compile Include="Common\Validator\StringValidator\ValidateMatchAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateValueInRangeAttribute.cs" />
     <Compile Include="Common\Validator\StringValidator\ValidateRequireAttribute.cs" />
+    <Compile Include="Inventory\Category\DeleteCategoryTest.cs" />
     <Compile Include="Inventory\Category\UpdateCategoryTest.cs" />
     <Compile Include="Inventory\Category\CreateCategoryTest.cs" />
     <Compile Include="Security\Permission\DeletePermissionTest.cs" />
@@ -117,6 +118,7 @@
     <None Include="app.config" />
     <None Include="config\configuration.debug.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup />
