@@ -5,7 +5,7 @@
     using System.Web;
     using App.Common;
     using App.Common.DI;
-    using App.Service.Security;
+    using App.Service.Security.Role;
     using App.Entity.Security;
 
     public class CreateRoleAndPermissionTask : BaseTask<TaskArgument<System.Web.HttpApplication>>, IApplicationReadyTask<TaskArgument<System.Web.HttpApplication>>

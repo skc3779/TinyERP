@@ -5,7 +5,7 @@
         "addRoleAction": "Add Role",
         "validation": {
             "idIsInvalid": "Invalid Role",
-            "roleNotExist": "Can not found this Role, Please try again."
+            "roleNotExisted": "Can not found this Role, Please try again."
         },
         "grid": {
             "name": "Name",
@@ -22,10 +22,9 @@
         "permission": "Permissions",
         "inputPermissions": "Please select Permission for this Role",
         "validation": {
-            "nameIsRequire": "Please input name of Role",
-            "keyIsRequire": "Please input key of Role",
-            "nameAlreadyExist": "This name is already existed. Please input another name",
-            "keyAlreadyExist": "This key is already existed. Please input another key"
+            "nameIsRequired": "Please input name of Role",
+            "keyIsRequired": "Please input key of Role",
+            "nameAlreadyExisted": "This name is already existed. Please input another name"
         }
     },
     "permissions": {

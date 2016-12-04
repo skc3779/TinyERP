@@ -14,12 +14,14 @@
         {
             this.Permissions = new List<Guid>();
         }
-        public CreateRoleRequest(string name,string key, string desc)
+
+        public CreateRoleRequest(string name, string key, string desc)
             : base()
         {
             this.Name = name;
             this.Key = key;
             this.Description = desc;
+            this.Permissions = new List<Guid>();
         }
     }
 }

@@ -15,23 +15,22 @@
         protected override void OnInit()
         {
             base.OnInit();
-            string name = "Name of Role" + Guid.NewGuid();
-            string key = "Key of Role" + Guid.NewGuid();
+            string name = "Name of Role" + Guid.NewGuid().ToString("N");
+            string key = "Key of Role" + Guid.NewGuid().ToString("N");
             string desc = "Desc of Role";
             this.role = this.CreateRoleItem(name, key, desc);
-            name = "Duplicated Name" + Guid.NewGuid();
-            key = "Duplicated key" + Guid.NewGuid();
-            desc = "Desc of Permission";
+            name = "Duplicated Name" + Guid.NewGuid().ToString("N");
+            key = "Duplicated key" + Guid.NewGuid().ToString("N");
+            desc = "Desc of Role";
             this.role1 = this.CreateRoleItem(name, key, desc);
         }
 
         [TestMethod]
         public void Security_Role_UpdateRole_ShouldBeSuccess_WithValidRequest()
         {
-            string name = "New Name of Role" + Guid.NewGuid();
-            string key = "New Key of Role" + Guid.NewGuid();
+            string name = "New Name of Role" + Guid.NewGuid().ToString("N");
             string desc = "New Desc of Role";
-            this.UpdateRoleItem(this.role.Id, name, key, desc);
+            this.UpdateRoleItem(this.role.Id, name, desc);
             IRoleService service = IoC.Container.Resolve<IRoleService>();
             App.Service.Security.Role.GetRoleResponse updatedRole = service.GetRole(this.role.Id);
             Assert.AreEqual(updatedRole.Name, name);
@@ -43,77 +42,40 @@
             try
             {
                 string name = string.Empty;
-                string key = "Key of Role" + Guid.NewGuid();
                 string desc = "Desc of Role";
-                this.UpdateRoleItem(this.role.Id, name, key, desc);
+                this.UpdateRoleItem(this.role.Id, name, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateRole.validation.nameIsRequire"));
+                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateRole.validation.nameIsRequired"));
             }
         }
 
         [TestMethod]
-        public void Security_Permission_UpdateRole_ShouldGetException_WithDuplicatedName()
+        public void Security_Role_UpdateRole_ShouldGetException_WithDuplicatedName()
         {
             try
             {
                 string name = this.role1.Name;
-                string key = "Key of Role" + Guid.NewGuid();
                 string desc = "Desc of Role";
-                this.UpdateRoleItem(this.role.Id, name, key, desc);
+                this.UpdateRoleItem(this.role.Id, name, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateRole.validation.nameAlreadyExist"));
+                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateRole.validation.nameAlreadyExisted"));
             }
         }
 
         [TestMethod]
-        public void Security_Role_UpdateRole_ShouldGetException_WithEmptyKey()
+        public void Security_Role_UpdateRole_ShouldGetException_WithEmptyID()
         {
             try
             {
-                string name = "Name of Role" + Guid.NewGuid();
-                string key = string.Empty;
+                string name = "Name of Role" + Guid.NewGuid().ToString("N");
                 string desc = "Desc of Role";
-                this.UpdateRoleItem(this.role.Id, name, key, desc);
-                Assert.IsTrue(false);
-            }
-            catch (ValidationException ex)
-            {
-                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateRole.validation.keyIsRequire"));
-            }
-        }
-
-        [TestMethod]
-        public void Security_Permission_UpdateRole_ShouldGetException_WithDuplicatedKey()
-        {
-            try
-            {
-                string name = "Name of Role" + Guid.NewGuid();
-                string key = this.role1.Key;
-                string desc = "Desc of Role";
-                this.UpdateRoleItem(this.role.Id, name, key, desc);
-                Assert.IsTrue(false);
-            }
-            catch (ValidationException ex)
-            {
-                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateRole.validation.keyAlreadyExist"));
-            }
-        }
-
-        [TestMethod]
-        public void Security_Permission_UpdateRole_ShouldGetException_WithEmptyID()
-        {
-            try
-            {
-                string name = "Name of Role" + Guid.NewGuid();
-                string key = "Key of Role" + Guid.NewGuid();
-                string desc = "Desc of Role";
-                this.UpdateRoleItem(Guid.Empty, name, key, desc);
+                this.UpdateRoleItem(Guid.Empty, name, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
@@ -123,21 +85,21 @@
         }
 
         [TestMethod]
-        public void Security_Permission_UpdateRole_ShouldGetException_WithNotExistedID()
+        public void Security_Role_UpdateRole_ShouldGetException_WithNotExistedID()
         {
             try
             {
-                string name = "Name of Role" + Guid.NewGuid();
-                string key = "Key of Role" + Guid.NewGuid();
+                string name = "Name of Role" + Guid.NewGuid().ToString("N");
                 string desc = "Desc of Role";
-                this.UpdateRoleItem(Guid.NewGuid(), name, key, desc);
+                this.UpdateRoleItem(Guid.NewGuid(), name, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("security.roles.validation.idIsInvalid"));
+                Assert.IsTrue(ex.HasExceptionKey("security.roles.validation.roleNotExisted"));
             }
         }
+
         private CreateRoleResponse CreateRoleItem(string name, string key, string desc)
         {
             CreateRoleRequest request = new CreateRoleRequest(name, key, desc);
@@ -145,8 +107,9 @@
             return service.Create(request);
         }
 
-        private void UpdateRoleItem(Guid id, string name, string key, string desc)
+        private void UpdateRoleItem(Guid id, string name, string desc)
         {
+            string key = App.Common.Helpers.UtilHelper.ToKey(name);
             UpdateRoleRequest request = new UpdateRoleRequest(id, name, key, desc);
             IRoleService service = IoC.Container.Resolve<IRoleService>();
             service.Update(request);
