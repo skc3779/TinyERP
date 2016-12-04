@@ -105,24 +105,9 @@
                 validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.categoryNotExisted"));
             }
 
-            if (string.IsNullOrWhiteSpace(updateCategoryRequest.Name))
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.nameRequired"));
-            }
-
-            if (updateCategoryRequest.Name.Length > FormValidationRules.MaxNameLength)
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
-            }
-
             if (oldCategory != null && oldCategory.Name != updateCategoryRequest.Name && categoryRepository.GetByName(updateCategoryRequest.Name) != null)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.nameAlreadyExisted"));
-            }
-
-            if (!string.IsNullOrWhiteSpace(updateCategoryRequest.Description) && updateCategoryRequest.Description.Length > FormValidationRules.MaxDescriptionLength)
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.fieldTooLong"));
             }
 
             validationException.ThrowIfError();
