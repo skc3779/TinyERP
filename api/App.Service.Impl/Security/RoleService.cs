@@ -56,6 +56,13 @@
             {
                 throw new App.Common.Validation.ValidationException("security.addOrUpdateRole.validation.nameAlreadyExisted");
             }
+
+            string key = App.Common.Helpers.UtilHelper.ToKey(role.Name);
+            Role roleByKey = repo.GetByKey(key);
+            if (roleByKey != null)
+            {
+                throw new ValidationException("security.addOrUpdateRole.validation.keyAlreadyExisted");
+            }
         }
 
         public CreateRoleResponse Create(CreateRoleRequest request)

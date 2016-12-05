@@ -38,7 +38,7 @@
         }
 
         [TestMethod]
-        public void Security_Role_CreateRole_ShouldGetException_WithDuplicateName()
+        public void Security_Role_CreateRole_ShouldGetException_WithDuplicatedName()
         {
             try
             {
@@ -51,6 +51,25 @@
             catch (ValidationException ex)
             {
                 Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateRole.validation.nameAlreadyExisted"));
+            }
+        }
+
+        [TestMethod]
+        public void Security_Role_CreateRole_ShouldGetException_WithDuplicatedKey()
+        {
+            try
+            {
+                string newGuid = Guid.NewGuid().ToString("N");
+                string name = "Name of Role" + newGuid;
+                string name1 = "Name_of_Role" + newGuid;
+                string description = "Desc of Role";
+                this.CreateRoleItem(name, description);
+                this.CreateRoleItem(name1, description);
+                Assert.IsTrue(false);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateRole.validation.keyAlreadyExisted"));
             }
         }
 
