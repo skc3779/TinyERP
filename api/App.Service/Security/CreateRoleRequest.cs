@@ -15,6 +15,15 @@
         }
         public CreateRoleRequest(string name, string desc) : base()
         {
+            this.Name = name;
+            this.Description = desc;
+            this.Permissions = new List<Guid>();
+        }
+        public CreateRoleRequest(string name, string key, string desc) : base()
+        {
+            this.Name = name;
+            this.Description = desc;
+            this.Key = key;
             this.Permissions = new List<Guid>();
         }
     }

@@ -48,8 +48,21 @@
         {
             if (string.IsNullOrWhiteSpace(role.Name))
             {
-                throw new App.Common.Validation.ValidationException("security.addOrUpdateRole.validation.nameIsRequire");
+                throw new App.Common.Validation.ValidationException("security.addOrUpdateRole.validation.nameIsRequired");
             }
+
+            if (repo.GetByName(role.Name) != null)
+            {
+                throw new App.Common.Validation.ValidationException("security.addOrUpdateRole.validation.nameAlreadyExisted");
+            }
+
+            string key = App.Common.Helpers.UtilHelper.ToKey(role.Name);
+            Role roleByKey = repo.GetByKey(key);
+            if (roleByKey != null)
+            {
+                throw new ValidationException("security.addOrUpdateRole.validation.keyAlreadyExisted");
+            }
+
         }
 
         public CreateRoleResponse Create(CreateRoleRequest request)
@@ -104,7 +117,7 @@
             IRoleRepository repository = IoC.Container.Resolve<IRoleRepository>();
             if (repository.GetById(id.ToString()) == null)
             {
-                throw new ValidationException("security.roles.validation.roleNotExist");
+                throw new ValidationException("security.roles.validation.roleNotExisted");
             }
         }
 
@@ -173,7 +186,7 @@
             IRoleRepository roleRepository = IoC.Container.Resolve<IRoleRepository>();
             if (roleRepository.GetById(request.Id.ToString()) == null)
             {
-                throw new ValidationException("security.addOrUpdateRole.validation.roleNotExist");
+                throw new ValidationException("security.addOrUpdateRole.validation.roleNotExisted");
             }
 
             if (string.IsNullOrWhiteSpace(request.Name))

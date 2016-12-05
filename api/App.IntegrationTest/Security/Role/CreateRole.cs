@@ -5,6 +5,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Service.Security;
     using System;
+    using System.Linq;
 
     [TestClass]
     public class CreateRole : BaseIntegrationTest
@@ -16,11 +17,44 @@
         [TestMethod]
         public void Security_Role_CreateRole_ShouldBeSuccess_WithValidRequest()
         {
-            CreateRoleRequest request = new CreateRoleRequest(Guid.NewGuid().ToString("N"), "desc");
+            CreateRoleRequest request = new CreateRoleRequest("Name of Role " + Guid.NewGuid().ToString("N"), "desc");
             IResponseData<CreateRoleResponse> response = this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request);
             Assert.IsTrue(response.Errors.Count == 0);
             Assert.IsTrue(response.Data != null);
             Assert.IsTrue(response.Data.Id != null && response.Data.Id != Guid.Empty);
+        }
+
+        [TestMethod]
+        public void Security_Role_CreateRole_ShouldThrowException_WithInValidRequest()
+        {
+            CreateRoleRequest request = new CreateRoleRequest(string.Empty, "desc");
+            IResponseData<CreateRoleResponse> response = this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request);
+            Assert.IsTrue(response.Errors.Count > 0);
+            Assert.IsTrue(response.Errors.Any(item => item.Key == "security.addOrUpdateRole.validation.nameIsRequire"));
+        }
+
+        [TestMethod]
+        public void Security_Role_CreateRole_ShouldThrowException_WithDuplicateName()
+        {
+            CreateRoleRequest request = new CreateRoleRequest("Name of Role " + Guid.NewGuid().ToString("N"), "desc");
+            this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request);
+            IResponseData<CreateRoleResponse> response = this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request);
+            Assert.IsTrue(response.Errors.Count > 0);
+            Assert.IsTrue(response.Errors.Any(item => item.Key == "security.addOrUpdateRole.validation.nameAlreadyExisted"));
+        }
+
+        [TestMethod()]
+        public void Security_Permission_CreatePermission_ShouldThroException_WithDuplicatedKey()
+        {
+            string newGuiId = Guid.NewGuid().ToString("N");
+            string name = "Name of Role" + newGuiId;
+            string name1 = "Name_of_Role" + newGuiId;
+            CreateRoleRequest request = new CreateRoleRequest(name, "desc");
+            CreateRoleRequest request1 = new CreateRoleRequest(name1, "desc");
+            this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request);
+            IResponseData<CreateRoleResponse> response = this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request1);
+            Assert.IsTrue(response.Errors.Count > 0);
+            Assert.IsTrue(response.Errors.Any(item => item.Key == "security.addOrUpdateRole.validation.keyAlreadyExisted"));
         }
     }
 }
