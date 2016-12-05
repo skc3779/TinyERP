@@ -13,5 +13,9 @@
         {
             this.Permissions = new List<Guid>();
         }
+        public CreateRoleRequest(string name, string desc) : base()
+        {
+            this.Permissions = new List<Guid>();
+        }
     }
 }
