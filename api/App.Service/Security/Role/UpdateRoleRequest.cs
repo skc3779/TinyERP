@@ -14,8 +14,7 @@
             this.Permissions = new List<Guid>();
         }
 
-        public UpdateRoleRequest(Guid id, string name, string key, string desc)
-            : base()
+        public UpdateRoleRequest(Guid id, string name, string key, string desc) : base()
         {
             this.Id = id;
             this.Name = name;

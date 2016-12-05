@@ -9,14 +9,12 @@
     public class CreateRoleRequest : BaseContent, IMappedFrom<Role>
     {
         public IList<Guid> Permissions { get; set; }
-        public CreateRoleRequest()
-            : base()
+        public CreateRoleRequest() : base()
         {
             this.Permissions = new List<Guid>();
         }
 
-        public CreateRoleRequest(string name, string key, string desc)
-            : base()
+        public CreateRoleRequest(string name, string key, string desc) : base()
         {
             this.Name = name;
             this.Key = key;
