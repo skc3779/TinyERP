@@ -1,4 +1,4 @@
-﻿namespace App.Service.Security
+﻿namespace App.Service.Security.Role
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +11,7 @@
         void Create(IList<Role> roles);
         CreateRoleResponse Create(CreateRoleRequest request);
         DeleteRoleResponse Delete(Guid id);
-        GetRoleResponse Get(Guid id);
+        GetRoleResponse GetRole(Guid id);
         void Update(UpdateRoleRequest request);
     }
 }

@@ -1,15 +1,15 @@
-﻿namespace App.Service.Security
+﻿namespace App.Service.Security.Role
 {
     using App.Common.Data;
-    using System.Collections.Generic;
-    using System;
     using App.Common.Mapping;
     using App.Entity.Security;
+    using System;
+    using System.Collections.Generic;
 
-    public class UpdateRoleRequest : BaseContent, IMappedFrom<Role>
+    public class GetRoleResponse : BaseContent, IMappedFrom<Role>
     {
         public IList<Guid> Permissions { get; set; }
-        public UpdateRoleRequest() : base()
+        public GetRoleResponse() : base()
         {
             this.Permissions = new List<Guid>();
         }

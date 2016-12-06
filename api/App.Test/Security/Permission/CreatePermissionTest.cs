@@ -4,7 +4,6 @@
     using App.Common.UnitTest;
     using App.Common.Validation;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Service.Security;
     using Service.Security.Permission;
     using System;
 

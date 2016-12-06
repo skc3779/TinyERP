@@ -1,4 +1,4 @@
-﻿namespace App.Service.Security
+﻿namespace App.Service.Security.Role
 {
     public class CreateRoleResponse : RoleListItemSummary
     {

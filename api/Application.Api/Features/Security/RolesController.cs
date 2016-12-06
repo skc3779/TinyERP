@@ -3,7 +3,7 @@
     using App.Common.DI;
     using App.Common.Http;
     using App.Common.Validation;
-    using App.Service.Security;
+    using App.Service.Security.Role;
     using System;
     using System.Collections.Generic;
     using System.Web.Http;
@@ -39,7 +39,7 @@
             try
             {
                 IRoleService roleService = IoC.Container.Resolve<IRoleService>();
-                GetRoleResponse role = roleService.Get(id);
+                GetRoleResponse role = roleService.GetRole(id);
                 response.SetData(role);
             }
             catch (ValidationException ex)

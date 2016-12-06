@@ -3,7 +3,7 @@
     using App.Common.UnitTest;
     using Common.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Service.Security;
+    using Service.Security.Role;
     using System;
     using System.Linq;
 
@@ -30,7 +30,7 @@
             CreateRoleRequest request = new CreateRoleRequest(string.Empty, "desc");
             IResponseData<CreateRoleResponse> response = this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request);
             Assert.IsTrue(response.Errors.Count > 0);
-            Assert.IsTrue(response.Errors.Any(item => item.Key == "security.addOrUpdateRole.validation.nameIsRequire"));
+            Assert.IsTrue(response.Errors.Any(item => item.Key == "security.addOrUpdateRole.validation.nameIsRequired"));
         }
 
         [TestMethod]
