@@ -1,4 +1,4 @@
-﻿namespace App.Test.Security.Roles
+﻿namespace App.Test.Security.Role
 {
     using App.Common.UnitTest;
     using Common.DI;
