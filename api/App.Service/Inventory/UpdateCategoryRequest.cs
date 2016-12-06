@@ -7,10 +7,10 @@
     public class UpdateCategoryRequest
     {
         public Guid Id { get; set; }
-        [ValueInRange("inventory.addOrUpdateCategory.validation.fieldTooLong",0, FormValidationRules.MaxNameLength)]
         [Required("inventory.addOrUpdateCategory.validation.nameRequired")]
+        [ValueInRange("inventory.addOrUpdateCategory.validation.nameTooLong", 0, FormValidationRules.MaxNameLength)]
         public string Name { get; set; }
-        [ValueInRange("inventory.addOrUpdateCategory.validation.fieldTooLong", 0 , FormValidationRules.MaxDescriptionLength)]
+        [ValueInRange("inventory.addOrUpdateCategory.validation.descriptionTooLong", 0, FormValidationRules.MaxNameLength)]
         public string Description { get; set; }
     }
 }
