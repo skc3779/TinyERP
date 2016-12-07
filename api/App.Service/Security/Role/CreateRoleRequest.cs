@@ -21,6 +21,7 @@
             this.Description = desc;
             this.Permissions = new List<Guid>();
         }
+
         public CreateRoleRequest(string name, string desc) : base()
         {
             this.Name = name;

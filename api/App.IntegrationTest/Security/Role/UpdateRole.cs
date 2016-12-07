@@ -13,7 +13,7 @@
         private readonly CreateRoleResponse createdRoleResponse;
         public UpdateRole() : base(@"api/roles/{0}")
         {
-            createdRoleResponse = this.CreateNewRole();
+            this.createdRoleResponse = this.CreateNewRole();
         }
 
         [TestMethod()]
