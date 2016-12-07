@@ -16,13 +16,11 @@
         {
             base.OnInit();
             string name = "Name of Role" + Guid.NewGuid().ToString("N");
-            string key = "Key of Role" + Guid.NewGuid().ToString("N");
             string desc = "Desc of Role";
-            this.role = this.CreateRoleItem(name, key, desc);
+            this.role = this.CreateRoleItem(name, desc);
             name = "Duplicated Name" + Guid.NewGuid().ToString("N");
-            key = "Duplicated key" + Guid.NewGuid().ToString("N");
             desc = "Desc of Role";
-            this.role1 = this.CreateRoleItem(name, key, desc);
+            this.role1 = this.CreateRoleItem(name, desc);
         }
 
         [TestMethod]
@@ -119,9 +117,9 @@
             }
         }
 
-        private CreateRoleResponse CreateRoleItem(string name, string key, string desc)
+        private CreateRoleResponse CreateRoleItem(string name, string desc)
         {
-            CreateRoleRequest request = new CreateRoleRequest(name, key, desc);
+            CreateRoleRequest request = new CreateRoleRequest(name, desc);
             IRoleService service = IoC.Container.Resolve<IRoleService>();
             return service.Create(request);
         }

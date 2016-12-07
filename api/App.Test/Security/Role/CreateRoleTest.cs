@@ -75,7 +75,7 @@
 
         private CreateRoleResponse CreateRoleItem(string name, string desc)
         {
-            CreateRoleRequest request = new CreateRoleRequest(name, desc, null);
+            CreateRoleRequest request = new CreateRoleRequest(name, desc);
             IRoleService service = IoC.Container.Resolve<IRoleService>();
             return service.Create(request);
         }
