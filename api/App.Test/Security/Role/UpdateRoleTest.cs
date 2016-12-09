@@ -86,7 +86,7 @@
         }
 
         [TestMethod]
-        public void Security_Role_UpdateRole_ShouldGetException_WithEmptyID()
+        public void Security_Role_UpdateRole_ShouldGetException_WithEmptyId()
         {
             try
             {
@@ -97,12 +97,12 @@
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("security.roles.validation.idIsInvalid"));
+                Assert.IsTrue(ex.HasExceptionKey("security.roles.validation.roleIdIsInvalid"));
             }
         }
 
         [TestMethod]
-        public void Security_Role_UpdateRole_ShouldGetException_WithNotExistedID()
+        public void Security_Role_UpdateRole_ShouldGetException_WithNotExistedId()
         {
             try
             {

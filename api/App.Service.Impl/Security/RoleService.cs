@@ -47,11 +47,6 @@
 
         private void ValidateCreateRequest(Role role, IRoleRepository repo)
         {
-            if (string.IsNullOrWhiteSpace(role.Name))
-            {
-                throw new App.Common.Validation.ValidationException("security.addOrUpdateRole.validation.nameIsRequired");
-            }
-
             if (repo.GetByName(role.Name) != null)
             {
                 throw new App.Common.Validation.ValidationException("security.addOrUpdateRole.validation.nameAlreadyExisted");
@@ -82,9 +77,11 @@
 
         private void Validate(CreateRoleRequest request)
         {
+            IValidationException validationException = ValidationHelper.Validate(request);
+            validationException.ThrowIfError();
             Role role = new Role(request.Name, request.Description, null);
             IRoleRepository roleRepo = IoC.Container.Resolve<IRoleRepository>();
-            this.ValidateCreateRequest(role, roleRepo);
+            this.ValidateCreateRequest(role, roleRepo); 
         }
 
         public IList<RoleListItemSummary> GetRoles()
@@ -110,7 +107,7 @@
         {
             if (id == null || id == Guid.Empty)
             {
-                throw new ValidationException("security.roles.validation.idIsInvalid");
+                throw new ValidationException("security.roles.validation.roleIdIsInvalid");
             }
 
             IRoleRepository repository = IoC.Container.Resolve<IRoleRepository>();
@@ -177,34 +174,32 @@
 
         private void ValidateUpdateRequest(UpdateRoleRequest request)
         {
+            IValidationException validationException = ValidationHelper.Validate(request);
             if (request.Id == null || request.Id == Guid.Empty)
             {
-                throw new ValidationException("security.roles.validation.idIsInvalid");
+                validationException.Add(new App.Common.Validation.ValidationError("security.roles.validation.roleIdIsInvalid"));
             }
 
             IRoleRepository roleRepository = IoC.Container.Resolve<IRoleRepository>();
             if (roleRepository.GetById(request.Id.ToString()) == null)
             {
-                throw new ValidationException("security.roles.validation.roleNotExisted");
-            }
-
-            if (string.IsNullOrWhiteSpace(request.Name))
-            {
-                throw new ValidationException("security.addOrUpdateRole.validation.nameIsRequired");
+                validationException.Add(new App.Common.Validation.ValidationError("security.roles.validation.roleNotExisted"));
             }
 
             Role roleByName = roleRepository.GetByName(request.Name);
             if (roleByName != null && roleByName.Id != request.Id)
             {
-                throw new ValidationException("security.addOrUpdateRole.validation.nameAlreadyExisted");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateRole.validation.nameAlreadyExisted"));
             }
 
             string key = App.Common.Helpers.UtilHelper.ToKey(request.Name);
             Role roleByKey = roleRepository.GetByKey(key);
             if (roleByKey != null && roleByKey.Id != request.Id)
             {
-                throw new ValidationException("security.addOrUpdateRole.validation.keyAlreadyExisted");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateRole.validation.keyAlreadyExisted"));
             }
+
+            validationException.ThrowIfError();
         }
     }
 }
