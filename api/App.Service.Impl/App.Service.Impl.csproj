@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blog\BlogCategoryService.cs" />
     <Compile Include="Bootstrap.cs" />
     <Compile Include="Common\FileService.cs" />
     <Compile Include="Common\LanguageService.cs" />
@@ -98,6 +99,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

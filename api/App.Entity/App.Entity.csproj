@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blog\ContentTypeMaster.cs" />
     <Compile Include="Common\FileUpload.cs" />
     <Compile Include="Common\Language.cs" />
     <Compile Include="Common\Parameter.cs" />
