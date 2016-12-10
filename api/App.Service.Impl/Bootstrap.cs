@@ -20,6 +20,7 @@
             context.RegisterSingleton<App.Service.Support.IRequestService, App.Service.Impl.Support.RequestService>();
             context.RegisterSingleton<App.Service.Inventory.ICategoryService, App.Service.Impl.Inventory.CategoryService>();
             context.RegisterSingleton<App.Service.Inventory.IUnitOfMeasurementService, App.Service.Impl.Inventory.UnitOfMeasurementService>();
+            context.RegisterSingleton<App.Service.Blog.IBlogCategoryService, App.Service.Impl.Blog.BlogCategoryService>();
         }
     }
 }

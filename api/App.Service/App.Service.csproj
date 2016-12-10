@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blog\CategoryListItem.cs" />
+    <Compile Include="Blog\IBlogCategoryService.cs" />
     <Compile Include="Common\File\FileUploadResponse.cs" />
     <Compile Include="Common\FileUploadPreview.cs" />
     <Compile Include="Common\File\IFileService.cs" />

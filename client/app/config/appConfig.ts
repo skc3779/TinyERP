@@ -4,13 +4,15 @@ import securiry from "../modules/security/_share/config/module";
 import setting from "../modules/setting/_share/config/module";
 import support from "../modules/support/_share/config/module";
 import inventory from "../modules/inventory/_share/config/module";
+import blog from "../modules/blog/_share/config/module";
 import { Languages } from "../common/enum";
 let modules: Array<IModule> = [
     registration,
     securiry,
     setting,
     support,
-    inventory
+    inventory,
+    blog
 ];
 export default {
     app: {
@@ -22,7 +24,7 @@ export default {
     defaultUrl: "Roles",
     localization: {
         lang: Languages.EN,
-        files: ["common", "registration", "security", "productManagement", "store", "setting", "support", "inventory"]
+        files: ["common", "registration", "security", "productManagement", "store", "setting", "support", "inventory", "blog"]
     },
     auth: {
         token: "authtoken"

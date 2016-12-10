@@ -1,0 +1,10 @@
+<error-message pattern="inventory.categories.validation.categoryIsInvalid"></error-message>
+<page>
+    <page-header>
+        {{i18n.blog.categories.title}}
+        <page-actions class="pull-right" [actions]=model.actions></page-actions>
+    </page-header>
+    <page-content>
+        <grid [options]=model.options [eventKey]="model.eventKey" (onItemDeleteClicked)="onCategoryDeleteClicked($event)" (onItemEditClicked)="onCategoryEditClicked($event)"></grid>
+    </page-content>
+</page>

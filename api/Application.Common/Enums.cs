@@ -181,4 +181,8 @@
     {
         REST
     }
+    public class TypeOfContentType
+    {
+        public const string BlogCategory = "contenttype.blog";
+    }
 }
