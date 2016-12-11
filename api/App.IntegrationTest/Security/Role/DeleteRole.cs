@@ -33,6 +33,8 @@
         public void Security_Role_DeleteRole_ShouldBeSuccess_WithValidRequest()
         {
             IResponseData<string> deleteResponse = this.Connector.Delete<string>(string.Format(this.BaseUrl, this.createdRoleResponse.Id));
+            IResponseData<GetRoleResponse> roleResponse = this.Connector.Get<GetRoleResponse>(string.Format(this.BaseUrl, this.createdRoleResponse.Id));
+            Assert.IsNull(roleResponse.Data);
             Assert.IsTrue(deleteResponse.Errors.Count == 0);
         }
 
