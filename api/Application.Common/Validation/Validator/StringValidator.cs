@@ -17,15 +17,7 @@
             int valueLength;
             int low = (int)lowerBound;
             int upper = (int)upperBound;
-            if (string.IsNullOrWhiteSpace(str))
-            {
-                valueLength = 0;
-            }
-            else
-            {
-                valueLength = str.Length;
-            }
-
+            valueLength = string.IsNullOrWhiteSpace(str) ? 0 : str.Length;
             return valueLength >= low && valueLength <= upper;
         }
 

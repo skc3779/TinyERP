@@ -92,14 +92,8 @@
         private void ValiateUpdateCategoryRequest(UpdateCategoryRequest updateCategoryRequest)
         {
             IValidationException validationException = ValidationHelper.Validate(updateCategoryRequest);
-
             ICategoryRepository categoryRepository = IoC.Container.Resolve<ICategoryRepository>();
             Category oldCategory = categoryRepository.GetById(updateCategoryRequest.Id.ToString());
-            if (Guid.Empty == updateCategoryRequest.Id)
-            {
-                validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.categoryIdIsInvalid"));
-            }
-
             if (oldCategory == null)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("inventory.addOrUpdateCategory.validation.categoryNotExisted"));
