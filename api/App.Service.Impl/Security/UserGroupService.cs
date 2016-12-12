@@ -66,13 +66,13 @@
         {
             if (id == null || id == Guid.Empty)
             {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.idIsInvalid");
+                throw new ValidationException("security.userGroups.validation.idIsInvalid");
             }
 
             IUserGroupRepository repository = IoC.Container.Resolve<IUserGroupRepository>();
             if (repository.GetById(id.ToString()) == null)
             {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.userGroupNotExist");
+                throw new ValidationException("security.userGroups.validation.userGroupNotExist");
             }
         }
 
@@ -82,10 +82,13 @@
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
             UserGroup userGroup = repository.GetById(id.ToString(), "Permissions");
             GetUserGroupResponse response = ObjectHelper.Convert<GetUserGroupResponse>(userGroup);
-            response.PermissionIds = new List<Guid>();
-            foreach (Permission per in userGroup.Permissions)
+            if (userGroup != null)
             {
-                response.PermissionIds.Add(per.Id);
+                response.PermissionIds = new List<Guid>();
+                foreach (Permission per in userGroup.Permissions)
+                {
+                    response.PermissionIds.Add(per.Id);
+                }
             }
 
             return response;
