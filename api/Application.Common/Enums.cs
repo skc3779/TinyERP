@@ -9,8 +9,8 @@
         InActive = 1,
         Active = 2,
         Deleted = 3,
-        WaitForActivating = 4,
-        WaitForApproving = 5,
+        WaitForActivating = 4, //Todo: can i change this to "WaitingForAppoval"?
+        WaitForApproving = 5, //Todo: can i change this to "WaitingForAppoval"?
         New = 6,
         Resolved = 7,
         Cancelled = 8

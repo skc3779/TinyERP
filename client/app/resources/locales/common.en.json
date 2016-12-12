@@ -35,6 +35,7 @@
     "waitForActivating": "Wait For Activating"
   },
   "page": {
-    "action": "Actions"
+    "action": "Actions",
+    "confirmDelete": "Are you sure?"
   }
 }

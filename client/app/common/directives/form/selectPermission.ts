@@ -30,19 +30,20 @@ export class SelectPermission extends BaseControl {
         let self: SelectPermission = this;
         permissionService.getPermissions().then(function (pers: Array<any>) {
             self.model.setPermissions(pers);
+
+            //TODO: MMM - refactor. I think this can be done better.
+            //Setinterval clean interval? 
             window.setTimeout(function () {
                 self.dom.val(self.values).trigger("change");
-            }, 0);
-
+            }, 100);            
         });
 
         this.dom = window.jQuery(String.format("#{0}", self.id)).select2({
-            maximumSelectionLength: 1,
+            //maximumSelectionLength: 1,
             placeholder: self.placeHolder,
             allowClear: true
         });
         this.dom.on("select2:select", function (item: any) { self.onItemSelected.emit({ id: item.params.data.id, name: item.params.data.text }); });
         this.dom.on("select2:unselect", function (item: any) { self.onItemUnSelected.emit({ id: item.params.data.id, name: item.params.data.text }); });
-
     }
 }

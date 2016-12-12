@@ -54,8 +54,10 @@ export class Grid extends BaseControl {
         });
 
         $("#" + self.model.id + " tbody").on("click", ".grid-delete-item", function () {
-            let data = self.grid.row($(this).parents("tr")).data();
-            self.onItemDeleteClicked.emit({ item: data, gtid: self.grid });
+            if(confirm(self.i18nHelper.resolve("common.page.confirmDelete"))){
+                let data = self.grid.row($(this).parents("tr")).data();
+                self.onItemDeleteClicked.emit({ item: data, gtid: self.grid });
+            }
         });
         $("#" + self.model.id + " tbody").on("click", ".custom-actions", function () {
             let domId = this.id;
