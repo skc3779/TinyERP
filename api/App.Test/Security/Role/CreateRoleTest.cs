@@ -17,7 +17,8 @@
             string name = "Name of Role" + Guid.NewGuid().ToString("N");
             string description = "Desc of Role";
             CreateRoleResponse role = this.CreateRoleItem(name, description);
-            Assert.IsNotNull(role);
+            IRoleService service = IoC.Container.Resolve<IRoleService>();
+            Assert.IsNotNull(service.GetRole(role.Id));
         }
 
         [TestMethod]
