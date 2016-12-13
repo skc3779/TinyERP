@@ -25,7 +25,7 @@
         }
 
         [TestMethod]
-        public void Security_Role_CreateRole_ShouldThrowException_WithInValidRequest()
+        public void Security_Role_CreateRole_ShouldThrowException_WithEmptyName()
         {
             CreateRoleRequest request = new CreateRoleRequest(string.Empty, "desc");
             IResponseData<CreateRoleResponse> response = this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request);
@@ -34,7 +34,7 @@
         }
 
         [TestMethod]
-        public void Security_Role_CreateRole_ShouldThrowException_WithDuplicateName()
+        public void Security_Role_CreateRole_ShouldThrowException_WithDuplicatedName()
         {
             CreateRoleRequest request = new CreateRoleRequest("Name of Role " + Guid.NewGuid().ToString("N"), "desc");
             this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(this.BaseUrl, request);

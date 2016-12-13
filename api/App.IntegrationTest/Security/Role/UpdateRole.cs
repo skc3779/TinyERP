@@ -51,9 +51,38 @@
             Assert.IsTrue(response.Errors.Any(item => item.Key == "security.roles.validation.idIsInvalid"));
         }
 
+        [TestMethod()]
+        public void Security_Role_UpdateRole_ShouldThrowException_WithDuplicatedName()
+        {
+            CreateRoleResponse newRole = this.CreateNewRole();
+            UpdateRoleRequest request = new UpdateRoleRequest(this.createdRoleResponse.Id, newRole.Name, "desc");
+            IResponseData<string> response = this.Connector.Put<UpdateRoleRequest, string>(string.Format(this.BaseUrl, request.Id), request);
+            Assert.IsTrue(response.Errors.Count > 0);
+            Assert.IsTrue(response.Errors.Any(item => item.Key == "security.addOrUpdateRole.validation.nameAlreadyExisted"));
+        }
+
+        [TestMethod()]
+        public void Security_Role_UpdateRole_ShouldThrowException_WithDuplicatedKey()
+        {
+            string newGuidId = Guid.NewGuid().ToString("N");
+            string roleName = "update role name" + newGuidId;
+            this.CreateNewRole(roleName);
+            UpdateRoleRequest request = new UpdateRoleRequest(this.createdRoleResponse.Id, "update_role_name" + newGuidId, "desc");
+            IResponseData<string> response = this.Connector.Put<UpdateRoleRequest, string>(string.Format(this.BaseUrl, request.Id), request);
+            Assert.IsTrue(response.Errors.Count > 0);
+            Assert.IsTrue(response.Errors.Any(item => item.Key == "security.addOrUpdateRole.validation.keyAlreadyExisted"));
+        }
+
         private CreateRoleResponse CreateNewRole()
         {
             CreateRoleRequest request = new CreateRoleRequest("update role name" + Guid.NewGuid(), "desc");
+            IResponseData<CreateRoleResponse> response = this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(string.Format(this.BaseUrl, string.Empty), request);
+            return response.Data;
+        }
+
+        private CreateRoleResponse CreateNewRole(string name)
+        {
+            CreateRoleRequest request = new CreateRoleRequest(name, "desc");
             IResponseData<CreateRoleResponse> response = this.Connector.Post<CreateRoleRequest, CreateRoleResponse>(string.Format(this.BaseUrl, string.Empty), request);
             return response.Data;
         }
