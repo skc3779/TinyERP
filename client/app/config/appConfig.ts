@@ -28,7 +28,7 @@ export default {
         token: "authtoken"
     },
     api: {
-        baseUrl: "http://localhost:22383/api/"
+        baseUrl: "http://tinyerp-api.azurewebsites.net/api/"
     },
     localeUrl: "/app/resources/locales/"
 };
