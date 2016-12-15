@@ -21,7 +21,7 @@
             CreateUserGroupResponse createUserGroupResponse = this.CreateUserGroup(name, description, permissionIds);
             IUserGroupService userGroupService = IoC.Container.Resolve<IUserGroupService>();
             userGroupService.Delete(createUserGroupResponse.Id);
-            GetUserGroupResponse userGroupRespone = userGroupService.Get(createUserGroupResponse.Id);
+            GetUserGroupResponse userGroupRespone = userGroupService.GetUserGroup(createUserGroupResponse.Id);
             Assert.IsNull(userGroupRespone);
         }
 
@@ -36,7 +36,7 @@
             }
             catch (ValidationException exception)
             {
-                Assert.IsTrue(exception.HasExceptionKey("security.userGroups.validation.userGroupNotExist"));
+                Assert.IsTrue(exception.HasExceptionKey("security.userGroups.validation.userGroupNotExisted"));
             }
         }
 
@@ -50,7 +50,7 @@
             }
             catch (ValidationException exception)
             {
-                Assert.IsTrue(exception.HasExceptionKey("security.userGroups.validation.idIsInvalid"));
+                Assert.IsTrue(exception.HasExceptionKey("security.userGroups.validation.userGroupIdIsInvalid"));
             }
         }
 

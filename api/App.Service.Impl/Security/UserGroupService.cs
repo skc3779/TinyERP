@@ -66,17 +66,17 @@
         {
             if (id == null || id == Guid.Empty)
             {
-                throw new ValidationException("security.userGroups.validation.idIsInvalid");
+                throw new ValidationException("security.userGroups.validation.userGroupIdIsInvalid");
             }
 
             IUserGroupRepository repository = IoC.Container.Resolve<IUserGroupRepository>();
             if (repository.GetById(id.ToString()) == null)
             {
-                throw new ValidationException("security.userGroups.validation.userGroupNotExist");
+                throw new ValidationException("security.userGroups.validation.userGroupNotExisted");
             }
         }
 
-        public GetUserGroupResponse Get(Guid id)
+        public GetUserGroupResponse GetUserGroup(Guid id)
         {
             IUserGroupRepository repository = IoC.Container.Resolve<IUserGroupRepository>();
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();

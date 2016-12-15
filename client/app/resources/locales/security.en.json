@@ -61,8 +61,8 @@
             "description":"Description"
         },
         "validation":{
-            "idIsInvalid":"Invalid UserGroup",
-            "userGroupNotExist":"Can not found this UserGroup, Please try again."
+            "userGroupIdIsInvalid":"Invalid UserGroup",
+            "userGroupNotExisted":"Can not found this UserGroup, Please try again."
         }
     },
     "addOrUpdateUserGroup":{
