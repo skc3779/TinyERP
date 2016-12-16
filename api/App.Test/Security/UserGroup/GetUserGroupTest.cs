@@ -1,7 +1,6 @@
 ﻿namespace App.Test.Security.UserGroup
 {
     using System;
-    using System.Collections.Generic;
     using Service.Security;
     using Common.UnitTest;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
