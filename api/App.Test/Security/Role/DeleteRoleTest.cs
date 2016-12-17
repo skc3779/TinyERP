@@ -27,7 +27,7 @@
             }
             catch (ValidationException exception)
             {
-                Assert.IsTrue(exception.HasExceptionKey("security.roles.validation.roleNotExist"));
+                Assert.IsTrue(exception.HasExceptionKey("security.roles.validation.roleNotExisted"));
             }
         }
 
