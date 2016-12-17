@@ -103,7 +103,7 @@
             IRoleRepository repository = IoC.Container.Resolve<IRoleRepository>();
             if (repository.GetById(id.ToString()) == null)
             {
-                throw new ValidationException("security.roles.validation.roleNotExist");
+                throw new ValidationException("security.roles.validation.roleNotExisted");
             }
         }
 
