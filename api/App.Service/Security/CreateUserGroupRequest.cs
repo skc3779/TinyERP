@@ -1,13 +1,14 @@
 ﻿namespace App.Service.Security
 {
-    using App.Common.Data;
-    using App.Common.Mapping;
-    using App.Entity.Security;
+    using App.Common.Validation.Attribute;
     using System;
     using System.Collections.Generic;
 
-    public class CreateUserGroupRequest : BaseContent, IMappedFrom<App.Entity.Security.UserGroup>
+    public class CreateUserGroupRequest
     {
+        [Required("security.addOrUpdateUserGroup.validation.nameIsRequire")]
+        public string Name { get; set; }
+        public string Description { get; set; }
         public IList<Guid> PermissionIds { get; set; }
         public CreateUserGroupRequest() : base()
         {

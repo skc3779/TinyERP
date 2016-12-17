@@ -33,16 +33,13 @@
 
         private void ValidateCreateRequest(CreateUserGroupRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Name))
-            {
-                throw new App.Common.Validation.ValidationException("security.addOrUpdateUserGroup.validation.nameIsRequire");
-            }
-
+            IValidationException validationException = ValidationHelper.Validate(request);
             IUserGroupRepository repo = IoC.Container.Resolve<IUserGroupRepository>();
             if (repo.GetByName(request.Name) != null)
             {
-                throw new App.Common.Validation.ValidationException("security.addOrUpdateUserGroup.validation.nameAlreadyExist");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.nameAlreadyExisted"));
             }
+            validationException.ThrowIfError();
         }
 
         public IList<UserGroupListItemSummary> GetUserGroups()
@@ -136,28 +133,27 @@
 
         private void ValidateUpdateRequest(UpdateUserGroupRequest request)
         {
-            if (request.Id == null || request.Id == Guid.Empty)
-            {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.idIsInvalid");
-            }
-
+            IValidationException validationException = ValidationHelper.Validate(request);
             IUserGroupRepository repository = IoC.Container.Resolve<IUserGroupRepository>();
             if (repository.GetById(request.Id.ToString()) == null)
             {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.itemNotExist");
-            }
-
-            if (string.IsNullOrWhiteSpace(request.Name))
-            {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.nameIsRequired");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.itemNotExist"));
             }
 
             string key = App.Common.Helpers.UtilHelper.ToKey(request.Name);
             UserGroup itemByKey = repository.GetByKey(key);
             if (itemByKey != null && itemByKey.Id != request.Id)
             {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.keyAlreadyExisted");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.keyAlreadyExisted"));
             }
+
+            UserGroup itemByName = repository.GetByName(request.Name);
+            if (null != itemByName && itemByName.Id != request.Id)
+            {
+                validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.nameAlreadyExisted"));
+            }
+
+            validationException.ThrowIfError();
         }
     }
 }
