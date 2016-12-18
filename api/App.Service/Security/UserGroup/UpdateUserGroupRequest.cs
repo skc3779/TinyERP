@@ -12,5 +12,14 @@
         {
             this.PermissionIds = new List<Guid>();
         }
+
+        public UpdateUserGroupRequest(Guid id, string name, string key, string desc) : base()
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Key = key;
+            this.Description = desc;
+            this.PermissionIds = new List<Guid>();
+        }
     }
 }
