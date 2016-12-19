@@ -84,10 +84,10 @@
             GetUserGroupResponse response = ObjectHelper.Convert<GetUserGroupResponse>(userGroup);
             if (userGroup != null)
             {
-                response.PermissionIds = new List<Guid>();
+                response.Permissions = new List<Guid>();
                 foreach (Permission per in userGroup.Permissions)
                 {
-                    response.PermissionIds.Add(per.Id);
+                    response.Permissions.Add(per.Id);
                 }
             }
 

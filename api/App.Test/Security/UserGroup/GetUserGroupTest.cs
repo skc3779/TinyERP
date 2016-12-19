@@ -12,8 +12,8 @@
         [TestMethod]
         public void Sercurity_UserGroup_GetUserGroup_ShouldBeSusscess_WithExistedUserGroup()
         {
-            string name = "name of role" + Guid.NewGuid();
-            string description = "description of role";
+            string name = "name of userGroup" + Guid.NewGuid();
+            string description = "description of userGroup";
             CreateUserGroupRequest userGroupRequest = new CreateUserGroupRequest()
             {
                 Name = name,

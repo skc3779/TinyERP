@@ -15,8 +15,8 @@
         [TestMethod]
         public void Security_UserGroup_DeleteUserGroup_ShouldBeSuccess_WithValidRequest()
         {
-            string name = "name of role" + Guid.NewGuid();
-            string description = "desc of role";
+            string name = "name of userGroup" + Guid.NewGuid();
+            string description = "desc of userGroup";
             IList<Guid> permissionIds = new List<Guid>();
             CreateUserGroupResponse createUserGroupResponse = this.CreateUserGroup(name, description, permissionIds);
             IUserGroupService userGroupService = IoC.Container.Resolve<IUserGroupService>();
