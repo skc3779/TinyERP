@@ -6,7 +6,7 @@
 
     public class UpdateUserGroupRequest
     {
-        [Required("common.validation.inValidRequest")]
+        [Required("common.inValidRequest")]
         public Guid Id { get; set; }
         [Required("security.addOrUpdateUserGroup.validation.nameIsRequire")]
         public string Name { get; set; }
