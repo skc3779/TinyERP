@@ -13,7 +13,7 @@
             this.Description = desc;
         }
 
-        [Required("common.validation.invalidRequest")]
+        [Required("common.invalidRequest")]
         public Guid Id { get; set; }
         [Required("security.addPermission.validation.nameIsRequire")]
         public string Name { get; set; }

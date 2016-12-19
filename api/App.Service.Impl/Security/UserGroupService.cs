@@ -39,6 +39,7 @@
             {
                 validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.nameAlreadyExisted"));
             }
+
             validationException.ThrowIfError();
         }
 
@@ -148,7 +149,7 @@
             }
 
             UserGroup itemByName = repository.GetByName(request.Name);
-            if (null != itemByName && itemByName.Id != request.Id)
+            if (itemByName != null && itemByName.Id != request.Id)
             {
                 validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.nameAlreadyExisted"));
             }
