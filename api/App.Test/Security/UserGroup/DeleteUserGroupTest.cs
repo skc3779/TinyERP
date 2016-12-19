@@ -6,25 +6,11 @@
     using Common.UnitTest;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Common.DI;
-    using Service.Security.UserGroup;
     using Common.Validation;
 
     [TestClass]
     public class DeleteUserGroupTest : BaseUnitTest
     {
-        [TestMethod]
-        public void Security_UserGroup_DeleteUserGroup_ShouldBeSuccess_WithValidRequest()
-        {
-            string name = "name of userGroup" + Guid.NewGuid();
-            string description = "desc of userGroup";
-            IList<Guid> permissionIds = new List<Guid>();
-            CreateUserGroupResponse createUserGroupResponse = this.CreateUserGroup(name, description, permissionIds);
-            IUserGroupService userGroupService = IoC.Container.Resolve<IUserGroupService>();
-            userGroupService.Delete(createUserGroupResponse.Id);
-            GetUserGroupResponse userGroupRespone = userGroupService.GetUserGroup(createUserGroupResponse.Id);
-            Assert.IsNull(userGroupRespone);
-        }
-
         [TestMethod]
         public void Security_UserGroup_DeleteUserGroup_ShouldGetException_WithNotExistedId()
         {
