@@ -14,21 +14,14 @@
         [TestMethod]
         public void Security_Role_DeleteRole_ShouldBeSuccess_WithValidRequest()
         {
-            try
-            {
-                string name = "name of role" + Guid.NewGuid();
-                string description = "desc of role";
-                IList<Guid> permissions = new List<Guid>();
-                CreateRoleResponse createRoleResponse = this.CreateRole(name, description, permissions);
-                IRoleService roleService = IoC.Container.Resolve<IRoleService>();
-                roleService.Delete(createRoleResponse.Id);
-                GetRoleResponse roleRespone = roleService.Get(createRoleResponse.Id);
-                Assert.IsNull(roleRespone);
-            }
-            catch (ValidationException exception)
-            {
-                Assert.IsTrue(exception.HasExceptionKey("security.roles.validation.roleNotExisted"));
-            }
+            string name = "name of role" + Guid.NewGuid();
+            string description = "desc of role";
+            IList<Guid> permissions = new List<Guid>();
+            CreateRoleResponse createRoleResponse = this.CreateRole(name, description, permissions);
+            IRoleService roleService = IoC.Container.Resolve<IRoleService>();
+            roleService.Delete(createRoleResponse.Id);
+            GetRoleResponse roleRespone = roleService.Get(createRoleResponse.Id);
+            Assert.IsNull(roleRespone);
         }
 
         [TestMethod]
