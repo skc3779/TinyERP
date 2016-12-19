@@ -82,10 +82,10 @@
             IPermissionRepository perRepo = IoC.Container.Resolve<IPermissionRepository>();
             UserGroup userGroup = repository.GetById(id.ToString(), "Permissions");
             GetUserGroupResponse response = ObjectHelper.Convert<GetUserGroupResponse>(userGroup);
-            response.Permissions = new List<Guid>();
+            response.PermissionIds = new List<Guid>();
             foreach (Permission per in userGroup.Permissions)
             {
-                response.Permissions.Add(per.Id);
+                response.PermissionIds.Add(per.Id);
             }
 
             return response;

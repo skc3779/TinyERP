@@ -7,10 +7,10 @@
 
     public class GetUserGroupResponse : BaseContent, IMappedFrom<App.Entity.Security.UserGroup>
     {
-        public IList<Guid> Permissions { get; set; }
+        public IList<Guid> PermissionIds { get; set; }
         public GetUserGroupResponse() : base()
         {
-            this.Permissions = new List<Guid>();
+            this.PermissionIds = new List<Guid>();
         }
     }
 }
