@@ -2,7 +2,6 @@
 {
     using App.Common.Data;
     using App.Common.Mapping;
-    using App.Entity.Security;
     using System;
     using System.Collections.Generic;
 

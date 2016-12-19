@@ -66,13 +66,13 @@
         {
             if (id == null || id == Guid.Empty)
             {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.idIsInvalid");
+                throw new ValidationException("security.userGroups.validation.userGroupIdIsInvalid");
             }
 
             IUserGroupRepository repository = IoC.Container.Resolve<IUserGroupRepository>();
             if (repository.GetById(id.ToString()) == null)
             {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.userGroupNotExist");
+                throw new ValidationException("security.userGroups.validation.userGroupNotExisted");
             }
         }
 
