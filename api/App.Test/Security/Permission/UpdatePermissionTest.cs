@@ -77,7 +77,7 @@
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("common.validation.invalidRequest"));
+                Assert.IsTrue(ex.HasExceptionKey("common.invalidRequest"));
             }
         }
 

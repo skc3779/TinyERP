@@ -56,7 +56,7 @@
             UpdatePermissionRequest request = new UpdatePermissionRequest(Guid.Empty, "new updated name" + Guid.NewGuid(), "New updated Key " + Guid.NewGuid(), "desc");
             IResponseData<string> response = this.Connector.Put<UpdatePermissionRequest, string>(string.Format(this.BaseUrl, request.Id), request);
             Assert.IsTrue(response.Errors.Count > 0);
-            Assert.IsTrue(response.Errors.Any(item => item.Key == "common.validation.invalidRequest"));
+            Assert.IsTrue(response.Errors.Any(item => item.Key == "common.invalidRequest"));
         }
     }
 }
