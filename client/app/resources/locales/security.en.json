@@ -5,7 +5,7 @@
         "addRoleAction":"Add Role",
         "validation":{
             "idIsInvalid":"Invalid Role",
-            "roleNotExist":"Can not found this Role, Please try again."
+            "roleNotExisted":"Can not found this Role, Please try again."
         },
         "grid":{
             "name":"Name",

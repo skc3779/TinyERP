@@ -33,7 +33,7 @@
 
         private void ValidateCreateRequest(CreateUserGroupRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Name))
+            if (string.IsNullOrWhiteSpace(request.Name))    
             {
                 throw new App.Common.Validation.ValidationException("security.addOrUpdateUserGroup.validation.nameIsRequire");
             }
