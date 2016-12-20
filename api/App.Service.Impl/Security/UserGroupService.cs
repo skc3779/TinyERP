@@ -141,14 +141,6 @@
                 throw new ValidationException("security.addOrUpdateUserGroup.validation.itemNotExist");
             }
 
-
-            UserGroup itemByName = repository.GetByName(request.Name);
-            if (itemByName != null && itemByName.Id != request.Id)
-            {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.nameAlreadyExist");
-                validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.itemNotExist"));
-            }
-
             string key = App.Common.Helpers.UtilHelper.ToKey(request.Name);
             UserGroup itemByKey = repository.GetByKey(key);
             if (itemByKey != null && itemByKey.Id != request.Id)
