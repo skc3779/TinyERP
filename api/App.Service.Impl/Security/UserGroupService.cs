@@ -138,6 +138,14 @@
             IUserGroupRepository repository = IoC.Container.Resolve<IUserGroupRepository>();
             if (repository.GetById(request.Id.ToString()) == null)
             {
+                throw new ValidationException("security.addOrUpdateUserGroup.validation.itemNotExist");
+            }
+
+
+            UserGroup itemByName = repository.GetByName(request.Name);
+            if (itemByName != null && itemByName.Id != request.Id)
+            {
+                throw new ValidationException("security.addOrUpdateUserGroup.validation.nameAlreadyExist");
                 validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.itemNotExist"));
             }
 

@@ -1,11 +1,11 @@
 {
-    "security": "Secutiry Menus",
-    "roles": {
-        "title": "Roles",
-        "addRoleAction": "Add Role",
-        "validation": {
-            "idIsInvalid": "Invalid Role",
-            "roleNotExist": "Can not found this Role, Please try again."
+    "security":"Secutiry Menus",
+    "roles":{
+        "title":"Roles",
+        "addRoleAction":"Add Role",
+        "validation":{
+            "idIsInvalid":"Invalid Role",
+            "roleNotExisted":"Can not found this Role, Please try again."
         },
         "grid": {
             "name": "Name",
