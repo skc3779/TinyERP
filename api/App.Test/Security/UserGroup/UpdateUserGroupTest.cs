@@ -80,7 +80,7 @@
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateUserGroup.validation.nameIsRequired"));
+                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateUserGroup.validation.nameIsRequire"));
             }
         }
 
