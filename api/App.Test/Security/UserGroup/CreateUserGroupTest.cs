@@ -16,7 +16,6 @@
             string name = "Name of User Group" + Guid.NewGuid().ToString("N");
             string desc = "Desc of User Group";
             CreateUserGroupResponse userGroup = this.CreateUserGroupItem(name, desc);
-            IUserGroupService service = IoC.Container.Resolve<IUserGroupService>();
             Assert.IsNotNull(userGroup);
         }
 
