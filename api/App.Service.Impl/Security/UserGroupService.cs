@@ -33,7 +33,7 @@
 
         private void ValidateCreateRequest(CreateUserGroupRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Name))
+            if (string.IsNullOrWhiteSpace(request.Name))    
             {
                 throw new App.Common.Validation.ValidationException("security.addOrUpdateUserGroup.validation.nameIsRequire");
             }
@@ -149,7 +149,13 @@
 
             if (string.IsNullOrWhiteSpace(request.Name))
             {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.nameIsRequired");
+                throw new ValidationException("security.addOrUpdateUserGroup.validation.nameIsRequire");
+            }
+
+            UserGroup itemByName = repository.GetByName(request.Name);
+            if (itemByName != null && itemByName.Id != request.Id)
+            {
+                throw new ValidationException("security.addOrUpdateUserGroup.validation.nameAlreadyExist");
             }
 
             string key = App.Common.Helpers.UtilHelper.ToKey(request.Name);

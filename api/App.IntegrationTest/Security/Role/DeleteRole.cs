@@ -51,7 +51,7 @@
         {
             IResponseData<string> createRoleResponse = this.Connector.Delete<string>(string.Format(this.BaseUrl, Guid.NewGuid()));
             Assert.IsTrue(createRoleResponse.Errors.Count > 0);
-            Assert.IsTrue(createRoleResponse.Errors.Any(item => item.Key == "security.roles.validation.roleNotExist"));
+            Assert.IsTrue(createRoleResponse.Errors.Any(item => item.Key == "security.roles.validation.roleNotExisted"));
         }
     }
 }
