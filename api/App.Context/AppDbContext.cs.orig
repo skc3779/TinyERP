@@ -29,7 +29,6 @@ using App.Entity.Inventory;
         public System.Data.Entity.DbSet<Parameter> Parameters { get; set; }
         public System.Data.Entity.DbSet<Request> Requests { get; set; }
         public System.Data.Entity.DbSet<Category> Categories { get; set; }
-<<<<<<< HEAD
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -37,8 +36,6 @@ using App.Entity.Inventory;
             modelBuilder.Entity<Order>()
                 .HasMany(order => order.Items);
 
-
-=======
         public AppDbContext(IOMode mode = IOMode.Read) : base(new App.Common.Data.MSSQL.MSSQLConnectionString(), mode)
         {
             Database.SetInitializer<AppDbContext>(new DropCreateDatabaseIfModelChanges<AppDbContext>());
@@ -48,7 +45,6 @@ using App.Entity.Inventory;
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Order>().HasMany(order => order.Items);
->>>>>>> develop
             modelBuilder.Entity<Role>().ToTable("Roles");
             modelBuilder.Entity<Permission>().ToTable("Permissions");
 
