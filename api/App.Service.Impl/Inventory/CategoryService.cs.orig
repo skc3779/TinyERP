@@ -7,12 +7,9 @@
     using App.Common.DI;
     using App.Common;
     using App.Entity.Inventory;
-<<<<<<< HEAD
-=======
     using System;
     using App.Common.Data;
     using Context;
->>>>>>> feature/159-Delete-list-of-Category
 
     public class CategoryService : ICategoryService
     {

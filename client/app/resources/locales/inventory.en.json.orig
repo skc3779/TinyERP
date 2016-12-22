@@ -8,10 +8,8 @@
             "categoryIsInvalid": "The category is invalid."
         }
     },
-<<<<<<< HEAD
     "unitOfMeasurements": {
         "title": "Unit Of Mesurements"
-=======
     "addOrUpdateCategory": {
         "pageTitleForAdding": "Add Category",
         "pageTitleForUpdatting": "Update Category",
@@ -24,6 +22,5 @@
             "nameAlreadyExisted": "This name is already existed. Please input another name",
             "categoryNotExisted": "Category not found"
         }
->>>>>>> develop
     }
 }
