@@ -80,7 +80,7 @@
     <Compile Include="Security\UpdateRoleRequest.cs" />
     <Compile Include="Security\CreateRoleRequest.cs" />
     <Compile Include="Security\CreateRoleResponse.cs" />
-    <Compile Include="Security\CreateUserGroupRequest.cs" />
+    <Compile Include="Security\UserGroup\CreateUserGroupRequest.cs" />
     <Compile Include="Security\CreateUserGroupResponse.cs" />
     <Compile Include="Security\DeleteRoleResponse.cs" />
     <Compile Include="Security\GetRoleResponse.cs" />

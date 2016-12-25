@@ -13,9 +13,10 @@
         [TestMethod]
         public void Security_UserGroup_CreateUserGroup_ShouldBeSuccess_WithValidRequest()
         {
-            string name = "Name of User Group" + Guid.NewGuid().ToString("N");
+            string name = "Name of User Group" + Guid.NewGuid();
+            string key = "Key of User Group" + Guid.NewGuid();
             string desc = "Desc of User Group";
-            CreateUserGroupResponse userGroup = this.CreateUserGroupItem(name, desc);
+            CreateUserGroupResponse userGroup = this.CreateUserGroupItem(name, key, desc);
             Assert.IsNotNull(userGroup);
         }
 
@@ -25,8 +26,9 @@
             try
             {
                 string name = string.Empty;
+                string key = "Key of User Group" + Guid.NewGuid();
                 string desc = "Desc of User Group";
-                this.CreateUserGroupItem(name, desc);
+                this.CreateUserGroupItem(name, key, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
@@ -40,10 +42,11 @@
         {
             try
             {
-                string name = "Duplicated Name" + Guid.NewGuid().ToString("N");
+                string name = "Duplicated Name" + Guid.NewGuid();
+                string key = "Key of User Group" + Guid.NewGuid();
                 string desc = "Desc of User Group";
-                this.CreateUserGroupItem(name, desc);
-                this.CreateUserGroupItem(name, desc);
+                this.CreateUserGroupItem(name, key, desc);
+                this.CreateUserGroupItem(name, Guid.NewGuid().ToString(), desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
@@ -52,9 +55,9 @@
             }
         }
 
-        private CreateUserGroupResponse CreateUserGroupItem(string name, string desc)
+        private CreateUserGroupResponse CreateUserGroupItem(string name, string key, string desc)
         {
-            CreateUserGroupRequest request = new CreateUserGroupRequest(name, desc);
+            CreateUserGroupRequest request = new CreateUserGroupRequest(name, key, desc);
             IUserGroupService service = IoC.Container.Resolve<IUserGroupService>();
             return service.Create(request);
         }

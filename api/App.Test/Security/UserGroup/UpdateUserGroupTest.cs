@@ -12,28 +12,56 @@
     public class UpdateUserGroupTest : BaseUnitTest
     {
         private CreateUserGroupResponse userGroup;
-        private CreateUserGroupResponse userGroup2;
+        private CreateUserGroupResponse userGroup1;
         protected override void OnInit()
         {
             base.OnInit();
-            string name = "Name of User Group" + Guid.NewGuid().ToString("N");
+            string name = "Name of User Group" + Guid.NewGuid();
+            string key = "Key of User Group" + Guid.NewGuid();
             string desc = "Desc of User Group";
-            this.userGroup = this.CreateUserGroupItem(name, desc);
+            this.userGroup = this.CreateUserGroupItem(name, key, desc);
 
-            name = "Duplicated Name" + Guid.NewGuid().ToString("N");
+            name = "Duplicated Name" + Guid.NewGuid();
+            key = "Duplicated key" + Guid.NewGuid();
             desc = "Desc of User Group";
-            this.userGroup2 = this.CreateUserGroupItem(name, desc);
+            this.userGroup1 = this.CreateUserGroupItem(name, key, desc);
+        }
+
+        private CreateUserGroupResponse CreateUserGroupItem(string name, string key, string desc)
+        {
+            CreateUserGroupRequest request = new CreateUserGroupRequest(name, key, desc);
+            IUserGroupService service = IoC.Container.Resolve<IUserGroupService>();
+            return service.Create(request);
         }
 
         [TestMethod]
         public void Security_UserGroup_UpdateUserGroup_ShouldBeSuccess_WithValidRequest()
         {
-            string name = "New Name of User Group" + Guid.NewGuid().ToString("N");
+            string name = "New Name of User Group" + Guid.NewGuid();
+            string key = "New Key of User Group" + Guid.NewGuid();
             string desc = "New Desc of User Group";
-            this.UpdateUserGroupItem(this.userGroup.Id, name, desc);
+            this.UpdateUserGroupItem(this.userGroup.Id, name, key, desc);
+
             IUserGroupService service = IoC.Container.Resolve<IUserGroupService>();
-            App.Service.Security.UserGroup.GetUserGroupResponse updatedGroupService = service.Get(this.userGroup.Id);
-            Assert.AreEqual(updatedGroupService.Name, name);
+            App.Service.Security.UserGroup.GetUserGroupResponse updatedUserGroup = service.Get(this.userGroup.Id);
+            Assert.AreEqual(updatedUserGroup.Name, name);
+        }
+
+        [TestMethod]
+        public void Security_UserGroup_UpdateUserGroup_ShouldGetException_WithEmptyName()
+        {
+            try
+            {
+                string name = string.Empty;
+                string key = "Key of User Group" + Guid.NewGuid();
+                string desc = "Desc of User Group";
+                this.UpdateUserGroupItem(this.userGroup.Id, name, key, desc);
+                Assert.IsTrue(false);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateUserGroup.validation.nameIsRequire"));
+            }
         }
 
         [TestMethod]
@@ -41,9 +69,10 @@
         {
             try
             {
-                string name = "Name of User Group" + Guid.NewGuid().ToString("N");
+                string name = this.userGroup1.Name;
+                string key = "Key of User Group" + Guid.NewGuid();
                 string desc = "Desc of User Group";
-                this.UpdateUserGroupItem(Guid.Empty, name, desc);
+                this.UpdateUserGroupItem(Guid.Empty, name, key, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
@@ -57,9 +86,10 @@
         {
             try
             {
-                string name = "Name of User Group" + Guid.NewGuid().ToString("N");
+                string name = this.userGroup1.Name;
+                string key = "Key of User Group" + Guid.NewGuid();
                 string desc = "Desc of User Group";
-                this.UpdateUserGroupItem(Guid.NewGuid(), name, desc);
+                this.UpdateUserGroupItem(Guid.NewGuid(), name, key, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
@@ -69,18 +99,19 @@
         }
 
         [TestMethod]
-        public void Security_UserGroup_UpdateUserGroup_ShouldGetException_WithEmptyName()
+        public void Security_UserGroup_UpdateUserGroup_ShouldGetException_WithDuplicatedName()
         {
             try
             {
-                string name = string.Empty;
+                string name = this.userGroup1.Name;
+                string key = "Key of User Group" + Guid.NewGuid();
                 string desc = "Desc of User Group";
-                this.UpdateUserGroupItem(this.userGroup.Id, name, desc);
+                this.UpdateUserGroupItem(this.userGroup.Id, name, key, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
             {
-                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateUserGroup.validation.nameIsRequire"));
+                Assert.IsTrue(ex.HasExceptionKey("security.addOrUpdateUserGroup.validation.nameAlreadyExist"));
             }
         }
 
@@ -89,12 +120,10 @@
         {
             try
             {
-                string newGuid = Guid.NewGuid().ToString("N");
-                string name = "Name of User Group" + newGuid;
-                string name1 = "Name_of_User_Group" + newGuid;
+                string name = this.userGroup1.Name;
+                string key = "Key of User Group" + Guid.NewGuid();
                 string desc = "Desc of User Group";
-                this.UpdateUserGroupItem(this.userGroup.Id, name, desc);
-                this.UpdateUserGroupItem(this.userGroup2.Id, name1, desc);
+                this.UpdateUserGroupItem(this.userGroup.Id, name, key, desc);
                 Assert.IsTrue(false);
             }
             catch (ValidationException ex)
@@ -103,16 +132,8 @@
             }
         }
 
-        private CreateUserGroupResponse CreateUserGroupItem(string name, string desc)
+        private void UpdateUserGroupItem(Guid id, string name, string key, string desc)
         {
-            CreateUserGroupRequest request = new CreateUserGroupRequest(name, desc);
-            IUserGroupService service = IoC.Container.Resolve<IUserGroupService>();
-            return service.Create(request);
-        }
-
-        private void UpdateUserGroupItem(Guid id, string name, string desc)
-        {
-            string key = App.Common.Helpers.UtilHelper.ToKey(name);
             UpdateUserGroupRequest request = new UpdateUserGroupRequest(id, name, key, desc);
             IUserGroupService service = IoC.Container.Resolve<IUserGroupService>();
             service.Update(request);

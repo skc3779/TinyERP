@@ -13,9 +13,10 @@
             this.PermissionIds = new List<Guid>();
         }
 
-        public CreateUserGroupRequest(string name, string desc)
+        public CreateUserGroupRequest(string name, string key, string desc)
         {
             this.Name = name;
+            this.Key = key;
             this.Description = desc;
             this.PermissionIds = new List<Guid>();
         }
