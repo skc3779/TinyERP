@@ -5,5 +5,9 @@
         public CreateUserGroupResponse(App.Entity.Security.UserGroup userGroup) : base(userGroup)
         {
         }
+
+        public CreateUserGroupResponse()
+        {
+        }
     }
 }
