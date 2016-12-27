@@ -1,15 +1,15 @@
-import {BasePage} from "../../../common/models/ui";
-import {Router, RouteParams} from "angular2/router";
-import {Component} from "angular2/core";
-import {AddUserGroupModel} from "./addUserGroupModel";
-import {SelectPermission, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect} from "../../../common/directive";
-import {ValidationDirective, Page} from "../../../common/directive";
+import { BasePage } from "../../../common/models/ui";
+import { Router, RouteParams } from "angular2/router";
+import { Component } from "angular2/core";
+import { AddUserGroupModel } from "./addUserGroupModel";
+import { SelectPermission, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect } from "../../../common/directive";
+import { Page } from "../../../common/directive";
 import securityService from "../_share/services/securityService";
-import {FormMode} from "../../../common/enum";
+import { FormMode } from "../../../common/enum";
 import route from "../_share/config/route";
 @Component({
     templateUrl: "app/modules/security/userGroup/addUserGroup.html",
-    directives: [SelectPermission, ValidationDirective, Page, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect]
+    directives: [SelectPermission, Page, Form, FormTextInput, FormFooter, FormTextArea, FormPermissionSelect]
 })
 export class AddUserGroup extends BasePage {
     public model: AddUserGroupModel = new AddUserGroupModel();
