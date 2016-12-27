@@ -83,7 +83,7 @@
         }
 
         [TestMethod]
-        public void Security_UserGroup_UpdateUserGroup_ShouldThrowException_WithDuplicateddNameAndKey()
+        public void Security_UserGroup_UpdateUserGroup_ShouldThrowException_WithDuplicatedNameAndKey()
         {
             UpdateUserGroupRequest request = new UpdateUserGroupRequest()
             {
