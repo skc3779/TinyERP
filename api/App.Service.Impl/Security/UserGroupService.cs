@@ -138,7 +138,7 @@
             IUserGroupRepository repository = IoC.Container.Resolve<IUserGroupRepository>();
             if (repository.GetById(request.Id.ToString()) == null)
             {
-                throw new ValidationException("security.addOrUpdateUserGroup.validation.itemNotExist");
+                validationException.Add(new App.Common.Validation.ValidationError("security.addOrUpdateUserGroup.validation.itemNotExist"));
             }
 
             string key = App.Common.Helpers.UtilHelper.ToKey(request.Name);
